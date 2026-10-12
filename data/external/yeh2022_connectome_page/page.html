@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFQCVND7S6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XFQCVND7S6');
+</script>
+
+    <script>
+ function getIP3(json) {
+   if (json) {
+   	EIPL=json;
+   }
+   if (EIPL.org) {
+   	if (typeof ga === 'function' && typeof ga.getAll === 'function') {
+		var org=''+EIPL.org;
+                if (EIPL.businessName) {
+                	org=''+EIPL.businessName;
+			if (EIPL.businessWebsite) {
+				org+=' - '+EIPL.businessWebsite;
+			}
+		}
+		ga(ga.getAll()[0].get('name')+'.send', {
+		  hitType: 'event',
+		  eventCategory: 'eXTReMe-IP-Lookup.com',
+		  eventAction: EIPL.ipType, // sends Business, Education or Residential as type of visitor
+		  eventLabel: org, // sends Service Provider if Residential or the Business/Education name and if available the domain of the Business/Education
+		  nonInteraction: true
+		});
+	}
+	else {
+		setTimeout(function() {getIP3();}, 200);
+	}
+   }
+ }
+</script>
+<script src="//extreme-ip-lookup.com/json/?callback=getIP3&key=Y90wrEtWSxDVmGtTVDJi" async defer></script>
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Population-Probability Atlas and Tract-to-Region Connectome (Yeh, 2022) | Brain Image Data</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Population-Probability Atlas and Tract-to-Region Connectome (Yeh, 2022)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Brain image data" />
+<meta property="og:description" content="Brain image data" />
+<link rel="canonical" href="https://brain.labsolver.org/hcp_trk_atlas.html" />
+<meta property="og:url" content="https://brain.labsolver.org/hcp_trk_atlas.html" />
+<meta property="og:site_name" content="Brain Image Data" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Population-Probability Atlas and Tract-to-Region Connectome (Yeh, 2022)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Brain image data","headline":"Population-Probability Atlas and Tract-to-Region Connectome (Yeh, 2022)","url":"https://brain.labsolver.org/hcp_trk_atlas.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=657292d7071bb25a188bb1af3663026a55d8bacb">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'G-XFQCVND7S6', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <img src="/images/customLogo.png" width="250">
+      <h3><a href="/index.html">Fiber Data Hub</a></h3>
+      <h3>Repositories</h3>
+      <ul>
+        <li><a href="/mds/data-hcp/lifespan.html">data-hcp/lifespan</a></li>
+        <li><a href="/mds/data-hcp/disease.html">data-hcp/disease</a></li>
+        <li><a href="/mds/data-nih/tcia.html">data-nih/tcia</a></li>
+
+        <li><a href="/mds/data-openneuro/brain.html">data-openneuro/brain</a></li>
+        <li><a href="/mds/data-openneuro/brain2.html">data-openneuro/brain2</a></li>
+        <li><a href="/mds/data-openneuro/disease.html">data-openneuro/disease</a></li>
+        <li><a href="/mds/data-openneuro/disease2.html">data-openneuro/disease2</a></li>
+        <li><a href="/mds/data-openneuro/animal.html">data-openneuro/animal</a></li>
+        <li><a href="/mds/data-openneuro/others.html">data-openneuro/others</a></li>
+
+        <li><a href="/mds/data-indi/brain.html">data-indi/brain</a></li>
+        <li><a href="/mds/data-indi/disease.html">data-indi/disease</a></li>
+
+        <li><a href="/mds/data-others/brain.html">data-others/brain</a></li>
+        <li><a href="/mds/data-others/brain2.html">data-others/brain2</a></li>
+        <li><a href="/mds/data-others/disease.html">data-others/disease</a></li>
+        <li><a href="/mds/data-others/animal.html">data-others/animal</a></li>
+        <br>
+        <li><a href="/qc.html">QC results</a></li>
+      </ul>
+      <h3><a href="/hcp_template.html">Group Templates</a></h3>
+      <h3><a href="/hcp_trk_atlas.html">Tractography Atlases</a></h3>
+      <h3><a href="https://www.reddit.com/r/dsistudio/">Discussion Forum (Reddit)</a></h3>
+      <h3><a href="https://groups.google.com/g/dsi-studio?pli=1">Discussion Forum (Google)</a></h3>
+      <h3><a href="https://dsi-studio.labsolver.org">DSI Studio</a></h3>
+      <p>Fang-Cheng (Frank) Yeh<br>
+          <a href="https://www.dropbox.com/s/ej2ujl6fmcvwx8f/Frank_CV.pdf?dl=0">CV</a>, <a href="http://scholar.google.com/citations?user=QdfsoJ4AAAAJ&hl=en">Google Citation</a>, <a href="https://www.webofscience.com/wos/author/record/101404">Researcher Profile</a><br>
+          <a href="https://twitter.com/intent/follow?screen_name=FangChengYeh"><img src="https://img.shields.io/twitter/follow/FangChengYeh?style=social&logo=twitter" alt="follow on Twitter"></a><a href="https://www.youtube.com/c/FrankYeh"><img src="https://img.shields.io/youtube/channel/subscribers/UCN6gohY_zeBpK6SwJ7hnz1Q?style=social"></a>
+      <p>E-mail: frank.yeh@gmail.com</p>
+      <p></p>
+      <a href="https://github.com/frankyeh/Brain-Data">.</a>
+    </header>
+
+    <main id="content" class="main-content markdown-body" role="main">
+      <h1 id="population-probability-atlas-and-tract-to-region-connectome-yeh-2022">Population-Probability Atlas and Tract-to-Region Connectome (Yeh, 2022)</h1>
+
+<p><img src="https://user-images.githubusercontent.com/275569/178081487-f53cb1d9-9843-4b27-a63a-f9e4f7cea2ba.png" alt="image" /></p>
+
+<blockquote>
+  <p>Citation: Yeh, FC. Population-based tract-to-region connectome of the human brain and its hierarchical topology. Nat Commun 13, 4933 (2022). https://doi.org/10.1038/s41467-022-32595-4</p>
+</blockquote>
+
+<blockquote>
+  <p>License: <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+</blockquote>
+
+<p>The population-based tractography atlases and associated tract-to-region connectome were constructed using <a href="/hcp-ya.html">HCP young adult</a> data.</p>
+
+<h2 id="download">Download</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Format</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_prob_coverage_nifti.zip">HCP-1065 probabilistic tract atlas (volume)</a></td>
+      <td>NIFTI</td>
+      <td>The voxel probability of tracts. This probabilistic tractography atlas was aggregated from 1065 subject’s tractogram in the ICBM 2009a Nonlinear Asymmetric space. Automatic fiber tracking and augmented fiber tracking (Yeh 2020) were used to map white matter pathways in HCP young adult subjects. These NIFTI volumes record the population probability of each white matter tract aggregated from the tractography of 1065 subjects.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_prob_coverage_jpg.zip">HCP-1065 probabilistic tract atlas figures</a></td>
+      <td>TIF</td>
+      <td>The voxel probability of tracts</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/data-others/atlas/releases/download/hcp1065/tract_to_region_connectome_MMP.xlsx">Tract-to-region connectome (HCP-MMP parcellation)</a></td>
+      <td>Excel</td>
+      <td>Tract-to-region connectome was derived using HCP-MMP parcellations.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/data-others/atlas/releases/download/hcp1065/tract_to_region_connectome_BM_KL.xlsx">Tract-to-region connectome (Brodmann and Kleist parcellation)</a></td>
+      <td>Excel</td>
+      <td>Tract-to-region connectome was derived using Brodmann and Kleist parcellations.</td>
+    </tr>
+    <tr>
+      <td><a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-022-32595-4/MediaObjects/41467_2022_32595_MOESM4_ESM.zip">Scripts</a></td>
+      <td> </td>
+      <td>Scripts to generate figures in the Yeh Nat. Comm. 2022 paper</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/data-others/atlas/releases/download/hcp1065/abbreviation2.xlsx">Abbreviations</a></td>
+      <td>Excel</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/data-others/atlas/releases/download/hcp1065/1065_subject_tract_in_nifti.zip">1065 subjects tracts in NIFTI files</a></td>
+      <td>ZIP (.nii.gz)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="hcp1065-population-averaged-tractography-atlas-yeh-2022">HCP1065 Population-Averaged Tractography Atlas (Yeh, 2022)</h1>
+
+<p><img src="https://user-images.githubusercontent.com/275569/149355373-399832bb-7a83-486d-ba89-71910a0af9df.png" width="400" /></p>
+
+<blockquote>
+  <p>Citation: Yeh, FC. Population-based tract-to-region connectome of the human brain and its hierarchical topology. Nat Commun 13, 4933 (2022). https://doi.org/10.1038/s41467-022-32595-4</p>
+</blockquote>
+
+<blockquote>
+  <p>License: <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+</blockquote>
+
+<p>The data are derived from imaging data of the Human Connectome Project. Using them requires additional <a href="https://www.humanconnectome.org/study/hcp-young-adult/document/wu-minn-hcp-consortium-open-access-data-use-terms">acknowledgment</a>.</p>
+
+<p>The HCP1065 tractography atlas is an updated version of the previous HCP842 (Yeh 2018) to the <a href="https://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009">ICBM 2009a Nonlinear Asymmetric space</a>. </p>
+
+<p>The HCP1065 Yeh 2022 atlas further provides subcomponents for the cingulum, SLF, corticopontine track, corticostriatal track, and corticothalamic track (renamed as thalamic radiation). </p>
+
+<h2 id="download-1">Download</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Format</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_avg_tracts_tt.zip">HCP1065 Population-averaged tractography atlas (streamlines)</a></td>
+      <td>TT</td>
+      <td>To view these tract files, please download the HCP-1065 template fib file and open it in DSI Studio at [Step T3 Fiber Tracking]. The *.tt.gz files can be loaded using [Tracts][Open Tracts]. The ICBM152 images can be loaded using [Edit][Insert T1W/T2W].</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_avg_tracts_trk.zip">HCP1065 Population-averaged tractography atlas (streamlines)</a></td>
+      <td>TRK</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_avg_tracts_nifti.zip">HCP1065 Population-averaged tractography atlas (volume)</a></td>
+      <td>NIFTI</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/data-others/atlas/releases/download/hcp1065/abbreviation.xlsx">Tract Abbreviations</a> </td>
+      <td>Excel</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="hcp842-population-averaged-tractography-atlas-yeh-2018">HCP842 Population-Averaged Tractography Atlas (Yeh, 2018)</h1>
+
+<p><img src="https://user-images.githubusercontent.com/275569/149355618-5299fdf9-3d6e-4cfc-a434-96794f838052.png" width="400" /></p>
+
+<blockquote>
+  <p>Citation: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6921501/">Yeh FC, Panesar S, Fernandes D, Meola A, Yoshino M, Fernandez-Miranda JC, Vettel JM, Verstynen T. Population-averaged atlas of the macroscale human structural connectome and its network topology. Neuroimage. 2018 Sep 1;178:57-68.</a>(original data)</p>
+</blockquote>
+
+<blockquote>
+  <p>License: <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+</blockquote>
+
+<p>The data are derived from imaging data of the Human Connectome Project. Using them requires additional <a href="https://www.humanconnectome.org/study/hcp-young-adult/document/wu-minn-hcp-consortium-open-access-data-use-terms">acknowledgment</a>.</p>
+
+<p>The HCP842 tractography atlas uses <a href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases">FSL’s FA map</a>, which averaged from 58 FA images in the MNI152 coordinate. </p>
+
+<h2 id="download-2">Download</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Format</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://pitt-my.sharepoint.com/:f:/g/personal/yehfc_pitt_edu/EvV49cgSEWpFmJOwtRO28moB7b_yXTDUIx5lnP0opd-waA?e=6w2v4J">HCP842 Population-averaged tractography atlas (streamline)</a></td>
+      <td>TRK</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://zenodo.org/record/3627772#.Xi0q02hKiUk">HCP842 Population-averaged tractography atlas (volume)</a></td>
+      <td>NIFTI</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://pitt-my.sharepoint.com/:f:/g/personal/yehfc_pitt_edu/ErvN3WnoP7FHlJjinNVNq3IB753wSm4QGvHgzMACOURP8Q?e=VmySKx">HCP842 Population-averaged tractography atlas (figure)</a></td>
+      <td>JPG</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://pitt-my.sharepoint.com/:f:/g/personal/yehfc_pitt_edu/EmzLbtr_IA9LrKMCfC1aC6cB_ag6Ivwj8DJA5o71_kHm9w?e=QYnZVK">HCP842 Connectivity matrix (EXCEL) and connectograms in (PNG)</a></td>
+      <td>Excel PNG</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6921501/bin/NIHMS1062874-supplement-1.pdf">HCP842 Abbreviations</a></td>
+      <td>PDF</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+
+      <footer class="site-footer">
+      </footer>
+    </main>
+  </body>
+</html>

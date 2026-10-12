@@ -1,0 +1,1355 @@
+{
+ "harvard_aan_v2": {
+  "status": "failed",
+  "files": [],
+  "listing": [
+   {
+    "name": "AAN_Brainstem_MNI152_1mm_v2p0.nii",
+    "bytes": 28884480
+   },
+   {
+    "name": "AAN_Brainstem_v2p0_Color_LUT_FreeSurfer.txt",
+    "bytes": 681
+   },
+   {
+    "name": "AAN_DR_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_LC_L_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_LC_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_LC_R_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_LDTg_L_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_LDTg_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_LDTg_R_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_MnR_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_mRt_L_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_mRt_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_mRt_R_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_PAG_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_PBC_L_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_PBC_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_PBC_R_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_PnO_L_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_PnO_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_PnO_R_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_PTg_L_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_PTg_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_PTg_R_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "AAN_VTA_MNI152_1mm_v2p0.nii",
+    "bytes": 7221384
+   },
+   {
+    "name": "README.md",
+    "bytes": 4300
+   }
+  ],
+  "notes": [
+   "download failed AAN_Brainstem_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419166/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_Brainstem_v2p0_Color_LUT_FreeSurfer.txt: GET https://datadryad.org/api/v2/files/2419165/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_DR_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419143/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_LC_L_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419145/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_LC_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419144/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_LC_R_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419146/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_LDTg_L_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419147/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_LDTg_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419148/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_LDTg_R_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419149/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_MnR_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419150/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_mRt_L_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419157/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_mRt_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419151/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_mRt_R_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419152/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_PAG_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419153/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_PBC_L_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419155/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_PBC_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419158/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_PBC_R_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419154/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_PnO_L_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419160/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_PnO_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419156/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_PnO_R_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419159/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_PTg_L_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419162/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_PTg_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419161/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_PTg_R_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419164/download failed: HTTP Error 401: Unauthorized",
+   "download failed AAN_VTA_MNI152_1mm_v2p0.nii: GET https://datadryad.org/api/v2/files/2419163/download failed: HTTP Error 401: Unauthorized",
+   "download failed README.md: GET https://datadryad.org/api/v2/files/2419168/download failed: HTTP Error 401: Unauthorized"
+  ],
+  "doi": "10.5061/dryad.zw3r228d2",
+  "title": "Harvard Ascending Arousal Network Atlas \u2013 Version 2.0",
+  "license": "https://spdx.org/licenses/CC0-1.0.html",
+  "version_date": "2023-07-18"
+ },
+ "edlow_100um": {
+  "status": "ok",
+  "files": [],
+  "listing": [
+   {
+    "name": "100_Micron_MRI_Scan_Protocol.pdf",
+    "bytes": 713137
+   },
+   {
+    "name": "100_Micron_MRI_Supplementary_Material.pdf",
+    "bytes": 7601792
+   },
+   {
+    "name": "Acquired_FA25_100um.nii.gz",
+    "bytes": 8271212245
+   },
+   {
+    "name": "Acquired_FA25_downsampled_200um.nii.gz",
+    "bytes": 1024379689
+   },
+   {
+    "name": "Acquired_FA25_downsampled_500um.nii.gz",
+    "bytes": 66036939
+   },
+   {
+    "name": "OpenNeuro_Dryad_File_Index.pdf",
+    "bytes": 43504
+   },
+   {
+    "name": "Synthesized_FLASH25_100um_TIFF_Axial_Images.zip",
+    "bytes": 1999932679
+   },
+   {
+    "name": "Synthesized_FLASH25_100um_TIFF_Coronal_Images.zip",
+    "bytes": 2003634115
+   },
+   {
+    "name": "Synthesized_FLASH25_100um_TIFF_Sagittal_Images.zip",
+    "bytes": 1959117401
+   },
+   {
+    "name": "Synthesized_FLASH25_100um.nii.gz",
+    "bytes": 8343546785
+   },
+   {
+    "name": "Synthesized_FLASH25_downsampled_200um.nii.gz",
+    "bytes": 1029396987
+   },
+   {
+    "name": "Synthesized_FLASH25_downsampled_500um.nii.gz",
+    "bytes": 66605139
+   },
+   {
+    "name": "Synthesized_FLASH25_in_MNI_v2_100um.nii.gz",
+    "bytes": 4702383411
+   },
+   {
+    "name": "Synthesized_FLASH25_in_MNI_v2_200um.nii.gz",
+    "bytes": 1154496123
+   },
+   {
+    "name": "Synthesized_FLASH25_in_MNI_v2_500um.nii.gz",
+    "bytes": 74205499
+   },
+   {
+    "name": "VIDEO_1_100_MICRON_MRI_ACQUIRED_FA25_AXIAL.mp4",
+    "bytes": 146587234
+   },
+   {
+    "name": "VIDEO_2_100_MICRON_MRI_ACQUIRED_FA25_CORONAL.mp4",
+    "bytes": 138417514
+   },
+   {
+    "name": "VIDEO_3_100_MICRON_MRI_ACQUIRED_FA25_SAGITTAL.mp4",
+    "bytes": 142176599
+   },
+   {
+    "name": "VIDEO_4_100_MICRON_MRI_SYNTHESIZED_FLASH25_AXIAL.mp4",
+    "bytes": 126904513
+   },
+   {
+    "name": "VIDEO_5_100_MICRON_MRI_SYNTHESIZED_FLASH25_CORONAL.mp4",
+    "bytes": 116777755
+   },
+   {
+    "name": "VIDEO_6_100_MICRON_MRI_SYNTHESIZED_FLASH25_SAGITTAL.mp4",
+    "bytes": 124359026
+   },
+   {
+    "name": "VIDEO_7_100_MICRON_MRI_MOVIE-2.mp4",
+    "bytes": 61334017
+   }
+  ],
+  "notes": [],
+  "doi": "10.5061/dryad.119f80q",
+  "title": "Data from: 7 Tesla MRI of the ex vivo human brain at 100 micron resolution",
+  "license": "https://spdx.org/licenses/CC0-1.0.html",
+  "version_date": "2025-02-07"
+ },
+ "cit168": {
+  "status": "ok",
+  "files": [
+   {
+    "path": "cit168/README.pdf",
+    "bytes": 33541,
+    "sha256": "5940d0b43de3c23ae4f9aecaa83fe7d7d0afb511db45a604b1ec3e5289fc6e8c"
+   }
+  ],
+  "listing": [
+   {
+    "name": "/CIT168_Labeling_Templates/CV_479463_T1w_avg.nii.gz",
+    "bytes": 14297181
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_059780_T1w_avg.nii.gz",
+    "bytes": 14451737
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_059780_T2w_avg.nii.gz",
+    "bytes": 14399816
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_339494_T2w_avg.nii.gz",
+    "bytes": 14583025
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_489688_T1w_avg.nii.gz",
+    "bytes": 14233501
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_479463_T2w_avg.nii.gz",
+    "bytes": 14415049
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_339494_T1w_avg.nii.gz",
+    "bytes": 14271433
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_575209_T1w_avg.nii.gz",
+    "bytes": 14400654
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_639317_T1w_avg.nii.gz",
+    "bytes": 14220127
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_489688_T2w_avg.nii.gz",
+    "bytes": 14361484
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_575209_T2w_avg.nii.gz",
+    "bytes": 14368759
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_728661_T1w_avg.nii.gz",
+    "bytes": 14212371
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_931201_T1w_avg.nii.gz",
+    "bytes": 14305620
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_931201_T2w_avg.nii.gz",
+    "bytes": 14410991
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_639317_T2w_avg.nii.gz",
+    "bytes": 14346331
+   },
+   {
+    "name": "/CIT168_Labeling_Templates/CV_728661_T2w_avg.nii.gz",
+    "bytes": 14337614
+   },
+   {
+    "name": "/CIT168_Unrestricted_Demographics.tsv",
+    "bytes": 2537
+   },
+   {
+    "name": "/README.pdf",
+    "bytes": 33541
+   },
+   {
+    "name": "/code/0_prepare/0_check_SIDs.sh",
+    "bytes": 489
+   },
+   {
+    "name": "/code/0_prepare/1_find_bb.sh",
+    "bytes": 556
+   },
+   {
+    "name": "/code/0_prepare/2_clone_structurals.sh",
+    "bytes": 2149
+   },
+   {
+    "name": "/code/0_prepare/CIT168_SIDs.txt",
+    "bytes": 1512
+   },
+   {
+    "name": "/code/1_midspace/3_avg_gm.sh",
+    "bytes": 1902
+   },
+   {
+    "name": "/code/1_midspace/1_avg_brains.sh",
+    "bytes": 774
+   },
+   {
+    "name": "/code/1_midspace/2_avg_heads_masks.sh",
+    "bytes": 2511
+   },
+   {
+    "name": "/code/1_midspace/midspace.sh",
+    "bytes": 886
+   }
+  ],
+  "notes": [],
+  "title": "An In Vivo High Resolution Atlas of the Subcortical Human Brain",
+  "license": "CC-By Attribution 4.0 International"
+ },
+ "hcp842_zenodo": {
+  "status": "ok",
+  "files": [
+   {
+    "path": "hcp842_zenodo/Central_Tegmental_Tract_R.nii.gz",
+    "bytes": 4602,
+    "sha256": "2116e6ab7afe7806fd6c798bbaf0af1ede9e7e3ccd884654825e8e35743be73a"
+   },
+   {
+    "path": "hcp842_zenodo/U_Fiber_L.nii.gz",
+    "bytes": 20845,
+    "sha256": "4f8fafa41c3b53a6fcefbfc7c25d27d39927d1dc702f062d9757c20121354bea"
+   },
+   {
+    "path": "hcp842_zenodo/CNIV_R.nii.gz",
+    "bytes": 4741,
+    "sha256": "640b60da1cd355164b43abeee9a9a5ab1c517a56409397e0c444acfcfded21a1"
+   },
+   {
+    "path": "hcp842_zenodo/CNIV_L.nii.gz",
+    "bytes": 4613,
+    "sha256": "8819069a1a7567000d4fe89cd64a11d4a0b105344ad5847defe42dca1cf21c9a"
+   },
+   {
+    "path": "hcp842_zenodo/CNII_R.nii.gz",
+    "bytes": 5541,
+    "sha256": "2e3605ada8c80ada105605d8b033ab909254ca38f397f9ca7df50edc001b0ea6"
+   },
+   {
+    "path": "hcp842_zenodo/CNII_L.nii.gz",
+    "bytes": 5588,
+    "sha256": "b414605d43478485057be82581ea1820cc5aa7d918531ef811b91c78a68abefc"
+   },
+   {
+    "path": "hcp842_zenodo/CNIII_R.nii.gz",
+    "bytes": 4395,
+    "sha256": "2f8f9b16603ca5a2062255f8fca3b4992e31db1d8d627dc39e921a2356274f69"
+   },
+   {
+    "path": "hcp842_zenodo/CNIII_L.nii.gz",
+    "bytes": 4518,
+    "sha256": "697111202289fb73c025010c03a673416e86987f1f1491cebe5fc36fd31f4c91"
+   },
+   {
+    "path": "hcp842_zenodo/Cingulum_R.nii.gz",
+    "bytes": 9156,
+    "sha256": "ff8fd3e3ecfd9a7d53afc53046942ee0f307461f99764529344fd82d9a5272c0"
+   },
+   {
+    "path": "hcp842_zenodo/Cingulum_L.nii.gz",
+    "bytes": 9208,
+    "sha256": "5d40a4b563218c362090fb603ecd8094098e8c283b99e77fca86266feeef8a2e"
+   },
+   {
+    "path": "hcp842_zenodo/Cerebellum_R.nii.gz",
+    "bytes": 9130,
+    "sha256": "e94fed1bf1340d2a4c6c2c879244b50d844cbaa52b63217952b43e2c8f236988"
+   },
+   {
+    "path": "hcp842_zenodo/Cerebellum_L.nii.gz",
+    "bytes": 8734,
+    "sha256": "a4118e6dcb916649b2bc074ebeda65aac3b8380ff2fd7f23bf85aafd65b87b22"
+   },
+   {
+    "path": "hcp842_zenodo/Central_Tegmental_Tract_L.nii.gz",
+    "bytes": 4578,
+    "sha256": "d09df02db2e3e69d854362c111bbdc1c14866e9d1c523ed35ca178ab85ee91c3"
+   },
+   {
+    "path": "hcp842_zenodo/Arcuate_Fasciculus_R.nii.gz",
+    "bytes": 8386,
+    "sha256": "2a4462592d25f2739571519806f74a34b0af0ad67db0e0a2eea2b923b425e221"
+   },
+   {
+    "path": "hcp842_zenodo/Arcuate_Fasciculus_L.nii.gz",
+    "bytes": 11292,
+    "sha256": "03098f0e698773a06b4efd1694c1dd18d9bec97864b95ec9098c97020fb0edee"
+   },
+   {
+    "path": "hcp842_zenodo/Anterior_Commissure.nii.gz",
+    "bytes": 11955,
+    "sha256": "24cd915dc5ecca29c78d41610a2bf72a3f1c50580dc64328e21306dcce7f1a84"
+   },
+   {
+    "path": "hcp842_zenodo/Acoustic_Radiation_R.nii.gz",
+    "bytes": 5193,
+    "sha256": "e92c1e6033fe1d8ed898b50589662e64406c8ff49309908453f6343ff76c38ce"
+   },
+   {
+    "path": "hcp842_zenodo/Acoustic_Radiation_L.nii.gz",
+    "bytes": 5502,
+    "sha256": "71691aa44a7c5ab2d2a5a2c060e6fe83ddea4fae31eaf4fe04c63539d5687611"
+   },
+   {
+    "path": "hcp842_zenodo/Temporopontine_Tract_R.nii.gz",
+    "bytes": 6443,
+    "sha256": "9b832a7506d1b28ad04396f2e64f8f64f868e85e56060f98ca32eed8dd291a64"
+   },
+   {
+    "path": "hcp842_zenodo/Temporopontine_Tract_L.nii.gz",
+    "bytes": 6023,
+    "sha256": "87b7e36f65209d65f8698eb4d79274c9bfeee15637f2e1be893ef71cfa0c4ceb"
+   },
+   {
+    "path": "hcp842_zenodo/Superior_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 11583,
+    "sha256": "bc8ff29e423e27dfc8ce458f2c0d3bc95d0d42f6f9f208ee47dfdbca2d468208"
+   },
+   {
+    "path": "hcp842_zenodo/Superior_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 11975,
+    "sha256": "03d4cd99bd6bd09e15b1d07cd4d4896934936729a85f1e90ba9e16d6913ddf9a"
+   },
+   {
+    "path": "hcp842_zenodo/Superior_Cerebellar_Peduncle.nii.gz",
+    "bytes": 6279,
+    "sha256": "edcb46a4a27d266d25801245ebd4117cc8abcea930a9d14e98a29c08ef3d6d0d"
+   },
+   {
+    "path": "hcp842_zenodo/Spinothalamic_Tract_R.nii.gz",
+    "bytes": 5514,
+    "sha256": "f42b72a27f2b8d9e9d9c8ec3a0aee4b8190214fc0139ff59d22746d1cec4c973"
+   },
+   {
+    "path": "hcp842_zenodo/Spinothalamic_Tract_L.nii.gz",
+    "bytes": 5514,
+    "sha256": "509fa1d29a40fcc9a26ca1e778c55a3b31cffdeb3b39a41087902aa76dc86b4f"
+   },
+   {
+    "path": "hcp842_zenodo/Dorsal_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 4478,
+    "sha256": "c97186a4e034b086c21a2bb34079b5ac2789dcfd2099fa636687ae18c06d6ce8"
+   },
+   {
+    "path": "hcp842_zenodo/Rubrospinal_Tract_R.nii.gz",
+    "bytes": 4427,
+    "sha256": "b6e6bd9c4d37406aa3ebe18c22a401f65ac428adf6250dc2eb207611a4c77c27"
+   },
+   {
+    "path": "hcp842_zenodo/Rubrospinal_Tract_L.nii.gz",
+    "bytes": 4408,
+    "sha256": "4f21b9299f497868ebe889fcc9fc117ba605e152c0f4bbbfdbca26972d923f96"
+   },
+   {
+    "path": "hcp842_zenodo/Posterior_Commissure.nii.gz",
+    "bytes": 4496,
+    "sha256": "d21c3baaea2ad2bac7085dba57b8491f7d55a0b0ad4ce07f942083fc6d772278"
+   },
+   {
+    "path": "hcp842_zenodo/Parietopontine_Tract_R.nii.gz",
+    "bytes": 13986,
+    "sha256": "88a40cc67bb91c19983eb542d043cd57b4830619a12c97fe9a0a86974c327f05"
+   },
+   {
+    "path": "hcp842_zenodo/Parietopontine_Tract_L.nii.gz",
+    "bytes": 10929,
+    "sha256": "253206364da9e79fba7a010cc1300c618fceb5d643809a2d0ac8aa235a7618f2"
+   },
+   {
+    "path": "hcp842_zenodo/Optic_Radiation_R.nii.gz",
+    "bytes": 5901,
+    "sha256": "09770e82ce151d7506d194bf9a22dd4405f9e44ee61a59716b772292f7e1e501"
+   },
+   {
+    "path": "hcp842_zenodo/Optic_Radiation_L.nii.gz",
+    "bytes": 6155,
+    "sha256": "66c018bd914de0376d0bead4e13073de5501dc248afdcb097a6897b39934fa32"
+   },
+   {
+    "path": "hcp842_zenodo/Vertical_Occipital_Fasciculus_R.nii.gz",
+    "bytes": 5511,
+    "sha256": "d29d3200a8491781596cae4321572134d08c24699ff51e1f3fc48d6f54cf1aa9"
+   },
+   {
+    "path": "hcp842_zenodo/Occipitopontine_Tract_R.nii.gz",
+    "bytes": 9306,
+    "sha256": "804f3dc269ae9b7f173156661244f686eb6a57e2e83ec69f4838cac9390d780f"
+   },
+   {
+    "path": "hcp842_zenodo/Vertical_Occipital_Fasciculus_L.nii.gz",
+    "bytes": 5678,
+    "sha256": "68b87f8683b0b0069f050ef0b967148be20b2282be22e7d22278d9d02f4b09bf"
+   },
+   {
+    "path": "hcp842_zenodo/Occipitopontine_Tract_L.nii.gz",
+    "bytes": 10313,
+    "sha256": "f016cc3aa0436321d102b9cbca1dcacea1e8e90bc85a6c498da0be8c07a7c84b"
+   },
+   {
+    "path": "hcp842_zenodo/Vermis.nii.gz",
+    "bytes": 7222,
+    "sha256": "f5c8449fd48c608879ecf1d2c1a6f5fe244ba0325416dea7b9a8f2b4678c3882"
+   },
+   {
+    "path": "hcp842_zenodo/Middle_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 6110,
+    "sha256": "a9a955b8428b2f3516d86f03272eaa3bbc098b65b32f97d72f86094dc801d812"
+   },
+   {
+    "path": "hcp842_zenodo/Middle_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 5754,
+    "sha256": "80433c6d095ca6510ac3760e5f7faa4ab7b95d2701b79cc5254fe3bf0c6e5efe"
+   },
+   {
+    "path": "hcp842_zenodo/Middle_Cerebellar_Peduncle.nii.gz",
+    "bytes": 11121,
+    "sha256": "e18639dc4bca0995afbde75e2553e44345589ffb1615ae9ca95f6d791898a282"
+   },
+   {
+    "path": "hcp842_zenodo/Medial_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 4480,
+    "sha256": "a3ec974748fd1e3a341b48716438e635c7ed6dbc20ee9acccfdfd02cefe5c16c"
+   },
+   {
+    "path": "hcp842_zenodo/Medial_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 4408,
+    "sha256": "3bc815415c53f395ab22100566e9c6198c5fafbbb25c768f777fc8c8113f85a5"
+   },
+   {
+    "path": "hcp842_zenodo/Medial_Lemniscus_R.nii.gz",
+    "bytes": 5299,
+    "sha256": "d115421ee8b58e37a79d45a0808a29d134027c630b8e1374ec19a91f108889b0"
+   },
+   {
+    "path": "hcp842_zenodo/Medial_Lemniscus_L.nii.gz",
+    "bytes": 5203,
+    "sha256": "8f917841e6dacd63166f3e5b18873287b7500ed2adffb8dcde0f2edda5ea649e"
+   },
+   {
+    "path": "hcp842_zenodo/Lateral_Lemniscus_R.nii.gz",
+    "bytes": 4595,
+    "sha256": "e59a32da55d43915ff698490594121e0b1a25c8e4c5fb26f7beb8ee2b8231964"
+   },
+   {
+    "path": "hcp842_zenodo/Lateral_Lemniscus_L.nii.gz",
+    "bytes": 4564,
+    "sha256": "99138df05095ac08d70d1fd59b84c059a77cc1913df3144fba9772445e53b173"
+   },
+   {
+    "path": "hcp842_zenodo/Inferior_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 8316,
+    "sha256": "9e2ad74430adb7364b3a4071d749942f793b1652f4a4b97c8c2f65191fc58cdb"
+   },
+   {
+    "path": "hcp842_zenodo/Inferior_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 9665,
+    "sha256": "55ac77523ae8aa4dec5ad4c9ce000d2271279a1f4085c473895f564f9ec1bc49"
+   },
+   {
+    "path": "hcp842_zenodo/Corticothalamic_Pathway_R.nii.gz",
+    "bytes": 29523,
+    "sha256": "56a42bf56a006e8707da1065a6f24f7026cc6bbf3be25a6192769ce16520e34b"
+   },
+   {
+    "path": "hcp842_zenodo/Inferior_Fronto_Occipital_Fasciculus_R.nii.gz",
+    "bytes": 11455,
+    "sha256": "2a68b7f05ae7306735bc8d4336f5d942c661fab44cf531246fdf955cfbdef305"
+   },
+   {
+    "path": "hcp842_zenodo/Uncinate_Fasciculus_R.nii.gz",
+    "bytes": 6168,
+    "sha256": "272cebc9f37d65080a08f1c4dc885cbe8a40bc3db827f1390c1b2b215d8b14a0"
+   },
+   {
+    "path": "hcp842_zenodo/Inferior_Fronto_Occipital_Fasciculus_L.nii.gz",
+    "bytes": 10860,
+    "sha256": "bdff04ef7b27c6eed0cda7ebe6e33942c5a3571e66f2b9118d9bf9528b9fd008"
+   },
+   {
+    "path": "hcp842_zenodo/Inferior_Cerebellar_Peduncle_R.nii.gz",
+    "bytes": 5603,
+    "sha256": "18ffe971cbaa9145c11450861d76e379770f772717563e85063b674690aa9cbf"
+   },
+   {
+    "path": "hcp842_zenodo/Dorsal_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 4477,
+    "sha256": "3029096ba8bbe925e54b6017a17ec21a5920c2b64037e9374397b372192bcf01"
+   },
+   {
+    "path": "hcp842_zenodo/Inferior_Cerebellar_Peduncle_L.nii.gz",
+    "bytes": 5592,
+    "sha256": "e14afdd44c3d0e65909e543cbd0c9ce68e46cab105f93d968b900b09bdc20ab7"
+   },
+   {
+    "path": "hcp842_zenodo/Extreme_Capsule_L.nii.gz",
+    "bytes": 7436,
+    "sha256": "6a3d687ea34cff4aa79f6d37625f888f2042a998ab60bb508c6547185d84ea6f"
+   },
+   {
+    "path": "hcp842_zenodo/Extreme_Capsule_R.nii.gz",
+    "bytes": 5896,
+    "sha256": "cffca14187aab16fe40db20e50c4088927f5a7f71f836bf21e44656cdc75d6ae"
+   },
+   {
+    "path": "hcp842_zenodo/Fornix_L.nii.gz",
+    "bytes": 4573,
+    "sha256": "ee9cb42075bf39bd29d29d12a5df52259d7098d5bd592dad8d54fc23efead141"
+   },
+   {
+    "path": "hcp842_zenodo/Fornix_R.nii.gz",
+    "bytes": 4301,
+    "sha256": "e15a05fbb04d488f3fa610fbbaf128e3f382544a9b2179fdd4f08649c8dc7c1a"
+   },
+   {
+    "path": "hcp842_zenodo/Frontal_Aslant_Tract_L.nii.gz",
+    "bytes": 9841,
+    "sha256": "1f93e4c848a5ba07cf78354eb12a42a4380003635241bef00c4a95a62c4937a7"
+   },
+   {
+    "path": "hcp842_zenodo/Frontal_Aslant_Tract_R.nii.gz",
+    "bytes": 9244,
+    "sha256": "e87c413985de075ab4ed8507c2aca9e3b198033014ce82aa059504b0bad00029"
+   },
+   {
+    "path": "hcp842_zenodo/Frontopontine_Tract_L.nii.gz",
+    "bytes": 13190,
+    "sha256": "029105f547cf813d1b09d0c18a8d7ee9442b9722d935af670c05a6cd01c5bf7b"
+   },
+   {
+    "path": "hcp842_zenodo/Frontopontine_Tract_R.nii.gz",
+    "bytes": 15016,
+    "sha256": "a7a4208f70bf3ffa67082ce1d22bb2183c60dc510a4431ff31f263b7cd1635c3"
+   },
+   {
+    "path": "hcp842_zenodo/Corticothalamic_Pathway_L.nii.gz",
+    "bytes": 32006,
+    "sha256": "e2e88258c3da6a91129395be5b3fb6264ac93e5323a1f3151d86da22db2f8ae8"
+   },
+   {
+    "path": "hcp842_zenodo/Cortico_Striatal_Pathway_R.nii.gz",
+    "bytes": 26412,
+    "sha256": "c52039331eccec104c6de31978c5c1cabc33e3dadf2ae7fc97037e66378ae6ae"
+   },
+   {
+    "path": "hcp842_zenodo/Cortico_Striatal_Pathway_L.nii.gz",
+    "bytes": 28386,
+    "sha256": "5c18ecdb727474fffcfb3188186fe6ef47bbb6a1511ef51ba743413e1c39a1cc"
+   },
+   {
+    "path": "hcp842_zenodo/Cortico_Spinal_Tract_R.nii.gz",
+    "bytes": 14261,
+    "sha256": "ba49b0ad64951a75c33dbf9d3f3ec3a4e28e8459e6408e2c5c53847322f56406"
+   },
+   {
+    "path": "hcp842_zenodo/Cortico_Spinal_Tract_L.nii.gz",
+    "bytes": 13747,
+    "sha256": "21c86261299f14ed966c0a1531b31326231aba733a0153523da6563e778c2ee9"
+   },
+   {
+    "path": "hcp842_zenodo/Uncinate_Fasciculus_L.nii.gz",
+    "bytes": 6291,
+    "sha256": "89f6b03c2b771fed04af66455f2a278dd92a7e8aba1a7d046a8f315436c2540f"
+   },
+   {
+    "path": "hcp842_zenodo/Corpus_Callosum.nii.gz",
+    "bytes": 69918,
+    "sha256": "82e00256c5a23f41e0fe0b22b4aa2a3524524a19cdf37f7100f99b67b3ade2e2"
+   },
+   {
+    "path": "hcp842_zenodo/CNX_R.nii.gz",
+    "bytes": 4125,
+    "sha256": "cad7e873f2a514e61c7900e2e5c2d39ff8d432adc7de5839be2ce4d494f59db0"
+   },
+   {
+    "path": "hcp842_zenodo/CNX_L.nii.gz",
+    "bytes": 4121,
+    "sha256": "5b4b177c33de3cee03da890939e99a53fee43dc84c5c9cadfde54645d03b7281"
+   },
+   {
+    "path": "hcp842_zenodo/U_Fiber_R.nii.gz",
+    "bytes": 22900,
+    "sha256": "208be2025be45e5104e79610584e22f3608f9aba2033e3eddb4bce524dbf669f"
+   },
+   {
+    "path": "hcp842_zenodo/CNV_R.nii.gz",
+    "bytes": 4614,
+    "sha256": "3afdc8afaca113eb19a78b4221bed016745017e4cb03f35b627e42a44f02d3c7"
+   },
+   {
+    "path": "hcp842_zenodo/CNV_L.nii.gz",
+    "bytes": 4525,
+    "sha256": "db3883fa4104b4e1accb31a9d2206dec96fe3dc51f51a72c14048c6a2a318f11"
+   },
+   {
+    "path": "hcp842_zenodo/CNVII_R.nii.gz",
+    "bytes": 4225,
+    "sha256": "805aae8b93de208e50d7f1f6feace16e73a86ce1811787d568947662119af6f2"
+   },
+   {
+    "path": "hcp842_zenodo/CNVII_L.nii.gz",
+    "bytes": 4221,
+    "sha256": "cf399224a7a78dd07fb38824889e9d490c3fc5f434673b848a203656e7ef0c4b"
+   },
+   {
+    "path": "hcp842_zenodo/CNVIII_R.nii.gz",
+    "bytes": 4945,
+    "sha256": "04f9e3de95f4ce01687abc9dc3bb48d0c4fcbcc98f8c13c7b7aee6d7765c5c08"
+   },
+   {
+    "path": "hcp842_zenodo/CNVIII_L.nii.gz",
+    "bytes": 4985,
+    "sha256": "8c111e57ac4075aa5070776415305bec8c524ecf1ec211ae9eb3344bb9490e72"
+   }
+  ],
+  "listing": [
+   {
+    "name": "Central_Tegmental_Tract_R.nii.gz",
+    "bytes": 4602
+   },
+   {
+    "name": "U_Fiber_L.nii.gz",
+    "bytes": 20845
+   },
+   {
+    "name": "CNIV_R.nii.gz",
+    "bytes": 4741
+   },
+   {
+    "name": "CNIV_L.nii.gz",
+    "bytes": 4613
+   },
+   {
+    "name": "CNII_R.nii.gz",
+    "bytes": 5541
+   },
+   {
+    "name": "CNII_L.nii.gz",
+    "bytes": 5588
+   },
+   {
+    "name": "CNIII_R.nii.gz",
+    "bytes": 4395
+   },
+   {
+    "name": "CNIII_L.nii.gz",
+    "bytes": 4518
+   },
+   {
+    "name": "Cingulum_R.nii.gz",
+    "bytes": 9156
+   },
+   {
+    "name": "Cingulum_L.nii.gz",
+    "bytes": 9208
+   },
+   {
+    "name": "Cerebellum_R.nii.gz",
+    "bytes": 9130
+   },
+   {
+    "name": "Cerebellum_L.nii.gz",
+    "bytes": 8734
+   },
+   {
+    "name": "Central_Tegmental_Tract_L.nii.gz",
+    "bytes": 4578
+   },
+   {
+    "name": "Arcuate_Fasciculus_R.nii.gz",
+    "bytes": 8386
+   },
+   {
+    "name": "Arcuate_Fasciculus_L.nii.gz",
+    "bytes": 11292
+   },
+   {
+    "name": "Anterior_Commissure.nii.gz",
+    "bytes": 11955
+   },
+   {
+    "name": "Acoustic_Radiation_R.nii.gz",
+    "bytes": 5193
+   },
+   {
+    "name": "Acoustic_Radiation_L.nii.gz",
+    "bytes": 5502
+   },
+   {
+    "name": "Temporopontine_Tract_R.nii.gz",
+    "bytes": 6443
+   },
+   {
+    "name": "Temporopontine_Tract_L.nii.gz",
+    "bytes": 6023
+   },
+   {
+    "name": "Superior_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 11583
+   },
+   {
+    "name": "Superior_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 11975
+   },
+   {
+    "name": "Superior_Cerebellar_Peduncle.nii.gz",
+    "bytes": 6279
+   },
+   {
+    "name": "Spinothalamic_Tract_R.nii.gz",
+    "bytes": 5514
+   },
+   {
+    "name": "Spinothalamic_Tract_L.nii.gz",
+    "bytes": 5514
+   },
+   {
+    "name": "Dorsal_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 4478
+   },
+   {
+    "name": "Rubrospinal_Tract_R.nii.gz",
+    "bytes": 4427
+   },
+   {
+    "name": "Rubrospinal_Tract_L.nii.gz",
+    "bytes": 4408
+   },
+   {
+    "name": "Posterior_Commissure.nii.gz",
+    "bytes": 4496
+   },
+   {
+    "name": "Parietopontine_Tract_R.nii.gz",
+    "bytes": 13986
+   },
+   {
+    "name": "Parietopontine_Tract_L.nii.gz",
+    "bytes": 10929
+   },
+   {
+    "name": "Optic_Radiation_R.nii.gz",
+    "bytes": 5901
+   },
+   {
+    "name": "Optic_Radiation_L.nii.gz",
+    "bytes": 6155
+   },
+   {
+    "name": "Vertical_Occipital_Fasciculus_R.nii.gz",
+    "bytes": 5511
+   },
+   {
+    "name": "Occipitopontine_Tract_R.nii.gz",
+    "bytes": 9306
+   },
+   {
+    "name": "Vertical_Occipital_Fasciculus_L.nii.gz",
+    "bytes": 5678
+   },
+   {
+    "name": "Occipitopontine_Tract_L.nii.gz",
+    "bytes": 10313
+   },
+   {
+    "name": "Vermis.nii.gz",
+    "bytes": 7222
+   },
+   {
+    "name": "Middle_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 6110
+   },
+   {
+    "name": "Middle_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 5754
+   },
+   {
+    "name": "Middle_Cerebellar_Peduncle.nii.gz",
+    "bytes": 11121
+   },
+   {
+    "name": "Medial_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 4480
+   },
+   {
+    "name": "Medial_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 4408
+   },
+   {
+    "name": "Medial_Lemniscus_R.nii.gz",
+    "bytes": 5299
+   },
+   {
+    "name": "Medial_Lemniscus_L.nii.gz",
+    "bytes": 5203
+   },
+   {
+    "name": "Lateral_Lemniscus_R.nii.gz",
+    "bytes": 4595
+   },
+   {
+    "name": "Lateral_Lemniscus_L.nii.gz",
+    "bytes": 4564
+   },
+   {
+    "name": "Inferior_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 8316
+   },
+   {
+    "name": "Inferior_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 9665
+   },
+   {
+    "name": "Corticothalamic_Pathway_R.nii.gz",
+    "bytes": 29523
+   },
+   {
+    "name": "Inferior_Fronto_Occipital_Fasciculus_R.nii.gz",
+    "bytes": 11455
+   },
+   {
+    "name": "Uncinate_Fasciculus_R.nii.gz",
+    "bytes": 6168
+   },
+   {
+    "name": "Inferior_Fronto_Occipital_Fasciculus_L.nii.gz",
+    "bytes": 10860
+   },
+   {
+    "name": "Inferior_Cerebellar_Peduncle_R.nii.gz",
+    "bytes": 5603
+   },
+   {
+    "name": "Dorsal_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 4477
+   },
+   {
+    "name": "Inferior_Cerebellar_Peduncle_L.nii.gz",
+    "bytes": 5592
+   },
+   {
+    "name": "Extreme_Capsule_L.nii.gz",
+    "bytes": 7436
+   },
+   {
+    "name": "Extreme_Capsule_R.nii.gz",
+    "bytes": 5896
+   },
+   {
+    "name": "Fornix_L.nii.gz",
+    "bytes": 4573
+   },
+   {
+    "name": "Fornix_R.nii.gz",
+    "bytes": 4301
+   },
+   {
+    "name": "Frontal_Aslant_Tract_L.nii.gz",
+    "bytes": 9841
+   },
+   {
+    "name": "Frontal_Aslant_Tract_R.nii.gz",
+    "bytes": 9244
+   },
+   {
+    "name": "Frontopontine_Tract_L.nii.gz",
+    "bytes": 13190
+   },
+   {
+    "name": "Frontopontine_Tract_R.nii.gz",
+    "bytes": 15016
+   },
+   {
+    "name": "Corticothalamic_Pathway_L.nii.gz",
+    "bytes": 32006
+   },
+   {
+    "name": "Cortico_Striatal_Pathway_R.nii.gz",
+    "bytes": 26412
+   },
+   {
+    "name": "Cortico_Striatal_Pathway_L.nii.gz",
+    "bytes": 28386
+   },
+   {
+    "name": "Cortico_Spinal_Tract_R.nii.gz",
+    "bytes": 14261
+   },
+   {
+    "name": "Cortico_Spinal_Tract_L.nii.gz",
+    "bytes": 13747
+   },
+   {
+    "name": "Uncinate_Fasciculus_L.nii.gz",
+    "bytes": 6291
+   },
+   {
+    "name": "Corpus_Callosum.nii.gz",
+    "bytes": 69918
+   },
+   {
+    "name": "CNX_R.nii.gz",
+    "bytes": 4125
+   },
+   {
+    "name": "CNX_L.nii.gz",
+    "bytes": 4121
+   },
+   {
+    "name": "U_Fiber_R.nii.gz",
+    "bytes": 22900
+   },
+   {
+    "name": "CNV_R.nii.gz",
+    "bytes": 4614
+   },
+   {
+    "name": "CNV_L.nii.gz",
+    "bytes": 4525
+   },
+   {
+    "name": "CNVII_R.nii.gz",
+    "bytes": 4225
+   },
+   {
+    "name": "CNVII_L.nii.gz",
+    "bytes": 4221
+   },
+   {
+    "name": "CNVIII_R.nii.gz",
+    "bytes": 4945
+   },
+   {
+    "name": "CNVIII_L.nii.gz",
+    "bytes": 4985
+   }
+  ],
+  "notes": [],
+  "title": "HCP-YA Tractography Atlas (NIFTI Files)",
+  "license": {
+   "id": "cc-by-sa-4.0"
+  },
+  "version_date": "2018-09-17"
+ },
+ "yeh2022_connectome_page": {
+  "status": "ok",
+  "files": [
+   {
+    "path": "yeh2022_connectome_page/page.html",
+    "bytes": 14769,
+    "sha256": "f9bdcf3f5beb38af1e4a47cce1dbfd69f4f5445aa3e27cedfea86c7b064e9467"
+   },
+   {
+    "path": "yeh2022_connectome_page/abbreviation.xlsx",
+    "bytes": 13172,
+    "sha256": "ead75629c22adfdec416ebf0de0b854ec3247679da33e50d0e6d9e30eafa71f6"
+   },
+   {
+    "path": "yeh2022_connectome_page/abbreviation2.xlsx",
+    "bytes": 10764,
+    "sha256": "7325e06cdca5e36e5ac7719261daee3d11a3a1816f47d42e3e57bc17e35344fb"
+   },
+   {
+    "path": "yeh2022_connectome_page/hcp1065_avg_tracts_nifti.zip",
+    "bytes": 3372106,
+    "sha256": "81e0ad75add35c96a5bfd9dc6ede10e5482a8dd180eafcdf2d79249926194510"
+   },
+   {
+    "path": "yeh2022_connectome_page/hcp1065_prob_coverage_nifti.zip",
+    "bytes": 17353305,
+    "sha256": "4577abce53e05c732a0d52c88f4ee2d63488bb685f664faad2ea44aa90be8e8b"
+   },
+   {
+    "path": "yeh2022_connectome_page/tract_to_region_connectome_BM_KL.xlsx",
+    "bytes": 35250,
+    "sha256": "8baaf81429c563b1043e078c0ed7a521424577287735847d6aa5646aba98ada5"
+   },
+   {
+    "path": "yeh2022_connectome_page/tract_to_region_connectome_MMP.xlsx",
+    "bytes": 60313,
+    "sha256": "5fc18a1ea5d8891e0a49e3f1d5386f6021eff1ca94f8207908b39bfea0dfb5a7"
+   },
+   {
+    "path": "yeh2022_connectome_page/41467_2022_32595_MOESM4_ESM.zip",
+    "bytes": 146125,
+    "sha256": "9e90d82f343bd208f007723b5e547955729e054055b9a6e5795b1b8a19205d9f"
+   }
+  ],
+  "listing": [
+   {
+    "name": "/assets/css/style.css?v=657292d7071bb25a188bb1af3663026a55d8bacb",
+    "bytes": null
+   },
+   {
+    "name": "/favicon.ico",
+    "bytes": null
+   },
+   {
+    "name": "/hcp-ya.html",
+    "bytes": null
+   },
+   {
+    "name": "/hcp_template.html",
+    "bytes": null
+   },
+   {
+    "name": "/hcp_trk_atlas.html",
+    "bytes": null
+   },
+   {
+    "name": "/index.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-hcp/disease.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-hcp/lifespan.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-indi/brain.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-indi/disease.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-nih/tcia.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-openneuro/animal.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-openneuro/brain.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-openneuro/brain2.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-openneuro/disease.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-openneuro/disease2.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-openneuro/others.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-others/animal.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-others/brain.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-others/brain2.html",
+    "bytes": null
+   },
+   {
+    "name": "/mds/data-others/disease.html",
+    "bytes": null
+   },
+   {
+    "name": "/qc.html",
+    "bytes": null
+   },
+   {
+    "name": "http://creativecommons.org/licenses/by-sa/4.0/",
+    "bytes": null
+   },
+   {
+    "name": "http://scholar.google.com/citations?user=QdfsoJ4AAAAJ&hl=en",
+    "bytes": null
+   },
+   {
+    "name": "https://brain.labsolver.org/hcp_trk_atlas.html",
+    "bytes": null
+   },
+   {
+    "name": "https://dsi-studio.labsolver.org",
+    "bytes": null
+   },
+   {
+    "name": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases",
+    "bytes": null
+   },
+   {
+    "name": "https://github.com/data-others/atlas/releases/download/hcp1065/1065_subject_tract_in_nifti.zip",
+    "bytes": null
+   },
+   {
+    "name": "https://github.com/data-others/atlas/releases/download/hcp1065/abbreviation.xlsx",
+    "bytes": null
+   },
+   {
+    "name": "https://github.com/data-others/atlas/releases/download/hcp1065/abbreviation2.xlsx",
+    "bytes": null
+   },
+   {
+    "name": "https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_avg_tracts_nifti.zip",
+    "bytes": null
+   },
+   {
+    "name": "https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_avg_tracts_trk.zip",
+    "bytes": null
+   },
+   {
+    "name": "https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_avg_tracts_tt.zip",
+    "bytes": null
+   },
+   {
+    "name": "https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_prob_coverage_jpg.zip",
+    "bytes": null
+   },
+   {
+    "name": "https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_prob_coverage_nifti.zip",
+    "bytes": null
+   },
+   {
+    "name": "https://github.com/data-others/atlas/releases/download/hcp1065/tract_to_region_connectome_BM_KL.xlsx",
+    "bytes": null
+   },
+   {
+    "name": "https://github.com/data-others/atlas/releases/download/hcp1065/tract_to_region_connectome_MMP.xlsx",
+    "bytes": null
+   },
+   {
+    "name": "https://github.com/frankyeh/Brain-Data",
+    "bytes": null
+   },
+   {
+    "name": "https://groups.google.com/g/dsi-studio?pli=1",
+    "bytes": null
+   },
+   {
+    "name": "https://pitt-my.sharepoint.com/:f:/g/personal/yehfc_pitt_edu/EmzLbtr_IA9LrKMCfC1aC6cB_ag6Ivwj8DJA5o71_kHm9w?e=QYnZVK",
+    "bytes": null
+   },
+   {
+    "name": "https://pitt-my.sharepoint.com/:f:/g/personal/yehfc_pitt_edu/ErvN3WnoP7FHlJjinNVNq3IB753wSm4QGvHgzMACOURP8Q?e=VmySKx",
+    "bytes": null
+   },
+   {
+    "name": "https://pitt-my.sharepoint.com/:f:/g/personal/yehfc_pitt_edu/EvV49cgSEWpFmJOwtRO28moB7b_yXTDUIx5lnP0opd-waA?e=6w2v4J",
+    "bytes": null
+   },
+   {
+    "name": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-022-32595-4/MediaObjects/41467_2022_32595_MOESM4_ESM.zip",
+    "bytes": null
+   },
+   {
+    "name": "https://twitter.com/intent/follow?screen_name=FangChengYeh",
+    "bytes": null
+   },
+   {
+    "name": "https://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009",
+    "bytes": null
+   },
+   {
+    "name": "https://www.dropbox.com/s/ej2ujl6fmcvwx8f/Frank_CV.pdf?dl=0",
+    "bytes": null
+   },
+   {
+    "name": "https://www.humanconnectome.org/study/hcp-young-adult/document/wu-minn-hcp-consortium-open-access-data-use-terms",
+    "bytes": null
+   },
+   {
+    "name": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6921501/",
+    "bytes": null
+   },
+   {
+    "name": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6921501/bin/NIHMS1062874-supplement-1.pdf",
+    "bytes": null
+   },
+   {
+    "name": "https://www.reddit.com/r/dsistudio/",
+    "bytes": null
+   },
+   {
+    "name": "https://www.webofscience.com/wos/author/record/101404",
+    "bytes": null
+   },
+   {
+    "name": "https://www.youtube.com/c/FrankYeh",
+    "bytes": null
+   },
+   {
+    "name": "https://zenodo.org/record/3627772#.Xi0q02hKiUk",
+    "bytes": null
+   }
+  ],
+  "notes": [
+   "skipped https://github.com/data-others/atlas/releases/download/hcp1065/1065_subject_tract_in_nifti.zip: too large",
+   "skipped https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_avg_tracts_trk.zip: too large",
+   "skipped https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_avg_tracts_tt.zip: too large",
+   "skipped https://github.com/data-others/atlas/releases/download/hcp1065/hcp1065_prob_coverage_jpg.zip: too large"
+  ]
+ }
+}
