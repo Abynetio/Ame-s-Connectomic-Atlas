@@ -131,13 +131,7 @@ VIDEO_7_100_MICRON_MRI_MOVIE-2.mp4	61334017
 
 - title: `An In Vivo High Resolution Atlas of the Subcortical Human Brain`
 - license: `CC-By Attribution 4.0 International`
-- files downloaded: 45 (371.4 MB)
-- note: skipped /jkzwp/CIT168_Reinf_Learn_v1.0.0 [RETIRED]/MNI152_2009c_nonlin_asym_1mm/cit2mni_InverseWarp.nii.gz: 78.9 MB > cap
-- note: skipped /jkzwp/CIT168_Reinf_Learn_v1.0.0 [RETIRED]/MNI152_2009c_nonlin_asym_1mm/cit2mni_Warp.nii.gz: 79.0 MB > cap
-- note: skipped /jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-FSL/cit2mni_1Warp.nii.gz: 150.6 MB > cap
-- note: skipped /jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-FSL/cit2mni_1InverseWarp.nii.gz: 150.7 MB > cap
-- note: skipped /jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/cit2mni_1Warp.nii.gz: 173.6 MB > cap
-- note: skipped /jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/cit2mni_1InverseWarp.nii.gz: 173.5 MB > cap
+- files downloaded: 12 (2.1 MB)
 
 <details><summary>listing</summary>
 
@@ -349,14 +343,102 @@ VIDEO_7_100_MICRON_MRI_MOVIE-2.mp4	61334017
 ```
 </details>
 
-## hcp842_zenodo — **failed**
+## hcp842_zenodo — **ok**
 
-- files downloaded: 0 (0.0 MB)
-- note: RuntimeError: GET https://zenodo.org/api/records/3627772 failed: HTTP Error 504: Gateway Time-out
+- title: `HCP-YA Tractography Atlas (NIFTI Files)`
+- license: `{"id": "cc-by-sa-4.0"}`
+- version_date: `2018-09-17`
+- files downloaded: 80 (0.7 MB)
+
+<details><summary>listing</summary>
+
+```
+Central_Tegmental_Tract_R.nii.gz	4602
+U_Fiber_L.nii.gz	20845
+CNIV_R.nii.gz	4741
+CNIV_L.nii.gz	4613
+CNII_R.nii.gz	5541
+CNII_L.nii.gz	5588
+CNIII_R.nii.gz	4395
+CNIII_L.nii.gz	4518
+Cingulum_R.nii.gz	9156
+Cingulum_L.nii.gz	9208
+Cerebellum_R.nii.gz	9130
+Cerebellum_L.nii.gz	8734
+Central_Tegmental_Tract_L.nii.gz	4578
+Arcuate_Fasciculus_R.nii.gz	8386
+Arcuate_Fasciculus_L.nii.gz	11292
+Anterior_Commissure.nii.gz	11955
+Acoustic_Radiation_R.nii.gz	5193
+Acoustic_Radiation_L.nii.gz	5502
+Temporopontine_Tract_R.nii.gz	6443
+Temporopontine_Tract_L.nii.gz	6023
+Superior_Longitudinal_Fasciculus_R.nii.gz	11583
+Superior_Longitudinal_Fasciculus_L.nii.gz	11975
+Superior_Cerebellar_Peduncle.nii.gz	6279
+Spinothalamic_Tract_R.nii.gz	5514
+Spinothalamic_Tract_L.nii.gz	5514
+Dorsal_Longitudinal_Fasciculus_L.nii.gz	4478
+Rubrospinal_Tract_R.nii.gz	4427
+Rubrospinal_Tract_L.nii.gz	4408
+Posterior_Commissure.nii.gz	4496
+Parietopontine_Tract_R.nii.gz	13986
+Parietopontine_Tract_L.nii.gz	10929
+Optic_Radiation_R.nii.gz	5901
+Optic_Radiation_L.nii.gz	6155
+Vertical_Occipital_Fasciculus_R.nii.gz	5511
+Occipitopontine_Tract_R.nii.gz	9306
+Vertical_Occipital_Fasciculus_L.nii.gz	5678
+Occipitopontine_Tract_L.nii.gz	10313
+Vermis.nii.gz	7222
+Middle_Longitudinal_Fasciculus_R.nii.gz	6110
+Middle_Longitudinal_Fasciculus_L.nii.gz	5754
+Middle_Cerebellar_Peduncle.nii.gz	11121
+Medial_Longitudinal_Fasciculus_R.nii.gz	4480
+Medial_Longitudinal_Fasciculus_L.nii.gz	4408
+Medial_Lemniscus_R.nii.gz	5299
+Medial_Lemniscus_L.nii.gz	5203
+Lateral_Lemniscus_R.nii.gz	4595
+Lateral_Lemniscus_L.nii.gz	4564
+Inferior_Longitudinal_Fasciculus_R.nii.gz	8316
+Inferior_Longitudinal_Fasciculus_L.nii.gz	9665
+Corticothalamic_Pathway_R.nii.gz	29523
+Inferior_Fronto_Occipital_Fasciculus_R.nii.gz	11455
+Uncinate_Fasciculus_R.nii.gz	6168
+Inferior_Fronto_Occipital_Fasciculus_L.nii.gz	10860
+Inferior_Cerebellar_Peduncle_R.nii.gz	5603
+Dorsal_Longitudinal_Fasciculus_R.nii.gz	4477
+Inferior_Cerebellar_Peduncle_L.nii.gz	5592
+Extreme_Capsule_L.nii.gz	7436
+Extreme_Capsule_R.nii.gz	5896
+Fornix_L.nii.gz	4573
+Fornix_R.nii.gz	4301
+Frontal_Aslant_Tract_L.nii.gz	9841
+Frontal_Aslant_Tract_R.nii.gz	9244
+Frontopontine_Tract_L.nii.gz	13190
+Frontopontine_Tract_R.nii.gz	15016
+Corticothalamic_Pathway_L.nii.gz	32006
+Cortico_Striatal_Pathway_R.nii.gz	26412
+Cortico_Striatal_Pathway_L.nii.gz	28386
+Cortico_Spinal_Tract_R.nii.gz	14261
+Cortico_Spinal_Tract_L.nii.gz	13747
+Uncinate_Fasciculus_L.nii.gz	6291
+Corpus_Callosum.nii.gz	69918
+CNX_R.nii.gz	4125
+CNX_L.nii.gz	4121
+U_Fiber_R.nii.gz	22900
+CNV_R.nii.gz	4614
+CNV_L.nii.gz	4525
+CNVII_R.nii.gz	4225
+CNVII_L.nii.gz	4221
+CNVIII_R.nii.gz	4945
+CNVIII_L.nii.gz	4985
+```
+</details>
 
 ## yeh2022_connectome_page — **ok**
 
-- files downloaded: 1 (0.0 MB)
+- files downloaded: 6 (0.3 MB)
 
 <details><summary>listing</summary>
 

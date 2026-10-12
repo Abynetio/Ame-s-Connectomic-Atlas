@@ -269,224 +269,70 @@
     "sha256": "5940d0b43de3c23ae4f9aecaa83fe7d7d0afb511db45a604b1ec3e5289fc6e8c"
    },
    {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168_700um/CIT168_AmyLabels.txt",
-    "bytes": 1092,
-    "sha256": "93672f3f7a37ad69a48343a5e8708cb2621b44d8bd40d460961973c442e0327a"
-   },
-   {
     "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_1mm/CIT168_AmyLabels.txt",
     "bytes": 1092,
-    "sha256": "93672f3f7a37ad69a48343a5e8708cb2621b44d8bd40d460961973c442e0327a"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_1mm/CIT168_brain_mask_1mm_MNI.nii.gz",
-    "bytes": 4352996,
-    "sha256": "c9c7e3919925e9ed6184edca330c03bb248f8d540e65c8d6adf84724e23f7d0d"
+    "sha256": "93672f3f7a37ad69a48343a5e8708cb2621b44d8bd40d460961973c442e0327a",
+    "cached": true
    },
    {
     "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_1mm/CIT168_dBLA_1mm_MNI.nii.gz",
     "bytes": 29025,
-    "sha256": "8d41ac4f201a8d2a40c6ce5a261be22ff65819665b5d33654d00ebdbe898098f"
+    "sha256": "8d41ac4f201a8d2a40c6ce5a261be22ff65819665b5d33654d00ebdbe898098f",
+    "cached": true
    },
    {
     "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_1mm/CIT168_dCEN_1mm_MNI.nii.gz",
     "bytes": 28366,
-    "sha256": "fc47ac7738499503e19684c0ef5b90dd722fb4c8889cb99a943c1754d1a4387b"
+    "sha256": "fc47ac7738499503e19684c0ef5b90dd722fb4c8889cb99a943c1754d1a4387b",
+    "cached": true
    },
    {
     "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_1mm/CIT168_iAmyNuc_1mm_MNI.nii.gz",
     "bytes": 30421,
-    "sha256": "00da38e70c5136dcce6845f273ab64a01cd2653cc20cac9e79884a801d2bee0a"
+    "sha256": "00da38e70c5136dcce6845f273ab64a01cd2653cc20cac9e79884a801d2bee0a",
+    "cached": true
    },
    {
     "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_1mm/CIT168_pAmyNuc_1mm_MNI.nii.gz",
     "bytes": 646784,
-    "sha256": "f217a2145f351a59a24d3c97e3f4856d72b81365536e1cabe4fa94bf2c59c841"
+    "sha256": "f217a2145f351a59a24d3c97e3f4856d72b81365536e1cabe4fa94bf2c59c841",
+    "cached": true
    },
    {
     "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_1mm/CIT168_pBLA_1mm_MNI.nii.gz",
     "bytes": 188422,
-    "sha256": "a818183df2b22c00fd1004fc8dda3906b5349b97b661b57e2b2c48a653d4bfd2"
+    "sha256": "a818183df2b22c00fd1004fc8dda3906b5349b97b661b57e2b2c48a653d4bfd2",
+    "cached": true
    },
    {
     "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_1mm/CIT168_pCEN_1mm_MNI.nii.gz",
     "bytes": 147149,
-    "sha256": "590fb9495d569603f392a1555306103af8c8698eaa42b8c8fca8dccdb2ce956b"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_1mm/CIT168_T1w_1mm_MNI.nii.gz",
-    "bytes": 11133050,
-    "sha256": "b53b7f795a90b5ece1ecc884e1b3e4baaf9c50c27d3181be67005866988b6b1d"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_1mm/CIT168_T2w_1mm_MNI.nii.gz",
-    "bytes": 11504507,
-    "sha256": "f566a078ee9030ea199ce049e607757adf2031ddd340d4d061b1b8343e93c2de"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMIN152_2mm/CIT168_2mm_MNI_warped.nii.gz",
-    "bytes": 1955669,
-    "sha256": "b68d3a99a0a9b64846e984223ac5f5316203d2e7dac602e97d31ec17bc4b577c"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMIN152_2mm/CIT168_2mm_MNI0InverseWarp.nii.gz",
-    "bytes": 16930996,
-    "sha256": "c071b5612ffc3a4ed82fbe076a44f26067e71fe916ff5af744e7a3dcc0bac7a5"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMIN152_2mm/CIT168_2mm_MNI0Warp.nii.gz",
-    "bytes": 17015296,
-    "sha256": "0a40b11e706025d12f3b75f671a4ac3e7e7e2afdbef241123e23588680ed291c"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_700um/CIT168_AmyLabels.txt",
-    "bytes": 1092,
-    "sha256": "93672f3f7a37ad69a48343a5e8708cb2621b44d8bd40d460961973c442e0327a"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_700um/CIT168_brain_mask_700um_MNI.nii.gz",
-    "bytes": 4203840,
-    "sha256": "d4583b4adfe16e4352502518788fbdf3a50f2cd34ad63942d283654d42fa0fe9"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_700um/CIT168_iAmyNuc_700um_MNI.nii.gz",
-    "bytes": 87389,
-    "sha256": "487445850f92e836cbc0ec3a996d74433b92d043bab1009767c13b0bb6f0bbd6"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_700um/CIT168_pAmyNuc_700um_MNI.nii.gz",
-    "bytes": 1039342,
-    "sha256": "4bac427315dfd25446f5e81d10ddb7bbe93f2532a5729b34fe4c658a9bfcda17"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_700um/CIT168_T2w_700um_MNI.nii.gz",
-    "bytes": 24535217,
-    "sha256": "68a63de33da4e2c1d432811c67ca7742000f004cc098ad120773791d18d18a69"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_700um/CIT168_T1w_700um_MNI.nii.gz",
-    "bytes": 47167805,
-    "sha256": "7df37c89cd217af89a6e2df20b48ec21a024074f1f3834846178c9a1999a6291"
+    "sha256": "590fb9495d569603f392a1555306103af8c8698eaa42b8c8fca8dccdb2ce956b",
+    "cached": true
    },
    {
     "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/README.pdf",
     "bytes": 38324,
-    "sha256": "b16c1d9b89662dacf4d7b1f1c8146dc51306512b340bc603fec5e3f17185cc31"
-   },
-   {
-    "path": "cit168/hksa6/CIT168_Amygdala_Clusters/CIT168_AmyCluster_Labels.csv",
-    "bytes": 104,
-    "sha256": "2018e9c1c56a828c4023227c015cb1f9e46490b6878c23658f771b88ece893bd"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.0.0 [RETIRED]/labels.txt",
-    "bytes": 123,
-    "sha256": "5e00265a7bbbdf242356345e0f6615d84791ada54aa9739539096aab3c1e1b41"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.0.0 [RETIRED]/MNI152_2009c_nonlin_asym_1mm/CIT168toMNI152_prob_atlas_bilat_1mm.nii.gz",
-    "bytes": 866095,
-    "sha256": "7c6af23bc9ab13d1c01dbd3f9fb5f3e493dce1afda4ec490448b3edd056c137a"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.0.0 [RETIRED]/MNI152_2009c_nonlin_asym_1mm/CIT168toMNI152_T1w_head_1mm.nii.gz",
-    "bytes": 18596231,
-    "sha256": "da0338c2c0ddcf795632a674a26e00c678d00f414c0258d118a89934528290a6"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.0.0 [RETIRED]/MNI152_2009c_nonlin_asym_1mm/CIT168toMNI152_T2w_head_1mm.nii.gz",
-    "bytes": 18705460,
-    "sha256": "236773727b14f20d7fbfb06cd4d341d41c3c8dfdfd6a167470f7b3af1962370d"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.0.0 [RETIRED]/README.pdf",
-    "bytes": 41931,
-    "sha256": "81fa2c88b16165316d63c6ed04c44baf3d89811586ccb1407ad66e0137064d5a"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-FSL/CIT168toMNI152-FSL_prob.nii.gz",
-    "bytes": 755452,
-    "sha256": "969be568790c87fedd1847343925996d7ebe67e22e6d82bea7242c2ad7ec6435"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-FSL/CIT168toMNI152-FSL_det.nii.gz",
-    "bytes": 44739,
-    "sha256": "8b43e911c6849c9a57c9153499a324d2e3894531bb31446b6905b4c357693ae0"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-FSL/cit2mni_Warped.nii.gz",
-    "bytes": 35249362,
-    "sha256": "75e20bd9ee63ec118b4961d4611dff454d299abff39f2278801f2970e0a5a81b"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-FSL/CIT168toMNI152-FSL_T1w_brain.nii.gz",
-    "bytes": 7590249,
-    "sha256": "815cbce69c72f20185e2ee1bb9d932280cc42e0d627f5069585360b57d46fd6a"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-FSL/CIT168toMNI152-FSL_T1w.nii.gz",
-    "bytes": 16573104,
-    "sha256": "c4e2264bade061aae1e8f34ac9ad9d8204bfa96fe0498c208c2b2312626f15db"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-FSL/CIT168toMNI152-FSL_T2w_brain.nii.gz",
-    "bytes": 8498837,
-    "sha256": "c2978cf6d1d4ec4d30d432fdee88e2bda492ae692b65af2e0a09db9e315cf89f"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-FSL/CIT168toMNI152-FSL_T2w.nii.gz",
-    "bytes": 16655836,
-    "sha256": "7f595608e282c2f25192c2d41cb50ebb8d29e36ded5de124d56cb644c465a1c1"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-FSL/CIT168toMNI152-FSL_gm.nii.gz",
-    "bytes": 6833199,
-    "sha256": "f535b46b1d80798db67c2a5b99fd86c7ab7bd7841932af4632c9056f15f92fbc"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/cit2mni_Warped.nii.gz",
-    "bytes": 38632953,
-    "sha256": "ae983e770c157d683320844a21eb2a15ced034c7808b0e84638bf1993ff3a5af"
+    "sha256": "b16c1d9b89662dacf4d7b1f1c8146dc51306512b340bc603fec5e3f17185cc31",
+    "cached": true
    },
    {
     "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/CIT168toMNI152-2009c_det.nii.gz",
     "bytes": 51026,
-    "sha256": "0072d6ea3c05d1e798743e7d1f732fbc9c50ee6969bc5e68c6bdba3472d26242"
+    "sha256": "0072d6ea3c05d1e798743e7d1f732fbc9c50ee6969bc5e68c6bdba3472d26242",
+    "cached": true
    },
    {
     "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/CIT168toMNI152-2009c_prob.nii.gz",
     "bytes": 857744,
-    "sha256": "7a91c36701f36d9d908479b862e65a879d15f54badcec6878e61d857ab570f66"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/CIT168toMNI152-2009c_T1w_brain.nii.gz",
-    "bytes": 7960443,
-    "sha256": "e5a6c8008412eda42041ea39de66cae5caa25980da88e6d0eaa37c19c2a82352"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/CIT168toMNI152-2009c_T2w_brain.nii.gz",
-    "bytes": 8876984,
-    "sha256": "39d2af264ae5adf56311c7a6a5a7d26105a306c9ad6b97220bab572cae5871ba"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/CIT168toMNI152-2009c_T1w.nii.gz",
-    "bytes": 18158937,
-    "sha256": "d6f18f858867ca46f982b6b88e0333957ef7cdbcaadf0372cf2f2826cbf34a93"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/CIT168toMNI152-2009c_T2w.nii.gz",
-    "bytes": 18255721,
-    "sha256": "d1613ffe835d66a83e066f68ca6c8dbbba33da73e28e06c40e1f10df77e926b7"
-   },
-   {
-    "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/CIT168toMNI152-2009c_gm.nii.gz",
-    "bytes": 7158195,
-    "sha256": "f898a3ec58f2aed58c8a66a23b22f1b55bfd326da03518898bf6a1a6fb237ea9"
+    "sha256": "7a91c36701f36d9d908479b862e65a879d15f54badcec6878e61d857ab570f66",
+    "cached": true
    },
    {
     "path": "cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/labels.txt",
     "bytes": 123,
-    "sha256": "5e00265a7bbbdf242356345e0f6615d84791ada54aa9739539096aab3c1e1b41"
+    "sha256": "5e00265a7bbbdf242356345e0f6615d84791ada54aa9739539096aab3c1e1b41",
+    "cached": true
    }
   ],
   "listing": [
@@ -1307,24 +1153,822 @@
     "bytes": 88069
    }
   ],
-  "notes": [
-   "skipped /jkzwp/CIT168_Reinf_Learn_v1.0.0 [RETIRED]/MNI152_2009c_nonlin_asym_1mm/cit2mni_InverseWarp.nii.gz: 78.9 MB > cap",
-   "skipped /jkzwp/CIT168_Reinf_Learn_v1.0.0 [RETIRED]/MNI152_2009c_nonlin_asym_1mm/cit2mni_Warp.nii.gz: 79.0 MB > cap",
-   "skipped /jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-FSL/cit2mni_1Warp.nii.gz: 150.6 MB > cap",
-   "skipped /jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-FSL/cit2mni_1InverseWarp.nii.gz: 150.7 MB > cap",
-   "skipped /jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/cit2mni_1Warp.nii.gz: 173.6 MB > cap",
-   "skipped /jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/cit2mni_1InverseWarp.nii.gz: 173.5 MB > cap"
-  ],
+  "notes": [],
   "title": "An In Vivo High Resolution Atlas of the Subcortical Human Brain",
   "license": "CC-By Attribution 4.0 International"
  },
  "hcp842_zenodo": {
-  "status": "failed",
-  "files": [],
-  "listing": [],
-  "notes": [
-   "RuntimeError: GET https://zenodo.org/api/records/3627772 failed: HTTP Error 504: Gateway Time-out"
-  ]
+  "status": "ok",
+  "files": [
+   {
+    "path": "hcp842_zenodo/Central_Tegmental_Tract_R.nii.gz",
+    "bytes": 4602,
+    "sha256": "2116e6ab7afe7806fd6c798bbaf0af1ede9e7e3ccd884654825e8e35743be73a",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/U_Fiber_L.nii.gz",
+    "bytes": 20845,
+    "sha256": "4f8fafa41c3b53a6fcefbfc7c25d27d39927d1dc702f062d9757c20121354bea",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNIV_R.nii.gz",
+    "bytes": 4741,
+    "sha256": "640b60da1cd355164b43abeee9a9a5ab1c517a56409397e0c444acfcfded21a1",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNIV_L.nii.gz",
+    "bytes": 4613,
+    "sha256": "8819069a1a7567000d4fe89cd64a11d4a0b105344ad5847defe42dca1cf21c9a",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNII_R.nii.gz",
+    "bytes": 5541,
+    "sha256": "2e3605ada8c80ada105605d8b033ab909254ca38f397f9ca7df50edc001b0ea6",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNII_L.nii.gz",
+    "bytes": 5588,
+    "sha256": "b414605d43478485057be82581ea1820cc5aa7d918531ef811b91c78a68abefc",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNIII_R.nii.gz",
+    "bytes": 4395,
+    "sha256": "2f8f9b16603ca5a2062255f8fca3b4992e31db1d8d627dc39e921a2356274f69",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNIII_L.nii.gz",
+    "bytes": 4518,
+    "sha256": "697111202289fb73c025010c03a673416e86987f1f1491cebe5fc36fd31f4c91",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Cingulum_R.nii.gz",
+    "bytes": 9156,
+    "sha256": "ff8fd3e3ecfd9a7d53afc53046942ee0f307461f99764529344fd82d9a5272c0",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Cingulum_L.nii.gz",
+    "bytes": 9208,
+    "sha256": "5d40a4b563218c362090fb603ecd8094098e8c283b99e77fca86266feeef8a2e",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Cerebellum_R.nii.gz",
+    "bytes": 9130,
+    "sha256": "e94fed1bf1340d2a4c6c2c879244b50d844cbaa52b63217952b43e2c8f236988",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Cerebellum_L.nii.gz",
+    "bytes": 8734,
+    "sha256": "a4118e6dcb916649b2bc074ebeda65aac3b8380ff2fd7f23bf85aafd65b87b22",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Central_Tegmental_Tract_L.nii.gz",
+    "bytes": 4578,
+    "sha256": "d09df02db2e3e69d854362c111bbdc1c14866e9d1c523ed35ca178ab85ee91c3",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Arcuate_Fasciculus_R.nii.gz",
+    "bytes": 8386,
+    "sha256": "2a4462592d25f2739571519806f74a34b0af0ad67db0e0a2eea2b923b425e221",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Arcuate_Fasciculus_L.nii.gz",
+    "bytes": 11292,
+    "sha256": "03098f0e698773a06b4efd1694c1dd18d9bec97864b95ec9098c97020fb0edee",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Anterior_Commissure.nii.gz",
+    "bytes": 11955,
+    "sha256": "24cd915dc5ecca29c78d41610a2bf72a3f1c50580dc64328e21306dcce7f1a84",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Acoustic_Radiation_R.nii.gz",
+    "bytes": 5193,
+    "sha256": "e92c1e6033fe1d8ed898b50589662e64406c8ff49309908453f6343ff76c38ce",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Acoustic_Radiation_L.nii.gz",
+    "bytes": 5502,
+    "sha256": "71691aa44a7c5ab2d2a5a2c060e6fe83ddea4fae31eaf4fe04c63539d5687611",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Temporopontine_Tract_R.nii.gz",
+    "bytes": 6443,
+    "sha256": "9b832a7506d1b28ad04396f2e64f8f64f868e85e56060f98ca32eed8dd291a64",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Temporopontine_Tract_L.nii.gz",
+    "bytes": 6023,
+    "sha256": "87b7e36f65209d65f8698eb4d79274c9bfeee15637f2e1be893ef71cfa0c4ceb",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Superior_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 11583,
+    "sha256": "bc8ff29e423e27dfc8ce458f2c0d3bc95d0d42f6f9f208ee47dfdbca2d468208",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Superior_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 11975,
+    "sha256": "03d4cd99bd6bd09e15b1d07cd4d4896934936729a85f1e90ba9e16d6913ddf9a",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Superior_Cerebellar_Peduncle.nii.gz",
+    "bytes": 6279,
+    "sha256": "edcb46a4a27d266d25801245ebd4117cc8abcea930a9d14e98a29c08ef3d6d0d",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Spinothalamic_Tract_R.nii.gz",
+    "bytes": 5514,
+    "sha256": "f42b72a27f2b8d9e9d9c8ec3a0aee4b8190214fc0139ff59d22746d1cec4c973",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Spinothalamic_Tract_L.nii.gz",
+    "bytes": 5514,
+    "sha256": "509fa1d29a40fcc9a26ca1e778c55a3b31cffdeb3b39a41087902aa76dc86b4f",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Dorsal_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 4478,
+    "sha256": "c97186a4e034b086c21a2bb34079b5ac2789dcfd2099fa636687ae18c06d6ce8",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Rubrospinal_Tract_R.nii.gz",
+    "bytes": 4427,
+    "sha256": "b6e6bd9c4d37406aa3ebe18c22a401f65ac428adf6250dc2eb207611a4c77c27",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Rubrospinal_Tract_L.nii.gz",
+    "bytes": 4408,
+    "sha256": "4f21b9299f497868ebe889fcc9fc117ba605e152c0f4bbbfdbca26972d923f96",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Posterior_Commissure.nii.gz",
+    "bytes": 4496,
+    "sha256": "d21c3baaea2ad2bac7085dba57b8491f7d55a0b0ad4ce07f942083fc6d772278",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Parietopontine_Tract_R.nii.gz",
+    "bytes": 13986,
+    "sha256": "88a40cc67bb91c19983eb542d043cd57b4830619a12c97fe9a0a86974c327f05",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Parietopontine_Tract_L.nii.gz",
+    "bytes": 10929,
+    "sha256": "253206364da9e79fba7a010cc1300c618fceb5d643809a2d0ac8aa235a7618f2",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Optic_Radiation_R.nii.gz",
+    "bytes": 5901,
+    "sha256": "09770e82ce151d7506d194bf9a22dd4405f9e44ee61a59716b772292f7e1e501",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Optic_Radiation_L.nii.gz",
+    "bytes": 6155,
+    "sha256": "66c018bd914de0376d0bead4e13073de5501dc248afdcb097a6897b39934fa32",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Vertical_Occipital_Fasciculus_R.nii.gz",
+    "bytes": 5511,
+    "sha256": "d29d3200a8491781596cae4321572134d08c24699ff51e1f3fc48d6f54cf1aa9",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Occipitopontine_Tract_R.nii.gz",
+    "bytes": 9306,
+    "sha256": "804f3dc269ae9b7f173156661244f686eb6a57e2e83ec69f4838cac9390d780f",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Vertical_Occipital_Fasciculus_L.nii.gz",
+    "bytes": 5678,
+    "sha256": "68b87f8683b0b0069f050ef0b967148be20b2282be22e7d22278d9d02f4b09bf",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Occipitopontine_Tract_L.nii.gz",
+    "bytes": 10313,
+    "sha256": "f016cc3aa0436321d102b9cbca1dcacea1e8e90bc85a6c498da0be8c07a7c84b",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Vermis.nii.gz",
+    "bytes": 7222,
+    "sha256": "f5c8449fd48c608879ecf1d2c1a6f5fe244ba0325416dea7b9a8f2b4678c3882",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Middle_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 6110,
+    "sha256": "a9a955b8428b2f3516d86f03272eaa3bbc098b65b32f97d72f86094dc801d812",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Middle_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 5754,
+    "sha256": "80433c6d095ca6510ac3760e5f7faa4ab7b95d2701b79cc5254fe3bf0c6e5efe",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Middle_Cerebellar_Peduncle.nii.gz",
+    "bytes": 11121,
+    "sha256": "e18639dc4bca0995afbde75e2553e44345589ffb1615ae9ca95f6d791898a282",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Medial_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 4480,
+    "sha256": "a3ec974748fd1e3a341b48716438e635c7ed6dbc20ee9acccfdfd02cefe5c16c",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Medial_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 4408,
+    "sha256": "3bc815415c53f395ab22100566e9c6198c5fafbbb25c768f777fc8c8113f85a5",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Medial_Lemniscus_R.nii.gz",
+    "bytes": 5299,
+    "sha256": "d115421ee8b58e37a79d45a0808a29d134027c630b8e1374ec19a91f108889b0",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Medial_Lemniscus_L.nii.gz",
+    "bytes": 5203,
+    "sha256": "8f917841e6dacd63166f3e5b18873287b7500ed2adffb8dcde0f2edda5ea649e",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Lateral_Lemniscus_R.nii.gz",
+    "bytes": 4595,
+    "sha256": "e59a32da55d43915ff698490594121e0b1a25c8e4c5fb26f7beb8ee2b8231964",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Lateral_Lemniscus_L.nii.gz",
+    "bytes": 4564,
+    "sha256": "99138df05095ac08d70d1fd59b84c059a77cc1913df3144fba9772445e53b173",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Inferior_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 8316,
+    "sha256": "9e2ad74430adb7364b3a4071d749942f793b1652f4a4b97c8c2f65191fc58cdb",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Inferior_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 9665,
+    "sha256": "55ac77523ae8aa4dec5ad4c9ce000d2271279a1f4085c473895f564f9ec1bc49",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Corticothalamic_Pathway_R.nii.gz",
+    "bytes": 29523,
+    "sha256": "56a42bf56a006e8707da1065a6f24f7026cc6bbf3be25a6192769ce16520e34b",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Inferior_Fronto_Occipital_Fasciculus_R.nii.gz",
+    "bytes": 11455,
+    "sha256": "2a68b7f05ae7306735bc8d4336f5d942c661fab44cf531246fdf955cfbdef305",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Uncinate_Fasciculus_R.nii.gz",
+    "bytes": 6168,
+    "sha256": "272cebc9f37d65080a08f1c4dc885cbe8a40bc3db827f1390c1b2b215d8b14a0",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Inferior_Fronto_Occipital_Fasciculus_L.nii.gz",
+    "bytes": 10860,
+    "sha256": "bdff04ef7b27c6eed0cda7ebe6e33942c5a3571e66f2b9118d9bf9528b9fd008",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Inferior_Cerebellar_Peduncle_R.nii.gz",
+    "bytes": 5603,
+    "sha256": "18ffe971cbaa9145c11450861d76e379770f772717563e85063b674690aa9cbf",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Dorsal_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 4477,
+    "sha256": "3029096ba8bbe925e54b6017a17ec21a5920c2b64037e9374397b372192bcf01",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Inferior_Cerebellar_Peduncle_L.nii.gz",
+    "bytes": 5592,
+    "sha256": "e14afdd44c3d0e65909e543cbd0c9ce68e46cab105f93d968b900b09bdc20ab7",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Extreme_Capsule_L.nii.gz",
+    "bytes": 7436,
+    "sha256": "6a3d687ea34cff4aa79f6d37625f888f2042a998ab60bb508c6547185d84ea6f",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Extreme_Capsule_R.nii.gz",
+    "bytes": 5896,
+    "sha256": "cffca14187aab16fe40db20e50c4088927f5a7f71f836bf21e44656cdc75d6ae",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Fornix_L.nii.gz",
+    "bytes": 4573,
+    "sha256": "ee9cb42075bf39bd29d29d12a5df52259d7098d5bd592dad8d54fc23efead141",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Fornix_R.nii.gz",
+    "bytes": 4301,
+    "sha256": "e15a05fbb04d488f3fa610fbbaf128e3f382544a9b2179fdd4f08649c8dc7c1a",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Frontal_Aslant_Tract_L.nii.gz",
+    "bytes": 9841,
+    "sha256": "1f93e4c848a5ba07cf78354eb12a42a4380003635241bef00c4a95a62c4937a7",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Frontal_Aslant_Tract_R.nii.gz",
+    "bytes": 9244,
+    "sha256": "e87c413985de075ab4ed8507c2aca9e3b198033014ce82aa059504b0bad00029",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Frontopontine_Tract_L.nii.gz",
+    "bytes": 13190,
+    "sha256": "029105f547cf813d1b09d0c18a8d7ee9442b9722d935af670c05a6cd01c5bf7b",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Frontopontine_Tract_R.nii.gz",
+    "bytes": 15016,
+    "sha256": "a7a4208f70bf3ffa67082ce1d22bb2183c60dc510a4431ff31f263b7cd1635c3",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Corticothalamic_Pathway_L.nii.gz",
+    "bytes": 32006,
+    "sha256": "e2e88258c3da6a91129395be5b3fb6264ac93e5323a1f3151d86da22db2f8ae8",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Cortico_Striatal_Pathway_R.nii.gz",
+    "bytes": 26412,
+    "sha256": "c52039331eccec104c6de31978c5c1cabc33e3dadf2ae7fc97037e66378ae6ae",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Cortico_Striatal_Pathway_L.nii.gz",
+    "bytes": 28386,
+    "sha256": "5c18ecdb727474fffcfb3188186fe6ef47bbb6a1511ef51ba743413e1c39a1cc",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Cortico_Spinal_Tract_R.nii.gz",
+    "bytes": 14261,
+    "sha256": "ba49b0ad64951a75c33dbf9d3f3ec3a4e28e8459e6408e2c5c53847322f56406",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Cortico_Spinal_Tract_L.nii.gz",
+    "bytes": 13747,
+    "sha256": "21c86261299f14ed966c0a1531b31326231aba733a0153523da6563e778c2ee9",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Uncinate_Fasciculus_L.nii.gz",
+    "bytes": 6291,
+    "sha256": "89f6b03c2b771fed04af66455f2a278dd92a7e8aba1a7d046a8f315436c2540f",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/Corpus_Callosum.nii.gz",
+    "bytes": 69918,
+    "sha256": "82e00256c5a23f41e0fe0b22b4aa2a3524524a19cdf37f7100f99b67b3ade2e2",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNX_R.nii.gz",
+    "bytes": 4125,
+    "sha256": "cad7e873f2a514e61c7900e2e5c2d39ff8d432adc7de5839be2ce4d494f59db0",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNX_L.nii.gz",
+    "bytes": 4121,
+    "sha256": "5b4b177c33de3cee03da890939e99a53fee43dc84c5c9cadfde54645d03b7281",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/U_Fiber_R.nii.gz",
+    "bytes": 22900,
+    "sha256": "208be2025be45e5104e79610584e22f3608f9aba2033e3eddb4bce524dbf669f",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNV_R.nii.gz",
+    "bytes": 4614,
+    "sha256": "3afdc8afaca113eb19a78b4221bed016745017e4cb03f35b627e42a44f02d3c7",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNV_L.nii.gz",
+    "bytes": 4525,
+    "sha256": "db3883fa4104b4e1accb31a9d2206dec96fe3dc51f51a72c14048c6a2a318f11",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNVII_R.nii.gz",
+    "bytes": 4225,
+    "sha256": "805aae8b93de208e50d7f1f6feace16e73a86ce1811787d568947662119af6f2",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNVII_L.nii.gz",
+    "bytes": 4221,
+    "sha256": "cf399224a7a78dd07fb38824889e9d490c3fc5f434673b848a203656e7ef0c4b",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNVIII_R.nii.gz",
+    "bytes": 4945,
+    "sha256": "04f9e3de95f4ce01687abc9dc3bb48d0c4fcbcc98f8c13c7b7aee6d7765c5c08",
+    "cached": true
+   },
+   {
+    "path": "hcp842_zenodo/CNVIII_L.nii.gz",
+    "bytes": 4985,
+    "sha256": "8c111e57ac4075aa5070776415305bec8c524ecf1ec211ae9eb3344bb9490e72",
+    "cached": true
+   }
+  ],
+  "listing": [
+   {
+    "name": "Central_Tegmental_Tract_R.nii.gz",
+    "bytes": 4602
+   },
+   {
+    "name": "U_Fiber_L.nii.gz",
+    "bytes": 20845
+   },
+   {
+    "name": "CNIV_R.nii.gz",
+    "bytes": 4741
+   },
+   {
+    "name": "CNIV_L.nii.gz",
+    "bytes": 4613
+   },
+   {
+    "name": "CNII_R.nii.gz",
+    "bytes": 5541
+   },
+   {
+    "name": "CNII_L.nii.gz",
+    "bytes": 5588
+   },
+   {
+    "name": "CNIII_R.nii.gz",
+    "bytes": 4395
+   },
+   {
+    "name": "CNIII_L.nii.gz",
+    "bytes": 4518
+   },
+   {
+    "name": "Cingulum_R.nii.gz",
+    "bytes": 9156
+   },
+   {
+    "name": "Cingulum_L.nii.gz",
+    "bytes": 9208
+   },
+   {
+    "name": "Cerebellum_R.nii.gz",
+    "bytes": 9130
+   },
+   {
+    "name": "Cerebellum_L.nii.gz",
+    "bytes": 8734
+   },
+   {
+    "name": "Central_Tegmental_Tract_L.nii.gz",
+    "bytes": 4578
+   },
+   {
+    "name": "Arcuate_Fasciculus_R.nii.gz",
+    "bytes": 8386
+   },
+   {
+    "name": "Arcuate_Fasciculus_L.nii.gz",
+    "bytes": 11292
+   },
+   {
+    "name": "Anterior_Commissure.nii.gz",
+    "bytes": 11955
+   },
+   {
+    "name": "Acoustic_Radiation_R.nii.gz",
+    "bytes": 5193
+   },
+   {
+    "name": "Acoustic_Radiation_L.nii.gz",
+    "bytes": 5502
+   },
+   {
+    "name": "Temporopontine_Tract_R.nii.gz",
+    "bytes": 6443
+   },
+   {
+    "name": "Temporopontine_Tract_L.nii.gz",
+    "bytes": 6023
+   },
+   {
+    "name": "Superior_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 11583
+   },
+   {
+    "name": "Superior_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 11975
+   },
+   {
+    "name": "Superior_Cerebellar_Peduncle.nii.gz",
+    "bytes": 6279
+   },
+   {
+    "name": "Spinothalamic_Tract_R.nii.gz",
+    "bytes": 5514
+   },
+   {
+    "name": "Spinothalamic_Tract_L.nii.gz",
+    "bytes": 5514
+   },
+   {
+    "name": "Dorsal_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 4478
+   },
+   {
+    "name": "Rubrospinal_Tract_R.nii.gz",
+    "bytes": 4427
+   },
+   {
+    "name": "Rubrospinal_Tract_L.nii.gz",
+    "bytes": 4408
+   },
+   {
+    "name": "Posterior_Commissure.nii.gz",
+    "bytes": 4496
+   },
+   {
+    "name": "Parietopontine_Tract_R.nii.gz",
+    "bytes": 13986
+   },
+   {
+    "name": "Parietopontine_Tract_L.nii.gz",
+    "bytes": 10929
+   },
+   {
+    "name": "Optic_Radiation_R.nii.gz",
+    "bytes": 5901
+   },
+   {
+    "name": "Optic_Radiation_L.nii.gz",
+    "bytes": 6155
+   },
+   {
+    "name": "Vertical_Occipital_Fasciculus_R.nii.gz",
+    "bytes": 5511
+   },
+   {
+    "name": "Occipitopontine_Tract_R.nii.gz",
+    "bytes": 9306
+   },
+   {
+    "name": "Vertical_Occipital_Fasciculus_L.nii.gz",
+    "bytes": 5678
+   },
+   {
+    "name": "Occipitopontine_Tract_L.nii.gz",
+    "bytes": 10313
+   },
+   {
+    "name": "Vermis.nii.gz",
+    "bytes": 7222
+   },
+   {
+    "name": "Middle_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 6110
+   },
+   {
+    "name": "Middle_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 5754
+   },
+   {
+    "name": "Middle_Cerebellar_Peduncle.nii.gz",
+    "bytes": 11121
+   },
+   {
+    "name": "Medial_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 4480
+   },
+   {
+    "name": "Medial_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 4408
+   },
+   {
+    "name": "Medial_Lemniscus_R.nii.gz",
+    "bytes": 5299
+   },
+   {
+    "name": "Medial_Lemniscus_L.nii.gz",
+    "bytes": 5203
+   },
+   {
+    "name": "Lateral_Lemniscus_R.nii.gz",
+    "bytes": 4595
+   },
+   {
+    "name": "Lateral_Lemniscus_L.nii.gz",
+    "bytes": 4564
+   },
+   {
+    "name": "Inferior_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 8316
+   },
+   {
+    "name": "Inferior_Longitudinal_Fasciculus_L.nii.gz",
+    "bytes": 9665
+   },
+   {
+    "name": "Corticothalamic_Pathway_R.nii.gz",
+    "bytes": 29523
+   },
+   {
+    "name": "Inferior_Fronto_Occipital_Fasciculus_R.nii.gz",
+    "bytes": 11455
+   },
+   {
+    "name": "Uncinate_Fasciculus_R.nii.gz",
+    "bytes": 6168
+   },
+   {
+    "name": "Inferior_Fronto_Occipital_Fasciculus_L.nii.gz",
+    "bytes": 10860
+   },
+   {
+    "name": "Inferior_Cerebellar_Peduncle_R.nii.gz",
+    "bytes": 5603
+   },
+   {
+    "name": "Dorsal_Longitudinal_Fasciculus_R.nii.gz",
+    "bytes": 4477
+   },
+   {
+    "name": "Inferior_Cerebellar_Peduncle_L.nii.gz",
+    "bytes": 5592
+   },
+   {
+    "name": "Extreme_Capsule_L.nii.gz",
+    "bytes": 7436
+   },
+   {
+    "name": "Extreme_Capsule_R.nii.gz",
+    "bytes": 5896
+   },
+   {
+    "name": "Fornix_L.nii.gz",
+    "bytes": 4573
+   },
+   {
+    "name": "Fornix_R.nii.gz",
+    "bytes": 4301
+   },
+   {
+    "name": "Frontal_Aslant_Tract_L.nii.gz",
+    "bytes": 9841
+   },
+   {
+    "name": "Frontal_Aslant_Tract_R.nii.gz",
+    "bytes": 9244
+   },
+   {
+    "name": "Frontopontine_Tract_L.nii.gz",
+    "bytes": 13190
+   },
+   {
+    "name": "Frontopontine_Tract_R.nii.gz",
+    "bytes": 15016
+   },
+   {
+    "name": "Corticothalamic_Pathway_L.nii.gz",
+    "bytes": 32006
+   },
+   {
+    "name": "Cortico_Striatal_Pathway_R.nii.gz",
+    "bytes": 26412
+   },
+   {
+    "name": "Cortico_Striatal_Pathway_L.nii.gz",
+    "bytes": 28386
+   },
+   {
+    "name": "Cortico_Spinal_Tract_R.nii.gz",
+    "bytes": 14261
+   },
+   {
+    "name": "Cortico_Spinal_Tract_L.nii.gz",
+    "bytes": 13747
+   },
+   {
+    "name": "Uncinate_Fasciculus_L.nii.gz",
+    "bytes": 6291
+   },
+   {
+    "name": "Corpus_Callosum.nii.gz",
+    "bytes": 69918
+   },
+   {
+    "name": "CNX_R.nii.gz",
+    "bytes": 4125
+   },
+   {
+    "name": "CNX_L.nii.gz",
+    "bytes": 4121
+   },
+   {
+    "name": "U_Fiber_R.nii.gz",
+    "bytes": 22900
+   },
+   {
+    "name": "CNV_R.nii.gz",
+    "bytes": 4614
+   },
+   {
+    "name": "CNV_L.nii.gz",
+    "bytes": 4525
+   },
+   {
+    "name": "CNVII_R.nii.gz",
+    "bytes": 4225
+   },
+   {
+    "name": "CNVII_L.nii.gz",
+    "bytes": 4221
+   },
+   {
+    "name": "CNVIII_R.nii.gz",
+    "bytes": 4945
+   },
+   {
+    "name": "CNVIII_L.nii.gz",
+    "bytes": 4985
+   }
+  ],
+  "notes": [],
+  "title": "HCP-YA Tractography Atlas (NIFTI Files)",
+  "license": {
+   "id": "cc-by-sa-4.0"
+  },
+  "version_date": "2018-09-17"
  },
  "yeh2022_connectome_page": {
   "status": "ok",
@@ -1333,6 +1977,36 @@
     "path": "yeh2022_connectome_page/page.html",
     "bytes": 14769,
     "sha256": "f9bdcf3f5beb38af1e4a47cce1dbfd69f4f5445aa3e27cedfea86c7b064e9467"
+   },
+   {
+    "path": "yeh2022_connectome_page/abbreviation.xlsx",
+    "bytes": 13172,
+    "sha256": "ead75629c22adfdec416ebf0de0b854ec3247679da33e50d0e6d9e30eafa71f6",
+    "cached": true
+   },
+   {
+    "path": "yeh2022_connectome_page/abbreviation2.xlsx",
+    "bytes": 10764,
+    "sha256": "7325e06cdca5e36e5ac7719261daee3d11a3a1816f47d42e3e57bc17e35344fb",
+    "cached": true
+   },
+   {
+    "path": "yeh2022_connectome_page/tract_to_region_connectome_BM_KL.xlsx",
+    "bytes": 35250,
+    "sha256": "8baaf81429c563b1043e078c0ed7a521424577287735847d6aa5646aba98ada5",
+    "cached": true
+   },
+   {
+    "path": "yeh2022_connectome_page/tract_to_region_connectome_MMP.xlsx",
+    "bytes": 60313,
+    "sha256": "5fc18a1ea5d8891e0a49e3f1d5386f6021eff1ca94f8207908b39bfea0dfb5a7",
+    "cached": true
+   },
+   {
+    "path": "yeh2022_connectome_page/41467_2022_32595_MOESM4_ESM.zip",
+    "bytes": 146125,
+    "sha256": "9e90d82f343bd208f007723b5e547955729e054055b9a6e5795b1b8a19205d9f",
+    "cached": true
    }
   ],
   "listing": [
