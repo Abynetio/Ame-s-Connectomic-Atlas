@@ -59,6 +59,12 @@ Viewer features:
 - glass brain (cerebrum, cerebellum, brainstem, spinal cord), ventricles, and toggleable grey and
   white matter (CerebrA labels and the ICBM152 T1)
 - circuit brightness control and a choice to draw the circuit over or under the glass
+- 2D wiring views linked to the 3D scene (3D / split / 2D layout):
+  - **Pathway wiring**: the selected pathway in left / midline / right lanes, cortex at the top,
+    with each neuron's cell bodies, synapses, cortical layers and midline crossings marked
+  - **Connectogram**: every projection in the knowledge graph on a ring grouped by level of the
+    neuraxis, drawn from this atlas's own data (in the spirit of the Edlow et al. connectograms);
+    arrows give direction, dashed lines crossed projections
 - "projects to / receives from" lists for every region
 - the share of each tract's streamline end-points that falls in each atlas region (computed from HCP1065)
 - axial, coronal and sagittal MRI slices

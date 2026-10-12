@@ -156,9 +156,15 @@ a { color: var(--accent); }
 .sw.data { background: var(--accent); }
 .sw.schematic { background: repeating-linear-gradient(90deg, var(--muted) 0 5px, transparent 5px 8px); }
 
-/* stage */
+/* stage: 3D canvas and/or 2D diagram */
+#workspace { grid-area: stage; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+#workspace.mode-3d #diagram { display: none; }
+#workspace.mode-2d #stage { display: none; }
+#workspace.mode-split #stage, #workspace.mode-split #diagram { flex: 1 1 50%; }
+#workspace.mode-2d #diagram { flex: 1; border-top: none; }
 #stage {
-  grid-area: stage;
+  flex: 1;
+  min-height: 0;
   position: relative;
   overflow: hidden;
   background: radial-gradient(ellipse at 50% 35%, var(--stage-top), var(--stage-bottom));
@@ -280,9 +286,15 @@ dialog .close { position: absolute; right: 14px; top: 12px; background: none; bo
 
 /* small screens: lists as a drawer, details as a bottom sheet */
 @media (max-width: 900px) {
-  body { grid-template-columns: 1fr; grid-template-rows: 52px 1fr auto; grid-template-areas: "top" "stage" "info"; }
+  body { grid-template-columns: minmax(0, 1fr); grid-template-rows: 52px 1fr auto; grid-template-areas: "top" "stage" "info"; }
+  .topbar h1 { min-width: 0; flex: 1; }
+  #about-btn { font-size: 12px; padding: 4px 7px; white-space: nowrap; }
+  #about-btn .long { display: none; }
+  .dg-legend { flex-basis: 100%; order: 3; }
   .only-mobile { display: inline-block; }
   .views { display: none; }
+  .modes { margin: 0; }
+  .modes button { padding: 4px 7px; }
   .topbar { padding: 0 8px; gap: 8px; }
   .topbar h1 { font-size: 14px; overflow: hidden; text-overflow: ellipsis; }
   .topbar .version { display: none; }
@@ -310,3 +322,70 @@ fieldset.layers label { margin: 2px 0; }
   padding: 1px 5px;
   white-space: nowrap;
 }
+
+/* layout switch */
+.modes { margin-top: 0; margin-left: 12px; flex: none; }
+
+/* 2D diagram pane */
+#diagram { position: relative; display: flex; flex-direction: column; min-height: 0; background: var(--panel); border-top: 1px solid var(--line); }
+.dg-bar { display: flex; align-items: center; gap: 10px; padding: 6px 10px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.dg-tabs { margin: 0; }
+.dg-tabs button:disabled { opacity: 0.45; cursor: default; }
+.dg-legend { font-size: 11.5px; flex: 1; min-width: 160px; }
+.dg-reset { font-size: 12px; padding: 3px 8px; display: none; }
+#diagram.network .dg-reset { display: inline-block; }
+.dg-body { flex: 1; min-height: 0; overflow: auto; position: relative; }
+#diagram.network .dg-body { overflow: hidden; }
+.dg-tip { position: absolute; pointer-events: none; z-index: 5; max-width: 340px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; font-size: 12px; box-shadow: 0 2px 8px rgb(0 0 0 / 18%); }
+.dg-also { font-size: 12px; padding: 0 16px 12px; margin: 0; }
+
+/* pathway wiring: left / midline / right lanes */
+.lane-wrap { position: relative; padding: 8px 12px 16px; }
+.lane-svg { position: absolute; inset: 0; pointer-events: none; overflow: visible; z-index: 1; }
+.lanes { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr); row-gap: 22px; align-items: center; justify-items: center; }
+.lane-head { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.lane-mid { grid-column: 2; width: 0; border-left: 1.5px dashed var(--line); align-self: stretch; justify-self: center; z-index: 0; }
+.lane-box, .lane-pill { position: relative; z-index: 2; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.lane-box { width: min(100%, 300px); background: var(--panel-2); border: 1px solid var(--line); border-left: 5px solid var(--line); border-radius: 8px; padding: 5px 9px; }
+.lane-box.mid { width: min(60%, 320px); }
+.lane-box.pass { border-style: dashed; border-left-style: solid; background: var(--panel); }
+.lane-box:hover, .lane-pill:hover { border-color: var(--accent); }
+.lane-box.current { box-shadow: 0 0 0 2px var(--accent); }
+.lb-name { font-weight: 600; font-size: 13px; line-height: 1.25; }
+.lb-level { font-size: 11px; color: var(--muted); }
+.lb-role, .lb-layer { font-size: 11.5px; margin-top: 1px; }
+.lb-layer { color: var(--muted); }
+.lane-pill { max-width: min(100%, 280px); font-size: 11.5px; font-style: italic; background: var(--panel); border: 1.5px solid var(--line); border-radius: 999px; padding: 1px 10px; }
+.lane-pill.current { box-shadow: 0 0 0 2px var(--accent); font-weight: 600; }
+.lane-link { fill: none; stroke-width: 3; stroke-linecap: round; }
+.lane-soma { stroke: #15181d; stroke-width: 1.5; }
+.lane-syn { stroke: #15181d; stroke-width: 1; }
+.lane-cross circle { fill: var(--panel); stroke: var(--text); stroke-width: 1.5; }
+.lane-cross text { font-size: 10px; fill: var(--text); font-weight: 700; }
+
+/* connectogram ring */
+svg.ring { width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; user-select: none; }
+svg.ring:active { cursor: grabbing; }
+.ring-arc { fill: none; stroke-width: 7; stroke-linecap: round; opacity: 0.8; }
+.ring-level { font-size: 15px; font-weight: 600; }
+.ring-edge { cursor: pointer; color: var(--c); }
+.ring-edge .re-line { fill: none; stroke: currentColor; opacity: 0.5; }
+.ring-edge.contra .re-line { stroke-dasharray: 7 5; }
+.ring-edge .re-head { fill: currentColor; opacity: 0.6; }
+.ring-edge .re-hit { fill: none; stroke: transparent; stroke-width: 10; }
+.ring-edge.off .re-line { opacity: 0.07; }
+.ring-edge.off .re-head { opacity: 0.08; }
+.ring-edge.on .re-line { opacity: 0.95; stroke-width: 3.5; }
+.ring-edge.on .re-head { opacity: 1; }
+.ring-edge.strong .re-line { stroke-width: 6.5; }
+.ring-edge:hover .re-line { opacity: 1; stroke-width: 5; }
+.ring-node { cursor: pointer; }
+.ring-node circle { stroke: var(--panel); stroke-width: 1.5; }
+.ring-node circle.schematic { stroke: var(--text); stroke-dasharray: 2 2; }
+.ring-node text { font-size: 13px; fill: var(--text); }
+.ring-node.off text { fill: var(--muted); opacity: 0.45; }
+.ring-node.off circle { opacity: 0.35; }
+.ring-node.on text { font-weight: 600; }
+.ring-node.sel circle { r: 9; stroke: var(--text); stroke-width: 2; }
+.ring-node.sel text { font-weight: 700; }
+.ring-node:hover text { fill: var(--accent); }

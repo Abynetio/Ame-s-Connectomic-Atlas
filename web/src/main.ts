@@ -1,6 +1,7 @@
 import "./style.css";
 import { ALLOCORTEX, Atlas, Edge, Pathway, PathwayStep, Region, Side, Tract, loadAtlas, mirrorSide, pathwayNeurons, searchText } from "./data";
 import { SYSTEM_COLORS, SYSTEM_LABELS, colorFor, neuronShade } from "./palette";
+import { Diagram } from "./diagram";
 import { PickInfo, Viewer } from "./viewer";
 
 type Sel = { type: "pathway" | "tract" | "region"; id: string } | null;
@@ -31,10 +32,13 @@ class App {
   query = "";
   system: string | null = null;
   playTimer: number | null = null;
+  diagram: Diagram;
+  mode: "3d" | "split" | "2d" = "3d";
 
   constructor(atlas: Atlas) {
     this.atlas = atlas;
     this.viewer = new Viewer($("#stage"), atlas);
+    this.diagram = new Diagram($("#diagram"), atlas, { select: (s) => this.select(s), step: (k) => this.gotoStep(k) });
     this.bindChrome();
     this.renderSystems();
     this.renderList();
@@ -50,6 +54,7 @@ class App {
       p.set("side", this.start);
       p.set("step", String(this.step + 1));
     }
+    if (this.mode !== "3d") p.set("view", this.mode);
     const s = `#${p.toString()}`;
     if (location.hash === s) return;
     try {
@@ -61,6 +66,8 @@ class App {
 
   private fromHash(): boolean {
     const p = new URLSearchParams(location.hash.slice(1));
+    const view = p.get("view");
+    this.setMode(view === "split" || view === "2d" ? view : "3d", false);
     for (const type of ["pathway", "tract", "region"] as const) {
       const id = p.get(type);
       if (!id) continue;
@@ -87,6 +94,7 @@ class App {
         this.renderList();
       }),
     );
+    document.querySelectorAll<HTMLButtonElement>("[data-mode]").forEach((b) => b.addEventListener("click", () => this.setMode(b.dataset.mode as App["mode"])));
     document.querySelectorAll<HTMLButtonElement>("[data-view]").forEach((b) => b.addEventListener("click", () => this.viewer.viewPreset(b.dataset.view!)));
     $<HTMLInputElement>("#glass").addEventListener("change", (e) => this.viewer.setGlass((e.target as HTMLInputElement).checked));
     $<HTMLInputElement>("#glass-opacity").addEventListener("input", (e) => this.viewer.setGlass(true, Number((e.target as HTMLInputElement).value)));
@@ -161,6 +169,7 @@ class App {
         this.system = this.system === key ? null : key;
         this.renderSystems();
         this.renderList();
+        this.syncDiagram();
       });
       return b;
     };
@@ -246,8 +255,21 @@ class App {
     if (sel.type === "tract") this.viewer.showTract(sel.id, "both", "focus");
     this.renderInfo();
     this.renderList();
+    this.syncDiagram();
     this.toHash();
     document.body.classList.remove("info-collapsed");
+  }
+
+  setMode(mode: App["mode"], updateHash = true) {
+    this.mode = mode;
+    $("#workspace").className = `mode-${mode}`;
+    document.querySelectorAll<HTMLButtonElement>("[data-mode]").forEach((b) => b.classList.toggle("active", b.dataset.mode === mode));
+    this.diagram.setVisible(mode !== "3d");
+    if (updateHash) this.toHash();
+  }
+
+  private syncDiagram() {
+    this.diagram.update({ sel: this.sel, start: this.start, step: this.step, system: this.system });
   }
 
   private gotoStep(n: number) {
@@ -257,6 +279,7 @@ class App {
     this.step = n;
     this.viewer.showPathway(pw, this.start, n);
     this.renderInfo();
+    this.syncDiagram();
     this.toHash();
   }
 
@@ -401,6 +424,7 @@ class App {
         this.start = s;
         this.viewer.showPathway(pw, s, this.step, "all");
         this.renderInfo();
+        this.syncDiagram();
         this.toHash();
       });
       sideSel.append(b);

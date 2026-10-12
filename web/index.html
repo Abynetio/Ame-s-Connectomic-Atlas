@@ -11,6 +11,11 @@
     <header class="topbar">
       <button id="menu-btn" class="icon-btn only-mobile" type="button" aria-label="Show lists">☰</button>
       <h1>Ame's Connectomic Atlas <span class="version">v0.2 · preview</span></h1>
+      <div class="segmented modes" role="group" aria-label="Layout">
+        <button type="button" data-mode="3d" class="active">3D</button>
+        <button type="button" data-mode="split">Split</button>
+        <button type="button" data-mode="2d">2D wiring</button>
+      </div>
       <nav class="views" aria-label="Camera views">
         <button type="button" data-view="left">Left</button>
         <button type="button" data-view="right">Right</button>
@@ -19,7 +24,7 @@
         <button type="button" data-view="superior">Top</button>
         <button type="button" data-view="inferior">Bottom</button>
       </nav>
-      <button id="about-btn" type="button" class="ghost">About &amp; sources</button>
+      <button id="about-btn" type="button" class="ghost">About<span class="long"> &amp; sources</span></button>
     </header>
 
     <aside id="sidebar">
@@ -57,10 +62,13 @@
       </details>
     </aside>
 
-    <main id="stage">
-      <div id="loading">Loading…</div>
-      <div id="tooltip" hidden></div>
-      <div class="orientation" aria-hidden="true">MNI space · R = right · A = anterior · S = superior</div>
+    <main id="workspace" class="mode-3d">
+      <div id="stage">
+        <div id="loading">Loading…</div>
+        <div id="tooltip" hidden></div>
+        <div class="orientation" aria-hidden="true">MNI space · R = right · A = anterior · S = superior</div>
+      </div>
+      <section id="diagram" aria-label="2D wiring diagram"></section>
     </main>
 
     <aside id="info">
