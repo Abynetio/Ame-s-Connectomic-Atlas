@@ -1,7 +1,7 @@
 """Download the external sources that are not mirrored on GitHub.
 
 Runs in GitHub Actions (see .github/workflows/fetch-external.yml), because the
-hosts involved (Dryad, OSF, Zenodo, labsolver) are not reachable from every
+hosts involved (Dryad, OSF) are not reachable from every
 development environment. Every file that is downloaded is recorded with its
 size and SHA-256 in data/external/FETCH_REPORT.md and data/external/manifest.json,
 together with the licence metadata the host reports.
@@ -167,59 +167,6 @@ def fetch_osf(rep: Report, out: Path, key: str, node: str, patterns: list[str], 
     s["status"] = "ok" if s["files"] else "failed"
 
 
-# --------------------------------------------------------------------------- Zenodo
-def fetch_zenodo(rep: Report, out: Path, key: str, record: str, max_bytes: int) -> None:
-    s = rep.source(key)
-    meta = get_json(f"https://zenodo.org/api/records/{record}")
-    md = meta.get("metadata", {})
-    s["title"] = md.get("title")
-    s["license"] = md.get("license")
-    s["version_date"] = md.get("publication_date")
-    for f in meta.get("files", []):
-        name, size = f["key"], f.get("size", 0)
-        s["listing"].append({"name": name, "bytes": size})
-        if size > max_bytes:
-            s["notes"].append(f"skipped {name}: {size/1e6:.1f} MB > cap")
-            continue
-        if e := existing(out, f"{key}/{name}"):
-            s["files"].append(e)
-            continue
-        try:
-            s["files"].append(save(out, f"{key}/{name}", http_get(f["links"]["self"])))
-        except Exception as e:  # noqa: BLE001
-            s["notes"].append(f"download failed {name}: {e}")
-    s["status"] = "ok" if s["files"] else "failed"
-
-
-# --------------------------------------------------------------------------- web pages
-def fetch_page(rep: Report, out: Path, key: str, url: str, follow: list[str], max_bytes: int) -> None:
-    """Save an HTML page and any linked files whose URL matches one of `follow`."""
-    s = rep.source(key)
-    html = http_get(url)
-    s["files"].append(save(out, f"{key}/page.html", html))
-    text = html.decode("utf-8", "replace")
-    links = sorted(set(re.findall(r'href=["\']([^"\']+)["\']', text)))
-    s["listing"] = [{"name": l, "bytes": None} for l in links]
-    for link in links:
-        if not any(re.search(p, link) for p in follow):
-            continue
-        absu = urllib.parse.urljoin(url, link)
-        name = Path(urllib.parse.urlparse(absu).path).name or "index"
-        if e := existing(out, f"{key}/{name}"):
-            s["files"].append(e)
-            continue
-        try:
-            data = http_get(absu)
-            if len(data) > max_bytes:
-                s["notes"].append(f"skipped {absu}: too large")
-                continue
-            name = Path(urllib.parse.urlparse(absu).path).name or "index"
-            s["files"].append(save(out, f"{key}/{name}", data))
-        except Exception as e:  # noqa: BLE001
-            s["notes"].append(f"download failed {absu}: {e}")
-    s["status"] = "ok"
-
-
 # --------------------------------------------------------------------------- main
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -239,14 +186,9 @@ def main() -> int:
                                       [
                                           # only the label maps in MNI2009c and their label lists, never templates/warps
                                           r"CIT168_Reinf_Learn_v1\.1\.0/(labels\.txt|README\.pdf|MNI152-Nonlin-Asym-2009c/CIT168toMNI152-2009c_(det|prob)\.nii\.gz)$",
-                                          r"CIT168_Amygdala_v1\.0\.3/(README\.pdf|CIT168toMNI152_1mm/(CIT168_AmyLabels\.txt|CIT168_[dpi](BLA|CEN|AmyNuc)_1mm_MNI\.nii\.gz))$",
                                           r"^/r2hvk/README\.pdf$",
                                       ],
                                       cap)),
-        ("hcp842_zenodo", lambda: fetch_zenodo(rep, out, "hcp842_zenodo", "3627772", cap)),
-        ("yeh2022_connectome_page", lambda: fetch_page(rep, out, "yeh2022_connectome_page",
-                                                        "https://brain.labsolver.org/hcp_trk_atlas.html",
-                                                        [r"\.(xlsx|csv)$", r"MOESM.*\.zip$"], cap)),
     ]
     for key, job in jobs:
         print(f"== {key}", flush=True)

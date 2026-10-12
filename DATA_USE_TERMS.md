@@ -1,7 +1,8 @@
 # WU-Minn HCP Open Access Data Use Terms
 
 The tractography geometry in this atlas (HCP1065 streamlines and HCP842 tract volumes, Yeh et al.)
-is derived from data of the Human Connectome Project. Under clause 4 of the WU-Minn HCP Open Access
+and the CIT168 subcortical labels (Pauli et al., built from 168 HCP subjects) are derived from data
+of the Human Connectome Project. Under clause 4 of the WU-Minn HCP Open Access
 Data Use Terms, derived data may be redistributed provided they are redistributed under the same
 terms (clauses 1, 2, 3 and 5). Anyone using or redistributing those files agrees to them; the full
 text is in `data/licenses/HCP_DATA_USE_TERMS.txt` and at

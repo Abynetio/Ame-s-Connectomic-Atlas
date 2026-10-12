@@ -14,11 +14,14 @@ atlases (Yeh et al.), which are themselves CC BY-SA 4.0.
 
 Additional terms that travel with parts of the derived data:
 
-- Files derived from Human Connectome Project data (HCP1065/HCP842 tractography) are also subject
-  to the WU-Minn HCP Open Access Data Use Terms — see `DATA_USE_TERMS.md`.
-- The ICBM152 template and CerebrA labels carry the McGill copyright notice in
-  `data/licenses/ICBM152.txt`, which must be kept with copies.
-- The ATAG atlas (CC BY 3.0) and THOMAS atlas (CC0) are credited in `ATTRIBUTION.md`.
+- Files derived from Human Connectome Project data (HCP1065/HCP842 tractography, CIT168 labels) are
+  also subject to the WU-Minn HCP Open Access Data Use Terms — see `DATA_USE_TERMS.md`.
+- The ICBM152 template and CerebrA labels carry the McGill copyright notices in
+  `data/licenses/ICBM152.txt` and `data/licenses/CerebrA.txt`, which must be kept with copies.
+- The CIT168 (CC BY 4.0), ATAG (CC BY 3.0), THOMAS (CC0) and Harvard Ascending Arousal Network
+  (CC0) atlases are credited in `ATTRIBUTION.md`.
+
+The published site carries copies of these files under `atlas/licenses/`.
 
 Attribution for reuse: "Ame's Connectomic Atlas contributors, CC BY-SA 4.0", plus the source
 citations in `ATTRIBUTION.md`.

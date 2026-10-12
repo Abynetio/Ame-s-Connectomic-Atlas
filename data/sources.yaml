@@ -38,8 +38,11 @@
   provider: Manera, Dadar, Fonov & Collins
   url: https://raw.githubusercontent.com/frankyeh/data-atlas/main/human/CerebrA.nii.gz
   labels_url: https://raw.githubusercontent.com/frankyeh/data-atlas/main/human/CerebrA.txt
-  license: McGill/Collins permissive notice
-  license_file: data/licenses/ICBM152.txt
+  license: CC0 1.0 (G-Node release doi:10.12751/g-node.be5e62) + McGill/Collins permissive notice
+  license_file: data/licenses/CerebrA.txt
+  note: >-
+    Labels derive from Mindboggle-101 (Klein & Tourville 2012), credited in ATTRIBUTION.md. Its
+    current OSF release is CC BY 4.0; an older NITRC listing gives CC BY-NC-SA 3.0.
   refs: [manera2020]
   allowed: true
 

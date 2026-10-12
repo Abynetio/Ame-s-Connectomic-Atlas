@@ -595,7 +595,12 @@ def main() -> int:
         "slices": slices,
     }
     (out / "graph.json").write_text(json.dumps(graph, separators=(",", ":"), ensure_ascii=False))
-    sizes = {p.name: p.stat().st_size for p in out.iterdir()}
+    # licences, notices and attribution travel with the published data
+    lic = out / "licenses"
+    lic.mkdir(exist_ok=True)
+    for f in [ROOT / "LICENSE", ROOT / "LICENSE-DATA.md", ROOT / "DATA_USE_TERMS.md", ROOT / "ATTRIBUTION.md", *sorted((ROOT / "data/licenses").glob("*.txt"))]:
+        (lic / f.name).write_bytes(f.read_bytes())
+    sizes = {p.name: p.stat().st_size for p in out.iterdir() if p.is_file()}
     print(json.dumps(sizes, indent=1))
     print(f"total {sum(sizes.values())/1e6:.1f} MB")
     return 0

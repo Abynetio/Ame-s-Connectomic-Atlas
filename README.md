@@ -1,142 +1,109 @@
 # Ame's Connectomic Atlas
 
-A 3D, projection-level atlas of the human central nervous system for teaching neuroanatomy at
-medical-school level and above. Slice atlases show the structures but leave the student to work out
-which neurons project where. This atlas shows the wiring directly. For each structure it gives:
+An interactive 3D atlas of how the human nervous system is wired, for neuroanatomy students at
+medical-school level and above.
 
-- where it is, in 3D (MNI ICBM152 space, cord shortened),
-- its English and Latin names, abbreviations and synonyms,
-- which tract carries its output, and where that output ends,
-- step-by-step pathways (e.g. dorsal column–medial lemniscus): each synapse and decussation, plus a
-  lesion-localisation table.
+**[Open the atlas →](https://abynetio.github.io/Ame-s-Connectomic-Atlas/)** It runs in the
+browser, with nothing to install, and works on phones.
 
-**Status: v0.2 preview.**
-- Phase 1 is complete: the motor and somatosensory systems.
-- Phase 2 is under way, covering the visual, auditory, vestibular, basal ganglia, limbic and
-  language systems.
+![All 41 pathways drawn at once in a glass brain](docs/img/map.jpg)
 
-See [PLAN.md](PLAN.md) for the full roadmap, data sources and licensing rationale.
+Slice atlases show where structures are. This atlas shows how they connect: which neurons project
+where, through which tract, where they synapse and cross the midline, and what they release.
 
-> Not for clinical use. Diffusion tractography shows the course of bundles, not synapses or
-> direction, and it has false positives and negatives.
+## What you can do
 
-## What is in v0.1
+- **See every pathway at once.** The start page draws all 41 pathways in a glass brain, coloured
+  by system. Hover over a route to name it, or click it to open it.
+- **Trace a pathway step by step**, from either side. Each neuron's cell bodies and synapses are
+  marked, along with every decussation, and each pathway has a lesion-localisation table.
+- **See what each synapse does.** Every neuron has its transmitter and its effect (excitatory,
+  inhibitory or modulatory). Cortical steps also give the layers where neurons start and end.
+- **Switch to 2D.** You can show a left/right wiring diagram of the pathway, or a connectogram of
+  every projection. Both are linked to the 3D view.
+- **Look up any region or tract.** Each has its English and Latin names, abbreviations, what it
+  projects to and receives from, clinical notes, and references.
+- **Get your bearings.** The glass brain, ventricles, grey and white matter, cortical layer
+  columns and MRI slices can each be switched on or off.
 
-| Content | Count |
+![A pathway traced step by step, with the 3D view and 2D wiring diagram side by side](docs/img/pathway.jpg)
+
+### Keyboard
+
+| On the map | In a pathway |
 |---|---|
-| Regions | 123: 31 cortical gyri, thalamic nuclei (THOMAS), basal ganglia (ATAG, CIT168), midbrain/limbic nuclei (CIT168), brainstem, cerebellum, ventricles, ascending-arousal nuclei (Harvard AAN), and schematic brainstem, spinal and special-sense nuclei |
-| Tracts | 95: all 106 HCP1065 bundles (grouped L/R), HCP842 brainstem tracts, and schematic spinal, brainstem and basal-ganglia connections |
-| Pathways | 41: see below |
-| Projections | 86 directed region-to-region edges derived from the pathways |
-| References | 34, every DOI checked in CI |
+| <kbd>↑</kbd> <kbd>↓</kbd> previous / next pathway | <kbd>←</kbd> <kbd>→</kbd> previous / next step |
+| <kbd>←</kbd> <kbd>→</kbd> previous / next system | <kbd>↑</kbd> <kbd>↓</kbd> previous / next pathway |
+| <kbd>Enter</kbd> open the highlighted pathway | <kbd>Esc</kbd> back to the map |
 
-Pathways by system:
-- **Motor:** lateral corticospinal (hand, leg), anterior corticospinal, corticobulbar to the face,
-  corticobulbar to the tongue (XII), lateral vestibulospinal, pontine reticulospinal, tectospinal
-- **Cerebellar:** cortico-ponto-cerebellar, dentatorubrothalamic, dorsal and ventral
+Every view has its own link, e.g. `…/#pathway=dcml_upper_limb&step=7&view=split`.
+
+## What's covered
+
+41 pathways, 123 regions, 95 tracts and 86 region-to-region projections, with 34 references.
+
+<details>
+<summary>Pathways by system</summary>
+
+- **Motor:** lateral corticospinal (hand, leg), anterior corticospinal, corticobulbar (face,
+  tongue), lateral vestibulospinal, pontine reticulospinal, tectospinal
+- **Cerebellar:** cortico-ponto-cerebellar, dentato-rubro-thalamic, dorsal and ventral
   spinocerebellar, cuneocerebellar, Guillain–Mollaret triangle
-- **Somatosensory:** dorsal column–medial lemniscus (upper and lower limb), anterolateral,
-  trigeminal touch, trigeminal pain
-- **Visual and oculomotor:** retino-geniculo-calcarine, pupillary light reflex, horizontal VOR,
-  voluntary horizontal saccade (FEF → PPRF), trochlear pathway
-- **Auditory, olfactory, gustatory:** ascending auditory, olfactory, gustatory
+- **Somatosensory:** dorsal column–medial lemniscus (upper, lower limb), anterolateral, trigeminal
+  touch, trigeminal pain
+- **Visual and eye movements:** retino-geniculo-calcarine, pupillary light reflex, horizontal VOR,
+  horizontal saccade, trochlear
+- **Other senses:** auditory, olfactory, gustatory
 - **Cranial-nerve reflexes:** corneal (blink), gag
-- **Autonomic:** oculosympathetic pathway (Horner syndrome)
-- **Basal ganglia:** direct, indirect and hyperdirect pathways, nigrostriatal
-- **Limbic:** mesolimbic, Papez circuit
+- **Autonomic:** oculosympathetic (Horner syndrome)
+- **Basal ganglia:** direct, indirect, hyperdirect, nigrostriatal
+- **Limbic:** Papez circuit, mesolimbic
 - **Language:** dorsal and ventral streams
-- **Arousal and pain modulation:** dorsal (thalamic) and ventral (hypothalamic / basal forebrain)
-  arousal routes, descending pain modulation (PAG → RVM → dorsal horn)
+- **Arousal and pain modulation:** dorsal and ventral ascending arousal routes, descending pain
+  modulation (PAG → RVM → dorsal horn)
 
-Viewer features:
-- an all-pathways map as the start page: every pathway drawn at once, coloured by system; hover
-  to name a route, click to open it, or browse with the keyboard (↑/↓ pathway, ←/→ system,
-  Enter to open, Esc to come back; inside a pathway ←/→ step through it)
-- search across names, Latin terms, abbreviations and synonyms
-- system filters
-- pathway tracing with a left/right starting side, an animated route and step labels
-- per-neuron view of each pathway: cell-body, synapse and pass-through markers, and a shaded
-  stretch of route for each neuron (first-, second-, third-order…)
-- the transmitter of every neuron and its net effect at the synapse (excitatory, inhibitory,
-  modulatory or mixed), tagged at each synapse in 3D and drawn in textbook notation in 2D
-  (arrowhead = excitatory, bar = inhibitory, dot = modulatory)
-- cortical layer of origin and termination at cortical steps, with optional schematic layered
-  columns (six-layered neocortex, three-layered allocortex)
-- glass brain (cerebrum, cerebellum, brainstem, spinal cord), ventricles, and toggleable grey and
-  white matter (CerebrA labels and the ICBM152 T1)
-- circuit brightness control and a choice to draw the circuit over or under the glass
-- 2D wiring views linked to the 3D scene (3D / split / 2D layout):
-  - **Pathway wiring**: the selected pathway in left / midline / right lanes, cortex at the top,
-    with each neuron's cell bodies, synapses, cortical layers and midline crossings marked
-  - **Connectogram**: every projection in the knowledge graph on a ring grouped by level of the
-    neuraxis, drawn from this atlas's own data (in the spirit of the Edlow et al. connectograms);
-    arrows give direction, dashed lines crossed projections
-- "projects to / receives from" lists for every region
-- the share of each tract's streamline end-points that falls in each atlas region (computed from HCP1065)
-- axial, coronal and sagittal MRI slices
-- direction-encoded or system colouring of streamlines
-- shareable URLs (e.g. `#pathway=dcml_lower_limb&side=L&step=5`)
-- a mobile layout
+</details>
 
-Two layers are kept separate on purpose:
-- The **knowledge graph** (`data/graph/*.yaml`) is the authority on what projects where. It is
-  hand-written and every entry is cited.
-- The **geometry** comes from open imaging atlases. Where no openly licensed atlas exists (spinal
-  cord, small brainstem nuclei, dentate nucleus), structures are drawn as **schematic** shapes:
-  wireframe nuclei and dashed tracts. Their positions are approximate and are flagged `verify: true`.
+## Please read
 
-## Repository layout
+- **Not for clinical use.** This is a teaching aid. Don't use it for diagnosis or surgical
+  planning. Diffusion tractography shows the course of fibre bundles, not synapses or direction,
+  and it has false positives and negatives.
+- **Some shapes are drawn by hand.** Most structures come from open MRI atlases. Where none exists
+  (spinal cord, small brainstem nuclei, dentate nucleus), they are hand-drawn **schematic** shapes
+  (wireframes and dashed lines). Their positions are approximate.
+- **How the content was made.** The wiring, pathway steps, transmitters, cortical layers and
+  clinical notes were compiled with AI assistance (Claude, Anthropic) from the cited textbooks and
+  papers. Every entry is referenced, but **no neuroanatomist has reviewed it yet**. Check it against
+  your course materials. If you find a mistake, please
+  [open an issue](https://github.com/Abynetio/Ame-s-Connectomic-Atlas/issues) and include a source.
 
-```
-data/graph/        curated regions, tracts, pathways, references (YAML, CC BY-SA 4.0)
-data/sources.yaml  every external source, its licence, and whether it may be published
-data/licenses/     verbatim upstream licence texts
-data/external/     files fetched by the "Fetch external data" workflow (Dryad/OSF/Zenodo)
-schema/            JSON Schema for the knowledge graph
-pipeline/          Python build: fetch, validate, mesh, streamlines, routes, slices
-web/               Vite + TypeScript + Three.js viewer
-```
+## Data and licences
 
-## Building locally
+- **Code:** MIT ([LICENSE](LICENSE)).
+- **Atlas content and derived data:** [CC BY-SA 4.0](LICENSE-DATA.md).
+- **HCP-derived data:** the tractography and CIT168 labels also come under the
+  [WU-Minn HCP Open Access Data Use Terms](DATA_USE_TERMS.md).
 
-Requirements: Python 3.11+ and Node 20+.
+The 3D geometry comes from open atlases in MNI ICBM152 space:
+- HCP1065 and HCP842 tractography (Yeh et al.)
+- the ICBM152 2009 template and CerebrA (McGill)
+- THOMAS thalamic nuclei
+- CIT168 subcortical nuclei
+- ATAG basal ganglia
+- the Harvard Ascending Arousal Network atlas
 
-```bash
-python -m venv .venv && . .venv/bin/activate
-pip install -r pipeline/requirements.txt
-python pipeline/fetch_mirror.py          # downloads pinned source atlases (~40 MB) into data/raw/
-python pipeline/validate.py              # schema, references, licence checks
-python pipeline/build.py                 # writes web/public/atlas/ (~10 MB)
+Licences and citations for each are in [ATTRIBUTION.md](ATTRIBUTION.md). Textbooks and papers are
+cited for facts only; no text or figures are copied from them.
 
-cd web
-npm install
-npm run dev                              # http://localhost:5173
-```
+> Data were provided [in part] by the Human Connectome Project, WU-Minn Consortium (Principal
+> Investigators: David Van Essen and Kamil Ugurbil; 1U54MH091657) funded by the 16 NIH Institutes
+> and Centers that support the NIH Blueprint for Neuroscience Research; and by the McDonnell Center
+> for Systems Neuroscience at Washington University.
 
-`npm run build` produces a static site in `web/dist/` that can be served from any static host.
+## Contributing and running it yourself
 
-## Publishing
-
-`.github/workflows/deploy.yml` builds the data and the site on every push and uploads it as the
-`atlas-site` artifact. It deploys to GitHub Pages on the default branch when:
-- the repository is public, or
-- the repository variable `DEPLOY_PAGES` is `true` (GitHub Pages for private repositories needs a
-  paid plan).
-
-Enable Pages under *Settings → Pages → Source: GitHub Actions*.
-
-## Contributing content
-
-Edit or add YAML under `data/graph/`; `python pipeline/validate.py` tells you what is wrong. Every
-entry needs at least one reference from `data/graph/references.yaml`. In a pathway, the step that
-holds a neuron's cell bodies names that neuron's `transmitter` and its `effect` (excitatory,
-inhibitory, modulatory or mixed) at the next synapse. Anatomical corrections are
-very welcome. Please open an issue with the source.
-
-## Licences
-
-- Code: MIT ([LICENSE](LICENSE)).
-- Content and derived data: CC BY-SA 4.0 ([LICENSE-DATA.md](LICENSE-DATA.md)).
-- HCP-derived tractography also comes under the HCP Open Access Data Use Terms
-  ([DATA_USE_TERMS.md](DATA_USE_TERMS.md)).
-- Source credits are in [ATTRIBUTION.md](ATTRIBUTION.md).
+Corrections and new pathways are welcome. The content is plain YAML with citations, and a
+validator checks every change. [CONTRIBUTING.md](CONTRIBUTING.md) explains how to build the atlas
+locally, how the repository is organised and how to add content. The original design notes and
+data-source survey are in [docs/PLAN.md](docs/PLAN.md).

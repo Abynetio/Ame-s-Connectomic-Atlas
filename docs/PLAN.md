@@ -8,7 +8,8 @@ which tract carries its output, and where that output ends up**. Slice
 atlases show the structures but leave the student to work out the wiring.
 This atlas shows the wiring.
 
-Status: **Phases 0 and 1 implemented; Phase 2 partly done (v0.2 preview: 23 pathways).** The arousal network (Harvard AAN) is waiting on a manual download — see data/external/FETCH_REPORT.md.
+> These are the design notes written when the project started. They explain the data choices and
+> licensing rationale; for what the atlas contains now, see the [README](../README.md).
 
 ---
 

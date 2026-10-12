@@ -1,6 +1,6 @@
 name: Fetch external data
 
-# Downloads sources hosted on Dryad / OSF / Zenodo / labsolver (see pipeline/fetch_external.py)
+# Downloads sources hosted on Dryad / OSF (see pipeline/fetch_external.py)
 # and commits them, with a fetch report, under data/external/ on the same branch.
 on:
   workflow_dispatch:
