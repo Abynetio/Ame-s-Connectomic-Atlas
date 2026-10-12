@@ -12,13 +12,14 @@
   --warn-text: #7a4b00;
   --clin-bg: #fdf1f4;
   --radius: 10px;
-  color-scheme: light dark;
+  color-scheme: light;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-size: 14px;
   line-height: 1.45;
 }
+/* Dark palette: follows the OS setting unless the host page pins a theme with data-theme. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0f1216;
     --panel: #171b21;
     --panel-2: #1f242c;
@@ -31,7 +32,23 @@
     --warn-bg: #3a2a10;
     --warn-text: #ffd69a;
     --clin-bg: #2b1820;
+    color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1216;
+  --panel: #171b21;
+  --panel-2: #1f242c;
+  --text: #e6e9ee;
+  --muted: #96a1b0;
+  --line: #2b313b;
+  --accent: #6aa3ff;
+  --stage-top: #1b2027;
+  --stage-bottom: #07090c;
+  --warn-bg: #3a2a10;
+  --warn-text: #ffd69a;
+  --clin-bg: #2b1820;
+  color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; }

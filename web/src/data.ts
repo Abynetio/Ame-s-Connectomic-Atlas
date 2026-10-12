@@ -142,14 +142,21 @@ async function fetchChecked(url: string): Promise<Response> {
   return r;
 }
 
+/** Binary geometry; hosts that only serve text get a base64 copy named `*.b64.txt`. */
+async function loadBinary(url: string): Promise<ArrayBuffer> {
+  const r = await fetchChecked(url);
+  if (!url.endsWith(".b64.txt")) return r.arrayBuffer();
+  const s = atob((await r.text()).trim());
+  const out = new Uint8Array(s.length);
+  for (let i = 0; i < s.length; i++) out[i] = s.charCodeAt(i);
+  return out.buffer;
+}
+
 export async function loadAtlas(base: string, onProgress?: (msg: string) => void): Promise<Atlas> {
   onProgress?.("Loading knowledge graph…");
   const graph: Graph = await (await fetchChecked(`${base}/graph.json`)).json();
   onProgress?.("Loading geometry…");
-  const [meshBuf, tractBuf] = await Promise.all([
-    fetchChecked(`${base}/${graph.meshes.file}`).then((r) => r.arrayBuffer()),
-    fetchChecked(`${base}/${graph.streamlines.file}`).then((r) => r.arrayBuffer()),
-  ]);
+  const [meshBuf, tractBuf] = await Promise.all([loadBinary(`${base}/${graph.meshes.file}`), loadBinary(`${base}/${graph.streamlines.file}`)]);
   return {
     graph,
     base,

@@ -51,7 +51,12 @@ class App {
       p.set("step", String(this.step + 1));
     }
     const s = `#${p.toString()}`;
-    if (location.hash !== s) history.replaceState(null, "", s);
+    if (location.hash === s) return;
+    try {
+      history.replaceState(null, "", s);
+    } catch {
+      // sandboxed embeds may refuse history updates; the atlas works without shareable URLs
+    }
   }
 
   private fromHash(): boolean {
