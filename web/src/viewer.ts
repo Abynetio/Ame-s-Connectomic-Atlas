@@ -88,7 +88,8 @@ export class Viewer {
   private routeGroup = new THREE.Group();
   private labelGroup = new THREE.Group();
   /** labels kept clear of the 3D markers: offset each frame by the marker's on-screen radius */
-  private pins: { wrap: HTMLElement; pos: THREE.Vector3; r: number }[] = [];
+  private pins: { wrap: HTMLElement; pos: THREE.Vector3; r: number; priority: number }[] = [];
+  private pinFrame = 0;
   private sliceGroup = new THREE.Group();
   private slicePlanes = new Map<string, THREE.Mesh>();
   private routeMat: THREE.ShaderMaterial | null = null;
@@ -563,7 +564,10 @@ export class Viewer {
       const el = document.createElement("div");
       el.className = "step-label" + (k === step ? " current" : "");
       el.textContent = `${k + 1}. ${r.abbrev?.[0] ?? r.name}`;
-      this.pin(p, markerR(k), el, "above");
+      // the current step and its neuron(s) win when labels collide
+      const near = neurons.some((x) => (x.from === k || x.to === k) && step >= x.from && step <= x.to);
+      const prio = (k === step ? 4 : near ? 2 : 0) + 1;
+      this.pin(p, markerR(k), el, "above", prio);
       const nr = neurons.find((x) => x.to === k);
       const src = nr ? pw.steps[nr.from] : undefined;
       if (src?.transmitter && src.effect) {
@@ -572,7 +576,7 @@ export class Viewer {
         tag.style.background = EFFECT_COLOR[src.effect];
         tag.textContent = `${transmitterShort(src.transmitter)} ${EFFECT_SIGN[src.effect]}`;
         if (nr!.to === step) tag.textContent += ` ${src.effect}`;
-        this.pin(p, markerR(k), tag, "below");
+        this.pin(p, markerR(k), tag, "below", prio - 0.5);
       }
     });
     if (frame === "all") this.focusPoints(route.points, 60);
@@ -720,14 +724,14 @@ export class Viewer {
     return h ? (h.object.userData as PickInfo) : null;
   }
 
-  private pin(pos: THREE.Vector3, r: number, inner: HTMLElement, where: "above" | "below") {
+  private pin(pos: THREE.Vector3, r: number, inner: HTMLElement, where: "above" | "below", priority: number) {
     const wrap = document.createElement("div");
     wrap.className = `pin ${where}`;
     wrap.append(inner);
     const obj = new CSS2DObject(wrap);
     obj.position.copy(pos);
     this.labelGroup.add(obj);
-    this.pins.push({ wrap, pos: pos.clone(), r });
+    this.pins.push({ wrap, pos: pos.clone(), r, priority });
   }
 
   private updatePins() {
@@ -737,6 +741,21 @@ export class Viewer {
     for (const p of this.pins) {
       const px = (p.r * k) / Math.max(1, this.camera.position.distanceTo(p.pos));
       p.wrap.style.setProperty("--gap", `${Math.min(140, px + 4).toFixed(1)}px`);
+    }
+  }
+
+  /** Hide lower-priority labels that overlap a higher-priority one (checked every few frames). */
+  private declutterPins() {
+    if (!this.pins.length || this.pinFrame++ % 4) return;
+    const placed: DOMRect[] = [];
+    const order = [...this.pins].sort((a, b) => b.priority - a.priority);
+    for (const p of order) {
+      const el = p.wrap.firstElementChild as HTMLElement | null;
+      if (!el || p.wrap.style.display === "none") continue;
+      const r = el.getBoundingClientRect();
+      const hit = placed.some((q) => r.left < q.right + 2 && r.right > q.left - 2 && r.top < q.bottom + 1 && r.bottom > q.top - 1);
+      el.style.visibility = hit ? "hidden" : "";
+      if (!hit) placed.push(r);
     }
   }
 
@@ -763,5 +782,6 @@ export class Viewer {
     this.updatePins();
     this.renderer.render(this.scene, this.camera);
     this.labels.render(this.scene, this.camera);
+    this.declutterPins();
   }
 }
