@@ -64,3 +64,27 @@ export function neuronShade(hex: string, order: number): string {
   const r = mix((v >> 16) & 255), g = mix((v >> 8) & 255), b = mix(v & 255);
   return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
 }
+
+/** Net synaptic effect: sign and colour used on synapse tags in 3D and 2D. */
+export type Effect = "excitatory" | "inhibitory" | "modulatory" | "mixed";
+export const EFFECT_SIGN: Record<Effect, string> = { excitatory: "+", inhibitory: "−", modulatory: "~", mixed: "±" };
+export const EFFECT_COLOR: Record<Effect, string> = { excitatory: "#1f9d55", inhibitory: "#d64545", modulatory: "#8a5cc7", mixed: "#c98a12" };
+
+const TX_ABBREV: [RegExp, string][] = [
+  [/glutamate/i, "Glu"],
+  [/\bGABA\b/, "GABA"],
+  [/glycine/i, "Gly"],
+  [/acetylcholine/i, "ACh"],
+  [/dopamine/i, "DA"],
+  [/noradrenaline/i, "NA"],
+  [/serotonin/i, "5-HT"],
+  [/orexin/i, "Orx"],
+  [/histamine/i, "His"],
+];
+
+/** Short transmitter label for tags: the classical transmitters named, in order of mention. */
+export function transmitterShort(tx: string): string {
+  const main = tx.split("(")[0];
+  const hits = TX_ABBREV.map(([re, ab]) => ({ ab, i: main.search(re) })).filter((x) => x.i >= 0).sort((a, b) => a.i - b.i);
+  return hits.length ? hits.map((x) => x.ab).join("/") : main.trim();
+}

@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { CSS2DObject, CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer.js";
 import { ALLOCORTEX, Atlas, decodeBundle, decodeMesh, Pathway, PathwayStep, Region, Side, Tract, Vec3, mirrorSide, pathwayNeurons } from "./data";
-import { NEURON_TINT, colorFor, neuronShade } from "./palette";
+import { EFFECT_COLOR, EFFECT_SIGN, NEURON_TINT, colorFor, neuronShade, transmitterShort } from "./palette";
 
 export type PickKind = "region" | "tract" | "context";
 export interface PickInfo { kind: PickKind; id: string; side: Side; name: string }
@@ -87,6 +87,8 @@ export class Viewer {
   private tractObjs = new Map<string, TractObj>(); // key id:part:side
   private routeGroup = new THREE.Group();
   private labelGroup = new THREE.Group();
+  /** labels kept clear of the 3D markers: offset each frame by the marker's on-screen radius */
+  private pins: { wrap: HTMLElement; pos: THREE.Vector3; r: number }[] = [];
   private sliceGroup = new THREE.Group();
   private slicePlanes = new Map<string, THREE.Mesh>();
   private routeMat: THREE.ShaderMaterial | null = null;
@@ -408,6 +410,7 @@ export class Viewer {
     }
     this.routeGroup.clear();
     this.labelGroup.clear();
+    this.pins = [];
     this.layerGroup.clear();
     this.routeMat = null;
     this.current = null;
@@ -550,6 +553,8 @@ export class Viewer {
       }
     }
     if (this.layersVisible) this.addLayerColumns(pw, start, route.spans.map((s) => pts[s[0]]), neurons, baseHex);
+    // step names sit above the markers, and transmitter tags below each synapse
+    const markerR = (k: number) => (neurons.some((nr) => nr.to === k) ? 5.4 : neurons.some((nr) => nr.from === k) ? 3 : 2.8);
     pw.steps.forEach((st, k) => {
       if (!st.region) return;
       const r = this.atlas.regionById.get(st.region)!;
@@ -558,9 +563,17 @@ export class Viewer {
       const el = document.createElement("div");
       el.className = "step-label" + (k === step ? " current" : "");
       el.textContent = `${k + 1}. ${r.abbrev?.[0] ?? r.name}`;
-      const lab = new CSS2DObject(el);
-      lab.position.copy(p);
-      this.labelGroup.add(lab);
+      this.pin(p, markerR(k), el, "above");
+      const nr = neurons.find((x) => x.to === k);
+      const src = nr ? pw.steps[nr.from] : undefined;
+      if (src?.transmitter && src.effect) {
+        const tag = document.createElement("div");
+        tag.className = "syn-tag" + (nr!.to === step || nr!.from === step ? " current" : "");
+        tag.style.background = EFFECT_COLOR[src.effect];
+        tag.textContent = `${transmitterShort(src.transmitter)} ${EFFECT_SIGN[src.effect]}`;
+        if (nr!.to === step) tag.textContent += ` ${src.effect}`;
+        this.pin(p, markerR(k), tag, "below");
+      }
     });
     if (frame === "all") this.focusPoints(route.points, 60);
     else if (frame === "step") {
@@ -707,6 +720,26 @@ export class Viewer {
     return h ? (h.object.userData as PickInfo) : null;
   }
 
+  private pin(pos: THREE.Vector3, r: number, inner: HTMLElement, where: "above" | "below") {
+    const wrap = document.createElement("div");
+    wrap.className = `pin ${where}`;
+    wrap.append(inner);
+    const obj = new CSS2DObject(wrap);
+    obj.position.copy(pos);
+    this.labelGroup.add(obj);
+    this.pins.push({ wrap, pos: pos.clone(), r });
+  }
+
+  private updatePins() {
+    if (!this.pins.length) return;
+    const h = this.renderer.domElement.clientHeight;
+    const k = h / 2 / Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2));
+    for (const p of this.pins) {
+      const px = (p.r * k) / Math.max(1, this.camera.position.distanceTo(p.pos));
+      p.wrap.style.setProperty("--gap", `${Math.min(140, px + 4).toFixed(1)}px`);
+    }
+  }
+
   // ------------------------------------------------------------------ loop
   private resize(container: HTMLElement) {
     const w = container.clientWidth, h = container.clientHeight;
@@ -727,6 +760,7 @@ export class Viewer {
     }
     if (this.routeMat) this.routeMat.uniforms.uTime.value = (performance.now() - this.t0) / 1000;
     this.controls.update();
+    this.updatePins();
     this.renderer.render(this.scene, this.camera);
     this.labels.render(this.scene, this.camera);
   }

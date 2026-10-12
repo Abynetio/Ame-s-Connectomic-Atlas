@@ -54,6 +54,9 @@ Viewer features:
 - pathway tracing with a left/right starting side, an animated route and step labels
 - per-neuron view of each pathway: cell-body, synapse and pass-through markers, and a shaded
   stretch of route for each neuron (first-, second-, third-order…)
+- the transmitter of every neuron and its net effect at the synapse (excitatory, inhibitory,
+  modulatory or mixed), tagged at each synapse in 3D and drawn in textbook notation in 2D
+  (arrowhead = excitatory, bar = inhibitory, dot = modulatory)
 - cortical layer of origin and termination at cortical steps, with optional schematic layered
   columns (six-layered neocortex, three-layered allocortex)
 - glass brain (cerebrum, cerebellum, brainstem, spinal cord), ventricles, and toggleable grey and
@@ -122,7 +125,9 @@ Enable Pages under *Settings → Pages → Source: GitHub Actions*.
 ## Contributing content
 
 Edit or add YAML under `data/graph/`; `python pipeline/validate.py` tells you what is wrong. Every
-entry needs at least one reference from `data/graph/references.yaml`. Anatomical corrections are
+entry needs at least one reference from `data/graph/references.yaml`. In a pathway, the step that
+holds a neuron's cell bodies names that neuron's `transmitter` and its `effect` (excitatory,
+inhibitory, modulatory or mixed) at the next synapse. Anatomical corrections are
 very welcome. Please open an issue with the source.
 
 ## Licences

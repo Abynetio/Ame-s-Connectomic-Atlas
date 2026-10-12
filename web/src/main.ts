@@ -1,6 +1,6 @@
 import "./style.css";
 import { ALLOCORTEX, Atlas, Edge, Pathway, PathwayStep, Region, Side, Tract, loadAtlas, mirrorSide, pathwayNeurons, searchText } from "./data";
-import { SYSTEM_COLORS, SYSTEM_LABELS, colorFor, neuronShade } from "./palette";
+import { EFFECT_COLOR, EFFECT_SIGN, SYSTEM_COLORS, SYSTEM_LABELS, colorFor, neuronShade, transmitterShort } from "./palette";
 import { Diagram } from "./diagram";
 import { PickInfo, Viewer } from "./viewer";
 
@@ -330,6 +330,19 @@ class App {
     return h("div", { class: "step-layer" }, parts.join(" · "), st.layer_note ? h("div", { class: "muted" }, st.layer_note) : "");
   }
 
+  /** Transmitter released by the neuron whose cell bodies are at `src`: coloured chip plus full text. */
+  private txLine(src: PathwayStep, label: string, withNote = true): HTMLElement | "" {
+    if (!src.transmitter || !src.effect) return "";
+    return h(
+      "div",
+      { class: "step-tx" },
+      label,
+      h("span", { class: "tx-chip", style: `background:${EFFECT_COLOR[src.effect]}` }, `${transmitterShort(src.transmitter)} ${EFFECT_SIGN[src.effect]}`),
+      ` ${src.transmitter} · ${src.effect}`,
+      withNote && src.transmitter_note ? h("div", { class: "muted" }, src.transmitter_note) : "",
+    );
+  }
+
   /** One line per neuron: where its cell body sits, which tracts carry its axon, where it synapses. */
   private neuronSection(pw: Pathway): HTMLElement {
     const neurons = pathwayNeurons(pw);
@@ -340,6 +353,8 @@ class App {
       return r?.sides.M ? "" : ` (${sideName(mirrorSide(this.start, st.side))})`;
     };
     const ul = h("ul", { class: "neurons" });
+    // sensory endings before the first cell body (e.g. corneal endings of a trigeminal ganglion cell)
+    const endings = neurons.length ? pw.steps.slice(0, neurons[0].from).filter((s) => s.region) : [];
     for (const n of neurons) {
       const a = pw.steps[n.from], b = pw.steps[n.to];
       const tracts = n.via.filter((k) => pw.steps[k].tract).map((k) => this.link("tract", pw.steps[k].tract!));
@@ -353,10 +368,12 @@ class App {
             "div",
             {},
             h("strong", {}, `${ord[n.order] ?? `Neuron ${n.order + 1}`} neuron`),
+            n.order === 0 && endings.length ? h("div", { class: "muted" }, "Sensory endings: ", ...endings.flatMap((e, i) => [i ? ", " : "", this.link("region", e.region!)])) : "",
             h("div", {}, "● Cell body: ", this.link("region", a.region!), sideOf(a), a.layer_out ? ` — layer ${a.layer_out}` : ""),
             tracts.length ? h("div", {}, "Axon: ", ...tracts.flatMap((t, i) => [i ? " → " : "", t])) : "",
             passes.length ? h("div", { class: "muted" }, "○ Passes through: ", ...passes.flatMap((t, i) => [i ? ", " : "", t])) : "",
             h("div", {}, "▲ Synapses in: ", this.link("region", b.region!), sideOf(b), b.layer_in ? ` — layer ${b.layer_in}` : ""),
+            this.txLine(a, "Transmitter: ", false),
           ),
         ),
       );
@@ -365,7 +382,12 @@ class App {
       "div",
       { class: "section" },
       h("h3", {}, "Neurons in this pathway"),
-      h("p", { class: "muted" }, "In 3D: coloured spheres mark cell bodies, white cones mark synapses (pointing into the target), white rings mark structures the axons pass through. Each neuron's stretch of the route has its own shade."),
+      h(
+        "p",
+        { class: "muted" },
+        "In 3D: coloured spheres mark cell bodies, white cones mark synapses (pointing into the target), white rings mark structures the axons pass through. Each neuron's stretch of the route has its own shade. Tags under each synapse give the transmitter and its net effect: ",
+        ...(["excitatory", "inhibitory", "modulatory", "mixed"] as const).flatMap((e) => [h("span", { class: "tx-chip", style: `background:${EFFECT_COLOR[e]}` }, `${EFFECT_SIGN[e]} ${e}`), " "]),
+      ),
       ul,
     );
   }
@@ -442,6 +464,7 @@ class App {
     frag.append(controls);
 
     const ol = h("ol", { class: "steps" });
+    const neurons = pathwayNeurons(pw);
     pw.steps.forEach((st, k) => {
       const obj = st.region ? this.atlas.regionById.get(st.region)! : this.atlas.tractById.get(st.tract!)!;
       const midline = st.region ? !!this.atlas.regionById.get(st.region)!.sides.M : this.atlas.tractById.get(st.tract!)!.parts.every((p) => !!p.sides.M);
@@ -453,6 +476,10 @@ class App {
         st.role ? h("div", { class: "step-role" }, st.role) : "",
         st.note ? h("div", { class: "step-note" }, st.note) : "",
         this.layerLine(st),
+        (() => {
+          const nr = neurons.find((x) => x.to === k);
+          return nr ? this.txLine(pw.steps[nr.from], "▲ Synapse: ") : "";
+        })(),
         k === this.step ? h("div", { class: "step-more" }, this.link(st.region ? "region" : "tract", st.region ?? st.tract!, "Open details →")) : "",
       );
       li.querySelector(".step-btn")!.addEventListener("click", () => this.gotoStep(k));

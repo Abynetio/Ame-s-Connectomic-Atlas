@@ -558,7 +558,10 @@ def main() -> int:
             via = [s["tract"] for s in pw["steps"][k0 + 1 : k1] if "tract" in s]
             lat = "ipsilateral" if a["side"] == b["side"] else "contralateral"
             key = (a["region"], b["region"], lat)
-            e = edges.setdefault(key, {"from": a["region"], "to": b["region"], "laterality": lat, "via": [], "pathways": [], "evidence": ["classical"]})
+            e = edges.setdefault(key, {"from": a["region"], "to": b["region"], "laterality": lat, "via": [], "pathways": [], "transmitters": [], "evidence": ["classical"]})
+            tx = {"transmitter": a.get("transmitter"), "effect": a.get("effect")}
+            if tx["transmitter"] and tx not in e["transmitters"]:
+                e["transmitters"].append(tx)
             for v in via:
                 if v not in e["via"]:
                     e["via"].append(v)

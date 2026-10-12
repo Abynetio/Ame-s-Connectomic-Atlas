@@ -9,11 +9,11 @@
     primary visual cortex on the banks of the calcarine sulcus. Shown here — the crossed (nasal
     hemiretina) fibres of one eye.
   steps:
-    - {region: eye, side: ipsi, role: "Retinal ganglion cells (nasal hemiretina — temporal visual field)"}
+    - {region: eye, side: ipsi, role: "Retinal ganglion cells (nasal hemiretina — temporal visual field)", transmitter: "Glutamate", effect: excitatory}
     - {tract: optic_pathway, side: ipsi, parts: [0], note: Optic nerve}
     - {region: optic_chiasm, side: ipsi, synapse: false, role: Nasal fibres cross; temporal fibres stay ipsilateral}
     - {tract: optic_pathway, side: contra, parts: [1], note: Optic tract}
-    - {region: LGN, side: contra, role: Thalamic relay (layers 1/4/6 receive the crossed eye)}
+    - {region: LGN, side: contra, role: Thalamic relay (layers 1/4/6 receive the crossed eye), transmitter: "Glutamate", effect: excitatory}
     - {tract: optic_radiation, side: contra, note: "Inferior fibres loop forward over the temporal horn (Meyer's loop)"}
     - {region: pericalcarine_cortex, side: contra, role: Primary visual cortex (V1), layer_in: "IV", layer_note: "Layer IVC — magnocellular axons in IVCα, parvocellular in IVCβ; koniocellular axons reach layers I–III"}
   highlight:
@@ -39,15 +39,15 @@
     fibres in the oculomotor nerve to the ciliary ganglion and the pupillary sphincter. The
     geniculocalcarine pathway is not involved.
   steps:
-    - {region: eye, side: ipsi, role: Melanopsin-containing and other retinal ganglion cells}
+    - {region: eye, side: ipsi, role: Melanopsin-containing and other retinal ganglion cells, transmitter: "Glutamate (with PACAP)", effect: excitatory}
     - {tract: optic_pathway, side: ipsi, parts: [0], note: Optic nerve}
     - {region: optic_chiasm, side: ipsi, synapse: false}
     - {tract: optic_pathway, side: ipsi, parts: [1], note: "Optic tract (temporal-hemiretina fibres shown; nasal fibres reach the opposite tract)"}
-    - {region: pretectal_nucleus, side: ipsi, role: Pretectal olivary nucleus}
+    - {region: pretectal_nucleus, side: ipsi, role: Pretectal olivary nucleus, transmitter: "Glutamate", effect: excitatory}
     - {tract: pretecto_oculomotor_fibres, side: ipsi, parts: [0]}
-    - {region: edinger_westphal_nucleus, side: ipsi, role: Preganglionic parasympathetic neuron}
+    - {region: edinger_westphal_nucleus, side: ipsi, role: Preganglionic parasympathetic neuron, transmitter: "Acetylcholine", effect: excitatory, transmitter_note: "Nicotinic receptors on ciliary ganglion cells."}
     - {tract: oculomotor_nerve, side: ipsi, note: Parasympathetic fibres run superficially on the nerve}
-    - {region: ciliary_ganglion, side: ipsi, role: Postganglionic neuron}
+    - {region: ciliary_ganglion, side: ipsi, role: Postganglionic neuron, transmitter: "Acetylcholine", effect: excitatory, transmitter_note: "M3 muscarinic receptors contract the sphincter pupillae (pupil constriction)."}
     - {region: eye, side: ipsi, role: Pupillary sphincter (via short ciliary nerves)}
   highlight:
     - {region: edinger_westphal_nucleus, side: contra, note: Crossed pretectal fibres (posterior commissure) — consensual response}
@@ -67,15 +67,15 @@
     crossings at several levels each hemisphere hears both ears, with a contralateral bias. The
     main crossed route is shown.
   steps:
-    - {region: spiral_ganglion, side: ipsi, role: First-order neuron}
+    - {region: spiral_ganglion, side: ipsi, role: First-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: vestibulocochlear_nerve, side: ipsi, note: Cochlear division}
-    - {region: cochlear_nuclei, side: ipsi, role: Second-order neuron}
+    - {region: cochlear_nuclei, side: ipsi, role: Second-order neuron, transmitter: "Glutamate", effect: excitatory, transmitter_note: "Input from the opposite ear reaches the lateral superior olive through glycinergic (inhibitory) relay neurons of the medial nucleus of the trapezoid body. This underlies interaural level comparison."}
     - {tract: trapezoid_body, side: ipsi, note: Main crossing}
-    - {region: superior_olivary_complex, side: contra, role: Binaural comparison (sound localisation)}
+    - {region: superior_olivary_complex, side: contra, role: Binaural comparison (sound localisation), transmitter: "Glutamate and glycine", effect: mixed, transmitter_note: "The medial superior olive and contralateral lateral superior olive projections are glutamatergic; the ipsilateral lateral superior olive projection is glycinergic."}
     - {tract: lateral_lemniscus, side: contra}
-    - {region: inferior_colliculus, side: contra, role: Midbrain relay}
+    - {region: inferior_colliculus, side: contra, role: Midbrain relay, transmitter: "Glutamate (some GABA)", effect: excitatory, transmitter_note: "About a quarter of tectothalamic neurons are GABAergic."}
     - {tract: brachium_inferior_colliculus, side: contra}
-    - {region: MGN, side: contra, role: Thalamic relay}
+    - {region: MGN, side: contra, role: Thalamic relay, transmitter: "Glutamate", effect: excitatory}
     - {tract: acoustic_radiation, side: contra}
     - {region: transverse_temporal_gyrus, side: contra, role: Primary auditory cortex (A1), layer_in: "IV", layer_note: "MGN (ventral division) axons end in layer IV and deep layer III"}
   highlight:
@@ -96,11 +96,11 @@
     abducens internuclear neurons and the MLF, the medial rectus of the eye on the starting side.
     Both eyes therefore move away from the head turn and gaze stays stable. A three-neuron arc.
   steps:
-    - {region: vestibular_ganglion, side: ipsi, role: First-order neuron (horizontal canal)}
+    - {region: vestibular_ganglion, side: ipsi, role: First-order neuron (horizontal canal), transmitter: "Glutamate", effect: excitatory}
     - {tract: vestibulocochlear_nerve, side: ipsi, note: Vestibular division}
-    - {region: vestibular_nuclei, side: ipsi, role: Second-order neuron (medial vestibular nucleus)}
+    - {region: vestibular_nuclei, side: ipsi, role: Second-order neuron (medial vestibular nucleus), transmitter: "Glutamate", effect: excitatory, transmitter_note: "Excitatory neurons of the medial vestibular nucleus cross to the opposite abducens nucleus. Inhibitory (glycinergic) neurons project to the same-side abducens nucleus. One lateral rectus contracts while the other relaxes."}
     - {tract: vestibulo_abducens_fibres, side: ipsi}
-    - {region: abducens_nucleus, side: contra, role: "Motor neurons → contralateral lateral rectus; internuclear neurons"}
+    - {region: abducens_nucleus, side: contra, role: "Motor neurons → contralateral lateral rectus; internuclear neurons", transmitter: "Glutamate", effect: excitatory, transmitter_note: "Internuclear neurons. Abducens motor neurons release acetylcholine at the lateral rectus."}
     - {tract: abducens_internuclear_fibres, side: contra}
     - {tract: medial_longitudinal_fasciculus, side: ipsi}
     - {region: oculomotor_nucleus, side: ipsi, role: Medial-rectus subnucleus}

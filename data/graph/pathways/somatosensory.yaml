@@ -8,13 +8,13 @@
     caudal medulla and ascend as the medial lemniscus, third-order thalamocortical neurons in
     VPL project to the leg area of S1 on the medial surface.
   steps:
-    - {region: drg_lumbosacral, side: ipsi, role: First-order neuron (large-diameter afferent)}
+    - {region: drg_lumbosacral, side: ipsi, role: First-order neuron (large-diameter afferent), transmitter: "Glutamate", effect: excitatory}
     - {tract: dorsal_root_lumbosacral, side: ipsi}
     - {tract: fasciculus_gracilis, side: ipsi}
-    - {region: nucleus_gracilis, side: ipsi, role: Second-order neuron}
+    - {region: nucleus_gracilis, side: ipsi, role: Second-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: internal_arcuate_fibres, side: ipsi, parts: [0], note: Sensory decussation}
     - {tract: medial_lemniscus, side: contra}
-    - {region: VPL, side: contra, role: Third-order neuron}
+    - {region: VPL, side: contra, role: Third-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: superior_thalamic_radiation, side: contra}
     - {region: paracentral_lobule, side: contra, role: Primary somatosensory cortex (leg area), layer_in: "IV", layer_note: "VPL axons end mainly in layer IV of areas 3b and 3a"}
   clinical:
@@ -30,13 +30,13 @@
   start_label: body side
   summary: Upper-limb fibres ascend in the fasciculus cuneatus, synapse in the nucleus cuneatus, cross, and reach the hand area of S1 via VPL.
   steps:
-    - {region: drg_cervical, side: ipsi, role: First-order neuron}
+    - {region: drg_cervical, side: ipsi, role: First-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: dorsal_root_cervical, side: ipsi}
     - {tract: fasciculus_cuneatus, side: ipsi}
-    - {region: nucleus_cuneatus, side: ipsi, role: Second-order neuron}
+    - {region: nucleus_cuneatus, side: ipsi, role: Second-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: internal_arcuate_fibres, side: ipsi, parts: [1, 0], note: Sensory decussation}
     - {tract: medial_lemniscus, side: contra}
-    - {region: VPL, side: contra, role: Third-order neuron}
+    - {region: VPL, side: contra, role: Third-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: superior_thalamic_radiation, side: contra}
     - {region: postcentral_gyrus, side: contra, anchor: hand, role: Primary somatosensory cortex (hand area), layer_in: "IV", layer_note: "VPL axons end mainly in layer IV of areas 3b and 3a"}
   clinical:
@@ -53,12 +53,12 @@
     second-order axons cross within one or two segments in the anterior white commissure and
     ascend in the contralateral anterolateral funiculus to the thalamus.
   steps:
-    - {region: drg_lumbosacral, side: ipsi, role: First-order neuron (Aδ / C nociceptor)}
+    - {region: drg_lumbosacral, side: ipsi, role: First-order neuron (Aδ / C nociceptor), transmitter: "Glutamate (with substance P, CGRP)", effect: excitatory}
     - {tract: dorsal_root_lumbosacral, side: ipsi, note: Small fibres travel 1-2 segments in Lissauer's tract}
-    - {region: dorsal_horn_lumbosacral, side: ipsi, role: Second-order neuron (laminae I and V)}
+    - {region: dorsal_horn_lumbosacral, side: ipsi, role: Second-order neuron (laminae I and V), transmitter: "Glutamate", effect: excitatory}
     - {tract: spinothalamic_crossing, side: ipsi, note: Anterior white commissure}
     - {tract: spinothalamic_tract, side: contra}
-    - {region: VPL, side: contra, role: Third-order neuron}
+    - {region: VPL, side: contra, role: Third-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: superior_thalamic_radiation, side: contra}
     - {region: paracentral_lobule, side: contra, role: S1 leg area (also posterior insula and anterior cingulate via medial thalamus), layer_in: "IV", layer_note: "Specific (VPL) thalamocortical axons end in layer IV"}
   highlight:
@@ -77,11 +77,11 @@
   start_label: face side
   summary: Facial touch is relayed by the principal sensory nucleus in the mid-pons; its axons cross and ascend as the trigeminal lemniscus to VPM and the face area of S1.
   steps:
-    - {region: trigeminal_ganglion, side: ipsi, role: First-order neuron}
+    - {region: trigeminal_ganglion, side: ipsi, role: First-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: trigeminal_nerve, side: ipsi}
-    - {region: principal_sensory_nucleus_v, side: ipsi, role: Second-order neuron}
+    - {region: principal_sensory_nucleus_v, side: ipsi, role: Second-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: trigeminothalamic_tract, side: ipsi, parts: [0]}
-    - {region: VPM, side: contra, role: Third-order neuron}
+    - {region: VPM, side: contra, role: Third-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: superior_thalamic_radiation, side: contra}
     - {region: postcentral_gyrus, side: contra, anchor: face, role: S1 face area, layer_in: "IV"}
   clinical:
@@ -95,12 +95,12 @@
   start_label: face side
   summary: Facial pain and temperature fibres descend in the spinal trigeminal tract to the pars caudalis of the spinal trigeminal nucleus, whose axons cross and ascend to VPM.
   steps:
-    - {region: trigeminal_ganglion, side: ipsi, role: First-order neuron}
+    - {region: trigeminal_ganglion, side: ipsi, role: First-order neuron, transmitter: "Glutamate (with substance P, CGRP)", effect: excitatory}
     - {tract: trigeminal_nerve, side: ipsi}
     - {tract: spinal_trigeminal_tract, side: ipsi}
-    - {region: spinal_trigeminal_nucleus, side: ipsi, role: Second-order neuron (pars caudalis)}
+    - {region: spinal_trigeminal_nucleus, side: ipsi, role: Second-order neuron (pars caudalis), transmitter: "Glutamate", effect: excitatory}
     - {tract: trigeminothalamic_tract, side: ipsi, parts: [1]}
-    - {region: VPM, side: contra, role: Third-order neuron}
+    - {region: VPM, side: contra, role: Third-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: superior_thalamic_radiation, side: contra}
     - {region: postcentral_gyrus, side: contra, anchor: face, role: S1 face area, layer_in: "IV"}
   clinical:

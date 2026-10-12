@@ -9,10 +9,10 @@
     spinocerebellar tract and enter the ipsilateral cerebellum through the inferior cerebellar
     peduncle. A two-neuron pathway to the cerebellar cortex with no thalamic relay.
   steps:
-    - {region: drg_lumbosacral, side: ipsi, role: First-order neuron (muscle spindle / tendon organ afferent)}
+    - {region: drg_lumbosacral, side: ipsi, role: First-order neuron (muscle spindle / tendon organ afferent), transmitter: "Glutamate", effect: excitatory}
     - {tract: dorsal_root_lumbosacral, side: ipsi}
     - {tract: fasciculus_gracilis, side: ipsi, note: Ascends to the nearest Clarke's-nucleus segment}
-    - {region: clarkes_nucleus, side: ipsi, role: Second-order neuron}
+    - {region: clarkes_nucleus, side: ipsi, role: Second-order neuron, transmitter: "Glutamate", effect: excitatory, transmitter_note: "Mossy-fibre terminals on granule cells."}
     - {tract: dorsal_spinocerebellar_tract, side: ipsi}
     - {tract: inferior_cerebellar_peduncle, side: ipsi}
     - {region: vermis, side: ipsi, role: "Spinocerebellum (vermis and paravermis, mossy fibres)"}
@@ -30,9 +30,9 @@
     ascend to the rostral pons, then loop back into the cerebellum along the superior cerebellar
     peduncle and largely cross again, so the information reaches the side of origin.
   steps:
-    - {region: drg_lumbosacral, side: ipsi, role: First-order neuron}
+    - {region: drg_lumbosacral, side: ipsi, role: First-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: dorsal_root_lumbosacral, side: ipsi}
-    - {region: dorsal_horn_lumbosacral, side: ipsi, role: Spinal border cells / laminae V-VII (second-order)}
+    - {region: dorsal_horn_lumbosacral, side: ipsi, role: Spinal border cells / laminae V-VII (second-order), transmitter: "Glutamate", effect: excitatory, transmitter_note: "Mossy-fibre terminals on granule cells."}
     - {tract: ventral_spinocerebellar_tract, side: ipsi, note: "Crosses in the cord, ascends to the rostral pons, re-enters via the SCP"}
     - {region: vermis, side: ipsi, role: Anterior lobe vermis and paravermis}
   refs: [nieuwenhuys2008, bosco2001]
@@ -43,10 +43,10 @@
   start_label: body side
   summary: Upper-limb proprioceptive afferents ascend in the fasciculus cuneatus to the external cuneate nucleus, which projects through the ipsilateral inferior cerebellar peduncle — the upper-limb equivalent of the dorsal spinocerebellar pathway.
   steps:
-    - {region: drg_cervical, side: ipsi, role: First-order neuron}
+    - {region: drg_cervical, side: ipsi, role: First-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: dorsal_root_cervical, side: ipsi}
     - {tract: fasciculus_cuneatus, side: ipsi}
-    - {region: external_cuneate_nucleus, side: ipsi, role: Second-order neuron}
+    - {region: external_cuneate_nucleus, side: ipsi, role: Second-order neuron, transmitter: "Glutamate", effect: excitatory, transmitter_note: "Mossy-fibre terminals on granule cells."}
     - {tract: cuneocerebellar_tract, side: ipsi}
     - {tract: inferior_cerebellar_peduncle, side: ipsi}
     - {region: vermis, side: ipsi, role: Spinocerebellum}
@@ -59,9 +59,9 @@
   start_label: ear
   summary: Vestibular input drives the ipsilateral lateral vestibular (Deiters) nucleus, which excites extensor (antigravity) motor neurons along the whole cord on the same side.
   steps:
-    - {region: vestibular_ganglion, side: ipsi, role: First-order neuron (otolith / canal afferent)}
+    - {region: vestibular_ganglion, side: ipsi, role: First-order neuron (otolith / canal afferent), transmitter: "Glutamate", effect: excitatory}
     - {tract: vestibulocochlear_nerve, side: ipsi}
-    - {region: vestibular_nuclei, side: ipsi, role: Lateral vestibular nucleus (Deiters)}
+    - {region: vestibular_nuclei, side: ipsi, role: Lateral vestibular nucleus (Deiters), transmitter: "Glutamate", effect: excitatory, transmitter_note: "Excites extensor (antigravity) motor neurons, directly and via interneurons."}
     - {tract: lateral_vestibulospinal_tract, side: ipsi}
     - {region: ventral_horn_lumbosacral, side: ipsi, role: Extensor motor neurons}
   clinical:
@@ -75,7 +75,7 @@
   start_label: brainstem side
   summary: The pontine reticular formation projects uncrossed in the anterior funiculus to axial and proximal motor neurons, supporting posture and anticipatory postural adjustments.
   steps:
-    - {region: pontis_oralis, side: ipsi, role: Pontine reticular neurons}
+    - {region: pontis_oralis, side: ipsi, role: Pontine reticular neurons, transmitter: "Glutamate", effect: excitatory, transmitter_note: "Facilitates extensor (antigravity) motor neurons."}
     - {tract: pontine_reticulospinal_tract, side: ipsi}
     - {region: ventral_horn_lumbosacral, side: ipsi, role: Medial motor column (axial and proximal muscles)}
   refs: [nieuwenhuys2008, kandel2021]
@@ -86,7 +86,7 @@
   start_label: brainstem side
   summary: The superior colliculus drives reflex head turning toward visual and auditory targets through the crossed tectospinal tract to the upper cervical cord.
   steps:
-    - {region: superior_colliculus, side: ipsi, role: Deep collicular layers}
+    - {region: superior_colliculus, side: ipsi, role: Deep collicular layers, transmitter: "Glutamate", effect: excitatory, transmitter_note: "Via interneurons of the upper cervical cord."}
     - {tract: tectospinal_tract, side: ipsi, note: Dorsal tegmental decussation}
     - {region: ventral_horn_cervical, side: contra, role: Neck motor neurons}
   refs: [nieuwenhuys2008]
@@ -102,11 +102,11 @@
     fibres cross back through the inferior cerebellar peduncle → cerebellar cortex and the
     dentate nucleus of origin.
   steps:
-    - {region: dentate_nucleus, side: ipsi, role: Dentate nucleus}
+    - {region: dentate_nucleus, side: ipsi, role: Dentate nucleus, transmitter: "Glutamate", effect: excitatory}
     - {tract: dentatorubrothalamic_tract, side: ipsi, note: Superior cerebellar peduncle and its decussation}
-    - {region: red_nucleus, side: contra, role: Parvocellular red nucleus}
+    - {region: red_nucleus, side: contra, role: Parvocellular red nucleus, transmitter: "Glutamate", effect: excitatory}
     - {tract: central_tegmental_tract, side: contra}
-    - {region: inferior_olive, side: contra, role: Inferior olivary nucleus}
+    - {region: inferior_olive, side: contra, role: Inferior olivary nucleus, transmitter: "Glutamate (climbing fibres)", effect: excitatory, transmitter_note: "Climbing fibres excite Purkinje cells; collaterals excite the deep nuclei. The return projection from the deep nuclei to the olive (nucleo-olivary) is GABAergic."}
     - {tract: olivocerebellar_fibres, side: contra, note: Climbing fibres cross the midline}
     - {tract: inferior_cerebellar_peduncle, side: ipsi}
     - {region: dentate_nucleus, side: ipsi, role: Back to the dentate — the loop closes}
@@ -125,9 +125,9 @@
     amygdala and entorhinal cortex. The only sensory pathway that reaches cortex without a
     thalamic relay; it stays ipsilateral.
   steps:
-    - {region: olfactory_epithelium, side: ipsi, role: Olfactory receptor neurons (first-order)}
+    - {region: olfactory_epithelium, side: ipsi, role: Olfactory receptor neurons (first-order), transmitter: "Glutamate", effect: excitatory}
     - {tract: olfactory_tract, side: ipsi, parts: [0], note: Olfactory nerve fila (cribriform plate)}
-    - {region: olfactory_bulb, side: ipsi, role: Mitral and tufted cells (second-order)}
+    - {region: olfactory_bulb, side: ipsi, role: Mitral and tufted cells (second-order), transmitter: "Glutamate", effect: excitatory}
     - {tract: olfactory_tract, side: ipsi, parts: [1], note: Olfactory tract → lateral olfactory stria}
     - {region: piriform_cortex, side: ipsi, role: Primary olfactory cortex, layer_in: "molecular", layer_note: "Lateral olfactory tract axons end in layer Ia (outer molecular layer) of the three-layered piriform cortex"}
   highlight:
@@ -151,12 +151,12 @@
     to VPMpc, and projects to the gustatory cortex in the insula and frontal operculum. Taste
     pathways remain largely ipsilateral.
   steps:
-    - {region: geniculate_ganglion, side: ipsi, role: First-order neuron (chorda tympani)}
+    - {region: geniculate_ganglion, side: ipsi, role: First-order neuron (chorda tympani), transmitter: "Glutamate", effect: excitatory}
     - {tract: facial_nerve, side: ipsi, parts: [1], note: Nervus intermedius}
     - {tract: solitary_tract, side: ipsi}
-    - {region: solitary_nucleus, side: ipsi, role: Rostral (gustatory) NTS — second-order}
+    - {region: solitary_nucleus, side: ipsi, role: Rostral (gustatory) NTS — second-order, transmitter: "Glutamate", effect: excitatory}
     - {tract: central_tegmental_tract, side: ipsi, note: Ascending gustatory fibres}
-    - {region: VPM, side: ipsi, role: Parvocellular VPM (VPMpc) — third-order}
+    - {region: VPM, side: ipsi, role: Parvocellular VPM (VPMpc) — third-order, transmitter: "Glutamate", effect: excitatory}
     - {region: insula, side: ipsi, role: Primary gustatory cortex (dorsal mid-insula / frontal operculum)}
   clinical:
     - {site: Chorda tympani (middle-ear surgery) or facial nerve proximal to it, finding: Loss of taste on the anterior two-thirds of the tongue}
@@ -173,12 +173,12 @@
     and the spinal trigeminal nucleus. Interneurons project to both facial motor nuclei.
     Efferent limb — the facial nerve to orbicularis oculi.
   steps:
-    - {region: eye, side: ipsi, role: Corneal free nerve endings}
+    - {region: eye, side: ipsi, role: Corneal free nerve endings, synapse: false}
     - {tract: ophthalmic_nerve, side: ipsi, note: Nasociliary branch of V1}
-    - {region: trigeminal_ganglion, side: ipsi, role: First-order neuron}
+    - {region: trigeminal_ganglion, side: ipsi, role: First-order neuron, transmitter: "Glutamate (with substance P in nociceptive fibres)", effect: excitatory}
     - {tract: trigeminal_nerve, side: ipsi}
     - {tract: spinal_trigeminal_tract, side: ipsi}
-    - {region: spinal_trigeminal_nucleus, side: ipsi, role: Second-order neuron}
+    - {region: spinal_trigeminal_nucleus, side: ipsi, role: Second-order neuron, transmitter: "Glutamate", effect: excitatory, transmitter_note: "Through reticular interneurons that reach both facial motor nuclei."}
     - {tract: trigeminofacial_fibres, side: ipsi, parts: [0]}
     - {region: facial_motor_nucleus, side: ipsi, role: Orbicularis oculi motor neurons}
     - {tract: facial_nerve, side: ipsi}
@@ -196,9 +196,9 @@
   start_label: pharynx side
   summary: Touching the posterior pharyngeal wall excites glossopharyngeal afferents to the solitary nucleus. Interneurons drive both nuclei ambigui, and the vagus nerves elevate the palate and constrict the pharynx.
   steps:
-    - {region: petrosal_ganglion, side: ipsi, role: First-order neuron}
+    - {region: petrosal_ganglion, side: ipsi, role: First-order neuron, transmitter: "Glutamate", effect: excitatory}
     - {tract: glossopharyngeal_nerve, side: ipsi}
-    - {region: solitary_nucleus, side: ipsi, role: Second-order neuron}
+    - {region: solitary_nucleus, side: ipsi, role: Second-order neuron, transmitter: "Glutamate", effect: excitatory, transmitter_note: "Mostly through interneurons of the medullary reticular formation."}
     - {region: nucleus_ambiguus, side: ipsi, role: Branchial motor neurons (via reticular interneurons)}
     - {tract: vagus_nerve, side: ipsi}
   highlight:
@@ -218,11 +218,11 @@
     move the ipsilateral lateral rectus; internuclear neurons, through the MLF, move the
     opposite medial rectus.
   steps:
-    - {region: caudal_middle_frontal_gyrus, side: ipsi, anchor: fef, role: Frontal eye field, layer_out: "V"}
+    - {region: caudal_middle_frontal_gyrus, side: ipsi, anchor: fef, role: Frontal eye field, layer_out: "V", transmitter: "Glutamate", effect: excitatory, transmitter_note: "Partly relayed through the superior colliculus."}
     - {tract: corticopontine_frontal, side: ipsi, note: Descends with frontopontine fibres}
     - {tract: fef_pprf_fibres, side: ipsi, note: Crosses to the opposite pons}
-    - {region: pprf, side: contra, role: Excitatory burst neurons}
-    - {region: abducens_nucleus, side: contra, role: Lateral rectus motor neurons + internuclear neurons}
+    - {region: pprf, side: contra, role: Excitatory burst neurons, transmitter: "Glutamate", effect: excitatory, transmitter_note: "Excitatory burst neurons. Inhibitory (glycinergic) burst neurons in the medulla silence the opposite abducens nucleus."}
+    - {region: abducens_nucleus, side: contra, role: Lateral rectus motor neurons + internuclear neurons, transmitter: "Glutamate", effect: excitatory, transmitter_note: "Internuclear neurons. Abducens motor neurons release acetylcholine at the lateral rectus."}
     - {tract: abducens_internuclear_fibres, side: contra}
     - {tract: medial_longitudinal_fasciculus, side: ipsi}
     - {region: oculomotor_nucleus, side: ipsi, role: Medial-rectus subnucleus}
@@ -238,7 +238,7 @@
   start_label: brainstem side
   summary: The trochlear nucleus projects through the only cranial nerve that leaves the brainstem dorsally and decussates completely, to the opposite superior oblique muscle.
   steps:
-    - {region: trochlear_nucleus, side: ipsi, role: Motor neurons}
+    - {region: trochlear_nucleus, side: ipsi, role: Motor neurons, transmitter: "Acetylcholine", effect: excitatory, transmitter_note: "Neuromuscular junction on the superior oblique (nicotinic receptors)."}
     - {tract: trochlear_nerve, side: contra, note: Decussates in the superior medullary velum and winds around the midbrain}
     - {region: eye, side: contra, role: Superior oblique muscle}
   clinical:
@@ -252,7 +252,7 @@
   start_label: hemisphere
   summary: The face/tongue area of the motor cortex projects mainly to the contralateral hypoglossal nucleus. Its motor neurons innervate the tongue through the hypoglossal nerve.
   steps:
-    - {region: precentral_gyrus, side: ipsi, anchor: face, role: Upper motor neuron, layer_out: "V"}
+    - {region: precentral_gyrus, side: ipsi, anchor: face, role: Upper motor neuron, layer_out: "V", transmitter: "Glutamate", effect: excitatory}
     - {tract: corticobulbar_tract, side: ipsi, parts: [0, 3]}
     - {region: hypoglossal_nucleus, side: contra, role: Lower motor neuron}
     - {tract: hypoglossal_nerve, side: contra}
@@ -273,11 +273,11 @@
     and miosis (± anhidrosis) on the same side. Sympathetic chain and ganglia are drawn
     diagrammatically.
   steps:
-    - {region: hypothalamus, side: ipsi, role: First-order neuron}
+    - {region: hypothalamus, side: ipsi, role: First-order neuron, transmitter: "Glutamate (with oxytocin / vasopressin)", effect: excitatory, transmitter_note: "From the paraventricular nucleus to the intermediolateral column at C8–T2."}
     - {tract: hypothalamospinal_tract, side: ipsi}
-    - {region: ciliospinal_center, side: ipsi, role: Second-order (preganglionic) neuron}
+    - {region: ciliospinal_center, side: ipsi, role: Second-order (preganglionic) neuron, transmitter: "Acetylcholine", effect: excitatory, transmitter_note: "Nicotinic receptors on ganglion cells."}
     - {tract: preganglionic_sympathetic, side: ipsi}
-    - {region: superior_cervical_ganglion, side: ipsi, role: Third-order (postganglionic) neuron}
+    - {region: superior_cervical_ganglion, side: ipsi, role: Third-order (postganglionic) neuron, transmitter: "Noradrenaline", effect: excitatory, transmitter_note: "α1 receptors contract the dilator pupillae (pupil dilation)."}
     - {tract: postganglionic_sympathetic, side: ipsi}
     - {region: eye, side: ipsi, role: "Pupillary dilator, superior tarsal (Müller) muscle"}
   clinical:

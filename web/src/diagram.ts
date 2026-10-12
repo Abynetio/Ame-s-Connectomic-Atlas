@@ -4,7 +4,7 @@
 //  - "Connectogram": every region-to-region projection of the knowledge graph on a ring, grouped by
 //    level of the neuraxis (in the spirit of the Edlow et al. connectograms, drawn from this atlas's own data).
 import { ALLOCORTEX, Atlas, Edge, Pathway, Region, Side, mirrorSide, pathwayNeurons } from "./data";
-import { colorFor, neuronShade } from "./palette";
+import { EFFECT_COLOR, EFFECT_SIGN, Effect, colorFor, neuronShade, transmitterShort } from "./palette";
 
 export type DiagramSel = { type: "pathway" | "tract" | "region"; id: string } | null;
 export interface DiagramState { sel: DiagramSel; start: "L" | "R"; step: number; system: string | null }
@@ -63,6 +63,21 @@ function shortName(r: Region, max = 22, abbrevOk = true): string {
 }
 
 const HOME_VB = { x: 40, y: 40, w: 1120, h: 1120 };
+
+/**
+ * Synapse ending in textbook notation, pointing along (ux, uy) and ending at (x, y):
+ * arrowhead = excitatory or mixed, bar = inhibitory, dot = modulatory.
+ */
+function synapseHead(x: number, y: number, ux: number, uy: number, effect: Effect | undefined, size: number, cls: string, fill: string): SVGElement {
+  const px = -uy, py = ux;
+  if (effect === "inhibitory") {
+    const bx = x - ux * size * 0.25, by = y - uy * size * 0.25;
+    return sv("path", { d: `M ${bx + px * size * 0.75} ${by + py * size * 0.75} L ${bx - px * size * 0.75} ${by - py * size * 0.75}`, class: `${cls} bar`, style: `stroke:${fill};stroke-width:${size * 0.38}px`, "stroke-linecap": "round" });
+  }
+  if (effect === "modulatory") return sv("circle", { cx: x - ux * size * 0.5, cy: y - uy * size * 0.5, r: size * 0.48, class: cls, fill });
+  const bx = x - ux * size, by = y - uy * size;
+  return sv("path", { d: `M ${x} ${y} L ${bx + px * size * 0.5} ${by + py * size * 0.5} L ${bx - px * size * 0.5} ${by - py * size * 0.5} Z`, class: cls, fill });
+}
 
 const ORDINAL = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth"];
 
@@ -144,10 +159,10 @@ export class Diagram {
     if (this.tab === "pathway" && isPw) {
       if (this.dirty) this.renderPathway(this.atlas.pathwayById.get(this.state.sel!.id)!);
       else this.markLaneStep();
-      legend.textContent = "● cell body · ▲ synapse · ✕ crosses the midline · dashed box = axons pass through";
+      legend.textContent = "● cell body · synapse: ▼ excitatory, ⊥ inhibitory, ○ modulatory · ✕ crosses the midline · dashed box = axons pass through";
     } else {
       this.renderNetwork();
-      legend.textContent = "Arrow = direction of projection · dashed = crossed · colour = system · scroll to zoom, drag to pan";
+      legend.textContent = "Arrow = excitatory, bar = inhibitory, dot = modulatory projection · dashed = crossed · colour = system · scroll to zoom, drag to pan";
     }
     this.dirty = false;
   }
@@ -220,8 +235,17 @@ export class Diagram {
         const roles: string[] = [];
         if (inN) roles.push(`▲ ${ORDINAL[inN.order] ?? inN.order + 1}-order synapse`);
         if (outN) roles.push(`● ${ORDINAL[outN.order] ?? outN.order + 1}-order cell bodies`);
-        if (!synaptic) roles.push("axons pass through");
+        if (!synaptic) roles.push(neurons.length && k < neurons[0].from ? "sensory endings" : "axons pass through");
         if (roles.length) item.append(el("div", "lb-role", roles.join(" · ")));
+        const src = inN ? pw.steps[inN.from] : undefined;
+        if (src?.transmitter && src.effect) {
+          const tx = el("div", "lb-tx");
+          const chip = el("span", "tx-chip", `${transmitterShort(src.transmitter)} ${EFFECT_SIGN[src.effect]}`);
+          chip.style.background = EFFECT_COLOR[src.effect];
+          tx.append(chip, ` ${src.transmitter} · ${src.effect}`);
+          tx.title = src.transmitter_note ?? "";
+          item.append(tx);
+        }
         if (st.layer_in || st.layer_out) {
           const allo = ALLOCORTEX.has(r.id);
           const f = (v: string) => (allo ? v : `L${v}`);
@@ -278,7 +302,9 @@ export class Diagram {
         const st = pw.steps[k + 1];
         if (st.region && st.synapse !== false) {
           const dir = ascending ? -1 : 1;
-          svg.append(sv("path", { d: `M ${bx - 6} ${by - dir * 10} L ${bx + 6} ${by - dir * 10} L ${bx} ${by} Z`, class: "lane-syn", fill: color }));
+          const src = neurons.find((x) => x.to === k + 1);
+          const eff = src ? pw.steps[src.from].effect : undefined;
+          svg.append(synapseHead(bx, by, 0, dir, eff, 12, "lane-syn", eff ? EFFECT_COLOR[eff] : color));
         }
         // cell body: dot where the axon leaves its parent region
         const sa = pw.steps[k];
@@ -410,7 +436,9 @@ export class Diagram {
       const hx = x1 - ux * 4, hy = y1 - uy * 4;
       const w = 1.6 + Math.min(3, e.pathways.length - 1);
       const path = sv("path", { d: `M ${x0} ${y0} Q ${qx} ${qy} ${hx - ux * 8} ${hy - uy * 8}`, class: "re-line", "stroke-width": w });
-      const head = sv("path", { d: `M ${hx} ${hy} L ${hx - ux * 13 - uy * 5.5} ${hy - uy * 13 + ux * 5.5} L ${hx - ux * 13 + uy * 5.5} ${hy - uy * 13 - ux * 5.5} Z`, class: "re-head" });
+      const effects = new Set((e.transmitters ?? []).map((t) => t.effect));
+      const eff: Effect | undefined = effects.size === 1 ? [...effects][0] : effects.size > 1 ? "mixed" : undefined;
+      const head = synapseHead(hx, hy, ux, uy, eff, 13, "re-head", "currentColor");
       const hit = sv("path", { d: `M ${x0} ${y0} Q ${qx} ${qy} ${x1} ${y1}`, class: "re-hit" });
       g.append(path, head, hit);
       g.addEventListener("mousemove", (ev) => this.showTip(ev as MouseEvent, this.edgeTip(e)));
@@ -464,7 +492,8 @@ export class Diagram {
     const name = (id: string) => this.atlas.regionById.get(id)?.name ?? id;
     const via = e.via.map((v) => this.atlas.tractById.get(v)?.name ?? v).join(", ");
     const pws = e.pathways.map((p) => this.atlas.pathwayById.get(p)?.name ?? p).join("; ");
-    return `<strong>${name(e.from)} → ${name(e.to)}</strong><br>${e.laterality === "contralateral" ? "crossed (contralateral)" : "uncrossed (ipsilateral)"} · via ${via}<br><span class="muted">${pws}</span>`;
+    const tx = (e.transmitters ?? []).map((t) => `<span class="tx-chip" style="background:${EFFECT_COLOR[t.effect]}">${transmitterShort(t.transmitter)} ${EFFECT_SIGN[t.effect]}</span> ${t.transmitter} · ${t.effect}`).join("<br>");
+    return `<strong>${name(e.from)} → ${name(e.to)}</strong><br>${e.laterality === "contralateral" ? "crossed (contralateral)" : "uncrossed (ipsilateral)"} · via ${via}${tx ? `<br>${tx}` : ""}<br><span class="muted">${pws}</span>`;
   }
 
   /** Emphasise a set of nodes and edges, dimming the rest. */

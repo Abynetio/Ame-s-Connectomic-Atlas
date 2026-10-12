@@ -7,13 +7,13 @@
     motor thalamus, which excites SMA and motor cortex. Net effect — facilitates the selected
     movement (cortex → putamen → GPi → VA/VLa → cortex).
   steps:
-    - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: SMA / motor cortex (glutamate), layer_out: "V", layer_note: "Corticostriatal neurons lie mainly in layer V (and III)"}
+    - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: SMA / motor cortex (glutamate), layer_out: "V", layer_note: "Corticostriatal neurons lie mainly in layer V (and III)", transmitter: "Glutamate", effect: excitatory}
     - {tract: corticostriatal_tract, side: ipsi, parts: [1]}
-    - {region: putamen, side: ipsi, role: D1 medium spiny neurons (GABA + substance P)}
+    - {region: putamen, side: ipsi, role: D1 medium spiny neurons (GABA + substance P), transmitter: "GABA (with substance P, dynorphin)", effect: inhibitory}
     - {tract: striatopallidal_direct, side: ipsi}
-    - {region: GPi, side: ipsi, role: "Output nucleus (GABA, tonically active)"}
+    - {region: GPi, side: ipsi, role: "Output nucleus (GABA, tonically active)", transmitter: "GABA", effect: inhibitory, transmitter_note: "Tonically active; striatal inhibition of GPi therefore disinhibits the thalamus."}
     - {tract: fasciculus_lenticularis, side: ipsi, note: Joins the ansa lenticularis in the thalamic fasciculus (field H1)}
-    - {region: VLa, side: ipsi, role: Motor thalamus (glutamate)}
+    - {region: VLa, side: ipsi, role: Motor thalamus (glutamate), transmitter: "Glutamate", effect: excitatory}
     - {tract: superior_thalamic_radiation, side: ipsi}
     - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: Back to SMA — the loop closes}
   highlight:
@@ -32,17 +32,17 @@
     excite GPi more, increasing inhibition of the motor thalamus. Net effect — suppresses
     competing movements.
   steps:
-    - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: SMA / motor cortex, layer_out: "V", layer_note: "Corticostriatal neurons lie mainly in layer V (and III)"}
+    - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: SMA / motor cortex, layer_out: "V", layer_note: "Corticostriatal neurons lie mainly in layer V (and III)", transmitter: "Glutamate", effect: excitatory}
     - {tract: corticostriatal_tract, side: ipsi, parts: [1]}
-    - {region: putamen, side: ipsi, role: D2 medium spiny neurons (GABA + enkephalin)}
+    - {region: putamen, side: ipsi, role: D2 medium spiny neurons (GABA + enkephalin), transmitter: "GABA (with enkephalin)", effect: inhibitory}
     - {tract: striatopallidal_indirect, side: ipsi}
-    - {region: GPe, side: ipsi, role: GABA}
+    - {region: GPe, side: ipsi, role: GABA, transmitter: "GABA", effect: inhibitory, transmitter_note: "Striatal inhibition of GPe releases the STN from this tonic inhibition."}
     - {tract: subthalamic_fasciculus, side: ipsi}
-    - {region: STN, side: ipsi, role: Glutamate}
+    - {region: STN, side: ipsi, role: Glutamate, transmitter: "Glutamate", effect: excitatory, transmitter_note: "Drives GPi, which increases inhibition of the thalamus."}
     - {tract: subthalamic_fasciculus, side: ipsi}
-    - {region: GPi, side: ipsi, role: Output nucleus}
+    - {region: GPi, side: ipsi, role: Output nucleus, transmitter: "GABA", effect: inhibitory}
     - {tract: fasciculus_lenticularis, side: ipsi}
-    - {region: VLa, side: ipsi, role: Motor thalamus}
+    - {region: VLa, side: ipsi, role: Motor thalamus, transmitter: "Glutamate", effect: excitatory}
     - {tract: superior_thalamic_radiation, side: ipsi}
     - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: Back to SMA}
   clinical:
@@ -59,11 +59,11 @@
     Frontal cortex excites the STN directly, bypassing the striatum. The STN then excites GPi
     and strongly inhibits the thalamus — a fast global brake, e.g. for stopping an action.
   steps:
-    - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: SMA / pre-SMA, layer_out: "V", layer_note: "Collaterals of layer V pyramidal-tract neurons"}
+    - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: SMA / pre-SMA, layer_out: "V", layer_note: "Collaterals of layer V pyramidal-tract neurons", transmitter: "Glutamate", effect: excitatory}
     - {tract: hyperdirect_fibres, side: ipsi}
-    - {region: STN, side: ipsi, role: Glutamate}
+    - {region: STN, side: ipsi, role: Glutamate, transmitter: "Glutamate", effect: excitatory}
     - {tract: subthalamic_fasciculus, side: ipsi}
-    - {region: GPi, side: ipsi, role: Output nucleus}
+    - {region: GPi, side: ipsi, role: Output nucleus, transmitter: "GABA", effect: inhibitory}
     - {tract: ansa_lenticularis, side: ipsi}
     - {region: VA, side: ipsi, role: Thalamus}
   refs: [nieuwenhuys2008, kandel2021]
@@ -74,7 +74,7 @@
   start_label: hemisphere
   summary: Dopaminergic SNc neurons project to the dorsal striatum and modulate both the direct (D1) and indirect (D2) pathways.
   steps:
-    - {region: SNc, side: ipsi, role: Dopaminergic neuron (A9)}
+    - {region: SNc, side: ipsi, role: Dopaminergic neuron (A9), transmitter: "Dopamine", effect: modulatory, transmitter_note: "D1 (Gs) receptors excite direct-pathway neurons; D2 (Gi) receptors inhibit indirect-pathway neurons. Both effects facilitate movement."}
     - {tract: nigrostriatal_tract, side: ipsi}
     - {region: putamen, side: ipsi, role: Striatal medium spiny neurons}
   clinical:
@@ -88,7 +88,7 @@
   start_label: hemisphere
   summary: Dopaminergic VTA neurons project through the medial forebrain bundle to the nucleus accumbens (reward prediction, motivation).
   steps:
-    - {region: VTA, side: ipsi, role: Dopaminergic neuron (A10)}
+    - {region: VTA, side: ipsi, role: Dopaminergic neuron (A10), transmitter: "Dopamine (some neurons co-release glutamate or GABA)", effect: modulatory, transmitter_note: "D1 and D2 receptors on accumbens medium spiny neurons, as in the dorsal striatum."}
     - {tract: medial_forebrain_bundle, side: ipsi}
     - {region: nucleus_accumbens, side: ipsi, role: Ventral striatum}
   clinical:
@@ -104,16 +104,16 @@
     mammillothalamic tract → anterior thalamus → cingulate gyrus → cingulum → parahippocampal gyrus
     → entorhinal cortex → perforant path → hippocampus.
   steps:
-    - {region: hippocampus, side: ipsi, role: Subiculum / CA1 output, layer_out: "pyramidal", layer_note: "Pyramidal cells of CA1 and the subiculum"}
+    - {region: hippocampus, side: ipsi, role: Subiculum / CA1 output, layer_out: "pyramidal", layer_note: "Pyramidal cells of CA1 and the subiculum", transmitter: "Glutamate", effect: excitatory}
     - {tract: fornix, side: ipsi}
-    - {region: mammillary_body, side: ipsi, role: Medial mammillary nucleus}
+    - {region: mammillary_body, side: ipsi, role: Medial mammillary nucleus, transmitter: "Glutamate", effect: excitatory}
     - {tract: mammillothalamic_tract, side: ipsi}
-    - {region: AV, side: ipsi, role: Anterior thalamic nuclei}
+    - {region: AV, side: ipsi, role: Anterior thalamic nuclei, transmitter: "Glutamate", effect: excitatory}
     - {tract: anterior_thalamic_radiation, side: ipsi, note: Thalamocingulate fibres run with the anterior thalamic radiation through the anterior limb of the internal capsule}
-    - {region: caudal_anterior_cingulate, side: ipsi, role: Cingulate cortex}
+    - {region: caudal_anterior_cingulate, side: ipsi, role: Cingulate cortex, transmitter: "Glutamate", effect: excitatory}
     - {tract: cingulum, side: ipsi, parts: [1]}
-    - {region: parahippocampal_gyrus, side: ipsi, role: Parahippocampal cortex}
-    - {region: entorhinal_cortex, side: ipsi, role: Entorhinal cortex (local cortico-cortical connections), layer_out: "II, III", layer_note: "Layer II stellate cells (to dentate gyrus and CA3) and layer III pyramidal cells (to CA1)"}
+    - {region: parahippocampal_gyrus, side: ipsi, role: Parahippocampal cortex, transmitter: "Glutamate", effect: excitatory}
+    - {region: entorhinal_cortex, side: ipsi, role: Entorhinal cortex (local cortico-cortical connections), layer_out: "II, III", layer_note: "Layer II stellate cells (to dentate gyrus and CA3) and layer III pyramidal cells (to CA1)", transmitter: "Glutamate", effect: excitatory, transmitter_note: "Perforant-path axons excite dentate granule cells and CA3 / CA1 pyramidal cells."}
     - {tract: perforant_path, side: ipsi}
     - {region: hippocampus, side: ipsi, role: Dentate gyrus / CA fields — the loop closes, layer_in: "molecular", layer_note: "Perforant-path axons end in the molecular layer of the dentate gyrus and the CA fields"}
   clinical:
@@ -132,7 +132,7 @@
     supports repetition. The connections run in both directions; usually only the left hemisphere
     is dominant.
   steps:
-    - {region: superior_temporal_gyrus, side: ipsi, anchor: wernicke, role: "Wernicke's area (posterior STG)", layer_out: "III", layer_note: "Long cortico-cortical axons arise mainly from layer III pyramidal cells"}
+    - {region: superior_temporal_gyrus, side: ipsi, anchor: wernicke, role: "Wernicke's area (posterior STG)", layer_out: "III", layer_note: "Long cortico-cortical axons arise mainly from layer III pyramidal cells", transmitter: "Glutamate", effect: excitatory}
     - {tract: arcuate_fasciculus, side: ipsi}
     - {region: pars_opercularis, side: ipsi, role: "Broca's area (BA 44)", layer_in: "IV", layer_note: "Feedforward cortico-cortical axons end in layer IV; feedback axons end in layers I and VI. The arcuate carries both directions"}
   clinical:
@@ -147,7 +147,7 @@
   start_label: hemisphere
   summary: The ventral stream links temporal (and occipital) cortex to inferior frontal cortex through the IFOF beneath the insula, mapping sound and print to meaning.
   steps:
-    - {region: middle_temporal_gyrus, side: ipsi, role: Lexical-semantic cortex, layer_out: "III"}
+    - {region: middle_temporal_gyrus, side: ipsi, role: Lexical-semantic cortex, layer_out: "III", transmitter: "Glutamate", effect: excitatory}
     - {tract: ifof, side: ipsi}
     - {region: pars_triangularis, side: ipsi, role: "Broca's area (BA 45)", layer_in: "IV", layer_note: "Feedforward axons end in layer IV; feedback axons in layers I and VI"}
   clinical:

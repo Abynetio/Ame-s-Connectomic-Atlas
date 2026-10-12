@@ -172,15 +172,21 @@ a { color: var(--accent); }
 }
 #stage canvas { display: block; }
 .label-layer { position: absolute; inset: 0; pointer-events: none; }
+/* labels pinned to a 3D point: zero-size anchor, label offset by the marker's on-screen radius (--gap) */
+.pin { width: 0; height: 0; }
+.pin > * { position: absolute; left: 0; transform: translateX(-50%); }
+.pin.above > * { bottom: var(--gap, 12px); }
+.pin.below > * { top: var(--gap, 12px); }
 .step-label {
   font-size: 11px;
   background: color-mix(in srgb, var(--panel) 85%, transparent);
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 1px 6px;
-  transform: translate(10px, -10px);
   white-space: nowrap;
 }
+.syn-tag { font-size: 10.5px; font-weight: 600; color: #fff; border-radius: 5px; padding: 0 5px; white-space: nowrap; box-shadow: 0 1px 3px rgb(0 0 0 / 30%); opacity: 0.92; }
+.syn-tag.current { font-size: 11.5px; opacity: 1; padding: 1px 6px; }
 .step-label.current { border-color: var(--accent); font-weight: 600; }
 #loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: 15px; padding: 24px; text-align: center; }
 #loading.error { color: #c0392b; }
@@ -353,7 +359,8 @@ fieldset.layers label { margin: 2px 0; }
 .lane-box.current { box-shadow: 0 0 0 2px var(--accent); }
 .lb-name { font-weight: 600; font-size: 13px; line-height: 1.25; }
 .lb-level { font-size: 11px; color: var(--muted); }
-.lb-role, .lb-layer { font-size: 11.5px; margin-top: 1px; }
+.lb-role, .lb-layer, .lb-tx { font-size: 11.5px; margin-top: 1px; }
+.lb-tx .tx-chip { margin-left: 0; }
 .lb-layer { color: var(--muted); }
 .lane-pill { max-width: min(100%, 280px); font-size: 11.5px; font-style: italic; background: var(--panel); border: 1.5px solid var(--line); border-radius: 999px; padding: 1px 10px; }
 .lane-pill.current { box-shadow: 0 0 0 2px var(--accent); font-weight: 600; }
@@ -372,6 +379,7 @@ svg.ring:active { cursor: grabbing; }
 .ring-edge .re-line { fill: none; stroke: currentColor; opacity: 0.5; }
 .ring-edge.contra .re-line { stroke-dasharray: 7 5; }
 .ring-edge .re-head { fill: currentColor; opacity: 0.6; }
+.ring-edge .re-head.bar { fill: none; }
 .ring-edge .re-hit { fill: none; stroke: transparent; stroke-width: 10; }
 .ring-edge.off .re-line { opacity: 0.07; }
 .ring-edge.off .re-head { opacity: 0.08; }
@@ -389,3 +397,8 @@ svg.ring:active { cursor: grabbing; }
 .ring-node.sel circle { r: 9; stroke: var(--text); stroke-width: 2; }
 .ring-node.sel text { font-weight: 700; }
 .ring-node:hover text { fill: var(--accent); }
+
+/* transmitter chips */
+.tx-chip { display: inline-block; font-size: 11px; font-weight: 600; color: #fff; border-radius: 5px; padding: 0 5px; margin: 0 2px; white-space: nowrap; }
+.step-tx { font-size: 12.5px; margin-top: 2px; }
+.step-tx .muted { font-size: 12px; }

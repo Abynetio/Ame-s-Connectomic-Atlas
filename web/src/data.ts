@@ -83,6 +83,10 @@ export interface PathwayStep {
   /** cortical layer(s) holding the cell bodies of the outgoing neuron */
   layer_out?: string;
   layer_note?: string;
+  /** transmitter released by the neuron whose cell bodies are at this step, and its net effect at the synapse */
+  transmitter?: string;
+  effect?: "excitatory" | "inhibitory" | "modulatory" | "mixed";
+  transmitter_note?: string;
 }
 
 /** One neuron of a multi-synaptic pathway, derived from consecutive synaptic region steps. */
@@ -120,7 +124,15 @@ export interface Pathway {
   refs: string[];
 }
 
-export interface Edge { from: string; to: string; laterality: string; via: string[]; pathways: string[]; evidence: string[] }
+export interface Edge {
+  from: string;
+  to: string;
+  laterality: string;
+  via: string[];
+  pathways: string[];
+  transmitters?: { transmitter: string; effect: NonNullable<PathwayStep["effect"]> }[];
+  evidence: string[];
+}
 
 export interface MeshItem { key: string; nv: number; ni: number; itype: "u16" | "u32"; v: number; i: number }
 

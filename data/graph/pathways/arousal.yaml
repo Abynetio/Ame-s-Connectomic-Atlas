@@ -8,9 +8,9 @@
     the thalamic reticular nucleus then switch thalamocortical circuits from sleep-type burst
     firing to the tonic firing of wakefulness, activating the cortex diffusely.
   steps:
-    - {region: pedunculopontine_nucleus, side: ipsi, role: Cholinergic (Ch5) / glutamatergic neurons}
+    - {region: pedunculopontine_nucleus, side: ipsi, role: Cholinergic (Ch5) / glutamatergic neurons, transmitter: "Acetylcholine (with glutamate)", effect: excitatory, transmitter_note: "Nicotinic and M1 receptors depolarise thalamic relay neurons; M2 receptors hyperpolarise the thalamic reticular nucleus, removing its inhibition. Net effect: thalamic activation."}
     - {tract: reticular_tract, side: ipsi, note: Ascending reticulothalamic fibres in the central tegmentum}
-    - {region: CM, side: ipsi, role: Intralaminar thalamus (centromedian)}
+    - {region: CM, side: ipsi, role: Intralaminar thalamus (centromedian), transmitter: "Glutamate", effect: excitatory}
     - {tract: anterior_thalamic_radiation, side: ipsi, note: Diffuse thalamocortical projection (frontal portion shown)}
     - {region: rostral_middle_frontal_gyrus, side: ipsi, role: Widespread cortical activation, layer_in: "I", layer_note: "Intralaminar (matrix) thalamic axons spread widely in layer I, with deep-layer branches"}
   highlight:
@@ -32,9 +32,9 @@
     (tuberomammillary) and orexinergic (lateral hypothalamic) wake-promoting neurons, and reach
     the cholinergic basal forebrain, which projects to the entire cortex.
   steps:
-    - {region: locus_coeruleus, side: ipsi, role: Noradrenergic neuron (A6)}
+    - {region: locus_coeruleus, side: ipsi, role: Noradrenergic neuron (A6), transmitter: "Noradrenaline", effect: modulatory, transmitter_note: "α1 and β receptors are excitatory (wake-promoting neurons); α2 receptors are inhibitory (e.g. on sleep-promoting VLPO neurons)."}
     - {tract: medial_forebrain_bundle, side: ipsi, note: Ventral ascending route through the lateral hypothalamus}
-    - {region: hypothalamus, side: ipsi, role: "Lateral hypothalamus (orexin) and tuberomammillary nucleus (histamine)"}
+    - {region: hypothalamus, side: ipsi, role: "Lateral hypothalamus (orexin) and tuberomammillary nucleus (histamine)", transmitter: "Orexin (hypocretin) and histamine, with glutamate", effect: excitatory, transmitter_note: "OX1/OX2 and H1 receptors depolarise basal forebrain cholinergic neurons."}
     - {region: basal_forebrain, side: ipsi, role: Cholinergic nucleus basalis → whole cortex}
   highlight:
     - {region: dorsal_raphe, side: ipsi, note: Serotonergic axons travel in the same bundle}
@@ -56,9 +56,9 @@
     through inhibitory interneurons. This is a major site of opioid and stimulation-produced
     analgesia.
   steps:
-    - {region: periaqueductal_grey, side: ipsi, role: Ventrolateral PAG}
+    - {region: periaqueductal_grey, side: ipsi, role: Ventrolateral PAG, transmitter: "Glutamate", effect: excitatory, transmitter_note: "Opioids act in the PAG by inhibiting local GABAergic interneurons; this disinhibits the excitatory output to the RVM."}
     - {tract: pag_rvm_fibres, side: ipsi}
-    - {region: rostral_ventromedial_medulla, side: ipsi, role: Nucleus raphe magnus (ON/OFF cells)}
+    - {region: rostral_ventromedial_medulla, side: ipsi, role: Nucleus raphe magnus (ON/OFF cells), transmitter: "Serotonin (with GABA / glycine)", effect: modulatory, transmitter_note: "Net antinociceptive when OFF cells dominate: dorsal-horn transmission is inhibited directly and via enkephalinergic interneurons. ON cells facilitate pain."}
     - {tract: raphespinal_tract, side: ipsi, note: Dorsolateral funiculus}
     - {region: dorsal_horn_lumbosacral, side: ipsi, role: Laminae I/II — inhibition of spinothalamic neurons}
   clinical:

@@ -103,6 +103,12 @@ def validate_graph(g: dict) -> list[str]:
                     for pi in st.get("parts", []):
                         if pi >= n:
                             errors.append(f"{where}: tract '{st['tract']}' has no geometry part {pi}")
+        # every neuron (cell-body step followed by a later synaptic region) names its transmitter
+        syn = [k for k, st in enumerate(p["steps"]) if "region" in st and st.get("synapse", True)]
+        for k in syn[:-1]:
+            st = p["steps"][k]
+            if not st.get("transmitter") or not st.get("effect"):
+                errors.append(f"{p['_file']}:{p['id']} step {k}: neuron starting here needs 'transmitter' and 'effect'")
         if "region" not in p["steps"][0] or "region" not in p["steps"][-1] and "tract" not in p["steps"][-1]:
             errors.append(f"{p['_file']}:{p['id']}: a pathway must start at a region")
         for h in p.get("highlight", []):
