@@ -354,6 +354,7 @@ def main() -> int:
         geo = r["geometry"]
         rec = {k: v for k, v in r.items() if k not in ("geometry", "anchors")}
         rec["kind"] = geo["kind"]
+        rec["source"] = geo.get("source", "schematic")
         rec["style"] = geo.get("style", "default")
         rec["sides"] = {}
         if geo["kind"] == "data":
@@ -415,13 +416,14 @@ def main() -> int:
                     cl = centerlines[bname]
                     prec["sides"][side] = {"bundle": bundle_index[bname], "centerline": rnd(cl)}
             elif part["kind"] == "data":
-                prec["source"] = part["source"]
+                prec["source"] = part["source"]  # hcp842 / thomas volumes
                 for side, lab in part["labels"].items():
                     mask, aff = vols.label_mask(part["source"], lab)
                     v, f = mask_to_mesh(mask, aff, 2500, sigma=0.9 if part["source"] == "hcp842" else 1.0)
                     cl = mask_centerline(mask, aff)
                     prec["sides"][side] = {"mesh": meshes.add(f"tract:{t['id']}:{pi}:{side}", v, f), "centerline": rnd(cl)}
             else:
+                prec["source"] = "schematic"
                 prec["radius"] = part.get("radius", 0.8)
                 for side in sides_of(part["path"]):
                     path = catmull_rom(side_points(part["path"], side), 0.75)
@@ -500,7 +502,7 @@ def main() -> int:
                 if v not in e["via"]:
                     e["via"].append(v)
             e["pathways"].append(pw["id"])
-            if any(tracts_by_id[v]["parts"][0]["kind"] == "data" for v in via) and "human-tractography" not in e["evidence"]:
+            if any(p["kind"] == "data" for v in via for p in tracts_by_id[v]["parts"]) and "human-tractography" not in e["evidence"]:
                 e["evidence"].append("human-tractography")
 
     # ---------------------------------------------------------------- slices

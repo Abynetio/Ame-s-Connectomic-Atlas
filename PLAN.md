@@ -8,7 +8,7 @@ which tract carries its output, and where that output ends up**. Slice
 atlases show the structures but leave the student to work out the wiring.
 This atlas shows the wiring.
 
-Status: **plan only — awaiting approval before implementation.**
+Status: **Phase 0 and Phase 1 (motor + somatosensory vertical slice) implemented — v0.1.** Phase 2 content in progress.
 
 ---
 

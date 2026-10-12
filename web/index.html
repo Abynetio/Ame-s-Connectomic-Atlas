@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ame's Connectomic Atlas</title>
+    <meta name="description" content="A 3D projection-level atlas of the human central nervous system for neuroanatomy teaching: regions, tracts and where they project." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%232f8fd8'/%3E%3Cpath d='M8 20c4-10 12-10 16 0' stroke='white' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <header class="topbar">
+      <button id="menu-btn" class="icon-btn only-mobile" type="button" aria-label="Show lists">☰</button>
+      <h1>Ame's Connectomic Atlas <span class="version">v0.1 · motor &amp; somatosensory</span></h1>
+      <nav class="views" aria-label="Camera views">
+        <button type="button" data-view="left">Left</button>
+        <button type="button" data-view="right">Right</button>
+        <button type="button" data-view="anterior">Front</button>
+        <button type="button" data-view="posterior">Back</button>
+        <button type="button" data-view="superior">Top</button>
+        <button type="button" data-view="inferior">Bottom</button>
+      </nav>
+      <button id="about-btn" type="button" class="ghost">About &amp; sources</button>
+    </header>
+
+    <aside id="sidebar">
+      <input id="search" type="search" placeholder="Search names, Latin, abbreviations…" aria-label="Search" />
+      <div id="systems" class="chips" aria-label="Filter by system"></div>
+      <div class="tabs" role="tablist">
+        <button type="button" data-tab="pathways" class="active">Pathways <span class="count"></span></button>
+        <button type="button" data-tab="tracts">Tracts <span class="count"></span></button>
+        <button type="button" data-tab="regions">Regions <span class="count"></span></button>
+      </div>
+      <ul id="list"></ul>
+      <details class="display" open>
+        <summary>Display</summary>
+        <label><input id="glass" type="checkbox" checked /> Glass brain</label>
+        <label class="row">Opacity <input id="glass-opacity" type="range" min="0.05" max="1" step="0.05" value="0.28" /></label>
+        <label><input id="all-tracts" type="checkbox" /> Show all tracts (faint)</label>
+        <label class="row">Streamline colour
+          <select id="color-mode"><option value="direction">Direction (RGB)</option><option value="system">System</option></select>
+        </label>
+        <div class="slices">
+          <label><input id="slice-axial" type="checkbox" /> Axial</label><input id="slice-axial-mm" type="range" min="-70" max="80" step="1" value="0" /><span id="slice-axial-val" class="muted"></span>
+          <label><input id="slice-coronal" type="checkbox" /> Coronal</label><input id="slice-coronal-mm" type="range" min="-110" max="70" step="1" value="-20" /><span id="slice-coronal-val" class="muted"></span>
+          <label><input id="slice-sagittal" type="checkbox" /> Sagittal</label><input id="slice-sagittal-mm" type="range" min="-75" max="75" step="1" value="-4" /><span id="slice-sagittal-val" class="muted"></span>
+        </div>
+        <p class="legend"><span class="sw data"></span> imaging-derived &nbsp; <span class="sw schematic"></span> schematic (approximate)</p>
+      </details>
+    </aside>
+
+    <main id="stage">
+      <div id="loading">Loading…</div>
+      <div id="tooltip" hidden></div>
+      <div class="orientation" aria-hidden="true">MNI space · R = right · A = anterior · S = superior</div>
+    </main>
+
+    <aside id="info">
+      <button id="info-toggle" class="icon-btn only-mobile" type="button" aria-label="Toggle details">▾</button>
+      <div id="info-body"></div>
+    </aside>
+
+    <dialog id="about">
+      <form method="dialog"><button class="close" aria-label="Close">✕</button></form>
+      <h2>About this atlas</h2>
+      <p>
+        A 3D, projection-level atlas of the human central nervous system for teaching neuroanatomy at medical-school level and above.
+        It separates two layers: a hand-curated <strong>knowledge graph</strong> (which structure projects where, through which tract,
+        with citations) and <strong>geometry</strong> from open imaging atlases in MNI ICBM152 space. Structures without an openly
+        licensed imaging atlas are drawn as <em>schematic</em> shapes (wireframe / dashed) and their positions are approximate.
+      </p>
+      <p class="warn">
+        <strong>Not for clinical use.</strong> Diffusion tractography shows the course of bundles, not synapses or direction; it has
+        false positives and negatives. Nothing here should be used for diagnosis or surgical planning.
+      </p>
+      <h3>Data sources and licences</h3>
+      <table class="sources"><thead><tr><th>Source</th><th>Licence</th><th>Cite</th></tr></thead><tbody id="about-sources"></tbody></table>
+      <p class="muted">
+        Data were provided [in part] by the Human Connectome Project, WU-Minn Consortium (Principal Investigators: David Van Essen and
+        Kamil Ugurbil; 1U54MH091657) funded by the 16 NIH Institutes and Centers that support the NIH Blueprint for Neuroscience
+        Research; and by the McDonnell Center for Systems Neuroscience at Washington University. HCP-derived files are redistributed
+        under the WU-Minn HCP Open Access Data Use Terms.
+      </p>
+      <p class="muted">
+        ICBM152 template and CerebrA: Copyright (C) 1993–2004 Louis Collins, McConnell Brain Imaging Centre, Montreal Neurological
+        Institute, McGill University. Atlas content (text and knowledge graph) is CC BY-SA 4.0; code is MIT.
+        <a id="repo-link" href="#" target="_blank" rel="noopener">Source code, issues and corrections on GitHub</a>.
+      </p>
+    </dialog>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
