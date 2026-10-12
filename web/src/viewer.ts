@@ -86,6 +86,10 @@ export class Viewer {
   private contextObjs: THREE.Mesh[] = [];
   private tractObjs = new Map<string, TractObj>(); // key id:part:side
   private routeGroup = new THREE.Group();
+  /** all-pathways map: one thin tube per pathway (built once), plus a thick copy for the focused one */
+  private overviewGroup = new THREE.Group();
+  private overviewTubes = new Map<string, { thin: THREE.Mesh; thick: THREE.Mesh; pick: THREE.Vector3[] }>();
+  private overviewState: { focus: string | null; hover: string | null; match: Set<string> | null } | null = null;
   private labelGroup = new THREE.Group();
   /** labels kept clear of the 3D markers: offset each frame by the marker's on-screen radius */
   private pins: { wrap: HTMLElement; pos: THREE.Vector3; r: number; priority: number }[] = [];
@@ -133,7 +137,7 @@ export class Viewer {
     key.position.set(-1, 1, 2);
     this.camera.add(key);
     this.scene.add(this.camera);
-    this.scene.add(this.routeGroup, this.labelGroup, this.sliceGroup, this.layerGroup);
+    this.scene.add(this.routeGroup, this.overviewGroup, this.labelGroup, this.sliceGroup, this.layerGroup);
 
     this.buildContext();
     this.buildRegions();
@@ -384,6 +388,7 @@ export class Viewer {
     for (const [mesh, { region, mode }] of this.regionModes) if (mesh.visible) this.styleRegion(mesh, region, mode);
     for (const rec of this.tractObjs.values()) if (rec.obj.visible) this.styleTract(rec, rec.mode);
     if (this.routeMat) this.routeMat.uniforms.uBright.value = b;
+    this.styleOverview();
   }
 
   /** Draw the circuit over the glass brain (full colour) or behind it (softer, more depth). */
@@ -415,6 +420,110 @@ export class Viewer {
     this.layerGroup.clear();
     this.routeMat = null;
     this.current = null;
+    this.overviewGroup.visible = false;
+    this.overviewState = null;
+  }
+
+  // ------------------------------------------------------------------ all-pathways map
+  private overviewTube(pw: Pathway) {
+    let rec = this.overviewTubes.get(pw.id);
+    if (rec) return rec;
+    const pts = pw.routes.L.points.map((p) => new THREE.Vector3(...p));
+    if (pts.length < 2) pts.push(pts[0].clone().add(new THREE.Vector3(0, 0, 0.1)));
+    const curve = new THREE.CatmullRomCurve3(pts, false, "centripetal");
+    const seg = Math.min(600, pts.length * 3);
+    const mk = (r: number, order: number, onTop: boolean) => {
+      const m = new THREE.Mesh(new THREE.TubeGeometry(curve, seg, r, 6, false), new THREE.MeshBasicMaterial({ color: colorFor([pw.system]), transparent: true, depthTest: !onTop }));
+      m.renderOrder = order;
+      m.raycast = () => {};
+      this.overviewGroup.add(m);
+      return m;
+    };
+    // a coarse copy of the route for screen-space picking
+    const pick = curve.getSpacedPoints(Math.max(8, Math.round(curve.getLength() / 4)));
+    // the highlighted route is drawn on top of the regions so it never hides inside a nucleus
+    rec = { thin: mk(0.45, 20, false), thick: mk(1.1, 24, true), pick };
+    this.overviewTubes.set(pw.id, rec);
+    return rec;
+  }
+
+  /** Every pathway at once, coloured by system; `match` (a filter) dims the rest. */
+  showOverview(pathways: Pathway[], focus: string | null, match: Set<string> | null, frame: boolean) {
+    this.clearAll();
+    this.overviewGroup.visible = true;
+    this.overviewState = { focus, hover: null, match };
+    const fpw = pathways.find((p) => p.id === focus);
+    if (fpw) {
+      for (const st of fpw.steps) {
+        const side = mirrorSide("L", st.side);
+        if (st.region) this.setRegionMode(st.region, side, "dim");
+        if (st.tract) this.showTract(st.tract, side, "dim", st.parts);
+      }
+    }
+    for (const pw of pathways) this.overviewTube(pw);
+    this.styleOverview();
+    if (fpw) {
+      const pts = fpw.routes.L.points;
+      const mid = pts[Math.floor(pts.length / 2)];
+      if (mid) {
+        const el = document.createElement("div");
+        el.className = "map-label";
+        el.style.borderColor = colorFor([fpw.system]);
+        el.textContent = fpw.name;
+        this.pin(new THREE.Vector3(...mid), 2, el, "above", 9);
+      }
+    }
+    if (frame) this.focusPoints(pathways.flatMap((p) => p.routes.L.points), 80);
+  }
+
+  setOverviewHover(id: string | null) {
+    if (!this.overviewState || this.overviewState.hover === id) return;
+    this.overviewState.hover = id;
+    this.styleOverview();
+  }
+
+  private styleOverview() {
+    const st = this.overviewState;
+    if (!st) return;
+    for (const [id, rec] of this.overviewTubes) {
+      const isFocus = id === st.focus;
+      const lit = isFocus || id === st.hover;
+      const inMatch = !st.match || st.match.has(id);
+      (rec.thin.material as THREE.MeshBasicMaterial).opacity = lit ? 1 : inMatch ? (st.focus ? 0.38 : 0.7) : 0.08;
+      (rec.thin.material as THREE.MeshBasicMaterial).color.set(colorFor([this.atlas.pathwayById.get(id)!.system])).multiplyScalar(this.brightness);
+      rec.thick.visible = lit;
+    }
+  }
+
+  /** Pathway whose route passes nearest the pointer on screen (within `tol` pixels). */
+  pickPathway(ev: { clientX: number; clientY: number }, tol = 10): string | null {
+    const st = this.overviewState;
+    if (!st) return null;
+    const rect = this.renderer.domElement.getBoundingClientRect();
+    const mx = ev.clientX - rect.left, my = ev.clientY - rect.top;
+    const v = new THREE.Vector3();
+    let best: string | null = null, bestD = tol;
+    for (const [id, rec] of this.overviewTubes) {
+      if (st.match && !st.match.has(id)) continue;
+      let px = NaN, py = NaN;
+      for (const p of rec.pick) {
+        v.copy(p).project(this.camera);
+        const x = ((v.x + 1) / 2) * rect.width, y = ((1 - v.y) / 2) * rect.height;
+        if (!Number.isNaN(px) && v.z < 1) {
+          // distance from the pointer to the projected segment
+          const dx = x - px, dy = y - py, l2 = dx * dx + dy * dy || 1;
+          const t = Math.max(0, Math.min(1, ((mx - px) * dx + (my - py) * dy) / l2));
+          const d = Math.hypot(px + t * dx - mx, py + t * dy - my);
+          if (d < bestD) {
+            bestD = d;
+            best = id;
+          }
+        }
+        px = x;
+        py = y;
+      }
+    }
+    return best;
   }
 
   showRegion(id: string, side: Side | "both" = "both") {

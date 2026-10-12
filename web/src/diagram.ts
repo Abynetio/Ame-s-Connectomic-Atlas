@@ -7,7 +7,7 @@ import { ALLOCORTEX, Atlas, Edge, Pathway, Region, Side, mirrorSide, pathwayNeur
 import { EFFECT_COLOR, EFFECT_SIGN, Effect, colorFor, neuronShade, transmitterShort } from "./palette";
 
 export type DiagramSel = { type: "pathway" | "tract" | "region"; id: string } | null;
-export interface DiagramState { sel: DiagramSel; start: "L" | "R"; step: number; system: string | null }
+export interface DiagramState { sel: DiagramSel; start: "L" | "R"; step: number; system: string | null; overview?: boolean }
 export interface DiagramHooks { select(sel: NonNullable<DiagramSel>): void; step(k: number): void }
 
 const SVG = "http://www.w3.org/2000/svg";
@@ -138,11 +138,13 @@ export class Diagram {
   }
 
   update(state: DiagramState) {
-    const pathwayChanged = state.sel?.id !== this.state.sel?.id || state.sel?.type !== this.state.sel?.type || state.start !== this.state.start || state.system !== this.state.system;
+    const pathwayChanged = state.sel?.id !== this.state.sel?.id || state.sel?.type !== this.state.sel?.type || state.start !== this.state.start || state.system !== this.state.system || !!state.overview !== !!this.state.overview;
     this.state = { ...state };
     // follow the selection unless the student picked a tab by hand
     const want = state.sel?.type === "pathway" ? "pathway" : "network";
-    if (state.sel?.type !== "pathway") this.tab = "network";
+    // on the all-pathways map the connectogram leads, unless the student asked for the wiring
+    if (state.overview) this.tab = state.sel && this.userTab === "pathway" ? "pathway" : "network";
+    else if (state.sel?.type !== "pathway") this.tab = "network";
     else this.tab = this.userTab ?? want;
     if (pathwayChanged || this.tab === "network") this.dirty = true;
     if (this.visible) this.render();

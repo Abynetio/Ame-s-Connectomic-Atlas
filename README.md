@@ -49,6 +49,9 @@ Pathways by system:
   arousal routes, descending pain modulation (PAG → RVM → dorsal horn)
 
 Viewer features:
+- an all-pathways map as the start page: every pathway drawn at once, coloured by system; hover
+  to name a route, click to open it, or browse with the keyboard (↑/↓ pathway, ←/→ system,
+  Enter to open, Esc to come back; inside a pathway ←/→ step through it)
 - search across names, Latin terms, abbreviations and synonyms
 - system filters
 - pathway tracing with a left/right starting side, an animated route and step labels

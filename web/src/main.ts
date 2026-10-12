@@ -34,25 +34,35 @@ class App {
   playTimer: number | null = null;
   diagram: Diagram;
   mode: "3d" | "split" | "2d" = "3d";
+  /** pathway highlighted on the all-pathways map (sel === null means the map is showing) */
+  mapFocus: string | null = null;
+  private mapShown = false;
 
   constructor(atlas: Atlas) {
     this.atlas = atlas;
     this.viewer = new Viewer($("#stage"), atlas);
-    this.diagram = new Diagram($("#diagram"), atlas, { select: (s) => this.select(s), step: (k) => this.gotoStep(k) });
+    this.diagram = new Diagram($("#diagram"), atlas, {
+      select: (s) => this.select(s),
+      step: (k) => {
+        if (!this.sel && this.mapFocus) this.select({ type: "pathway", id: this.mapFocus });
+        this.gotoStep(k);
+      },
+    });
     this.bindChrome();
     this.renderSystems();
     this.renderList();
     window.addEventListener("hashchange", () => this.fromHash());
-    if (!this.fromHash()) this.select({ type: "pathway", id: "lateral_corticospinal_hand" });
+    if (!this.fromHash()) this.showMap(null);
   }
 
   // ------------------------------------------------------------------ URL state
   private toHash() {
-    if (!this.sel) return;
-    const p = new URLSearchParams({ [this.sel.type]: this.sel.id });
-    if (this.sel.type === "pathway") {
-      p.set("side", this.start);
-      p.set("step", String(this.step + 1));
+    const p = this.sel ? new URLSearchParams({ [this.sel.type]: this.sel.id }) : new URLSearchParams({ map: this.mapFocus ?? "" });
+    if (this.sel) {
+      if (this.sel.type === "pathway") {
+        p.set("side", this.start);
+        p.set("step", String(this.step + 1));
+      }
     }
     if (this.mode !== "3d") p.set("view", this.mode);
     const s = `#${p.toString()}`;
@@ -68,6 +78,10 @@ class App {
     const p = new URLSearchParams(location.hash.slice(1));
     const view = p.get("view");
     this.setMode(view === "split" || view === "2d" ? view : "3d", false);
+    if (p.has("map")) {
+      this.showMap(p.get("map") || null);
+      return true;
+    }
     for (const type of ["pathway", "tract", "region"] as const) {
       const id = p.get(type);
       if (!id) continue;
@@ -86,7 +100,9 @@ class App {
     $("#search").addEventListener("input", (e) => {
       this.query = (e.target as HTMLInputElement).value.trim().toLowerCase();
       this.renderList();
+      if (!this.sel) this.showMap(this.mapFocus, false);
     });
+    $("#map-btn").addEventListener("click", () => this.showMap(this.sel?.type === "pathway" ? this.sel.id : this.mapFocus));
     document.querySelectorAll<HTMLButtonElement>("[data-tab]").forEach((b) =>
       b.addEventListener("click", () => {
         this.tab = b.dataset.tab as App["tab"];
@@ -130,6 +146,10 @@ class App {
     canvas.addEventListener("pointerdown", (e) => (down = { x: e.clientX, y: e.clientY }));
     canvas.addEventListener("pointerup", (e) => {
       if (Math.hypot(e.clientX - down.x, e.clientY - down.y) > 4) return;
+      if (!this.sel) {
+        const id = this.viewer.pickPathway(e);
+        if (id) return this.select({ type: "pathway", id });
+      }
       const hit = this.viewer.pick(e);
       if (hit && hit.kind !== "context") this.select({ type: hit.kind, id: hit.id });
     });
@@ -137,6 +157,20 @@ class App {
     canvas.addEventListener("pointermove", (e) => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
+        if (!this.sel) {
+          const id = this.viewer.pickPathway(e);
+          this.viewer.setOverviewHover(id);
+          canvas.style.cursor = id ? "pointer" : "";
+          if (id) {
+            const pw = this.atlas.pathwayById.get(id)!;
+            tip.hidden = false;
+            tip.textContent = `${pw.name} — ${SYSTEM_LABELS[pw.system] ?? pw.system}`;
+            const r = canvas.getBoundingClientRect();
+            tip.style.left = `${e.clientX - r.left + 14}px`;
+            tip.style.top = `${e.clientY - r.top + 10}px`;
+            return;
+          }
+        }
         const hit: PickInfo | null = this.viewer.pick(e);
         if (!hit) {
           tip.hidden = true;
@@ -150,12 +184,7 @@ class App {
       });
     });
     canvas.addEventListener("pointerleave", () => (tip.hidden = true));
-    window.addEventListener("keydown", (e) => {
-      if ((e.target as HTMLElement).tagName === "INPUT") return;
-      if (this.sel?.type !== "pathway") return;
-      if (e.key === "ArrowRight") this.gotoStep(this.step + 1);
-      if (e.key === "ArrowLeft") this.gotoStep(this.step - 1);
-    });
+    window.addEventListener("keydown", (e) => this.onKey(e));
   }
 
   private renderSystems() {
@@ -169,7 +198,8 @@ class App {
         this.system = this.system === key ? null : key;
         this.renderSystems();
         this.renderList();
-        this.syncDiagram();
+        if (!this.sel) this.showMap(this.mapFocus, false);
+        else this.syncDiagram();
       });
       return b;
     };
@@ -184,7 +214,7 @@ class App {
     const q = this.query;
     const sysOk = (systems: string[]) => !this.system || systems.includes(this.system);
     const item = (type: NonNullable<Sel>["type"], id: string, name: string, sub: string, color: string, extra = "") => {
-      const active = this.sel?.type === type && this.sel.id === id;
+      const active = this.sel ? this.sel.type === type && this.sel.id === id : type === "pathway" && id === this.mapFocus;
       const li = h("li", {}, h("button", { class: "item" + (active ? " active" : ""), type: "button" }, h("span", { class: "dot", style: `background:${color}` }), h("span", { class: "name" }, name), sub ? h("span", { class: "sub" }, sub) : "", extra ? h("span", { class: "badge" }, extra) : ""));
       li.firstElementChild!.addEventListener("click", () => {
         this.select({ type, id });
@@ -193,7 +223,7 @@ class App {
       return li;
     };
     const counts = { pathways: 0, tracts: 0, regions: 0 };
-    const pw = this.atlas.graph.pathways.filter((p) => sysOk([p.system]) && (!q || p.name.toLowerCase().includes(q) || p.summary.toLowerCase().includes(q)));
+    const pw = this.navList();
     const tr = this.atlas.graph.tracts.filter((t) => sysOk(t.systems) && (!q || searchText(t).includes(q)));
     const rg = this.atlas.graph.regions.filter((r) => sysOk(r.systems) && (!q || searchText(r).includes(q)));
     counts.pathways = pw.length;
@@ -224,6 +254,112 @@ class App {
       }
     }
     if (!list.children.length) list.append(h("li", { class: "empty" }, "Nothing matches."));
+    list.querySelector(".item.active")?.scrollIntoView({ block: "nearest" });
+  }
+
+  /** Pathways passing the search and system filter, in sidebar order (grouped by system). */
+  private navList(): Pathway[] {
+    const q = this.query;
+    const pws = this.atlas.graph.pathways.filter((p) => (!this.system || p.system === this.system) && (!q || p.name.toLowerCase().includes(q) || p.summary.toLowerCase().includes(q)));
+    return [...groupBy(pws, (p) => p.system).values()].flat();
+  }
+
+  // ------------------------------------------------------------------ all-pathways map
+  showMap(focus: string | null, frame = true) {
+    this.stopPlay();
+    const wasMap = !this.sel && this.mapShown;
+    this.sel = null;
+    this.mapShown = true;
+    const nav = this.navList();
+    this.mapFocus = focus && this.atlas.pathwayById.has(focus) ? focus : null;
+    const filtered = nav.length !== this.atlas.graph.pathways.length;
+    this.viewer.showOverview(this.atlas.graph.pathways, this.mapFocus, filtered ? new Set(nav.map((p) => p.id)) : null, frame && !wasMap);
+    $("#map-btn").classList.add("active");
+    this.renderInfo();
+    this.renderList();
+    this.syncDiagram();
+    this.toHash();
+  }
+
+  /** Keys: map — ↑/↓ pathway, ←/→ system, Enter open; pathway — ←/→ step, ↑/↓ pathway, Esc map. */
+  private onKey(e: KeyboardEvent) {
+    const t = e.target as HTMLElement;
+    if (["INPUT", "SELECT", "TEXTAREA"].includes(t.tagName) || t.isContentEditable || $<HTMLDialogElement>("#about").open) return;
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    const nav = this.navList();
+    if (!nav.length) return;
+    const cur = !this.sel ? this.mapFocus : this.sel.type === "pathway" ? this.sel.id : null;
+    const i = nav.findIndex((p) => p.id === cur);
+    const wrap = (k: number) => nav[(k + nav.length) % nav.length];
+    const systemJump = (dir: 1 | -1) => {
+      // first pathway of the next / previous system in the list
+      const sys = [...new Set(nav.map((p) => p.system))];
+      const si = i < 0 ? (dir > 0 ? -1 : 0) : sys.indexOf(nav[i].system);
+      const target = sys[(si + dir + sys.length) % sys.length];
+      return nav.find((p) => p.system === target)!;
+    };
+    let handled = true;
+    if (!this.sel) {
+      if (e.key === "ArrowDown") this.showMap(i < 0 ? nav[0].id : wrap(i + 1).id);
+      else if (e.key === "ArrowUp") this.showMap(i < 0 ? nav[nav.length - 1].id : wrap(i - 1).id);
+      else if (e.key === "ArrowRight") this.showMap(systemJump(1).id);
+      else if (e.key === "ArrowLeft") this.showMap(systemJump(-1).id);
+      else if (e.key === "Enter" && this.mapFocus) this.select({ type: "pathway", id: this.mapFocus });
+      else handled = false;
+    } else if (this.sel.type === "pathway") {
+      if (e.key === "ArrowRight") this.gotoStep(this.step + 1);
+      else if (e.key === "ArrowLeft") this.gotoStep(this.step - 1);
+      else if (e.key === "ArrowDown") this.select({ type: "pathway", id: wrap(i + 1).id });
+      else if (e.key === "ArrowUp") this.select({ type: "pathway", id: wrap(i < 0 ? 0 : i - 1).id });
+      else if (e.key === "Escape") this.showMap(this.sel.id);
+      else handled = false;
+    } else if (e.key === "Escape") this.showMap(this.mapFocus);
+    else handled = false;
+    if (handled) e.preventDefault();
+  }
+
+  private mapInfo(): HTMLElement {
+    const frag = h("div", { class: "map-panel" });
+    const all = this.atlas.graph.pathways;
+    const nav = this.navList();
+    frag.append(this.header("Overview", "All pathways", "var(--accent)"));
+    frag.append(
+      h("p", { class: "summary" }, `All ${all.length} pathways at once, each coloured by its system (drawn from the left-sided start). Hover a route to name it, click it to open it.`),
+      h(
+        "div",
+        { class: "keys" },
+        h("span", {}, h("kbd", {}, "↑"), " ", h("kbd", {}, "↓")), h("span", {}, "previous / next pathway"),
+        h("span", {}, h("kbd", {}, "←"), " ", h("kbd", {}, "→")), h("span", {}, "previous / next system"),
+        h("kbd", {}, "Enter"), h("span", {}, "open the highlighted pathway"),
+        h("kbd", {}, "Esc"), h("span", {}, "back to this map from a pathway, region or tract"),
+      ),
+    );
+    const f = this.mapFocus ? this.atlas.pathwayById.get(this.mapFocus) : undefined;
+    if (f) {
+      const open = h("button", { type: "button", class: "primary" }, "Open pathway (Enter)");
+      open.addEventListener("click", () => this.select({ type: "pathway", id: f.id }));
+      const k = nav.findIndex((p) => p.id === f.id);
+      frag.append(
+        h(
+          "div",
+          { class: "map-focus", style: `border-left-color:${colorFor([f.system])}` },
+          h("div", { class: "kind" }, `${SYSTEM_LABELS[f.system] ?? f.system}${k >= 0 ? ` · ${k + 1} of ${nav.length}` : ""} · ${f.steps.length} steps`),
+          h("h3", {}, f.name),
+          h("p", {}, f.summary),
+          open,
+        ),
+      );
+    } else frag.append(h("p", { class: "muted" }, "Press ↓ or pick a system below to start browsing."));
+    const counts = new Map<string, number>();
+    for (const p of nav) counts.set(p.system, (counts.get(p.system) ?? 0) + 1);
+    const ul = h("ul", { class: "map-systems" });
+    for (const [sys, n] of counts) {
+      const b = h("button", { type: "button", class: f?.system === sys ? "active" : "" }, h("span", { class: "dot", style: `background:${colorFor([sys])}` }), SYSTEM_LABELS[sys] ?? sys, h("span", { class: "n" }, String(n)));
+      b.addEventListener("click", () => this.showMap(nav.find((p) => p.system === sys)!.id));
+      ul.append(h("li", {}, b));
+    }
+    frag.append(h("div", { class: "section" }, h("h3", {}, "Systems"), ul));
+    return frag;
   }
 
   // ------------------------------------------------------------------ selection
@@ -235,6 +371,9 @@ class App {
       if (!opts.keepStep) this.step = 0;
     }
     this.sel = sel;
+    if (sel.type === "pathway") this.mapFocus = sel.id;
+    this.mapShown = false;
+    $("#map-btn").classList.remove("active");
     const allTracts = $<HTMLInputElement>("#all-tracts").checked;
     if (sel.type === "pathway") {
       const pw = this.atlas.pathwayById.get(sel.id)!;
@@ -269,7 +408,8 @@ class App {
   }
 
   private syncDiagram() {
-    this.diagram.update({ sel: this.sel, start: this.start, step: this.step, system: this.system });
+    if (!this.sel) this.diagram.update({ sel: this.mapFocus ? { type: "pathway", id: this.mapFocus } : null, start: "L", step: 0, system: this.system, overview: true });
+    else this.diagram.update({ sel: this.sel, start: this.start, step: this.step, system: this.system });
   }
 
   private gotoStep(n: number) {
@@ -418,7 +558,11 @@ class App {
   private renderInfo() {
     const box = $("#info-body");
     box.innerHTML = "";
-    if (!this.sel) return;
+    if (!this.sel) {
+      box.append(this.mapInfo());
+      box.scrollTop = 0;
+      return;
+    }
     if (this.sel.type === "pathway") box.append(this.pathwayInfo(this.atlas.pathwayById.get(this.sel.id)!));
     else if (this.sel.type === "tract") box.append(this.tractInfo(this.atlas.tractById.get(this.sel.id)!));
     else box.append(this.regionInfo(this.atlas.regionById.get(this.sel.id)!));
@@ -438,6 +582,9 @@ class App {
 
   private pathwayInfo(pw: Pathway): HTMLElement {
     const frag = h("div");
+    const back = h("button", { type: "button", class: "back-link" }, "◂ All pathways");
+    back.addEventListener("click", () => this.showMap(pw.id));
+    frag.append(back);
     frag.append(this.header(`Pathway · ${SYSTEM_LABELS[pw.system] ?? pw.system}`, pw.name, colorFor([pw.system])));
     const sideSel = h("div", { class: "segmented", role: "group", "aria-label": "Starting side" });
     for (const s of ["L", "R"] as const) {
@@ -461,7 +608,7 @@ class App {
     next.addEventListener("click", () => this.gotoStep(this.step + 1));
     play.addEventListener("click", () => this.togglePlay());
     controls.append(prev, play, next, h("span", { class: "muted" }, `Step ${this.step + 1} / ${pw.steps.length}`));
-    frag.append(controls);
+    frag.append(controls, h("div", { class: "key-hint muted" }, "← → steps · ↑ ↓ other pathways · Esc all-pathways map"));
 
     const ol = h("ol", { class: "steps" });
     const neurons = pathwayNeurons(pw);

@@ -295,7 +295,9 @@ dialog .close { position: absolute; right: 14px; top: 12px; background: none; bo
   body { grid-template-columns: minmax(0, 1fr); grid-template-rows: 52px 1fr auto; grid-template-areas: "top" "stage" "info"; }
   .topbar h1 { min-width: 0; flex: 1; }
   #about-btn { font-size: 12px; padding: 4px 7px; white-space: nowrap; }
-  #about-btn .long { display: none; }
+  .topbar .long { display: none; }
+  .topbar .short { display: inline; }
+  #map-btn { font-size: 12px; padding: 4px 7px; }
   .dg-legend { flex-basis: 100%; order: 3; }
   .only-mobile { display: inline-block; }
   .views { display: none; }
@@ -402,3 +404,24 @@ svg.ring:active { cursor: grabbing; }
 .tx-chip { display: inline-block; font-size: 11px; font-weight: 600; color: #fff; border-radius: 5px; padding: 0 5px; margin: 0 2px; white-space: nowrap; }
 .step-tx { font-size: 12.5px; margin-top: 2px; }
 .step-tx .muted { font-size: 12px; }
+
+/* all-pathways map */
+.map-label { font-size: 12px; font-weight: 600; background: color-mix(in srgb, var(--panel) 92%, transparent); border: 1.5px solid var(--line); border-radius: 7px; padding: 2px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgb(0 0 0 / 18%); }
+.map-panel .keys { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; font-size: 12.5px; margin: 8px 0; align-items: baseline; }
+.map-panel kbd { font: 11px ui-monospace, monospace; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px; background: var(--panel-2); white-space: nowrap; }
+.map-focus { border: 1px solid var(--line); border-left: 5px solid var(--accent); border-radius: 10px; padding: 10px 12px; margin: 12px 0; background: var(--panel-2); }
+.map-focus h3 { margin: 2px 0 4px; font-size: 16px; text-transform: none; letter-spacing: 0; color: var(--text); }
+.map-focus .kind { font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.map-focus p { margin: 6px 0; font-size: 13px; }
+.map-focus button.primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 5px 12px; }
+.map-systems { list-style: none; padding: 0 !important; display: grid; gap: 2px; }
+.map-systems button { width: 100%; display: flex; align-items: center; gap: 8px; border: none; background: none; padding: 3px 6px; border-radius: 6px; text-align: left; font-size: 13px; }
+.map-systems button:hover { background: var(--panel-2); }
+.map-systems button.active { background: color-mix(in srgb, var(--accent) 14%, var(--panel)); }
+.map-systems .n { margin-left: auto; color: var(--muted); font-size: 12px; }
+#map-btn.active { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, var(--panel)); }
+.topbar .short { display: none; }
+#map-btn { margin-left: 12px; flex: none; }
+.back-link { border: none; background: none; color: var(--accent); padding: 0; font-size: 12.5px; margin-bottom: 6px; }
+.back-link:hover { text-decoration: underline; }
+.key-hint { font-size: 11.5px; margin: -2px 0 4px; }
