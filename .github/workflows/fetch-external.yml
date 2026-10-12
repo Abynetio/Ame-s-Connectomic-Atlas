@@ -4,10 +4,14 @@ name: Fetch external data
 # and commits them, with a fetch report, under data/external/ on the same branch.
 on:
   workflow_dispatch:
+  release:
+    types: [published, edited]
   push:
     paths:
       - pipeline/fetch_external.py
+      - pipeline/import_uploads.py
       - .github/workflows/fetch-external.yml
+      - "uploads/**"
 
 permissions:
   contents: write
@@ -22,20 +26,38 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+        with:
+          # release events would otherwise check out the tag; work on the default branch instead
+          ref: ${{ github.event_name == 'release' && github.event.repository.default_branch || github.ref }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - name: Download
         run: python -I pipeline/fetch_external.py --out data/external --max-mb 60
+      - name: Fetch manual uploads attached to the "source-uploads" release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p uploads
+          if gh release view source-uploads --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release download source-uploads --repo "$GITHUB_REPOSITORY" --dir uploads/release --clobber
+          else
+            echo "no source-uploads release"
+          fi
+      - name: Import manual uploads
+        run: |
+          python -I pipeline/import_uploads.py --uploads uploads --out data/external
+          rm -rf uploads/release
       - name: Commit results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/external
+          git add -A data/external uploads
           if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
           git commit -m "data: fetch external sources (run ${{ github.run_id }})"
+          BRANCH="${{ github.event_name == 'release' && github.event.repository.default_branch || github.ref_name }}"
           for i in 1 2 3 4; do
-            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            git pull --rebase origin "$BRANCH" && git push origin "HEAD:$BRANCH" && exit 0
             sleep $((2**i))
           done
           exit 1
