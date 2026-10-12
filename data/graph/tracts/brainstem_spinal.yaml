@@ -268,7 +268,11 @@
   kind: cranial_nerve
   systems: [oculomotor, cranial_nerves]
   geometry:
-    - {kind: data, source: hcp842, labels: {L: CNIV_L, R: CNIV_R}}
+    - {kind: data, source: hcp842, labels: {L: CNIV_L, R: CNIV_R}, label: "intracranial course (decussation, cisternal and cavernous segments)"}
+    - kind: schematic
+      label: orbital course (superior orbital fissure to the superior oblique)
+      path: {L: [[-17, 10, -30], [-21, 24, -32], [-25, 38, -34], [-29, 50, -34]]}
+      radius: 0.5
   origin: Trochlear nucleus (caudal midbrain, inferior colliculus level).
   course: The only cranial nerve to exit dorsally and to decussate completely (in the superior medullary velum); winds around the midbrain to the cavernous sinus.
   termination: Contralateral (relative to its nucleus) superior oblique muscle.

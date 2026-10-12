@@ -506,7 +506,7 @@ const EVIDENCE_LABELS: Record<string, string> = {
 
 function groupLabel(g: string): string {
   const [a, b] = g.split(".");
-  const top: Record<string, string> = { cortex: "Cortex", diencephalon: "Diencephalon", basal_ganglia: "Basal ganglia", mesencephalon: "Midbrain", brainstem: "Brainstem", cerebellum: "Cerebellum", spinal: "Spinal cord", ventricles: "Ventricles", basal_forebrain: "Basal forebrain", visual: "Visual", peripheral: "Peripheral" };
+  const top: Record<string, string> = { cortex: "Cortex", diencephalon: "Diencephalon", basal_ganglia: "Basal ganglia", mesencephalon: "Midbrain", brainstem: "Brainstem", cerebellum: "Cerebellum", spinal: "Spinal cord", ventricles: "Ventricles", basal_forebrain: "Basal forebrain", visual: "Visual", peripheral: "Peripheral", telencephalon: "Telencephalon" };
   const t = top[a] ?? a;
   return b ? `${t} — ${b.replace(/_/g, " ")}` : t;
 }

@@ -1,0 +1,303 @@
+# Schematic tracts for the remaining spinal, cerebellar, olfactory, gustatory and cranial-nerve
+# pathways. L = origin on the left; the right is mirrored. Spinal segments use the shortened
+# schematic cord.
+
+# ---------------------------------------------------------------- spinocerebellar
+- id: dorsal_spinocerebellar_tract
+  name: Dorsal (posterior) spinocerebellar tract
+  latin: Tractus spinocerebellaris posterior
+  abbrev: [DSCT]
+  kind: spinal
+  systems: [cerebellar]
+  geometry:
+    - kind: schematic
+      label: lateral funiculus, then the inferior cerebellar peduncle
+      path: {L: [[-2.5, -47.3, -128], [-5.8, -47.5, -126], [-6, -47.2, -100], [-6.2, -47, -76], [-9, -45.5, -62], [-11.5, -42, -50], [-12, -39, -45]]}
+      radius: 0.8
+  origin: Clarke's nucleus (C8-L2), relaying proprioception from the ipsilateral leg and lower trunk.
+  course: Ascends uncrossed at the dorsolateral periphery of the lateral funiculus; enters the cerebellum through the ipsilateral inferior cerebellar peduncle.
+  termination: Ipsilateral vermis and paravermis of the anterior lobe and pyramis (mossy fibres).
+  function: Unconscious proprioception — muscle spindle and Golgi tendon organ signals from individual leg muscles.
+  clinical: Degeneration of spinocerebellar tracts contributes to the ataxia of Friedreich ataxia.
+  refs: [nieuwenhuys2008, bosco2001]
+
+- id: ventral_spinocerebellar_tract
+  name: Ventral (anterior) spinocerebellar tract
+  latin: Tractus spinocerebellaris anterior
+  abbrev: [VSCT]
+  kind: spinal
+  systems: [cerebellar]
+  geometry:
+    - kind: schematic
+      label: crosses in the cord, ascends to the rostral pons, re-crosses in the cerebellum via the SCP
+      path: {L: [[-3.5, -45.5, -162], [0, -43.5, -160], [5, -43, -157], [6.8, -44.5, -150], [6.8, -44.5, -100], [7, -44, -76], [10, -41, -58], [13, -38, -42], [12, -38, -30], [9, -43, -24], [6, -50, -28], [3, -56, -30], [0, -60, -26]]}
+      radius: 0.8
+  origin: Spinal border cells and lamina V-VII neurons of the lumbosacral cord.
+  course: Most axons cross in the anterior white commissure, ascend at the ventrolateral periphery of the lateral funiculus to the rostral pons, then turn back into the cerebellum along the superior cerebellar peduncle, where many cross again.
+  termination: Anterior lobe vermis and paravermis (mostly ipsilateral to the origin after the double crossing).
+  decussation: Twice — in the spinal cord and again in the cerebellum.
+  function: Reports the activity of spinal interneuronal circuits (an efference copy of locomotor commands) rather than raw sensory input.
+  refs: [nieuwenhuys2008, bosco2001]
+
+- id: cuneocerebellar_tract
+  name: Cuneocerebellar tract
+  latin: Tractus cuneocerebellaris
+  kind: brainstem
+  systems: [cerebellar]
+  geometry:
+    - kind: schematic
+      path: {L: [[-8.5, -46.5, -57], [-10.5, -44.5, -52], [-12, -40, -46]]}
+      radius: 0.7
+  origin: External cuneate nucleus (upper-limb proprioceptors, via the fasciculus cuneatus).
+  course: Enters the ipsilateral inferior cerebellar peduncle.
+  termination: Ipsilateral anterior-lobe vermis and paravermis.
+  function: Upper-limb counterpart of the dorsal spinocerebellar tract.
+  refs: [nieuwenhuys2008, bosco2001]
+
+- id: olivocerebellar_fibres
+  name: Olivocerebellar fibres (climbing fibres)
+  latin: Fibrae olivocerebellares
+  kind: cerebellar
+  systems: [cerebellar, motor]
+  geometry:
+    - kind: schematic
+      path: {L: [[-7, -38, -56], [-3, -40, -54.5], [0, -41, -53], [4, -42, -51], [8.5, -41.5, -48], [12, -39, -45]]}
+      radius: 0.7
+  origin: Inferior olivary nucleus.
+  course: Cross the midline through the contralateral olive and enter the contralateral inferior cerebellar peduncle.
+  termination: Purkinje cells of the contralateral cerebellar cortex (one climbing fibre per Purkinje cell) and collaterals to the deep nuclei.
+  decussation: Medulla.
+  transmitter: glutamate
+  function: Error/teaching signal for motor learning.
+  refs: [nieuwenhuys2008]
+
+# ---------------------------------------------------------------- descending motor (non-pyramidal)
+- id: lateral_vestibulospinal_tract
+  name: Lateral vestibulospinal tract
+  latin: Tractus vestibulospinalis lateralis
+  abbrev: [LVST]
+  kind: spinal
+  systems: [motor, vestibular]
+  geometry:
+    - kind: schematic
+      path: {L: [[-8, -45, -44], [-8, -42.5, -52], [-7, -41.5, -62], [-5.5, -42, -74], [-5.2, -42, -100], [-5.2, -42, -158], [-3.8, -42.5, -165]]}
+      radius: 0.8
+  origin: Lateral vestibular nucleus (Deiters).
+  course: Descends uncrossed in the ventral part of the lateral funiculus / ventral funiculus to all cord levels.
+  termination: Ipsilateral ventral-horn interneurons and motor neurons of antigravity (extensor) muscles.
+  transmitter: glutamate
+  function: Postural extensor tone and balance reactions.
+  clinical: >-
+    With lesions between the red and vestibular nuclei, its unopposed drive produces decerebrate
+    (extensor) posturing — a sign of upper-brainstem compromise during herniation.
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: pontine_reticulospinal_tract
+  name: Pontine (medial) reticulospinal tract
+  latin: Tractus reticulospinalis pontinus
+  kind: spinal
+  systems: [motor]
+  geometry:
+    - kind: schematic
+      path: {L: [[-1.7, -33, -28], [-2.5, -38, -40], [-3, -40.5, -55], [-3, -41.5, -68], [-2.6, -41.6, -76], [-2.6, -41.6, -158], [-3.6, -42.5, -165]]}
+      radius: 0.7
+  origin: Oral and caudal pontine reticular nuclei.
+  course: Uncrossed, in the anterior funiculus.
+  termination: Medial ventral-horn interneurons and motor neurons (axial and proximal limb extensors).
+  function: Posture and anticipatory postural adjustments; locomotion. The medullary (lateral) reticulospinal tract has largely opposing, inhibitory effects.
+  clinical: Reticulospinal pathways contribute to spasticity and to recovery of proximal movement after corticospinal injury.
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: tectospinal_tract
+  name: Tectospinal tract
+  latin: Tractus tectospinalis
+  kind: spinal
+  systems: [motor, visual]
+  geometry:
+    - kind: schematic
+      path: {L: [[-4.5, -31, -4], [-2, -31.5, -8], [0, -32, -11], [1.8, -38, -25], [2, -41, -45], [2, -41, -60], [2, -41.5, -76], [2, -41.5, -97], [3.5, -42.5, -100]]}
+      radius: 0.6
+  origin: Deep layers of the superior colliculus.
+  course: Crosses in the dorsal tegmental decussation and descends near the MLF into the anterior funiculus of the cervical cord.
+  termination: Contralateral upper cervical ventral horn (neck muscles).
+  decussation: Dorsal tegmental decussation (midbrain).
+  function: Reflex orienting of the head toward visual (and auditory) stimuli.
+  refs: [nieuwenhuys2008]
+
+# ---------------------------------------------------------------- olfactory / gustatory
+- id: olfactory_tract
+  name: Olfactory nerve and olfactory tract (CN I)
+  latin: Nervi olfactorii; tractus olfactorius
+  abbrev: [CN I]
+  kind: cranial_nerve
+  systems: [olfactory]
+  geometry:
+    - kind: schematic
+      label: olfactory nerve fila through the cribriform plate
+      path: {L: [[-5, 42, -36], [-6, 41, -31], [-7, 40, -27]]}
+      radius: 0.6
+    - kind: schematic
+      label: olfactory tract and lateral olfactory stria
+      path: {L: [[-7, 40, -27], [-10, 28, -24], [-13, 16, -21], [-18, 10, -19], [-22, 4, -18]]}
+      radius: 1.0
+  origin: Olfactory receptor neurons (nerve) and mitral/tufted cells of the olfactory bulb (tract).
+  course: Fila pass through the cribriform plate; the tract runs in the olfactory sulcus to the olfactory trigone, then the lateral olfactory stria.
+  termination: Piriform cortex, periamygdaloid cortex and cortical amygdala, anterior entorhinal cortex (ipsilateral; no thalamic relay).
+  function: Smell.
+  clinical: Shearing of the fila in frontal head injury causes anosmia; loss of smell is an early sign of Parkinson and Alzheimer disease.
+  refs: [nieuwenhuys2008, gottfried2010]
+
+- id: solitary_tract
+  name: Solitary tract
+  latin: Tractus solitarius
+  kind: brainstem
+  systems: [gustatory, autonomic]
+  geometry:
+    - kind: schematic
+      path: {L: [[-11, -40, -42], [-8.5, -42.5, -45], [-7.5, -44, -50], [-6, -45.5, -57], [-4, -47, -64]]}
+      radius: 0.6
+  origin: Visceral afferent (including taste) fibres of CN VII, IX and X.
+  course: Enters the medulla and descends as a compact bundle surrounded by its nucleus.
+  termination: Nucleus of the solitary tract (taste rostrally, cardiorespiratory and gut afferents caudally).
+  function: Taste and visceral sensation.
+  refs: [nieuwenhuys2008]
+
+- id: glossopharyngeal_nerve
+  name: Glossopharyngeal nerve (CN IX)
+  latin: Nervus glossopharyngeus
+  abbrev: [CN IX]
+  kind: cranial_nerve
+  systems: [cranial_nerves, gustatory]
+  geometry:
+    - kind: schematic
+      path: {L: [[-25, -27, -64], [-23, -30, -57], [-17, -35, -53], [-12, -39, -50], [-8, -43, -50]]}
+      radius: 0.7
+  origin: Petrosal and superior ganglia (sensory); nucleus ambiguus (stylopharyngeus) and inferior salivatory nucleus (parotid).
+  course: Leaves the postolivary sulcus of the upper medulla and exits the skull through the jugular foramen.
+  termination: Solitary nucleus and spinal trigeminal nucleus (afferents).
+  function: Pharyngeal sensation (afferent limb of the gag reflex), taste and general sensation of the posterior third of the tongue, carotid sinus/body afferents.
+  clinical: Glossopharyngeal neuralgia; jugular foramen syndromes (Vernet) affect IX, X and XI together.
+  refs: [nieuwenhuys2008]
+
+# ---------------------------------------------------------------- reflex interneurons, gaze
+- id: ophthalmic_nerve
+  name: Ophthalmic division of the trigeminal nerve (V1)
+  latin: Nervus ophthalmicus
+  abbrev: [V1]
+  kind: cranial_nerve
+  systems: [somatosensory, cranial_nerves]
+  geometry:
+    - kind: schematic
+      path: {L: [[-28, 47, -38], [-25, 30, -34], [-22, 12, -32], [-21, -10, -33]]}
+      radius: 0.7
+  origin: Trigeminal ganglion neurons innervating the cornea, upper eyelid, forehead and nose (nasociliary, frontal and lacrimal branches).
+  course: Superior orbital fissure → lateral wall of the cavernous sinus → trigeminal ganglion.
+  termination: Trigeminal sensory nuclei.
+  function: Afferent limb of the corneal reflex; sensation of the upper face.
+  clinical: Herpes zoster ophthalmicus (Hutchinson sign at the nose tip predicts ocular involvement); cavernous sinus lesions.
+  refs: [nieuwenhuys2008]
+
+- id: trigeminofacial_fibres
+  name: Trigeminofacial reflex fibres
+  latin: Fibrae trigeminofaciales
+  kind: brainstem
+  systems: [cranial_nerves]
+  geometry:
+    - kind: schematic
+      label: to the ipsilateral facial nucleus (direct response)
+      path: {L: [[-8, -45, -55], [-9.5, -42, -50], [-11, -38, -46]]}
+      radius: 0.5
+    - kind: schematic
+      role: branch
+      label: to the contralateral facial nucleus (consensual response)
+      path: {L: [[-8, -45, -55], [-3, -41, -52], [3, -39, -49], [11, -38, -46]]}
+      radius: 0.5
+  origin: Spinal trigeminal nucleus (and principal nucleus) via reticular interneurons.
+  course: Short polysynaptic connections in the lateral tegmentum.
+  termination: Facial motor nuclei of both sides (orbicularis oculi motor neurons).
+  function: Central limb of the corneal (blink) reflex.
+  refs: [nieuwenhuys2008]
+
+- id: fef_pprf_fibres
+  name: Frontal eye field projection to the PPRF
+  latin: Fibrae corticoreticulares
+  kind: projection
+  systems: [oculomotor]
+  geometry:
+    - kind: schematic
+      label: crossing in the caudal midbrain / pons
+      path: {L: [[-2, -29, -34], [0, -34, -35], [3, -39.5, -36]]}
+      radius: 0.5
+  origin: Frontal eye field (with relays in the superior colliculus).
+  course: Descends with frontopontine fibres in the internal capsule and cerebral peduncle, then crosses.
+  termination: Contralateral paramedian pontine reticular formation.
+  function: Command for voluntary horizontal saccades to the opposite side.
+  refs: [nieuwenhuys2008, leigh2015]
+
+- id: hypoglossal_nerve
+  name: Hypoglossal nerve (CN XII)
+  latin: Nervus hypoglossus
+  abbrev: [CN XII]
+  kind: cranial_nerve
+  systems: [motor, cranial_nerves]
+  geometry:
+    - kind: schematic
+      path: {L: [[-2, -46.5, -57], [-4, -42, -59], [-6, -36, -61], [-14, -30, -66], [-22, -26, -72], [-24, -10, -82]]}
+      radius: 0.7
+  origin: Hypoglossal nucleus.
+  course: Fascicles run ventrally, lateral to the medial lemniscus, and exit in the preolivary sulcus; leaves the skull through the hypoglossal canal.
+  termination: Intrinsic and extrinsic tongue muscles (except palatoglossus).
+  function: Tongue movement.
+  clinical: Lesion → ipsilateral tongue atrophy and fasciculations, deviation toward the lesion on protrusion. Medial medullary syndrome; hypoglossal canal involvement in skull-base tumours and carotid dissection.
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+# ---------------------------------------------------------------- oculosympathetic pathway
+- id: hypothalamospinal_tract
+  name: Hypothalamospinal tract (central sympathetic pathway)
+  latin: Tractus hypothalamospinalis
+  kind: brainstem
+  systems: [autonomic]
+  geometry:
+    - kind: schematic
+      path: {L: [[-5, -4, -10], [-6, -15, -14], [-8, -25, -20], [-9.5, -35, -35], [-9.5, -41, -55], [-6.5, -45.5, -74], [-5.5, -45.5, -100], [-4.5, -45, -110]]}
+      radius: 0.6
+  origin: Posterior and paraventricular hypothalamus (first-order neuron).
+  course: Descends uncrossed through the lateral brainstem tegmentum and the lateral funiculus of the cervical cord.
+  termination: Preganglionic sympathetic neurons of the intermediolateral column (C8-T2 for the eye).
+  function: Central drive of sympathetic outflow to the eye and face.
+  clinical: Interrupted in lateral medullary (Wallenberg) syndrome and cervical cord lesions — central (first-order) Horner syndrome.
+  refs: [nieuwenhuys2008, kanagalingam2015]
+
+- id: preganglionic_sympathetic
+  name: Preganglionic oculosympathetic fibres
+  latin: Rami communicantes albi; truncus sympathicus
+  kind: spinal
+  systems: [autonomic]
+  geometry:
+    - kind: schematic
+      label: ventral root T1 → sympathetic chain over the lung apex → up the cervical chain
+      path: {L: [[-4.5, -45, -110], [-12, -40, -112], [-22, -32, -114], [-30, -24, -100], [-32, -19, -86], [-32, -18, -76]]}
+      radius: 0.6
+  origin: Ciliospinal centre (C8-T2).
+  course: Leave in the T1 ventral root, pass over the lung apex and ascend in the cervical sympathetic chain (second-order neuron).
+  termination: Superior cervical ganglion.
+  function: Second neuron of the oculosympathetic pathway.
+  clinical: Pancoast tumour, cervical rib, neck surgery or trauma → preganglionic Horner syndrome (anhidrosis of the face).
+  refs: [nieuwenhuys2008, kanagalingam2015]
+
+- id: postganglionic_sympathetic
+  name: Postganglionic oculosympathetic fibres (carotid plexus)
+  latin: Plexus caroticus internus
+  kind: cranial_nerve
+  systems: [autonomic]
+  geometry:
+    - kind: schematic
+      label: along the internal carotid artery, cavernous sinus, V1 and long ciliary nerves
+      path: {L: [[-32, -18, -76], [-27, -12, -60], [-20, -2, -40], [-18, 8, -33], [-22, 22, -34], [-27, 40, -39], [-30, 48, -41]]}
+      radius: 0.6
+  origin: Superior cervical ganglion (third-order neuron).
+  course: Ascend on the internal carotid artery through the carotid canal and cavernous sinus, join V1 and reach the eye via the long ciliary nerves; sudomotor fibres for the face follow the external carotid instead.
+  termination: Pupillary dilator, superior tarsal (Müller) muscle.
+  function: Pupil dilation and upper-lid elevation.
+  clinical: Internal carotid dissection or cavernous sinus lesions → postganglionic Horner syndrome (ptosis, miosis, usually without facial anhidrosis), often with ipsilateral headache or neck pain — a stroke risk that must not be missed.
+  refs: [nieuwenhuys2008, kanagalingam2015]

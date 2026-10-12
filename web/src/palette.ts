@@ -20,6 +20,7 @@ export const SYSTEM_COLORS: Record<string, string> = {
   arousal: "#c9a227",
   interoceptive: "#c06c84",
   gustatory: "#c06c84",
+  olfactory: "#b5838d",
   interhemispheric: "#8d96a3",
   landmark: "#7f8a99",
 };
@@ -40,6 +41,8 @@ export const SYSTEM_LABELS: Record<string, string> = {
   autonomic: "Autonomic",
   arousal: "Arousal",
   pain: "Pain modulation",
+  olfactory: "Olfactory",
+  gustatory: "Gustatory",
   visuospatial: "Visuospatial",
   interhemispheric: "Commissural",
   landmark: "Landmarks",

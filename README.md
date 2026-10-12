@@ -24,20 +24,24 @@ See [PLAN.md](PLAN.md) for the full roadmap, data sources and licensing rational
 
 | Content | Count |
 |---|---|
-| Regions | 110: 31 cortical gyri, thalamic nuclei (THOMAS), basal ganglia (ATAG, CIT168), midbrain/limbic nuclei (CIT168), brainstem, cerebellum, ventricles, ascending-arousal nuclei (Harvard AAN), and schematic brainstem, spinal and special-sense nuclei |
-| Tracts | 78: all 106 HCP1065 bundles (grouped L/R), HCP842 brainstem tracts, and schematic spinal, brainstem and basal-ganglia connections |
-| Pathways | 26: see below |
-| Projections | 59 directed region-to-region edges derived from the pathways |
-| References | 30, every DOI checked in CI |
+| Regions | 123: 31 cortical gyri, thalamic nuclei (THOMAS), basal ganglia (ATAG, CIT168), midbrain/limbic nuclei (CIT168), brainstem, cerebellum, ventricles, ascending-arousal nuclei (Harvard AAN), and schematic brainstem, spinal and special-sense nuclei |
+| Tracts | 95: all 106 HCP1065 bundles (grouped L/R), HCP842 brainstem tracts, and schematic spinal, brainstem and basal-ganglia connections |
+| Pathways | 41: see below |
+| Projections | 86 directed region-to-region edges derived from the pathways |
+| References | 34, every DOI checked in CI |
 
 Pathways by system:
-- **Motor:** lateral corticospinal (hand, leg), anterior corticospinal, corticobulbar to the face
-- **Cerebellar:** cortico-ponto-cerebellar, dentatorubrothalamic
+- **Motor:** lateral corticospinal (hand, leg), anterior corticospinal, corticobulbar to the face,
+  corticobulbar to the tongue (XII), lateral vestibulospinal, pontine reticulospinal, tectospinal
+- **Cerebellar:** cortico-ponto-cerebellar, dentatorubrothalamic, dorsal and ventral
+  spinocerebellar, cuneocerebellar, Guillain–Mollaret triangle
 - **Somatosensory:** dorsal column–medial lemniscus (upper and lower limb), anterolateral,
   trigeminal touch, trigeminal pain
-- **Visual:** retino-geniculo-calcarine, pupillary light reflex
-- **Auditory:** ascending pathway
-- **Vestibular:** horizontal VOR
+- **Visual and oculomotor:** retino-geniculo-calcarine, pupillary light reflex, horizontal VOR,
+  voluntary horizontal saccade (FEF → PPRF), trochlear pathway
+- **Auditory, olfactory, gustatory:** ascending auditory, olfactory, gustatory
+- **Cranial-nerve reflexes:** corneal (blink), gag
+- **Autonomic:** oculosympathetic pathway (Horner syndrome)
 - **Basal ganglia:** direct, indirect and hyperdirect pathways, nigrostriatal
 - **Limbic:** mesolimbic, Papez circuit
 - **Language:** dorsal and ventral streams

@@ -1,0 +1,287 @@
+# ---------------------------------------------------------------- spinocerebellar
+- id: dorsal_spinocerebellar
+  name: Dorsal spinocerebellar pathway (lower limb)
+  system: cerebellar
+  start_label: body side
+  summary: >-
+    Unconscious proprioception from the leg. Large afferents ascend briefly in the fasciculus
+    gracilis to Clarke's nucleus (C8-L2), whose axons ascend uncrossed in the dorsal
+    spinocerebellar tract and enter the ipsilateral cerebellum through the inferior cerebellar
+    peduncle. A two-neuron pathway to the cerebellar cortex with no thalamic relay.
+  steps:
+    - {region: drg_lumbosacral, side: ipsi, role: First-order neuron (muscle spindle / tendon organ afferent)}
+    - {tract: dorsal_root_lumbosacral, side: ipsi}
+    - {tract: fasciculus_gracilis, side: ipsi, note: Ascends to the nearest Clarke's-nucleus segment}
+    - {region: clarkes_nucleus, side: ipsi, role: Second-order neuron}
+    - {tract: dorsal_spinocerebellar_tract, side: ipsi}
+    - {tract: inferior_cerebellar_peduncle, side: ipsi}
+    - {region: vermis, side: ipsi, role: "Spinocerebellum (vermis and paravermis, mossy fibres)"}
+  clinical:
+    - {site: Spinocerebellar tracts (Friedreich ataxia), finding: Limb and gait ataxia with areflexia and loss of proprioception}
+    - {site: Inferior cerebellar peduncle (lateral medulla), finding: Ipsilateral limb ataxia}
+  refs: [nieuwenhuys2008, bosco2001]
+
+- id: ventral_spinocerebellar
+  name: Ventral spinocerebellar pathway
+  system: cerebellar
+  start_label: body side
+  summary: >-
+    Spinal border cells monitor activity in spinal motor circuits. Their axons cross in the cord,
+    ascend to the rostral pons, then loop back into the cerebellum along the superior cerebellar
+    peduncle and largely cross again, so the information reaches the side of origin.
+  steps:
+    - {region: drg_lumbosacral, side: ipsi, role: First-order neuron}
+    - {tract: dorsal_root_lumbosacral, side: ipsi}
+    - {region: dorsal_horn_lumbosacral, side: ipsi, role: Spinal border cells / laminae V-VII (second-order)}
+    - {tract: ventral_spinocerebellar_tract, side: ipsi, note: "Crosses in the cord, ascends to the rostral pons, re-enters via the SCP"}
+    - {region: vermis, side: ipsi, role: Anterior lobe vermis and paravermis}
+  refs: [nieuwenhuys2008, bosco2001]
+
+- id: cuneocerebellar
+  name: Cuneocerebellar pathway (upper limb)
+  system: cerebellar
+  start_label: body side
+  summary: Upper-limb proprioceptive afferents ascend in the fasciculus cuneatus to the external cuneate nucleus, which projects through the ipsilateral inferior cerebellar peduncle — the upper-limb equivalent of the dorsal spinocerebellar pathway.
+  steps:
+    - {region: drg_cervical, side: ipsi, role: First-order neuron}
+    - {tract: dorsal_root_cervical, side: ipsi}
+    - {tract: fasciculus_cuneatus, side: ipsi}
+    - {region: external_cuneate_nucleus, side: ipsi, role: Second-order neuron}
+    - {tract: cuneocerebellar_tract, side: ipsi}
+    - {tract: inferior_cerebellar_peduncle, side: ipsi}
+    - {region: vermis, side: ipsi, role: Spinocerebellum}
+  refs: [nieuwenhuys2008, bosco2001]
+
+# ---------------------------------------------------------------- descending motor
+- id: lateral_vestibulospinal
+  name: Lateral vestibulospinal pathway
+  system: motor
+  start_label: ear
+  summary: Vestibular input drives the ipsilateral lateral vestibular (Deiters) nucleus, which excites extensor (antigravity) motor neurons along the whole cord on the same side.
+  steps:
+    - {region: vestibular_ganglion, side: ipsi, role: First-order neuron (otolith / canal afferent)}
+    - {tract: vestibulocochlear_nerve, side: ipsi}
+    - {region: vestibular_nuclei, side: ipsi, role: Lateral vestibular nucleus (Deiters)}
+    - {tract: lateral_vestibulospinal_tract, side: ipsi}
+    - {region: ventral_horn_lumbosacral, side: ipsi, role: Extensor motor neurons}
+  clinical:
+    - {site: Midbrain/pons lesion below the red nucleus, finding: "Decerebrate (extensor) posturing — unopposed vestibulospinal and pontine reticulospinal drive"}
+    - {site: Lesion above the red nucleus, finding: Decorticate posturing (upper-limb flexion with leg extension)}
+  refs: [nieuwenhuys2008, kandel2021, blumenfeld2021]
+
+- id: pontine_reticulospinal
+  name: Pontine (medial) reticulospinal pathway
+  system: motor
+  start_label: brainstem side
+  summary: The pontine reticular formation projects uncrossed in the anterior funiculus to axial and proximal motor neurons, supporting posture and anticipatory postural adjustments.
+  steps:
+    - {region: pontis_oralis, side: ipsi, role: Pontine reticular neurons}
+    - {tract: pontine_reticulospinal_tract, side: ipsi}
+    - {region: ventral_horn_lumbosacral, side: ipsi, role: Medial motor column (axial and proximal muscles)}
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: tectospinal
+  name: Tectospinal pathway
+  system: motor
+  start_label: brainstem side
+  summary: The superior colliculus drives reflex head turning toward visual and auditory targets through the crossed tectospinal tract to the upper cervical cord.
+  steps:
+    - {region: superior_colliculus, side: ipsi, role: Deep collicular layers}
+    - {tract: tectospinal_tract, side: ipsi, note: Dorsal tegmental decussation}
+    - {region: ventral_horn_cervical, side: contra, role: Neck motor neurons}
+  refs: [nieuwenhuys2008]
+
+# ---------------------------------------------------------------- cerebellar loop
+- id: guillain_mollaret
+  name: Guillain–Mollaret triangle (dentato-rubro-olivary loop)
+  system: cerebellar
+  start_label: cerebellar hemisphere
+  summary: >-
+    Dentate nucleus → superior cerebellar peduncle (crossing) → contralateral red nucleus →
+    central tegmental tract → ipsilateral (to the red nucleus) inferior olive → olivocerebellar
+    fibres cross back through the inferior cerebellar peduncle → cerebellar cortex and the
+    dentate nucleus of origin.
+  steps:
+    - {region: dentate_nucleus, side: ipsi, role: Dentate nucleus}
+    - {tract: dentatorubrothalamic_tract, side: ipsi, note: Superior cerebellar peduncle and its decussation}
+    - {region: red_nucleus, side: contra, role: Parvocellular red nucleus}
+    - {tract: central_tegmental_tract, side: contra}
+    - {region: inferior_olive, side: contra, role: Inferior olivary nucleus}
+    - {tract: olivocerebellar_fibres, side: contra, note: Climbing fibres cross the midline}
+    - {tract: inferior_cerebellar_peduncle, side: ipsi}
+    - {region: dentate_nucleus, side: ipsi, role: Back to the dentate — the loop closes}
+  clinical:
+    - {site: "Any limb of the triangle (e.g. pontine haemorrhage, posterior fossa surgery)", finding: "Hypertrophic olivary degeneration (enlarged T2-bright olive weeks to months later) and palatal tremor ± Holmes tremor"}
+  refs: [nieuwenhuys2008]
+
+# ---------------------------------------------------------------- olfactory / gustatory
+- id: olfactory_pathway
+  name: Olfactory pathway
+  system: olfactory
+  start_label: nostril
+  summary: >-
+    Olfactory receptor neurons → olfactory nerve fila through the cribriform plate → olfactory
+    bulb (mitral cells) → olfactory tract and lateral olfactory stria → piriform cortex, cortical
+    amygdala and entorhinal cortex. The only sensory pathway that reaches cortex without a
+    thalamic relay; it stays ipsilateral.
+  steps:
+    - {region: olfactory_epithelium, side: ipsi, role: Olfactory receptor neurons (first-order)}
+    - {tract: olfactory_tract, side: ipsi, parts: [0], note: Olfactory nerve fila (cribriform plate)}
+    - {region: olfactory_bulb, side: ipsi, role: Mitral and tufted cells (second-order)}
+    - {tract: olfactory_tract, side: ipsi, parts: [1], note: Olfactory tract → lateral olfactory stria}
+    - {region: piriform_cortex, side: ipsi, role: Primary olfactory cortex}
+  highlight:
+    - {region: amygdala, side: ipsi, note: Cortical amygdala — emotional valence of odours}
+    - {region: entorhinal_cortex, side: ipsi, note: Odour memory via the hippocampus}
+    - {region: lateral_orbitofrontal_cortex, side: ipsi, note: Conscious odour discrimination (directly and via MD thalamus)}
+  clinical:
+    - {site: Olfactory fila (frontal head injury), finding: Anosmia}
+    - {site: Olfactory groove meningioma, finding: Unilateral anosmia ± Foster Kennedy syndrome}
+    - {site: Uncus / piriform cortex (mesial temporal epilepsy), finding: Olfactory aura (uncinate fits)}
+  refs: [nieuwenhuys2008, gottfried2010]
+
+- id: gustatory_pathway
+  name: Gustatory pathway
+  system: gustatory
+  start_label: tongue side
+  summary: >-
+    Taste from the anterior two-thirds of the tongue travels in the chorda tympani to the
+    geniculate ganglion and enters the brainstem with the facial nerve. In the solitary tract it
+    reaches the rostral solitary nucleus, ascends ipsilaterally in the central tegmental tract
+    to VPMpc, and projects to the gustatory cortex in the insula and frontal operculum. Taste
+    pathways remain largely ipsilateral.
+  steps:
+    - {region: geniculate_ganglion, side: ipsi, role: First-order neuron (chorda tympani)}
+    - {tract: facial_nerve, side: ipsi, parts: [1], note: Nervus intermedius}
+    - {tract: solitary_tract, side: ipsi}
+    - {region: solitary_nucleus, side: ipsi, role: Rostral (gustatory) NTS — second-order}
+    - {tract: central_tegmental_tract, side: ipsi, note: Ascending gustatory fibres}
+    - {region: VPM, side: ipsi, role: Parvocellular VPM (VPMpc) — third-order}
+    - {region: insula, side: ipsi, role: Primary gustatory cortex (dorsal mid-insula / frontal operculum)}
+  clinical:
+    - {site: Chorda tympani (middle-ear surgery) or facial nerve proximal to it, finding: Loss of taste on the anterior two-thirds of the tongue}
+    - {site: Insular cortex, finding: Ipsilateral or bilateral taste disturbance; gustatory aura in insular epilepsy}
+  refs: [nieuwenhuys2008]
+
+# ---------------------------------------------------------------- cranial-nerve reflexes and gaze
+- id: corneal_reflex
+  name: Corneal (blink) reflex
+  system: cranial_nerves
+  start_label: eye
+  summary: >-
+    Touching one cornea makes both eyes blink. Afferent limb — V1 to the trigeminal ganglion
+    and the spinal trigeminal nucleus. Interneurons project to both facial motor nuclei.
+    Efferent limb — the facial nerve to orbicularis oculi.
+  steps:
+    - {region: eye, side: ipsi, role: Corneal free nerve endings}
+    - {tract: ophthalmic_nerve, side: ipsi, note: Nasociliary branch of V1}
+    - {region: trigeminal_ganglion, side: ipsi, role: First-order neuron}
+    - {tract: trigeminal_nerve, side: ipsi}
+    - {tract: spinal_trigeminal_tract, side: ipsi}
+    - {region: spinal_trigeminal_nucleus, side: ipsi, role: Second-order neuron}
+    - {tract: trigeminofacial_fibres, side: ipsi, parts: [0]}
+    - {region: facial_motor_nucleus, side: ipsi, role: Orbicularis oculi motor neurons}
+    - {tract: facial_nerve, side: ipsi}
+  highlight:
+    - {region: facial_motor_nucleus, side: contra, note: Consensual blink of the other eye}
+  clinical:
+    - {site: V1 / trigeminal nerve, finding: No blink in either eye when the affected cornea is touched; both blink when the other side is touched}
+    - {site: Facial nerve, finding: Affected eye fails to blink whichever cornea is touched}
+    - {site: "Brainstem (coma, brain death testing)", finding: Absent corneal reflexes indicate pontine dysfunction}
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: gag_reflex
+  name: Gag (pharyngeal) reflex
+  system: cranial_nerves
+  start_label: pharynx side
+  summary: Touching the posterior pharyngeal wall excites glossopharyngeal afferents to the solitary nucleus. Interneurons drive both nuclei ambigui, and the vagus nerves elevate the palate and constrict the pharynx.
+  steps:
+    - {region: petrosal_ganglion, side: ipsi, role: First-order neuron}
+    - {tract: glossopharyngeal_nerve, side: ipsi}
+    - {region: solitary_nucleus, side: ipsi, role: Second-order neuron}
+    - {region: nucleus_ambiguus, side: ipsi, role: Branchial motor neurons (via reticular interneurons)}
+    - {tract: vagus_nerve, side: ipsi}
+  highlight:
+    - {region: nucleus_ambiguus, side: contra, note: Bilateral response}
+  clinical:
+    - {site: Vagus nerve or nucleus ambiguus, finding: Palate deviates away from the lesion (uvula pulled to the intact side); dysphagia}
+    - {site: Jugular foramen (Vernet syndrome), finding: "Combined IX, X and XI palsies"}
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: horizontal_saccade
+  name: Voluntary horizontal saccade (FEF → PPRF)
+  system: oculomotor
+  start_label: hemisphere
+  summary: >-
+    The frontal eye field commands saccades to the opposite side. Its descending fibres cross to
+    the contralateral PPRF, which drives the adjacent abducens nucleus. Abducens motor neurons
+    move the ipsilateral lateral rectus; internuclear neurons, through the MLF, move the
+    opposite medial rectus.
+  steps:
+    - {region: caudal_middle_frontal_gyrus, side: ipsi, anchor: fef, role: Frontal eye field}
+    - {tract: corticopontine_frontal, side: ipsi, note: Descends with frontopontine fibres}
+    - {tract: fef_pprf_fibres, side: ipsi, note: Crosses to the opposite pons}
+    - {region: pprf, side: contra, role: Excitatory burst neurons}
+    - {region: abducens_nucleus, side: contra, role: Lateral rectus motor neurons + internuclear neurons}
+    - {tract: abducens_internuclear_fibres, side: contra}
+    - {tract: medial_longitudinal_fasciculus, side: ipsi}
+    - {region: oculomotor_nucleus, side: ipsi, role: Medial-rectus subnucleus}
+  clinical:
+    - {site: Frontal eye field (acute hemispheric stroke), finding: "Eyes deviate toward the lesion (away from the hemiparesis); a seizure focus drives them away"}
+    - {site: PPRF / abducens nucleus, finding: "Ipsilateral horizontal gaze palsy; eyes deviate away from the lesion (toward the hemiparesis)"}
+    - {site: MLF, finding: Internuclear ophthalmoplegia}
+  refs: [nieuwenhuys2008, leigh2015, blumenfeld2021]
+
+- id: trochlear_pathway
+  name: Trochlear nerve pathway
+  system: oculomotor
+  start_label: brainstem side
+  summary: The trochlear nucleus projects through the only cranial nerve that leaves the brainstem dorsally and decussates completely, to the opposite superior oblique muscle.
+  steps:
+    - {region: trochlear_nucleus, side: ipsi, role: Motor neurons}
+    - {tract: trochlear_nerve, side: contra, note: Decussates in the superior medullary velum and winds around the midbrain}
+    - {region: eye, side: contra, role: Superior oblique muscle}
+  clinical:
+    - {site: Trochlear nerve, finding: Vertical diplopia worse looking down and in; head tilt away from the affected eye}
+    - {site: Trochlear nucleus (before the decussation), finding: Contralateral superior oblique palsy}
+  refs: [nieuwenhuys2008]
+
+- id: corticobulbar_tongue
+  name: Corticobulbar pathway to the tongue (CN XII)
+  system: motor
+  start_label: hemisphere
+  summary: The face/tongue area of the motor cortex projects mainly to the contralateral hypoglossal nucleus. Its motor neurons innervate the tongue through the hypoglossal nerve.
+  steps:
+    - {region: precentral_gyrus, side: ipsi, anchor: face, role: Upper motor neuron}
+    - {tract: corticobulbar_tract, side: ipsi, parts: [0, 3]}
+    - {region: hypoglossal_nucleus, side: contra, role: Lower motor neuron}
+    - {tract: hypoglossal_nerve, side: contra}
+  clinical:
+    - {site: Motor cortex / internal capsule, finding: Tongue deviates away from the lesion (toward the hemiparesis); no atrophy}
+    - {site: Hypoglossal nucleus or nerve, finding: Tongue deviates toward the lesion with atrophy and fasciculations}
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: oculosympathetic
+  name: Oculosympathetic pathway (Horner syndrome)
+  system: autonomic
+  start_label: side
+  summary: >-
+    Three-neuron chain. Hypothalamus → hypothalamospinal tract through the lateral brainstem →
+    ciliospinal centre (C8-T2). Preganglionic fibres leave in the T1 root and pass over the lung
+    apex to the superior cervical ganglion. Postganglionic fibres follow the internal carotid
+    artery to the pupillary dilator and Müller muscle. A lesion anywhere along it gives ptosis
+    and miosis (± anhidrosis) on the same side. Sympathetic chain and ganglia are drawn
+    diagrammatically.
+  steps:
+    - {region: hypothalamus, side: ipsi, role: First-order neuron}
+    - {tract: hypothalamospinal_tract, side: ipsi}
+    - {region: ciliospinal_center, side: ipsi, role: Second-order (preganglionic) neuron}
+    - {tract: preganglionic_sympathetic, side: ipsi}
+    - {region: superior_cervical_ganglion, side: ipsi, role: Third-order (postganglionic) neuron}
+    - {tract: postganglionic_sympathetic, side: ipsi}
+    - {region: eye, side: ipsi, role: "Pupillary dilator, superior tarsal (Müller) muscle"}
+  clinical:
+    - {site: "Central — lateral medulla (Wallenberg), cervical cord", finding: Horner with other brainstem/cord signs}
+    - {site: "Preganglionic — lung apex (Pancoast tumour), neck surgery, brachial plexus injury", finding: Horner with facial anhidrosis}
+    - {site: "Postganglionic — internal carotid dissection, cavernous sinus, cluster headache", finding: Horner without facial anhidrosis; urgent vascular imaging if painful}
+  refs: [nieuwenhuys2008, kanagalingam2015, blumenfeld2021]

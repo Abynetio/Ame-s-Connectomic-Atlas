@@ -93,6 +93,8 @@
   group: cortex.frontal
   systems: [motor, oculomotor]
   geometry: {kind: data, source: cerebra, labels: {L: 93, R: 42}}
+  anchors:
+    fef: {L: [-30, -4, 52]}
   summary: >
     Posterior middle frontal gyrus: dorsal premotor cortex (BA 6) and the frontal eye field
     near the junction with the precentral sulcus, which drives contralateral voluntary saccades.

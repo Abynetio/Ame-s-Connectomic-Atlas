@@ -1,0 +1,158 @@
+# Schematic structures added for the spinal, cerebellar, olfactory, gustatory and cranial-nerve
+# pathways. Same conventions as schematic.yaml: MNI mm for the LEFT member (mirrored for the
+# right), approximate positions, rendered as wireframe. Spinal levels use the shortened cord
+# (C5-T1 ≈ z -100, mid-thoracic ≈ z -130, L2-S2 ≈ z -165). The sympathetic chain and ganglia lie
+# outside the template and are purely diagrammatic.
+
+# ---------------------------------------------------------------- spinal / medullary relays
+- id: clarkes_nucleus
+  name: Clarke's nucleus (dorsal nucleus, C8-L2)
+  latin: Nucleus thoracicus posterior
+  synonyms: [nucleus dorsalis, Clarke's column, lamina VII]
+  group: spinal
+  systems: [cerebellar]
+  geometry: {kind: schematic, shape: capsule, path: {L: [[-2.5, -47.3, -112], [-2.5, -47.3, -145]]}, radius: 0.9}
+  summary: Column of large neurons at the base of the dorsal horn from C8 to L2. Receives leg and lower-trunk proprioceptive afferents (which first ascend in the fasciculus gracilis from lower segments) and gives rise to the dorsal spinocerebellar tract.
+  refs: [nieuwenhuys2008, bosco2001]
+
+- id: external_cuneate_nucleus
+  name: External (accessory) cuneate nucleus
+  latin: Nucleus cuneatus accessorius
+  group: brainstem.medulla
+  systems: [cerebellar]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-8.5, -46.5, -57]}, radii: [1.5, 1.5, 3.5]}
+  verify: true
+  summary: Lateral to the cuneate nucleus in the caudal medulla; the upper-limb equivalent of Clarke's nucleus. Origin of the cuneocerebellar tract.
+  refs: [nieuwenhuys2008, bosco2001]
+
+- id: inferior_olive
+  name: Inferior olivary nucleus
+  latin: Nucleus olivaris inferior
+  abbrev: [ION]
+  group: brainstem.medulla
+  systems: [cerebellar, motor]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-7, -38, -56]}, radii: [2.5, 2.5, 5.5]}
+  verify: true
+  summary: >-
+    Convoluted nucleus forming the olive on the ventrolateral medulla, dorsolateral to the
+    pyramid. Sole source of cerebellar climbing fibres, which cross the midline and enter the
+    contralateral inferior cerebellar peduncle. Receives the central tegmental tract from the
+    ipsilateral parvocellular red nucleus.
+  clinical: Lesions of the Guillain-Mollaret triangle cause hypertrophic olivary degeneration (T2 hyperintense, enlarged olive) and palatal tremor.
+  refs: [nieuwenhuys2008]
+
+- id: solitary_nucleus
+  name: Nucleus of the solitary tract
+  latin: Nucleus tractus solitarii
+  abbrev: [NTS]
+  group: brainstem.medulla
+  systems: [gustatory, autonomic, cranial_nerves]
+  geometry: {kind: schematic, shape: capsule, path: {L: [[-6.5, -44, -45], [-5, -46, -55], [-3, -47.5, -63]]}, radius: 1.2}
+  verify: true
+  summary: >-
+    Dorsomedial medullary column surrounding the solitary tract. Rostral (gustatory) part
+    receives taste from VII, IX and X; caudal (cardiorespiratory) part receives visceral afferents
+    (baroreceptors, chemoreceptors, pulmonary and gut stretch) from IX and X.
+  refs: [nieuwenhuys2008]
+
+- id: pprf
+  name: Paramedian pontine reticular formation
+  latin: Formatio reticularis pontis paramediana
+  abbrev: [PPRF]
+  synonyms: [horizontal gaze centre]
+  group: brainstem.pons
+  systems: [oculomotor]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-3, -39.5, -36]}, radii: [1.5, 2, 4]}
+  verify: true
+  summary: Burst neurons for horizontal saccades, ventral and rostral to the abducens nucleus. Driven by the contralateral frontal eye field and superior colliculus; excite the ipsilateral abducens nucleus.
+  clinical: A PPRF lesion abolishes ipsilateral horizontal saccades (the eyes cannot move toward the lesion).
+  refs: [nieuwenhuys2008, leigh2015]
+
+- id: trochlear_nucleus
+  name: Trochlear nucleus
+  latin: Nucleus nervi trochlearis
+  abbrev: [IV]
+  group: mesencephalon
+  systems: [oculomotor, cranial_nerves]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-3, -33.5, -14]}, radii: [1.2, 1.5, 1.5]}
+  verify: true
+  summary: Small nucleus ventral to the aqueduct at the inferior colliculus level, just caudal to the oculomotor complex. Supplies the contralateral superior oblique.
+  refs: [nieuwenhuys2008]
+
+# ---------------------------------------------------------------- olfactory
+- id: olfactory_epithelium
+  name: Olfactory epithelium
+  latin: Epithelium olfactorium
+  group: peripheral
+  systems: [olfactory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-5, 42, -36]}, radii: [1.5, 6, 2]}
+  verify: true
+  summary: Roof of the nasal cavity under the cribriform plate. Olfactory receptor neurons (first-order, continuously replaced) send unmyelinated axons through the cribriform plate as the olfactory nerve fila.
+  refs: [nieuwenhuys2008]
+
+- id: olfactory_bulb
+  name: Olfactory bulb
+  latin: Bulbus olfactorius
+  group: telencephalon
+  systems: [olfactory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-7, 40, -27]}, radii: [2.5, 5, 2]}
+  verify: true
+  summary: On the cribriform plate beneath the gyrus rectus. Olfactory nerve axons synapse on mitral and tufted cells in glomeruli; mitral-cell axons form the olfactory tract.
+  clinical: Olfactory groove meningiomas arise here (anosmia, frontal syndrome; Foster Kennedy syndrome when large).
+  refs: [nieuwenhuys2008]
+
+- id: piriform_cortex
+  name: Piriform (primary olfactory) cortex
+  latin: Cortex piriformis
+  group: cortex.limbic
+  systems: [olfactory, limbic]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-22, 4, -18]}, radii: [4, 4, 2.5]}
+  verify: true
+  summary: >-
+    Allocortex at the junction of the frontal and temporal lobes (limen insulae and anterior
+    uncus). Main target of the lateral olfactory stria; olfaction reaches cortex without a
+    thalamic relay. Projects to orbitofrontal cortex (directly and via MD), amygdala and
+    entorhinal cortex.
+  clinical: Uncinate seizures (mesial temporal epilepsy) begin with an olfactory aura, typically unpleasant.
+  refs: [nieuwenhuys2008, gottfried2010]
+
+# ---------------------------------------------------------------- cranial-nerve ganglia
+- id: geniculate_ganglion
+  name: Geniculate ganglion (CN VII)
+  latin: Ganglion geniculi
+  group: peripheral
+  systems: [gustatory, cranial_nerves]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-36, -16, -36]}, radii: [1.5, 1.5, 1.5]}
+  verify: true
+  summary: Sensory ganglion of the facial nerve (nervus intermedius) at the genu of the facial canal; cell bodies of taste afferents from the anterior two-thirds of the tongue (chorda tympani).
+  refs: [nieuwenhuys2008]
+
+- id: petrosal_ganglion
+  name: Inferior (petrosal) ganglion of CN IX
+  latin: Ganglion inferius nervi glossopharyngei
+  group: peripheral
+  systems: [cranial_nerves, gustatory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-25, -27, -64]}, radii: [1.5, 1.5, 2]}
+  verify: true
+  summary: Sensory ganglion of the glossopharyngeal nerve just below the jugular foramen; afferents from the pharynx, posterior third of the tongue (including taste) and carotid sinus.
+  refs: [nieuwenhuys2008]
+
+# ---------------------------------------------------------------- sympathetic (diagrammatic)
+- id: ciliospinal_center
+  name: Ciliospinal centre of Budge (C8-T2)
+  latin: Centrum ciliospinale
+  synonyms: [intermediolateral cell column, preganglionic sympathetic neurons]
+  group: spinal
+  systems: [autonomic]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-4.5, -45, -110]}, radii: [1.2, 1.2, 3]}
+  summary: Preganglionic sympathetic neurons for the eye and face in the intermediolateral cell column of C8-T2 (second-order neuron of the oculosympathetic pathway).
+  refs: [nieuwenhuys2008, kanagalingam2015]
+
+- id: superior_cervical_ganglion
+  name: Superior cervical ganglion
+  latin: Ganglion cervicale superius
+  group: peripheral
+  systems: [autonomic]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-32, -18, -76]}, radii: [2, 2, 4]}
+  summary: Uppermost ganglion of the sympathetic chain at C2-C3, behind the internal carotid artery; postganglionic (third-order) neurons for the eye, eyelid (Müller muscle) and facial sweat glands. Drawn diagrammatically outside the template.
+  refs: [nieuwenhuys2008, kanagalingam2015]
