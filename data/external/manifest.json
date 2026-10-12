@@ -266,7 +266,8 @@
    {
     "path": "cit168/r2hvk/README.pdf",
     "bytes": 33541,
-    "sha256": "5940d0b43de3c23ae4f9aecaa83fe7d7d0afb511db45a604b1ec3e5289fc6e8c"
+    "sha256": "5940d0b43de3c23ae4f9aecaa83fe7d7d0afb511db45a604b1ec3e5289fc6e8c",
+    "cached": true
    },
    {
     "path": "cit168/hksa6/CIT168_Amygdala_v1.0.3/CIT168toMNI152_1mm/CIT168_AmyLabels.txt",
