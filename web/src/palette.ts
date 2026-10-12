@@ -54,3 +54,13 @@ export function colorFor(systems: string[], style?: string): string {
   for (const s of systems) if (SYSTEM_COLORS[s]) return SYSTEM_COLORS[s];
   return "#9aa3ad";
 }
+
+/** Shade for the n-th neuron of a pathway: full colour and a lighter tint alternate, so each relay is visible. */
+export const NEURON_TINT = 0.45;
+export function neuronShade(hex: string, order: number): string {
+  if (order % 2 === 0) return hex;
+  const v = parseInt(hex.slice(1), 16);
+  const mix = (c: number) => Math.round(c + (255 - c) * NEURON_TINT);
+  const r = mix((v >> 16) & 255), g = mix((v >> 8) & 255), b = mix(v & 255);
+  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
+}

@@ -129,7 +129,7 @@
     - {tract: olfactory_tract, side: ipsi, parts: [0], note: Olfactory nerve fila (cribriform plate)}
     - {region: olfactory_bulb, side: ipsi, role: Mitral and tufted cells (second-order)}
     - {tract: olfactory_tract, side: ipsi, parts: [1], note: Olfactory tract → lateral olfactory stria}
-    - {region: piriform_cortex, side: ipsi, role: Primary olfactory cortex}
+    - {region: piriform_cortex, side: ipsi, role: Primary olfactory cortex, layer_in: "molecular", layer_note: "Lateral olfactory tract axons end in layer Ia (outer molecular layer) of the three-layered piriform cortex"}
   highlight:
     - {region: amygdala, side: ipsi, note: Cortical amygdala — emotional valence of odours}
     - {region: entorhinal_cortex, side: ipsi, note: Odour memory via the hippocampus}
@@ -218,7 +218,7 @@
     move the ipsilateral lateral rectus; internuclear neurons, through the MLF, move the
     opposite medial rectus.
   steps:
-    - {region: caudal_middle_frontal_gyrus, side: ipsi, anchor: fef, role: Frontal eye field}
+    - {region: caudal_middle_frontal_gyrus, side: ipsi, anchor: fef, role: Frontal eye field, layer_out: "V"}
     - {tract: corticopontine_frontal, side: ipsi, note: Descends with frontopontine fibres}
     - {tract: fef_pprf_fibres, side: ipsi, note: Crosses to the opposite pons}
     - {region: pprf, side: contra, role: Excitatory burst neurons}
@@ -252,7 +252,7 @@
   start_label: hemisphere
   summary: The face/tongue area of the motor cortex projects mainly to the contralateral hypoglossal nucleus. Its motor neurons innervate the tongue through the hypoglossal nerve.
   steps:
-    - {region: precentral_gyrus, side: ipsi, anchor: face, role: Upper motor neuron}
+    - {region: precentral_gyrus, side: ipsi, anchor: face, role: Upper motor neuron, layer_out: "V"}
     - {tract: corticobulbar_tract, side: ipsi, parts: [0, 3]}
     - {region: hypoglossal_nucleus, side: contra, role: Lower motor neuron}
     - {tract: hypoglossal_nerve, side: contra}

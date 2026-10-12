@@ -7,7 +7,7 @@
     motor thalamus, which excites SMA and motor cortex. Net effect — facilitates the selected
     movement (cortex → putamen → GPi → VA/VLa → cortex).
   steps:
-    - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: SMA / motor cortex (glutamate)}
+    - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: SMA / motor cortex (glutamate), layer_out: "V", layer_note: "Corticostriatal neurons lie mainly in layer V (and III)"}
     - {tract: corticostriatal_tract, side: ipsi, parts: [1]}
     - {region: putamen, side: ipsi, role: D1 medium spiny neurons (GABA + substance P)}
     - {tract: striatopallidal_direct, side: ipsi}
@@ -32,7 +32,7 @@
     excite GPi more, increasing inhibition of the motor thalamus. Net effect — suppresses
     competing movements.
   steps:
-    - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: SMA / motor cortex}
+    - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: SMA / motor cortex, layer_out: "V", layer_note: "Corticostriatal neurons lie mainly in layer V (and III)"}
     - {tract: corticostriatal_tract, side: ipsi, parts: [1]}
     - {region: putamen, side: ipsi, role: D2 medium spiny neurons (GABA + enkephalin)}
     - {tract: striatopallidal_indirect, side: ipsi}
@@ -59,7 +59,7 @@
     Frontal cortex excites the STN directly, bypassing the striatum. The STN then excites GPi
     and strongly inhibits the thalamus — a fast global brake, e.g. for stopping an action.
   steps:
-    - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: SMA / pre-SMA}
+    - {region: superior_frontal_gyrus, side: ipsi, anchor: sma, role: SMA / pre-SMA, layer_out: "V", layer_note: "Collaterals of layer V pyramidal-tract neurons"}
     - {tract: hyperdirect_fibres, side: ipsi}
     - {region: STN, side: ipsi, role: Glutamate}
     - {tract: subthalamic_fasciculus, side: ipsi}
@@ -104,7 +104,7 @@
     mammillothalamic tract → anterior thalamus → cingulate gyrus → cingulum → parahippocampal gyrus
     → entorhinal cortex → perforant path → hippocampus.
   steps:
-    - {region: hippocampus, side: ipsi, role: Subiculum / CA1 output}
+    - {region: hippocampus, side: ipsi, role: Subiculum / CA1 output, layer_out: "pyramidal", layer_note: "Pyramidal cells of CA1 and the subiculum"}
     - {tract: fornix, side: ipsi}
     - {region: mammillary_body, side: ipsi, role: Medial mammillary nucleus}
     - {tract: mammillothalamic_tract, side: ipsi}
@@ -113,9 +113,9 @@
     - {region: caudal_anterior_cingulate, side: ipsi, role: Cingulate cortex}
     - {tract: cingulum, side: ipsi, parts: [1]}
     - {region: parahippocampal_gyrus, side: ipsi, role: Parahippocampal cortex}
-    - {region: entorhinal_cortex, side: ipsi, role: Entorhinal cortex (local cortico-cortical connections)}
+    - {region: entorhinal_cortex, side: ipsi, role: Entorhinal cortex (local cortico-cortical connections), layer_out: "II, III", layer_note: "Layer II stellate cells (to dentate gyrus and CA3) and layer III pyramidal cells (to CA1)"}
     - {tract: perforant_path, side: ipsi}
-    - {region: hippocampus, side: ipsi, role: Dentate gyrus / CA fields — the loop closes}
+    - {region: hippocampus, side: ipsi, role: Dentate gyrus / CA fields — the loop closes, layer_in: "molecular", layer_note: "Perforant-path axons end in the molecular layer of the dentate gyrus and the CA fields"}
   clinical:
     - {site: Bilateral fornix (third-ventricle surgery), finding: Anterograde amnesia}
     - {site: "Mammillary bodies / anterior thalamus (Wernicke-Korsakoff, thalamic infarct)", finding: Amnesia with confabulation}
@@ -132,9 +132,9 @@
     supports repetition. The connections run in both directions; usually only the left hemisphere
     is dominant.
   steps:
-    - {region: superior_temporal_gyrus, side: ipsi, anchor: wernicke, role: "Wernicke's area (posterior STG)"}
+    - {region: superior_temporal_gyrus, side: ipsi, anchor: wernicke, role: "Wernicke's area (posterior STG)", layer_out: "III", layer_note: "Long cortico-cortical axons arise mainly from layer III pyramidal cells"}
     - {tract: arcuate_fasciculus, side: ipsi}
-    - {region: pars_opercularis, side: ipsi, role: "Broca's area (BA 44)"}
+    - {region: pars_opercularis, side: ipsi, role: "Broca's area (BA 44)", layer_in: "IV", layer_note: "Feedforward cortico-cortical axons end in layer IV; feedback axons end in layers I and VI. The arcuate carries both directions"}
   clinical:
     - {site: "Posterior STG (dominant)", finding: Fluent aphasia with impaired comprehension}
     - {site: Arcuate fasciculus / supramarginal white matter, finding: Conduction aphasia — impaired repetition with phonemic paraphasias}
@@ -147,9 +147,9 @@
   start_label: hemisphere
   summary: The ventral stream links temporal (and occipital) cortex to inferior frontal cortex through the IFOF beneath the insula, mapping sound and print to meaning.
   steps:
-    - {region: middle_temporal_gyrus, side: ipsi, role: Lexical-semantic cortex}
+    - {region: middle_temporal_gyrus, side: ipsi, role: Lexical-semantic cortex, layer_out: "III"}
     - {tract: ifof, side: ipsi}
-    - {region: pars_triangularis, side: ipsi, role: "Broca's area (BA 45)"}
+    - {region: pars_triangularis, side: ipsi, role: "Broca's area (BA 45)", layer_in: "IV", layer_note: "Feedforward axons end in layer IV; feedback axons in layers I and VI"}
   clinical:
     - {site: IFOF (temporal stem / insular surgery), finding: Semantic paraphasias during subcortical stimulation}
   refs: [yeh2022, yeh2018]

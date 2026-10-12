@@ -407,6 +407,12 @@ def main() -> int:
         m = ndimage.binary_fill_holes(m)
         v, f = mask_to_mesh(m, aff, 12000, sigma=1.2)
         context.append({"id": f"hemisphere_{side}", "name": f"{'Left' if side == 'L' else 'Right'} cerebral hemisphere", "mesh": meshes.add(f"context:hemisphere:{side}", v, f)})
+    hemis = {}
+    for side, prefix in (("L", "Left_"), ("R", "Right_")):
+        labs = [v for v, n in labels_txt if n.startswith(prefix) and not any(e in n for e in excl)]
+        hemis[side] = ndimage.binary_fill_holes(ndimage.binary_closing(np.isin(d, labs), iterations=3))
+    for c in context:
+        c["kind"] = "shell"
     # brainstem and cerebellum outlines, so infratentorial tracts sit inside a glass shell too
     for cid, name, keys, faces in (
         ("brainstem", "Brainstem", ("Brainstem",), 5000),
@@ -415,7 +421,45 @@ def main() -> int:
         labs = [v for v, n in labels_txt if any(k in n for k in keys)]
         m = ndimage.binary_fill_holes(ndimage.binary_closing(np.isin(d, labs), iterations=2))
         v, f = mask_to_mesh(m, aff, faces, sigma=1.2)
-        context.append({"id": cid, "name": name, "mesh": meshes.add(f"context:{cid}", v, f)})
+        context.append({"id": cid, "name": name, "kind": "shell", "mesh": meshes.add(f"context:{cid}", v, f)})
+
+    # tissue layers (toggleable): ventricles, grey matter, white matter
+    print("tissue layers …", flush=True)
+    vent = [v for v, n in labels_txt if "Ventricle" in n]
+    m = np.isin(d, vent)
+    v, f = mask_to_mesh(m, aff, 9000, sigma=0.9)
+    context.append({"id": "ventricles", "name": "Ventricular system (lateral, third, fourth)", "kind": "ventricles", "mesh": meshes.add("context:ventricles", v, f)})
+    deep = ("Thalamus", "Caudate", "Putamen", "Pallidum", "Hippocampus", "Amygdala", "Accumbens", "Basal_Forebrain")
+    nonctx = ("Ventricle", "Brainstem", "Optic_Chiasm", "Ventral_Diencephalon", "Cerebellum_White", "Vermal")
+    gm_labels = [v for v, n in labels_txt if not any(k in n for k in nonctx)]  # neocortex + deep grey + cerebellar cortex
+    gm = np.isin(d, gm_labels)
+    v, f = mask_to_mesh(gm, aff, 60000, sigma=0.7)
+    context.append({"id": "grey_matter", "name": "Grey matter (cortex, deep nuclei, cerebellar cortex)", "kind": "grey", "mesh": meshes.add("context:grey_matter", v, f)})
+    # cerebral white matter: bright T1 voxels inside the hemispheres that are not grey matter or CSF;
+    # cerebellar white matter comes straight from CerebrA
+    t1 = vols.t1
+    ijk = np.argwhere(np.ones(d.shape, bool))
+    t1_idx = np.rint(nib.affines.apply_affine(np.linalg.inv(t1.affine), nib.affines.apply_affine(aff, ijk))).astype(int)
+    T = np.asanyarray(t1.dataobj)
+    ok = np.all((t1_idx >= 0) & (t1_idx < np.array(T.shape)), axis=1)
+    t1_on_grid = np.zeros(len(ijk), np.float32)
+    t1_on_grid[ok] = T[t1_idx[ok, 0], t1_idx[ok, 1], t1_idx[ok, 2]]
+    t1_on_grid = t1_on_grid.reshape(d.shape)
+    ctx_vals = t1_on_grid[np.isin(d, [v for v, n in labels_txt if not any(k in n for k in deep + nonctx + ("Cerebellum",))])]
+    wm_vals = t1_on_grid[np.isin(d, [v for v, n in labels_txt if "Cerebellum_White" in n])]
+    thr = 0.5 * (np.median(ctx_vals) + np.median(wm_vals))
+    wm = (hemis["L"] | hemis["R"]) & (t1_on_grid > thr) & ~gm & ~np.isin(d, vent)
+    wm, n_comp = ndimage.label(wm)
+    if n_comp > 1:
+        sizes = ndimage.sum(np.ones_like(wm), wm, range(1, n_comp + 1))
+        keep = 1 + np.argsort(sizes)[::-1][:2]  # the two hemispheric white-matter bodies (joined by the corpus callosum)
+        wm = np.isin(wm, keep)
+    else:
+        wm = wm > 0
+    wm |= np.isin(d, [v for v, n in labels_txt if "Cerebellum_White" in n])
+    v, f = mask_to_mesh(wm, aff, 50000, sigma=0.8)
+    context.append({"id": "white_matter", "name": "White matter (cerebral and cerebellar)", "kind": "white", "mesh": meshes.add("context:white_matter", v, f)})
+    print(f"  white-matter T1 threshold {thr:.0f}", flush=True)
 
     # ---------------------------------------------------------------- tracts
     print("tracts …", flush=True)

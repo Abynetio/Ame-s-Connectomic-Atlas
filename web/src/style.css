@@ -293,3 +293,20 @@ dialog .close { position: absolute; right: 14px; top: 12px; background: none; bo
   body.info-collapsed #info-body { display: none; }
   #info-body { padding: 4px 16px 24px; }
 }
+
+/* layers fieldset, neurons list, layer labels */
+fieldset.layers { border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px 6px; margin: 6px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 8px; }
+fieldset.layers legend { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; padding: 0 4px; }
+fieldset.layers label { margin: 2px 0; }
+.step-layer { font-size: 12.5px; margin-top: 2px; }
+.neurons { list-style: none; padding: 0 !important; display: grid; gap: 8px; }
+.neurons li { display: grid; grid-template-columns: 12px 1fr; gap: 8px; align-items: start; font-size: 13px; }
+.neurons .swatch { width: 12px; height: 12px; border-radius: 50%; margin-top: 3px; border: 1px solid var(--line); }
+.layer-label {
+  font-size: 10.5px;
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  border: 1px dashed var(--muted);
+  border-radius: 5px;
+  padding: 1px 5px;
+  white-space: nowrap;
+}

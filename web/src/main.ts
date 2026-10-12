@@ -1,6 +1,6 @@
 import "./style.css";
-import { Atlas, Edge, Pathway, Region, Side, Tract, loadAtlas, mirrorSide, searchText } from "./data";
-import { SYSTEM_COLORS, SYSTEM_LABELS, colorFor } from "./palette";
+import { ALLOCORTEX, Atlas, Edge, Pathway, PathwayStep, Region, Side, Tract, loadAtlas, mirrorSide, pathwayNeurons, searchText } from "./data";
+import { SYSTEM_COLORS, SYSTEM_LABELS, colorFor, neuronShade } from "./palette";
 import { PickInfo, Viewer } from "./viewer";
 
 type Sel = { type: "pathway" | "tract" | "region"; id: string } | null;
@@ -92,6 +92,10 @@ class App {
     $<HTMLInputElement>("#glass-opacity").addEventListener("input", (e) => this.viewer.setGlass(true, Number((e.target as HTMLInputElement).value)));
     $<HTMLInputElement>("#brightness").addEventListener("input", (e) => this.viewer.setBrightness(Number((e.target as HTMLInputElement).value)));
     $<HTMLInputElement>("#over-glass").addEventListener("change", (e) => this.viewer.setCircuitOverGlass((e.target as HTMLInputElement).checked));
+    for (const [id, kind] of [["#show-ventricles", "ventricles"], ["#show-grey", "grey"], ["#show-white", "white"]] as const) {
+      $<HTMLInputElement>(id).addEventListener("change", (e) => this.viewer.setTissue(kind, (e.target as HTMLInputElement).checked));
+    }
+    $<HTMLInputElement>("#show-layers").addEventListener("change", (e) => this.viewer.setLayerColumns((e.target as HTMLInputElement).checked));
     $<HTMLInputElement>("#all-tracts").addEventListener("change", (e) => {
       this.viewer.showAllTracts((e.target as HTMLInputElement).checked);
       if (!(e.target as HTMLInputElement).checked && this.sel) this.select(this.sel, { keepStep: true, keepCamera: true });
@@ -295,6 +299,54 @@ class App {
     return a;
   }
 
+  private layerLine(st: PathwayStep): HTMLElement | "" {
+    if (!st.layer_in && !st.layer_out) return "";
+    const allo = !!st.region && ALLOCORTEX.has(st.region);
+    const fmt = (v: string) => (allo ? `${v} layer` : `layer ${v}`);
+    const parts = [st.layer_out ? `Cell bodies in ${fmt(st.layer_out)}` : "", st.layer_in ? `Synapses in ${fmt(st.layer_in)}` : ""].filter(Boolean);
+    return h("div", { class: "step-layer" }, parts.join(" · "), st.layer_note ? h("div", { class: "muted" }, st.layer_note) : "");
+  }
+
+  /** One line per neuron: where its cell body sits, which tracts carry its axon, where it synapses. */
+  private neuronSection(pw: Pathway): HTMLElement {
+    const neurons = pathwayNeurons(pw);
+    const base = colorFor([pw.system]);
+    const ord = ["First-order", "Second-order", "Third-order", "Fourth-order", "Fifth-order", "Sixth-order"];
+    const sideOf = (st: PathwayStep) => {
+      const r = st.region ? this.atlas.regionById.get(st.region) : undefined;
+      return r?.sides.M ? "" : ` (${sideName(mirrorSide(this.start, st.side))})`;
+    };
+    const ul = h("ul", { class: "neurons" });
+    for (const n of neurons) {
+      const a = pw.steps[n.from], b = pw.steps[n.to];
+      const tracts = n.via.filter((k) => pw.steps[k].tract).map((k) => this.link("tract", pw.steps[k].tract!));
+      const passes = n.via.filter((k) => pw.steps[k].region).map((k) => this.link("region", pw.steps[k].region!));
+      ul.append(
+        h(
+          "li",
+          {},
+          h("span", { class: "swatch", style: `background:${neuronShade(base, n.order)}` }),
+          h(
+            "div",
+            {},
+            h("strong", {}, `${ord[n.order] ?? `Neuron ${n.order + 1}`} neuron`),
+            h("div", {}, "● Cell body: ", this.link("region", a.region!), sideOf(a), a.layer_out ? ` — layer ${a.layer_out}` : ""),
+            tracts.length ? h("div", {}, "Axon: ", ...tracts.flatMap((t, i) => [i ? " → " : "", t])) : "",
+            passes.length ? h("div", { class: "muted" }, "○ Passes through: ", ...passes.flatMap((t, i) => [i ? ", " : "", t])) : "",
+            h("div", {}, "▲ Synapses in: ", this.link("region", b.region!), sideOf(b), b.layer_in ? ` — layer ${b.layer_in}` : ""),
+          ),
+        ),
+      );
+    }
+    return h(
+      "div",
+      { class: "section" },
+      h("h3", {}, "Neurons in this pathway"),
+      h("p", { class: "muted" }, "In 3D: coloured spheres mark cell bodies, white cones mark synapses (pointing into the target), white rings mark structures the axons pass through. Each neuron's stretch of the route has its own shade."),
+      ul,
+    );
+  }
+
   private refsBlock(refs: string[]): HTMLElement {
     const ol = h("ol", { class: "refs" });
     for (const r of refs) {
@@ -376,12 +428,14 @@ class App {
         h("button", { type: "button", class: "step-btn" }, h("span", { class: "step-name" }, obj.name), h("span", { class: "step-side" }, `${sideName(side)}${st.side === "contra" && !midline ? " · crossed" : ""}`)),
         st.role ? h("div", { class: "step-role" }, st.role) : "",
         st.note ? h("div", { class: "step-note" }, st.note) : "",
+        this.layerLine(st),
         k === this.step ? h("div", { class: "step-more" }, this.link(st.region ? "region" : "tract", st.region ?? st.tract!, "Open details →")) : "",
       );
       li.querySelector(".step-btn")!.addEventListener("click", () => this.gotoStep(k));
       ol.append(li);
     });
     frag.append(h("div", { class: "section" }, h("h3", {}, "Steps"), ol));
+    frag.append(this.neuronSection(pw));
 
     if (pw.highlight?.length) {
       frag.append(h("div", { class: "section" }, h("h3", {}, "Also note"), h("ul", {}, ...pw.highlight.map((x) => h("li", {}, this.link("region", x.region), ` (${sideName(mirrorSide(this.start, x.side))}) — ${x.note ?? ""}`)))));

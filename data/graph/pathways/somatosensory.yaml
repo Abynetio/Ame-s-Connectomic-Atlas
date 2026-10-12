@@ -16,7 +16,7 @@
     - {tract: medial_lemniscus, side: contra}
     - {region: VPL, side: contra, role: Third-order neuron}
     - {tract: superior_thalamic_radiation, side: contra}
-    - {region: paracentral_lobule, side: contra, role: Primary somatosensory cortex (leg area)}
+    - {region: paracentral_lobule, side: contra, role: Primary somatosensory cortex (leg area), layer_in: "IV", layer_note: "VPL axons end mainly in layer IV of areas 3b and 3a"}
   clinical:
     - {site: "Dorsal columns (e.g. B12 deficiency, tabes dorsalis)", finding: "Ipsilateral loss of vibration and position sense below the lesion; sensory ataxia, positive Romberg"}
     - {site: Hemicord (Brown-Séquard), finding: Ipsilateral dorsal-column loss + ipsilateral weakness + contralateral pain/temperature loss}
@@ -38,7 +38,7 @@
     - {tract: medial_lemniscus, side: contra}
     - {region: VPL, side: contra, role: Third-order neuron}
     - {tract: superior_thalamic_radiation, side: contra}
-    - {region: postcentral_gyrus, side: contra, anchor: hand, role: Primary somatosensory cortex (hand area)}
+    - {region: postcentral_gyrus, side: contra, anchor: hand, role: Primary somatosensory cortex (hand area), layer_in: "IV", layer_note: "VPL axons end mainly in layer IV of areas 3b and 3a"}
   clinical:
     - {site: Cervical dorsal columns (e.g. cervical spondylotic myelopathy), finding: Clumsy "numb hands" with impaired stereognosis and position sense}
     - {site: Postcentral gyrus hand area, finding: "Contralateral cortical sensory loss (astereognosis, agraphaesthesia)"}
@@ -60,7 +60,7 @@
     - {tract: spinothalamic_tract, side: contra}
     - {region: VPL, side: contra, role: Third-order neuron}
     - {tract: superior_thalamic_radiation, side: contra}
-    - {region: paracentral_lobule, side: contra, role: S1 leg area (also posterior insula and anterior cingulate via medial thalamus)}
+    - {region: paracentral_lobule, side: contra, role: S1 leg area (also posterior insula and anterior cingulate via medial thalamus), layer_in: "IV", layer_note: "Specific (VPL) thalamocortical axons end in layer IV"}
   highlight:
     - {region: insula, side: contra, note: Posterior insula — interoceptive pain/temperature cortex}
     - {region: caudal_anterior_cingulate, side: contra, note: Affective component of pain}
@@ -83,7 +83,7 @@
     - {tract: trigeminothalamic_tract, side: ipsi, parts: [0]}
     - {region: VPM, side: contra, role: Third-order neuron}
     - {tract: superior_thalamic_radiation, side: contra}
-    - {region: postcentral_gyrus, side: contra, anchor: face, role: S1 face area}
+    - {region: postcentral_gyrus, side: contra, anchor: face, role: S1 face area, layer_in: "IV"}
   clinical:
     - {site: Trigeminal root entry zone, finding: Ipsilateral facial sensory loss of all modalities; trigeminal neuralgia when compressed by a vessel}
     - {site: VPM, finding: Contralateral facial sensory loss (often with hand — cheiro-oral syndrome)}
@@ -102,7 +102,7 @@
     - {tract: trigeminothalamic_tract, side: ipsi, parts: [1]}
     - {region: VPM, side: contra, role: Third-order neuron}
     - {tract: superior_thalamic_radiation, side: contra}
-    - {region: postcentral_gyrus, side: contra, anchor: face, role: S1 face area}
+    - {region: postcentral_gyrus, side: contra, anchor: face, role: S1 face area, layer_in: "IV"}
   clinical:
     - {site: Lateral medulla (PICA territory), finding: Ipsilateral facial pain/temperature loss with contralateral body loss — crossed sensory pattern of Wallenberg syndrome}
   refs: [nieuwenhuys2008, paxinos1995, blumenfeld2021]

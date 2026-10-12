@@ -12,7 +12,7 @@
     - {tract: reticular_tract, side: ipsi, note: Ascending reticulothalamic fibres in the central tegmentum}
     - {region: CM, side: ipsi, role: Intralaminar thalamus (centromedian)}
     - {tract: anterior_thalamic_radiation, side: ipsi, note: Diffuse thalamocortical projection (frontal portion shown)}
-    - {region: rostral_middle_frontal_gyrus, side: ipsi, role: Widespread cortical activation}
+    - {region: rostral_middle_frontal_gyrus, side: ipsi, role: Widespread cortical activation, layer_in: "I", layer_note: "Intralaminar (matrix) thalamic axons spread widely in layer I, with deep-layer branches"}
   highlight:
     - {region: laterodorsal_tegmental_nucleus, side: ipsi, note: Cholinergic (Ch6) partner of the PPN}
     - {region: mesencephalic_reticular_formation, side: ipsi, note: Classical reticular activating system}

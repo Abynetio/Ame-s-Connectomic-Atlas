@@ -52,6 +52,13 @@ Viewer features:
 - search across names, Latin terms, abbreviations and synonyms
 - system filters
 - pathway tracing with a left/right starting side, an animated route and step labels
+- per-neuron view of each pathway: cell-body, synapse and pass-through markers, and a shaded
+  stretch of route for each neuron (first-, second-, third-order…)
+- cortical layer of origin and termination at cortical steps, with optional schematic layered
+  columns (six-layered neocortex, three-layered allocortex)
+- glass brain (cerebrum, cerebellum, brainstem, spinal cord), ventricles, and toggleable grey and
+  white matter (CerebrA labels and the ICBM152 T1)
+- circuit brightness control and a choice to draw the circuit over or under the glass
 - "projects to / receives from" lists for every region
 - the share of each tract's streamline end-points that falls in each atlas region (computed from HCP1065)
 - axial, coronal and sagittal MRI slices

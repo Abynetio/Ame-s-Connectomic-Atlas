@@ -164,7 +164,10 @@
                 "parts": {"type": "array", "items": {"type": "integer"}},
                 "role": {"type": "string"},
                 "note": {"type": "string"},
-                "synapse": {"type": "boolean"}
+                "synapse": {"type": "boolean"},
+                "layer_in": {"type": "string", "description": "cortical layer(s) where incoming axons synapse"},
+                "layer_out": {"type": "string", "description": "cortical layer(s) holding the cell bodies of the outgoing neuron"},
+                "layer_note": {"type": "string"}
               },
               "oneOf": [{"required": ["region"]}, {"required": ["tract"]}],
               "additionalProperties": false

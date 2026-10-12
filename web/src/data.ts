@@ -78,7 +78,34 @@ export interface PathwayStep {
   role?: string;
   note?: string;
   synapse?: boolean;
+  /** cortical layer(s) where incoming axons synapse */
+  layer_in?: string;
+  /** cortical layer(s) holding the cell bodies of the outgoing neuron */
+  layer_out?: string;
+  layer_note?: string;
 }
+
+/** One neuron of a multi-synaptic pathway, derived from consecutive synaptic region steps. */
+export interface NeuronSegment {
+  order: number; // 0 = first-order neuron
+  from: number; // step index of the cell body
+  to: number; // step index of the synapse
+  via: number[]; // step indices of tracts and pass-through regions in between
+}
+
+export function pathwayNeurons(pw: Pathway): NeuronSegment[] {
+  const syn = pw.steps.map((s, i) => (s.region && s.synapse !== false ? i : -1)).filter((i) => i >= 0);
+  const out: NeuronSegment[] = [];
+  for (let n = 0; n + 1 < syn.length; n++) {
+    const via: number[] = [];
+    for (let k = syn[n] + 1; k < syn[n + 1]; k++) via.push(k);
+    out.push({ order: n, from: syn[n], to: syn[n + 1], via });
+  }
+  return out;
+}
+
+/** Allocortex is three-layered; everything else in the cortex group is drawn as six-layered neocortex. */
+export const ALLOCORTEX = new Set(["hippocampus", "piriform_cortex"]);
 
 export interface Pathway {
   id: string;
@@ -115,7 +142,7 @@ export interface Graph {
   sources: Source[];
   references: Record<string, Reference>;
   regions: Region[];
-  context: { id: string; name: string; mesh: number }[];
+  context: { id: string; name: string; kind: "shell" | "ventricles" | "grey" | "white"; mesh: number }[];
   tracts: Tract[];
   pathways: Pathway[];
   edges: Edge[];

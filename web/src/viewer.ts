@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { CSS2DObject, CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer.js";
-import { Atlas, decodeBundle, decodeMesh, Pathway, Region, Side, Tract, Vec3, mirrorSide } from "./data";
-import { colorFor } from "./palette";
+import { ALLOCORTEX, Atlas, decodeBundle, decodeMesh, Pathway, PathwayStep, Region, Side, Tract, Vec3, mirrorSide, pathwayNeurons } from "./data";
+import { NEURON_TINT, colorFor, neuronShade } from "./palette";
 
 export type PickKind = "region" | "tract" | "context";
 export interface PickInfo { kind: PickKind; id: string; side: Side; name: string }
@@ -46,16 +46,21 @@ const DASH_FRAG = /* glsl */ `
 
 const ROUTE_FRAG = /* glsl */ `
   uniform vec3 uColor; uniform float uTime; uniform vec2 uSpan; uniform float uLength; uniform float uBright;
+  uniform float uBounds[12]; uniform int uNeurons; uniform float uTint;
   varying vec2 vUv; varying vec3 vN; varying vec3 vV;
   void main() {
     float u = vUv.x;
+    // which neuron of the chain this part of the route belongs to (bounds = synapse positions)
+    float n = 0.0;
+    for (int i = 0; i < 12; i++) { if (i < uNeurons - 1 && u > uBounds[i]) n += 1.0; }
+    vec3 col = mix(uColor, vec3(1.0), mod(n, 2.0) * uTint);
     float l = 0.5 + 0.5 * abs(dot(normalize(vN), normalize(vV)));
     float inSpan = step(uSpan.x - 1e-4, u) * step(u, uSpan.y + 1e-4);
     float done = step(u, uSpan.y);
     // travelling pulses, ~25 mm apart, moving at ~40 mm/s
     float d = fract((u * uLength - uTime * 40.0) / 25.0);
     float pulse = smoothstep(0.0, 0.08, d) * (1.0 - smoothstep(0.08, 0.35, d));
-    vec3 base = mix(vec3(0.55), uColor, 0.35 + 0.65 * done);
+    vec3 base = mix(vec3(0.55), col, 0.35 + 0.65 * done);
     vec3 c = base * l + pulse * 0.9 * done + inSpan * 0.25;
     float a = mix(0.35, 1.0, done);
     gl_FragColor = vec4(min(c * uBright, vec3(1.0)), a);
@@ -68,6 +73,7 @@ const SCHEMATIC_TRACT_SCALE = 0.5;
 const ROUTE_RADIUS = 0.4;
 const GLASS_ORDER_UNDER = -10; // glass drawn first: the circuit is painted over it at full colour
 const GLASS_ORDER_OVER = 10; // glass drawn last: the circuit is seen "through" the glass (softer)
+const SLICE_ORDER = -20; // MRI slices first: they write depth, so tissue behind a slice is hidden and tissue in front stays visible
 
 export class Viewer {
   readonly scene = new THREE.Scene();
@@ -91,6 +97,10 @@ export class Viewer {
   private brightness = 1.25;
   private circuitOverGlass = true;
   private regionModes = new Map<THREE.Mesh, { region: Region; mode: Mode }>();
+  private tissue: Record<"shell" | "ventricles" | "grey" | "white", THREE.Mesh[]> = { shell: [], ventricles: [], grey: [], white: [] };
+  private layersVisible = false;
+  private layerGroup = new THREE.Group();
+  private current: { pw: Pathway; start: "L" | "R"; step: number } | null = null;
   glassVisible = true;
   colorMode: "system" | "direction" = "direction";
 
@@ -120,7 +130,7 @@ export class Viewer {
     key.position.set(-1, 1, 2);
     this.camera.add(key);
     this.scene.add(this.camera);
-    this.scene.add(this.routeGroup, this.labelGroup, this.sliceGroup);
+    this.scene.add(this.routeGroup, this.labelGroup, this.sliceGroup, this.layerGroup);
 
     this.buildContext();
     this.buildRegions();
@@ -154,14 +164,27 @@ export class Viewer {
   }
 
   private buildContext() {
-    const add = (geom: THREE.BufferGeometry, id: string, name: string) => {
-      const mesh = new THREE.Mesh(geom, this.glassMaterial(0xb8c0cc, this.glassOpacity));
+    const add = (geom: THREE.BufferGeometry, id: string, name: string, kind: "shell" | "ventricles" | "grey" | "white" = "shell") => {
+      let mat: THREE.Material;
+      if (kind === "shell") mat = this.glassMaterial(0xb8c0cc, this.glassOpacity);
+      else if (kind === "ventricles") mat = this.glassMaterial(0x4f9fe0, 0.55);
+      else
+        mat = new THREE.MeshStandardMaterial({
+          color: kind === "grey" ? 0x8a8174 : 0xf0e9d8, // grey matter: warm grey; white matter: myelin cream
+          roughness: 0.8,
+          transparent: true,
+          opacity: 0.42,
+          depthWrite: false,
+        });
+      const mesh = new THREE.Mesh(geom, mat);
       mesh.renderOrder = this.circuitOverGlass ? GLASS_ORDER_UNDER : GLASS_ORDER_OVER;
       mesh.userData = { kind: "context", id, side: "M", name } satisfies PickInfo;
+      mesh.visible = kind === "shell" || kind === "ventricles";
+      this.tissue[kind].push(mesh);
       this.contextObjs.push(mesh);
       this.scene.add(mesh);
     };
-    for (const c of this.atlas.graph.context) add(this.meshFrom(c.mesh), c.id, c.name);
+    for (const c of this.atlas.graph.context) add(this.meshFrom(c.mesh), c.id, c.name, c.kind ?? "shell");
     // the shortened schematic spinal cord gets a glass shell as well
     const cord = this.atlas.regionById.get("spinal_cord")?.sides.M;
     if (cord?.path) add(this.schematicRegionGeometry(cord), "spinal_cord_glass", "Spinal cord (schematic)");
@@ -267,7 +290,7 @@ export class Viewer {
       const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
       mesh.visible = false;
       mesh.raycast = () => {};
-      mesh.renderOrder = 5;
+      mesh.renderOrder = SLICE_ORDER;
       this.slicePlanes.set(view, mesh);
       this.sliceGroup.add(mesh);
       return mesh;
@@ -385,7 +408,9 @@ export class Viewer {
     }
     this.routeGroup.clear();
     this.labelGroup.clear();
+    this.layerGroup.clear();
     this.routeMat = null;
+    this.current = null;
   }
 
   showRegion(id: string, side: Side | "both" = "both") {
@@ -421,15 +446,29 @@ export class Viewer {
   setGlass(visible: boolean, opacity?: number) {
     this.glassVisible = visible;
     if (opacity !== undefined) this.glassOpacity = opacity;
-    for (const m of this.contextObjs) {
+    for (const m of this.tissue.shell) {
       m.visible = visible;
       (m.material as THREE.ShaderMaterial).uniforms.uOpacity.value = this.glassOpacity;
     }
   }
 
+  /** Show or hide a tissue layer: ventricles, grey matter or white matter. */
+  setTissue(kind: "ventricles" | "grey" | "white", visible: boolean) {
+    for (const m of this.tissue[kind]) m.visible = visible;
+  }
+
+  /** Schematic cortical-layer columns at the cortical steps of the current pathway. */
+  setLayerColumns(visible: boolean) {
+    this.layersVisible = visible;
+    if (this.current) this.showPathway(this.current.pw, this.current.start, this.current.step, "none");
+  }
+
   /** Display a pathway for a start side; returns the region/tract objects involved for the UI. */
   showPathway(pw: Pathway, start: "L" | "R", step: number, frame: "step" | "all" | "none" = "step") {
     this.clearAll();
+    this.current = { pw, start, step };
+    const neurons = pathwayNeurons(pw);
+    const baseHex = colorFor([pw.system]);
     for (const st of pw.steps) {
       const side = mirrorSide(start, st.side);
       if (st.region) this.setRegionMode(st.region, side, "dim");
@@ -451,6 +490,8 @@ export class Viewer {
       for (let i = 1; i < pts.length; i++) cum.push(cum[i - 1] + pts[i].distanceTo(pts[i - 1]));
       const frac = (i: number) => cum[Math.min(i, cum.length - 1)] / (cum[cum.length - 1] || 1);
       const [a, b] = route.spans[step];
+      const bounds = new Array(12).fill(2);
+      neurons.slice(1).forEach((nr, i) => (bounds[i] = frac(route.spans[nr.from][0])));
       this.routeMat = new THREE.ShaderMaterial({
         vertexShader: DASH_VERT,
         fragmentShader: ROUTE_FRAG,
@@ -460,6 +501,9 @@ export class Viewer {
           uSpan: { value: new THREE.Vector2(frac(a), frac(b)) },
           uLength: { value: total },
           uBright: { value: this.brightness },
+          uBounds: { value: bounds },
+          uNeurons: { value: Math.max(1, neurons.length) },
+          uTint: { value: NEURON_TINT },
         },
         transparent: true,
         depthTest: true,
@@ -469,16 +513,48 @@ export class Viewer {
       tube.raycast = () => {};
       this.routeGroup.add(tube);
     }
-    // labels and synapse markers for region steps
+    // cell bodies (spheres), synapses (cones pointing into the target) and pass-through rings
+    const tangentAt = (i: number) => {
+      const a = pts[Math.max(0, i - 2)], b = pts[Math.min(pts.length - 1, i + 2)];
+      return b.clone().sub(a).normalize();
+    };
+    // markers are drawn on top of everything with a dark outline, so they read against same-coloured regions
+    const addMarker = (geom: THREE.BufferGeometry, color: string, pos: THREE.Vector3, dir?: THREE.Vector3) => {
+      const g = new THREE.Group();
+      const fill = new THREE.Mesh(geom, new THREE.MeshBasicMaterial({ color, depthTest: false, transparent: true }));
+      const edge = new THREE.Mesh(geom, new THREE.MeshBasicMaterial({ color: 0x15181d, side: THREE.BackSide, depthTest: false, transparent: true }));
+      edge.scale.setScalar(1.3);
+      fill.renderOrder = 26;
+      edge.renderOrder = 25;
+      g.add(edge, fill);
+      g.position.copy(pos);
+      if (dir) g.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+      g.traverse((o) => (o.raycast = () => {}));
+      this.routeGroup.add(g);
+    };
+    for (const nr of neurons) {
+      const shade = neuronShade(baseHex, nr.order);
+      const somaPt = pts[route.spans[nr.from][0]];
+      if (somaPt) addMarker(new THREE.SphereGeometry(nr.from === step ? 2.2 : 1.8, 20, 14), shade, somaPt);
+      const synIdx = route.spans[nr.to][0];
+      const synPt = pts[synIdx];
+      if (synPt) {
+        const dir = tangentAt(synIdx);
+        addMarker(new THREE.ConeGeometry(1.4, 3.2, 16), "#ffffff", synPt.clone().sub(dir.clone().multiplyScalar(3.4)), dir);
+      }
+      for (const k of nr.via) {
+        const st = pw.steps[k];
+        if (!st.region) continue;
+        const i = route.spans[k][0];
+        if (pts[i]) addMarker(new THREE.TorusGeometry(2.0, 0.35, 8, 28), "#ffffff", pts[i], tangentAt(i));
+      }
+    }
+    if (this.layersVisible) this.addLayerColumns(pw, start, route.spans.map((s) => pts[s[0]]), neurons, baseHex);
     pw.steps.forEach((st, k) => {
       if (!st.region) return;
       const r = this.atlas.regionById.get(st.region)!;
       const p = pts[route.spans[k][0]];
       if (!p) return;
-      const dot = new THREE.Mesh(new THREE.SphereGeometry(k === step ? 1.4 : 0.9, 16, 12), new THREE.MeshBasicMaterial({ color: k === step ? 0xffffff : 0xffd166 }));
-      dot.position.copy(p);
-      dot.raycast = () => {};
-      this.routeGroup.add(dot);
       const el = document.createElement("div");
       el.className = "step-label" + (k === step ? " current" : "");
       el.textContent = `${k + 1}. ${r.abbrev?.[0] ?? r.name}`;
@@ -493,6 +569,74 @@ export class Viewer {
       const b = route.spans[Math.min(route.spans.length - 1, step + 1)][1];
       this.focusPoints(route.points.slice(a, b + 1), 55);
     }
+  }
+
+  /** Stacked-disc cortical column at each cortical step; highlighted layers hold cell bodies or synapses. */
+  private addLayerColumns(pw: Pathway, _start: "L" | "R", stepPts: (THREE.Vector3 | undefined)[], neurons: ReturnType<typeof pathwayNeurons>, baseHex: string) {
+    const centre = new THREE.Vector3(0, -18, 12);
+    pw.steps.forEach((st: PathwayStep, k) => {
+      const p = stepPts[k];
+      const r = st.region ? this.atlas.regionById.get(st.region) : undefined;
+      if (!p || !r || !r.group.startsWith("cortex")) return;
+      const allo = ALLOCORTEX.has(r.id);
+      const layers = allo
+        ? [{ name: "molecular", label: "Molecular", t: 0.4 }, { name: "pyramidal", label: "Pyramidal / granule cell", t: 0.25 }, { name: "polymorphic", label: "Polymorphic", t: 0.35 }]
+        : [
+            { name: "I", label: "I", t: 0.1 }, { name: "II", label: "II", t: 0.08 }, { name: "III", label: "III", t: 0.26 },
+            { name: "IV", label: "IV", t: 0.1 }, { name: "V", label: "V", t: 0.22 }, { name: "VI", label: "VI", t: 0.24 },
+          ];
+      const parse = (s?: string) => new Set((s ?? "").match(/\b(VI|IV|V|III|II|I|molecular|pyramidal|polymorphic)\b/g) ?? []);
+      const inSet = parse(st.layer_in), outSet = parse(st.layer_out);
+      const inNeuron = neurons.find((n) => n.to === k), outNeuron = neurons.find((n) => n.from === k);
+      const normal = p.clone().sub(centre).normalize();
+      const H = 16, R = 5;
+      const group = new THREE.Group();
+      // clear the depth buffer just before the column so its discs occlude each other correctly
+      // while still drawing on top of the glass, regions and tracts
+      const clearGeom = new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(new Float32Array(9), 3));
+      const clear = new THREE.Mesh(clearGeom, new THREE.MeshBasicMaterial({ transparent: true, colorWrite: false, depthWrite: false }));
+      clear.renderOrder = 29;
+      clear.frustumCulled = false;
+      clear.onBeforeRender = (renderer) => renderer.clearDepth();
+      group.add(clear);
+      let y = H / 2;
+      layers.forEach((L, i) => {
+        const h = L.t * H;
+        let color = i % 2 === 0 ? "#d9d4cb" : "#b9b2a6";
+        if (outSet.has(L.name) && outNeuron) color = neuronShade(baseHex, outNeuron.order);
+        else if (inSet.has(L.name) && inNeuron) color = neuronShade(baseHex, inNeuron.order);
+        const disc = new THREE.Mesh(
+          new THREE.CylinderGeometry(R, R, h * 0.92, 24),
+          new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 1 }),
+        );
+        disc.position.y = y - h / 2;
+        disc.renderOrder = 30;
+        group.add(disc);
+        if (outSet.has(L.name) || inSet.has(L.name)) {
+          const rim = new THREE.LineSegments(
+            new THREE.EdgesGeometry(disc.geometry, 30),
+            new THREE.LineBasicMaterial({ color: 0x15181d, transparent: true }),
+          );
+          rim.position.copy(disc.position);
+          rim.renderOrder = 31;
+          group.add(rim);
+        }
+        y -= h;
+      });
+      group.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), normal);
+      group.position.copy(p.clone().add(normal.clone().multiplyScalar(12)));
+      group.traverse((o) => (o.raycast = () => {}));
+      this.layerGroup.add(group);
+      const parts: string[] = [];
+      if (st.layer_out) parts.push(`cell bodies: ${allo ? st.layer_out : "layer " + st.layer_out}`);
+      if (st.layer_in) parts.push(`synapses: ${allo ? st.layer_in : "layer " + st.layer_in}`);
+      const el = document.createElement("div");
+      el.className = "layer-label";
+      el.textContent = parts.length ? parts.join(" · ") : allo ? "allocortex (3 layers)" : "neocortex (6 layers)";
+      const lab = new CSS2DObject(el);
+      lab.position.copy(p.clone().add(normal.clone().multiplyScalar(12 + H / 2 + 3)));
+      this.layerGroup.add(lab);
+    });
   }
 
   // ------------------------------------------------------------------ camera

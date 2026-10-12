@@ -15,7 +15,7 @@
     - {tract: optic_pathway, side: contra, parts: [1], note: Optic tract}
     - {region: LGN, side: contra, role: Thalamic relay (layers 1/4/6 receive the crossed eye)}
     - {tract: optic_radiation, side: contra, note: "Inferior fibres loop forward over the temporal horn (Meyer's loop)"}
-    - {region: pericalcarine_cortex, side: contra, role: Primary visual cortex (V1)}
+    - {region: pericalcarine_cortex, side: contra, role: Primary visual cortex (V1), layer_in: "IV", layer_note: "Layer IVC — magnocellular axons in IVCα, parvocellular in IVCβ; koniocellular axons reach layers I–III"}
   highlight:
     - {region: LGN, side: ipsi, note: Receives the uncrossed temporal-hemiretina fibres of the same eye}
     - {region: superior_colliculus, side: contra, note: Retinotectal branch (orienting)}
@@ -77,7 +77,7 @@
     - {tract: brachium_inferior_colliculus, side: contra}
     - {region: MGN, side: contra, role: Thalamic relay}
     - {tract: acoustic_radiation, side: contra}
-    - {region: transverse_temporal_gyrus, side: contra, role: Primary auditory cortex (A1)}
+    - {region: transverse_temporal_gyrus, side: contra, role: Primary auditory cortex (A1), layer_in: "IV", layer_note: "MGN (ventral division) axons end in layer IV and deep layer III"}
   highlight:
     - {region: superior_olivary_complex, side: ipsi, note: Both olivary complexes receive input from each ear}
   clinical:

@@ -16,7 +16,7 @@
     of M1 projects all the way to the cervical enlargement of the opposite side of the cord,
     crossing in the pyramidal decussation.
   steps:
-    - {region: precentral_gyrus, side: ipsi, anchor: hand, role: "Upper motor neuron (layer V pyramidal cell, hand knob of M1)"}
+    - {region: precentral_gyrus, side: ipsi, anchor: hand, role: "Upper motor neuron (layer V pyramidal cell, hand knob of M1)", layer_out: "V", layer_note: "Pyramidal cells of layer Vb, including the giant Betz cells"}
     - {tract: corticospinal_tract, side: ipsi, note: "Corona radiata → posterior limb of internal capsule → cerebral crus → basis pontis → pyramid → decussation"}
     - {region: ventral_horn_cervical, side: contra, role: "Lower motor neuron (lamina IX, C5-T1) → hand muscles"}
   clinical:
@@ -35,7 +35,7 @@
   start_label: hemisphere
   summary: Leg fibres arise on the medial surface (paracentral lobule) and descend the full length of the cord to the lumbosacral enlargement.
   steps:
-    - {region: paracentral_lobule, side: ipsi, role: Upper motor neuron (leg area of M1)}
+    - {region: paracentral_lobule, side: ipsi, role: Upper motor neuron (leg area of M1), layer_out: "V", layer_note: "Pyramidal cells of layer Vb (Betz cells are largest in the leg area)"}
     - {tract: corticospinal_tract, side: ipsi}
     - {region: ventral_horn_lumbosacral, side: contra, role: Lower motor neuron (L2-S2) → leg muscles}
   clinical:
@@ -49,7 +49,7 @@
   start_label: hemisphere
   summary: The ~10 % of corticospinal fibres that do not cross in the medulla descend in the anterior funiculus and mostly cross segmentally to reach axial and proximal motor neurons.
   steps:
-    - {region: precentral_gyrus, side: ipsi, anchor: hand, role: Upper motor neuron}
+    - {region: precentral_gyrus, side: ipsi, anchor: hand, role: Upper motor neuron, layer_out: "V"}
     - {tract: anterior_corticospinal_tract, side: ipsi}
     - {region: ventral_horn_cervical, side: contra, role: Medial motor column (axial/proximal muscles)}
   refs: [nieuwenhuys2008, nathan1990]
@@ -64,7 +64,7 @@
     bilateral input (shown by the uncrossed branch), which is why a cortical or capsular lesion
     spares the forehead.
   steps:
-    - {region: precentral_gyrus, side: ipsi, anchor: face, role: Upper motor neuron (face area of M1)}
+    - {region: precentral_gyrus, side: ipsi, anchor: face, role: Upper motor neuron (face area of M1), layer_out: "V"}
     - {tract: corticobulbar_tract, side: ipsi, parts: [0, 1]}
     - {region: facial_motor_nucleus, side: contra, role: Lower motor neuron (lower-face subdivision)}
     - {tract: facial_nerve, side: contra}
@@ -84,7 +84,7 @@
     cognitive context from prefrontal cortex) via a relay in the pontine nuclei. Together with
     the dentatorubrothalamic pathway it forms the cerebro-cerebellar loop.
   steps:
-    - {region: rostral_middle_frontal_gyrus, side: ipsi, role: Prefrontal / premotor cortex (layer V)}
+    - {region: rostral_middle_frontal_gyrus, side: ipsi, role: Prefrontal / premotor cortex (layer V), layer_out: "V", layer_note: "Corticopontine neurons are layer V pyramidal cells"}
     - {tract: corticopontine_frontal, side: ipsi}
     - {region: pontine_nuclei, side: ipsi, role: Pontine neurons}
     - {tract: middle_cerebellar_peduncle, side: ipsi, note: Transverse pontine fibres cross the midline}
@@ -107,7 +107,7 @@
     - {tract: dentatorubrothalamic_tract, side: ipsi, note: Superior cerebellar peduncle → decussation at the inferior colliculus level}
     - {region: VLp, side: contra, role: Motor thalamus (Vim)}
     - {tract: superior_thalamic_radiation, side: contra}
-    - {region: precentral_gyrus, side: contra, anchor: hand, role: Primary motor cortex}
+    - {region: precentral_gyrus, side: contra, anchor: hand, role: Primary motor cortex, layer_in: "III, V", layer_note: "M1 is agranular (no distinct layer IV); motor-thalamic axons end mainly in layer III and upper layer V"}
   highlight:
     - {region: red_nucleus, side: contra, note: Most fibres pass through or around the red nucleus without synapsing}
   clinical:

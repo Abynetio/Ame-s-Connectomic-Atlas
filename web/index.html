@@ -38,6 +38,13 @@
         <label class="row">Circuit brightness <input id="brightness" type="range" min="0.6" max="2.2" step="0.05" value="1.25" /></label>
         <label title="When off, the glass is drawn over the circuit: softer colours but a stronger sense of depth"><input id="over-glass" type="checkbox" checked /> Draw circuit over the glass</label>
         <label><input id="all-tracts" type="checkbox" /> Show all tracts (faint)</label>
+        <fieldset class="layers">
+          <legend>Layers</legend>
+          <label><input id="show-ventricles" type="checkbox" checked /> Ventricles</label>
+          <label><input id="show-grey" type="checkbox" /> Grey matter</label>
+          <label><input id="show-white" type="checkbox" /> White matter</label>
+          <label title="Schematic layered columns at the cortical steps of the selected pathway"><input id="show-layers" type="checkbox" /> Cortical layers (pathway steps)</label>
+        </fieldset>
         <label class="row">Streamline colour
           <select id="color-mode"><option value="direction">Direction (RGB)</option><option value="system">System</option></select>
         </label>
