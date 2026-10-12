@@ -52,6 +52,15 @@ def save(out: Path, rel: str, data: bytes) -> dict:
     return {"path": str(path.relative_to(out)), "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
 
 
+def existing(out: Path, rel: str) -> dict | None:
+    """Manifest entry for a file that is already present (so re-runs do not re-download)."""
+    path = out / rel
+    if not path.exists():
+        return None
+    data = path.read_bytes()
+    return {"path": rel, "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest(), "cached": True}
+
+
 class Report:
     def __init__(self) -> None:
         self.sources: dict[str, dict] = {}
@@ -90,7 +99,8 @@ def fetch_dryad(rep: Report, out: Path, key: str, doi: str, max_bytes: int, down
         if size > max_bytes:
             s["notes"].append(f"skipped {name}: {size/1e6:.1f} MB > cap")
             continue
-        if (out / key / name).exists() and (out / key / name).stat().st_size == size:
+        if (e := existing(out, f"{key}/{name}")) and e["bytes"] == size:
+            s["files"].append(e)
             continue
         href = f["_links"]["stash:download"]["href"]
         file_id = href.rstrip("/").split("/")[-2]
@@ -142,9 +152,10 @@ def fetch_osf(rep: Report, out: Path, key: str, node: str, patterns: list[str], 
     for n, (path, size, dl) in walk:
         path = f"/{n}{path}"
         s["listing"].append({"name": path, "bytes": size})
-        if (out / f"{key}{path}").exists():
-            continue
         if not any(re.search(p, path) for p in patterns):
+            continue
+        if e := existing(out, f"{key}{path}"):
+            s["files"].append(e)
             continue
         if size > max_bytes:
             s["notes"].append(f"skipped {path}: {size/1e6:.1f} MB > cap")
@@ -170,6 +181,9 @@ def fetch_zenodo(rep: Report, out: Path, key: str, record: str, max_bytes: int) 
         if size > max_bytes:
             s["notes"].append(f"skipped {name}: {size/1e6:.1f} MB > cap")
             continue
+        if e := existing(out, f"{key}/{name}"):
+            s["files"].append(e)
+            continue
         try:
             s["files"].append(save(out, f"{key}/{name}", http_get(f["links"]["self"])))
         except Exception as e:  # noqa: BLE001
@@ -191,7 +205,8 @@ def fetch_page(rep: Report, out: Path, key: str, url: str, follow: list[str], ma
             continue
         absu = urllib.parse.urljoin(url, link)
         name = Path(urllib.parse.urlparse(absu).path).name or "index"
-        if (out / key / name).exists():
+        if e := existing(out, f"{key}/{name}"):
+            s["files"].append(e)
             continue
         try:
             data = http_get(absu)
@@ -221,7 +236,12 @@ def main() -> int:
         # 100 um volume is GB-scale: list only, never download in CI.
         ("edlow_100um", lambda: fetch_dryad(rep, out, "edlow_100um", "10.5061/dryad.119f80q", cap, False)),
         ("cit168", lambda: fetch_osf(rep, out, "cit168", "r2hvk",
-                                      [r"(?i)CIT168.*(MNI|2009c).*\.nii\.gz$", r"(?i)(label|structure|index).*\.(txt|csv|tsv)$", r"(?i)readme"],
+                                      [
+                                          # only the label maps in MNI2009c and their label lists, never templates/warps
+                                          r"CIT168_Reinf_Learn_v1\.1\.0/(labels\.txt|README\.pdf|MNI152-Nonlin-Asym-2009c/CIT168toMNI152-2009c_(det|prob)\.nii\.gz)$",
+                                          r"CIT168_Amygdala_v1\.0\.3/(README\.pdf|CIT168toMNI152_1mm/(CIT168_AmyLabels\.txt|CIT168_[dpi](BLA|CEN|AmyNuc)_1mm_MNI\.nii\.gz))$",
+                                          r"^/r2hvk/README\.pdf$",
+                                      ],
                                       cap)),
         ("hcp842_zenodo", lambda: fetch_zenodo(rep, out, "hcp842_zenodo", "3627772", cap)),
         ("yeh2022_connectome_page", lambda: fetch_page(rep, out, "yeh2022_connectome_page",
