@@ -580,3 +580,38 @@
   transmitter: glutamate
   function: Main cortical input to the hippocampus; closes the Papez loop.
   refs: [nieuwenhuys2008]
+
+# ---------------------------------------------------------------- descending pain modulation
+- id: pag_rvm_fibres
+  name: PAG–RVM projection
+  latin: Fibrae periaqueductales medullares
+  kind: brainstem
+  systems: [pain]
+  geometry:
+    - kind: schematic
+      path: {M: [[0, -32.5, -10.5], [0, -34, -20], [0, -35, -30], [0, -36, -40], [0, -37, -48]]}
+      radius: 0.7
+  origin: Periaqueductal grey (ventrolateral column).
+  course: Descends through the paramedian pontine tegmentum.
+  termination: Rostral ventromedial medulla (nucleus raphe magnus).
+  transmitter: glutamate (PAG neurons are disinhibited by opioids acting on local GABAergic interneurons)
+  function: First limb of the descending pain-modulation pathway.
+  refs: [basbaum1984, nieuwenhuys2008]
+
+- id: raphespinal_tract
+  name: Raphespinal tract (descending pain modulation)
+  latin: Tractus raphespinalis
+  kind: spinal
+  systems: [pain]
+  geometry:
+    - kind: schematic
+      label: dorsolateral funiculus
+      path: {L: [[0, -37, -48], [-2, -40, -58], [-4.5, -47.5, -72], [-4.5, -48, -100], [-4.5, -48, -140], [-4, -48.5, -160], [-3, -48.5, -165]]}
+      radius: 0.6
+  origin: Serotonergic and non-serotonergic neurons of the rostral ventromedial medulla.
+  course: Descends bilaterally in the dorsolateral funiculus (one side shown).
+  termination: Dorsal horn laminae I, II and V at all spinal levels.
+  transmitter: serotonin, GABA, glycine, enkephalin (via dorsal-horn interneurons)
+  function: Inhibits (or facilitates) transmission from nociceptors to spinothalamic neurons.
+  clinical: Basis of stimulation-produced and opioid analgesia; descending facilitation contributes to chronic pain states.
+  refs: [basbaum1984, nieuwenhuys2008]

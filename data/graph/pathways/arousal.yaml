@@ -1,0 +1,67 @@
+- id: arousal_dorsal
+  name: Ascending arousal network — dorsal (thalamic) route
+  system: arousal
+  start_label: brainstem side
+  summary: >-
+    Cholinergic and glutamatergic neurons of the pontomesencephalic tegmentum (PPN, LDTg,
+    mesencephalic reticular formation) project to the thalamus. The intralaminar nuclei (CM) and
+    the thalamic reticular nucleus then switch thalamocortical circuits from sleep-type burst
+    firing to the tonic firing of wakefulness, activating the cortex diffusely.
+  steps:
+    - {region: pedunculopontine_nucleus, side: ipsi, role: Cholinergic (Ch5) / glutamatergic neurons}
+    - {tract: reticular_tract, side: ipsi, note: Ascending reticulothalamic fibres in the central tegmentum}
+    - {region: CM, side: ipsi, role: Intralaminar thalamus (centromedian)}
+    - {tract: anterior_thalamic_radiation, side: ipsi, note: Diffuse thalamocortical projection (frontal portion shown)}
+    - {region: rostral_middle_frontal_gyrus, side: ipsi, role: Widespread cortical activation}
+  highlight:
+    - {region: laterodorsal_tegmental_nucleus, side: ipsi, note: Cholinergic (Ch6) partner of the PPN}
+    - {region: mesencephalic_reticular_formation, side: ipsi, note: Classical reticular activating system}
+  clinical:
+    - {site: Bilateral paramedian pontomesencephalic tegmentum, finding: Coma — even a small lesion here suffices (e.g. basilar-tip or top-of-the-basilar ischaemia)}
+    - {site: Bilateral paramedian thalami (artery of Percheron), finding: Hypersomnolence or coma with vertical gaze palsy}
+    - {site: Unilateral hemispheric lesion, finding: Does not cause coma unless it compresses the brainstem (herniation)}
+  refs: [edlow2012, edlow2024, parvizi2003, nieuwenhuys2008]
+
+- id: arousal_ventral
+  name: Ascending arousal network — ventral (hypothalamic / basal forebrain) route
+  system: arousal
+  start_label: brainstem side
+  summary: >-
+    Monoaminergic brainstem nuclei (locus coeruleus, raphe, VTA) send axons forward through the
+    medial forebrain bundle in the lateral hypothalamus. There they meet the histaminergic
+    (tuberomammillary) and orexinergic (lateral hypothalamic) wake-promoting neurons, and reach
+    the cholinergic basal forebrain, which projects to the entire cortex.
+  steps:
+    - {region: locus_coeruleus, side: ipsi, role: Noradrenergic neuron (A6)}
+    - {tract: medial_forebrain_bundle, side: ipsi, note: Ventral ascending route through the lateral hypothalamus}
+    - {region: hypothalamus, side: ipsi, role: "Lateral hypothalamus (orexin) and tuberomammillary nucleus (histamine)"}
+    - {region: basal_forebrain, side: ipsi, role: Cholinergic nucleus basalis → whole cortex}
+  highlight:
+    - {region: dorsal_raphe, side: ipsi, note: Serotonergic axons travel in the same bundle}
+    - {region: VTA, side: ipsi, note: Dopaminergic axons travel in the same bundle}
+    - {region: parabrachial_complex, side: ipsi, note: Glutamatergic input to basal forebrain and hypothalamus}
+  clinical:
+    - {site: Lateral hypothalamic orexin neurons, finding: Loss causes narcolepsy type 1 (with cataplexy)}
+    - {site: Basal forebrain cholinergic neurons, finding: Degenerate in Alzheimer disease}
+    - {site: Posterior hypothalamus (von Economo), finding: Lesions cause hypersomnolence (encephalitis lethargica)}
+  refs: [edlow2012, edlow2024, nieuwenhuys2008]
+
+- id: descending_pain_modulation
+  name: Descending pain modulation (PAG–RVM–dorsal horn)
+  system: pain
+  start_label: body side
+  summary: >-
+    The periaqueductal grey excites neurons of the rostral ventromedial medulla. Their axons
+    descend in the dorsolateral funiculus and gate nociceptive transmission in the dorsal horn
+    through inhibitory interneurons. This is a major site of opioid and stimulation-produced
+    analgesia.
+  steps:
+    - {region: periaqueductal_grey, side: ipsi, role: Ventrolateral PAG}
+    - {tract: pag_rvm_fibres, side: ipsi}
+    - {region: rostral_ventromedial_medulla, side: ipsi, role: Nucleus raphe magnus (ON/OFF cells)}
+    - {tract: raphespinal_tract, side: ipsi, note: Dorsolateral funiculus}
+    - {region: dorsal_horn_lumbosacral, side: ipsi, role: Laminae I/II — inhibition of spinothalamic neurons}
+  clinical:
+    - {site: Systemic or intrathecal opioids, finding: "Act at PAG, RVM and dorsal horn to produce analgesia"}
+    - {site: Dorsolateral funiculus lesion, finding: Loss of descending inhibition below the lesion}
+  refs: [basbaum1984, nieuwenhuys2008]

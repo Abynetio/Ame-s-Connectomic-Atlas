@@ -20,7 +20,7 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 
 # Source ids used in YAML geometry -> id in data/sources.yaml
-GEOMETRY_SOURCES = {"cerebra": "cerebra", "thomas": "thomas", "atag": "atag", "cit168": "cit168", "hcp1065": "hcp1065", "hcp842": "hcp842", "schematic": "schematic"}
+GEOMETRY_SOURCES = {"cerebra": "cerebra", "thomas": "thomas", "atag": "atag", "cit168": "cit168", "harvard_aan": "harvard_aan", "hcp1065": "hcp1065", "hcp842": "hcp842", "schematic": "schematic"}
 
 
 def _load_dir(d: Path) -> list:

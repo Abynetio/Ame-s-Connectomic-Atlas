@@ -69,7 +69,7 @@
   license: CC0 1.0 (Dryad)
   refs: [edlow2012, edlow2024]
   allowed: true
-  fetch: github-actions
+  fetch: manual download, attached to the source-uploads release and imported by pipeline/import_uploads.py
 
 - id: cit168
   name: CIT168 subcortical atlas (v1.1.0, MNI152 2009c deterministic labels)

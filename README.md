@@ -24,11 +24,11 @@ See [PLAN.md](PLAN.md) for the full roadmap, data sources and licensing rational
 
 | Content | Count |
 |---|---|
-| Regions | 100: 31 cortical gyri, thalamic nuclei (THOMAS), basal ganglia (ATAG, CIT168), midbrain/limbic nuclei (CIT168), brainstem, cerebellum, ventricles, and schematic brainstem, spinal and special-sense nuclei |
-| Tracts | 76: all 106 HCP1065 bundles (grouped L/R), HCP842 brainstem tracts, and schematic spinal, brainstem and basal-ganglia connections |
-| Pathways | 23: see below |
-| Projections | 53 directed region-to-region edges derived from the pathways |
-| References | 28, every DOI checked in CI |
+| Regions | 110: 31 cortical gyri, thalamic nuclei (THOMAS), basal ganglia (ATAG, CIT168), midbrain/limbic nuclei (CIT168), brainstem, cerebellum, ventricles, and ascending-arousal nuclei (Harvard AAN), and schematic brainstem, spinal and special-sense nuclei |
+| Tracts | 78: all 106 HCP1065 bundles (grouped L/R), HCP842 brainstem tracts, and schematic spinal, brainstem and basal-ganglia connections |
+| Pathways | 26: see below |
+| Projections | 59 directed region-to-region edges derived from the pathways |
+| References | 30, every DOI checked in CI |
 
 Pathways by system:
 - **Motor:** lateral corticospinal (hand, leg), anterior corticospinal, corticobulbar to the face
@@ -41,6 +41,8 @@ Pathways by system:
 - **Basal ganglia:** direct, indirect and hyperdirect pathways, nigrostriatal
 - **Limbic:** mesolimbic, Papez circuit
 - **Language:** dorsal and ventral streams
+- **Arousal and pain modulation:** dorsal (thalamic) and ventral (hypothalamic / basal forebrain)
+  arousal routes, descending pain modulation (PAG → RVM → dorsal horn)
 
 Viewer features:
 - search across names, Latin terms, abbreviations and synonyms

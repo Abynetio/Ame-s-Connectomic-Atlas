@@ -116,11 +116,12 @@ class Volumes:
         self.hcp842_names = [l.split("\t")[1].strip() for l in (m / "HCP842_tractography.txt").read_text().splitlines() if l.strip()]
         self.t1 = nib.load(m / "human_T1w.nii.gz")
         self.cit168 = nib.load(ROOT / "data/external/cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/CIT168toMNI152-2009c_det.nii.gz")
+        self.harvard_aan = nib.load(ROOT / "data/external/harvard_aan_v2/AAN_Brainstem_MNI152_1mm_v2p0.nii.gz")
         self._cache: dict = {}
 
     def data(self, src: str) -> tuple[np.ndarray, np.ndarray]:
         if src not in self._cache:
-            img = {"cerebra": self.cerebra, "thomas": self.thomas, "atag": self.atag, "cit168": self.cit168}[src]
+            img = {"cerebra": self.cerebra, "thomas": self.thomas, "atag": self.atag, "cit168": self.cit168, "harvard_aan": self.harvard_aan}[src]
             d = np.asanyarray(img.dataobj)
             if d.dtype.kind == "f":
                 d = np.rint(d).astype(np.int32)
@@ -142,7 +143,7 @@ class Volumes:
         if hemi in ("L", "R"):  # bilateral label: keep one hemisphere
             i = np.arange(mask.shape[0])
             x = aff[0, 0] * i + aff[0, 3]
-            keep = (x < 0) if hemi == "L" else (x > 0)
+            keep = (x <= 0) if hemi == "L" else (x > 0)
             mask = mask & keep[:, None, None]
         if zrange is not None:
             k = np.arange(mask.shape[2])
@@ -563,10 +564,10 @@ def compute_endpoints(g, vols: Volumes, endpoints, tracts_out, sl_meta, max_dist
         out[ok] = d[ijk[ok, 0], ijk[ok, 1], ijk[ok, 2]]
         return out.reshape(d_c.shape)
 
-    resampled = {"cerebra": d_c, "thomas": sample("thomas"), "atag": sample("atag"), "cit168": sample("cit168")}
+    resampled = {"cerebra": d_c, "thomas": sample("thomas"), "atag": sample("atag"), "cit168": sample("cit168"), "harvard_aan": sample("harvard_aan")}
     zc = world[:, 2].reshape(d_c.shape)
     xc = world[:, 0].reshape(d_c.shape)
-    for src in ("cerebra", "cit168", "atag", "thomas"):  # later sources overwrite earlier ones
+    for src in ("cerebra", "cit168", "harvard_aan", "atag", "thomas"):  # later sources overwrite earlier ones
         for r in g["regions"]:
             geo = r["geometry"]
             if geo["kind"] != "data" or geo["source"] != src or geo.get("style") in ("ventricle",) or r["id"] == "thalamus":
@@ -575,7 +576,7 @@ def compute_endpoints(g, vols: Volumes, endpoints, tracts_out, sl_meta, max_dist
                 labs = labs if isinstance(labs, list) else [labs]
                 m = np.isin(resampled[src], labs)
                 if geo["labels"].get("L") is not None and geo["labels"].get("L") == geo["labels"].get("R"):
-                    m &= (xc < 0) if side == "L" else (xc > 0)
+                    m &= (xc <= 0) if side == "L" else (xc > 0)
                 if geo.get("zrange"):
                     m &= (zc >= geo["zrange"][0]) & (zc < geo["zrange"][1])
                 names.append((r["id"], side))

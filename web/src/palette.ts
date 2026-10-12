@@ -39,6 +39,7 @@ export const SYSTEM_LABELS: Record<string, string> = {
   cranial_nerves: "Cranial nerves",
   autonomic: "Autonomic",
   arousal: "Arousal",
+  pain: "Pain modulation",
   visuospatial: "Visuospatial",
   interhemispheric: "Commissural",
   landmark: "Landmarks",

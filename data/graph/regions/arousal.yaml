@@ -1,0 +1,131 @@
+# Ascending arousal network nuclei — Harvard AAN Atlas v2.0 (Edlow & Kinney, CC0).
+# Labels are the values in AAN_Brainstem_MNI152_1mm_v2p0.nii (see its FreeSurfer LUT).
+
+- id: locus_coeruleus
+  name: Locus coeruleus
+  latin: Locus caeruleus
+  abbrev: [LC]
+  group: brainstem.pons
+  systems: [arousal]
+  geometry: {kind: data, source: harvard_aan, labels: {L: 7301, R: 7401}}
+  summary: >-
+    Compact noradrenergic (A6) nucleus in the dorsolateral rostral pontine tegmentum, at the
+    lateral floor of the fourth ventricle. Its axons reach virtually the whole neuraxis —
+    thalamus, hypothalamus, basal forebrain, all of cortex, cerebellum and spinal cord — and
+    promote wakefulness, attention and the stress response.
+  clinical: >-
+    Degenerates early in Alzheimer and Parkinson disease (neuromelanin-sensitive MRI shows its
+    loss). Silent during REM sleep.
+  refs: [nieuwenhuys2008, edlow2012, edlow2024]
+
+- id: dorsal_raphe
+  name: Dorsal raphe nucleus
+  latin: Nucleus raphes dorsalis
+  abbrev: [DR]
+  group: mesencephalon
+  systems: [arousal]
+  geometry: {kind: data, source: harvard_aan, labels: {M: 7201}}
+  summary: >-
+    Largest serotonergic (B7) cell group, in the ventral periaqueductal grey of the caudal
+    midbrain and rostral pons. Projects to the forebrain (cortex, striatum, thalamus,
+    amygdala) mainly through the medial forebrain bundle.
+  clinical: Target system of SSRIs; part of the paramedian tegmentum whose bilateral injury causes coma.
+  refs: [nieuwenhuys2008, edlow2012]
+
+- id: median_raphe
+  name: Median raphe nucleus
+  latin: Nucleus raphes medianus
+  abbrev: [MnR]
+  group: brainstem.pons
+  systems: [arousal]
+  geometry: {kind: data, source: harvard_aan, labels: {M: 7202}}
+  summary: Midline serotonergic (B8) nucleus of the rostral pons; projects to the hippocampus, septum and hypothalamus.
+  refs: [nieuwenhuys2008, edlow2012]
+
+- id: periaqueductal_grey
+  name: Periaqueductal grey
+  latin: Substantia grisea centralis
+  abbrev: [PAG]
+  group: mesencephalon
+  systems: [arousal, pain, autonomic]
+  geometry: {kind: data, source: harvard_aan, labels: {M: 7203}}
+  summary: >-
+    Grey matter around the cerebral aqueduct. Coordinates defensive behaviour, vocalisation and
+    autonomic responses, and drives the descending pain-modulation system through the rostral
+    ventromedial medulla. Rich in opioid receptors.
+  clinical: >-
+    Morphine analgesia acts partly here. Deep brain stimulation of the PAG/periventricular grey
+    has been used for refractory pain.
+  refs: [nieuwenhuys2008, basbaum1984, edlow2012]
+
+- id: laterodorsal_tegmental_nucleus
+  name: Laterodorsal tegmental nucleus
+  latin: Nucleus tegmentalis laterodorsalis
+  abbrev: [LDTg, LDT]
+  group: brainstem.pons
+  systems: [arousal]
+  geometry: {kind: data, source: harvard_aan, labels: {L: 7302, R: 7402}}
+  summary: Cholinergic (Ch6) neurons in the periventricular grey of the rostral pons; with the PPN projects to the thalamus and drives cortical activation in wakefulness and REM sleep.
+  refs: [nieuwenhuys2008, edlow2012]
+
+- id: pedunculopontine_nucleus
+  name: Pedunculopontine nucleus
+  latin: Nucleus tegmentalis pedunculopontinus
+  abbrev: [PPN, PTg]
+  synonyms: [pedunculotegmental nucleus]
+  group: mesencephalon
+  systems: [arousal, motor, basal_ganglia]
+  geometry: {kind: data, source: harvard_aan, labels: {L: 7306, R: 7406}}
+  summary: >-
+    Cholinergic (Ch5) and glutamatergic neurons in the caudal midbrain / rostral pontine
+    tegmentum, lateral to the superior cerebellar peduncle decussation. Projects to the
+    thalamus (arousal), receives GPi/SNr output, and forms part of the mesencephalic locomotor
+    region.
+  clinical: Investigational DBS target for gait freezing and falls in Parkinson disease.
+  refs: [nieuwenhuys2008, edlow2012]
+
+- id: parabrachial_complex
+  name: Parabrachial complex
+  latin: Nuclei parabrachiales
+  abbrev: [PBC, PB]
+  group: brainstem.pons
+  systems: [arousal, autonomic, gustatory]
+  geometry: {kind: data, source: harvard_aan, labels: {L: 7304, R: 7404}}
+  summary: Glutamatergic nuclei surrounding the superior cerebellar peduncle in the rostral pons; relay visceral, taste, pain and temperature signals to the hypothalamus, amygdala and thalamus and are critical for sustaining wakefulness.
+  refs: [nieuwenhuys2008, edlow2012, edlow2024]
+
+- id: pontis_oralis
+  name: Pontine reticular nucleus, oral part
+  latin: Nucleus reticularis pontis oralis
+  abbrev: [PnO]
+  group: brainstem.pons
+  systems: [arousal, motor]
+  geometry: {kind: data, source: harvard_aan, labels: {L: 7305, R: 7405}}
+  summary: Paramedian pontine reticular formation of the rostral pons; involved in REM-sleep generation and arousal, and origin of pontine reticulospinal fibres.
+  refs: [nieuwenhuys2008, edlow2012]
+
+- id: mesencephalic_reticular_formation
+  name: Mesencephalic reticular formation
+  latin: Formatio reticularis mesencephali
+  abbrev: [mRt]
+  group: mesencephalon
+  systems: [arousal]
+  geometry: {kind: data, source: harvard_aan, labels: {L: 7303, R: 7403}}
+  summary: Midbrain tegmental reticular core (the classical "ascending reticular activating system"); projects to the intralaminar thalamic nuclei.
+  clinical: Bilateral paramedian midbrain-tegmental lesions cause coma.
+  refs: [nieuwenhuys2008, edlow2012, parvizi2003]
+
+- id: rostral_ventromedial_medulla
+  name: Rostral ventromedial medulla
+  latin: Medulla oblongata, pars rostroventromedialis
+  abbrev: [RVM]
+  synonyms: [nucleus raphe magnus and adjacent reticular formation]
+  group: brainstem.medulla
+  systems: [pain]
+  geometry: {kind: schematic, shape: ellipsoid, center: {M: [0, -37, -48]}, radii: [3.5, 3, 4]}
+  verify: true
+  summary: >-
+    Nucleus raphe magnus and adjacent reticular formation at the pontomedullary junction.
+    Receives the PAG and projects through the dorsolateral funiculus to the dorsal horn, where
+    "OFF" cells inhibit and "ON" cells facilitate nociceptive transmission.
+  refs: [nieuwenhuys2008, basbaum1984]
