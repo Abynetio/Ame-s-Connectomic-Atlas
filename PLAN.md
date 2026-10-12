@@ -8,7 +8,7 @@ which tract carries its output, and where that output ends up**. Slice
 atlases show the structures but leave the student to work out the wiring.
 This atlas shows the wiring.
 
-Status: **Phase 0 and Phase 1 (motor + somatosensory vertical slice) implemented — v0.1.** Phase 2 content in progress.
+Status: **Phases 0 and 1 implemented; Phase 2 partly done (v0.2 preview: 23 pathways).** The arousal network (Harvard AAN) is waiting on a manual download — see data/external/FETCH_REPORT.md.
 
 ---
 

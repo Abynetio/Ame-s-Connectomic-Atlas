@@ -220,16 +220,82 @@
   clinical: Lesions cause contralateral hemiballismus; the most common DBS target for Parkinson disease.
   refs: [nieuwenhuys2008, keuken2014]
 
-- id: substantia_nigra
-  name: Substantia nigra
-  latin: Substantia nigra
-  abbrev: [SN, SNc, SNr]
+- id: SNc
+  name: Substantia nigra, pars compacta
+  latin: Substantia nigra, pars compacta
+  abbrev: [SNc]
   group: mesencephalon
   systems: [basal_ganglia, motor]
-  geometry: {kind: data, source: atag, labels: {L: 3, R: 4}}
-  summary: Pars compacta (dopaminergic) projects to the striatum (nigrostriatal pathway); pars reticulata is a GABAergic output nucleus like GPi.
-  clinical: Loss of SNc dopaminergic neurons causes Parkinson disease.
-  refs: [nieuwenhuys2008, keuken2014]
+  geometry: {kind: data, source: cit168, labels: {L: 7, R: 7}}
+  summary: >-
+    Dopaminergic (A9) neurons of the ventral midbrain. The nigrostriatal projection excites
+    direct-pathway (D1) and inhibits indirect-pathway (D2) striatal neurons, facilitating movement.
+  clinical: >-
+    Loss of SNc neurons (visible as loss of the "swallow-tail" sign on susceptibility MRI)
+    causes the bradykinesia and rigidity of Parkinson disease.
+  refs: [nieuwenhuys2008, pauli2018]
+
+- id: SNr
+  name: Substantia nigra, pars reticulata
+  latin: Substantia nigra, pars reticulata
+  abbrev: [SNr]
+  group: mesencephalon
+  systems: [basal_ganglia, oculomotor]
+  geometry: {kind: data, source: cit168, labels: {L: 9, R: 9}}
+  summary: >-
+    GABAergic basal-ganglia output nucleus, the midbrain counterpart of GPi. Projects to VA/VL and
+    MD thalamus, the superior colliculus (saccades) and the pedunculopontine nucleus.
+  refs: [nieuwenhuys2008, pauli2018]
+
+- id: VTA
+  name: Ventral tegmental area
+  latin: Area tegmentalis ventralis
+  abbrev: [VTA, A10]
+  group: mesencephalon
+  systems: [limbic, reward, arousal]
+  geometry: {kind: data, source: cit168, labels: {L: 11, R: 11}}
+  summary: >-
+    Medial dopaminergic (A10) cell group. Mesolimbic projection to the nucleus accumbens, amygdala
+    and hippocampus; mesocortical projection to prefrontal cortex. Part of the ascending arousal
+    network.
+  clinical: Mesolimbic hyperactivity is implicated in psychosis (antipsychotic D2 blockade) and in addiction.
+  refs: [nieuwenhuys2008, pauli2018, edlow2012]
+
+- id: hypothalamus
+  name: Hypothalamus
+  latin: Hypothalamus
+  group: diencephalon.hypothalamus
+  systems: [autonomic, limbic]
+  geometry: {kind: data, source: cit168, labels: {L: 14, R: 14}}
+  summary: >-
+    Ventral diencephalon controlling homeostasis — autonomic, endocrine (via the pituitary),
+    thermoregulation, feeding, sleep-wake (orexin, histamine) and circadian rhythm.
+  clinical: >-
+    Hypothalamic hamartoma (gelastic seizures), craniopharyngioma and suprasellar surgery
+    threaten hypothalamic function (diabetes insipidus, obesity, temperature instability).
+  refs: [nieuwenhuys2008, pauli2018]
+
+- id: mammillary_body
+  name: Mammillary body
+  latin: Corpus mammillare
+  group: diencephalon.hypothalamus
+  systems: [limbic, memory]
+  geometry: {kind: data, source: cit168, labels: {L: 15, R: 15}}
+  summary: >-
+    Posterior hypothalamic nuclei receiving the postcommissural fornix and projecting through the
+    mammillothalamic tract to the anterior thalamus (Papez circuit).
+  clinical: Atrophy and haemorrhage of the mammillary bodies are characteristic of Wernicke-Korsakoff syndrome (thiamine deficiency).
+  refs: [nieuwenhuys2008, pauli2018]
+
+- id: ventral_pallidum
+  name: Ventral pallidum
+  latin: Pallidum ventrale
+  abbrev: [VP, VeP]
+  group: basal_ganglia.pallidum
+  systems: [limbic, basal_ganglia]
+  geometry: {kind: data, source: cit168, labels: {L: 12, R: 12}}
+  summary: Output of the limbic basal-ganglia loop; receives the nucleus accumbens and projects to MD thalamus.
+  refs: [nieuwenhuys2008, pauli2018]
 
 - id: red_nucleus
   name: Red nucleus

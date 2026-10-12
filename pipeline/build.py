@@ -115,18 +115,19 @@ class Volumes:
         self.hcp842 = nib.load(m / "HCP842_tractography.nii.gz")
         self.hcp842_names = [l.split("\t")[1].strip() for l in (m / "HCP842_tractography.txt").read_text().splitlines() if l.strip()]
         self.t1 = nib.load(m / "human_T1w.nii.gz")
+        self.cit168 = nib.load(ROOT / "data/external/cit168/jkzwp/CIT168_Reinf_Learn_v1.1.0/MNI152-Nonlin-Asym-2009c/CIT168toMNI152-2009c_det.nii.gz")
         self._cache: dict = {}
 
     def data(self, src: str) -> tuple[np.ndarray, np.ndarray]:
         if src not in self._cache:
-            img = {"cerebra": self.cerebra, "thomas": self.thomas, "atag": self.atag}[src]
+            img = {"cerebra": self.cerebra, "thomas": self.thomas, "atag": self.atag, "cit168": self.cit168}[src]
             d = np.asanyarray(img.dataobj)
             if d.dtype.kind == "f":
                 d = np.rint(d).astype(np.int32)
             self._cache[src] = (d, img.affine)
         return self._cache[src]
 
-    def label_mask(self, src: str, labels, zrange=None):
+    def label_mask(self, src: str, labels, zrange=None, hemi: str | None = None):
         if src == "hcp842":
             names = labels if isinstance(labels, list) else [labels]
             d = np.asanyarray(self.hcp842.dataobj)
@@ -138,6 +139,11 @@ class Volumes:
             d, aff = self.data(src)
             labs = labels if isinstance(labels, list) else [labels]
             mask = np.isin(d, labs)
+        if hemi in ("L", "R"):  # bilateral label: keep one hemisphere
+            i = np.arange(mask.shape[0])
+            x = aff[0, 0] * i + aff[0, 3]
+            keep = (x < 0) if hemi == "L" else (x > 0)
+            mask = mask & keep[:, None, None]
         if zrange is not None:
             k = np.arange(mask.shape[2])
             z = aff[2, 2] * k + aff[2, 3]
@@ -359,7 +365,8 @@ def main() -> int:
         rec["sides"] = {}
         if geo["kind"] == "data":
             for side in sides_of(geo["labels"]):
-                mask, aff = vols.label_mask(geo["source"], geo["labels"][side], geo.get("zrange"))
+                bilateral = geo["labels"].get("L") is not None and geo["labels"].get("L") == geo["labels"].get("R")
+                mask, aff = vols.label_mask(geo["source"], geo["labels"][side], geo.get("zrange"), hemi=side if bilateral else None)
                 vox = float(abs(np.linalg.det(aff[:3, :3])))
                 volume = mask.sum() * vox
                 target = 6000 if rec["style"] == "context" else (3500 if volume > 8000 else 1600)
@@ -556,9 +563,10 @@ def compute_endpoints(g, vols: Volumes, endpoints, tracts_out, sl_meta, max_dist
         out[ok] = d[ijk[ok, 0], ijk[ok, 1], ijk[ok, 2]]
         return out.reshape(d_c.shape)
 
-    resampled = {"cerebra": d_c, "thomas": sample("thomas"), "atag": sample("atag")}
+    resampled = {"cerebra": d_c, "thomas": sample("thomas"), "atag": sample("atag"), "cit168": sample("cit168")}
     zc = world[:, 2].reshape(d_c.shape)
-    for src in ("cerebra", "atag", "thomas"):  # later sources overwrite earlier ones
+    xc = world[:, 0].reshape(d_c.shape)
+    for src in ("cerebra", "cit168", "atag", "thomas"):  # later sources overwrite earlier ones
         for r in g["regions"]:
             geo = r["geometry"]
             if geo["kind"] != "data" or geo["source"] != src or geo.get("style") in ("ventricle",) or r["id"] == "thalamus":
@@ -566,6 +574,8 @@ def compute_endpoints(g, vols: Volumes, endpoints, tracts_out, sl_meta, max_dist
             for side, labs in geo["labels"].items():
                 labs = labs if isinstance(labs, list) else [labs]
                 m = np.isin(resampled[src], labs)
+                if geo["labels"].get("L") is not None and geo["labels"].get("L") == geo["labels"].get("R"):
+                    m &= (xc < 0) if side == "L" else (xc > 0)
                 if geo.get("zrange"):
                     m &= (zc >= geo["zrange"][0]) & (zc < geo["zrange"][1])
                 names.append((r["id"], side))

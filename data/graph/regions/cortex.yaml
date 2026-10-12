@@ -75,6 +75,8 @@
   group: cortex.frontal
   systems: [motor, executive]
   geometry: {kind: data, source: cerebra, labels: {L: 89, R: 38}}
+  anchors:
+    sma: {L: [-6, -3, 57]}
   summary: >
     Posteriorly contains BA 6: the supplementary motor area (SMA) on the medial surface and the
     dorsal premotor cortex laterally; anteriorly, dorsolateral and medial prefrontal cortex
@@ -332,6 +334,8 @@
   group: cortex.temporal
   systems: [auditory, language]
   geometry: {kind: data, source: cerebra, labels: {L: 96, R: 45}}
+  anchors:
+    wernicke: {L: [-58, -38, 11]}
   summary: Auditory association cortex; its posterior part in the dominant hemisphere forms Wernicke's area, linked to frontal language cortex by the arcuate fasciculus.
   clinical: Dominant posterior lesions produce fluent (Wernicke's) aphasia with impaired comprehension.
   refs: [blumenfeld2021]

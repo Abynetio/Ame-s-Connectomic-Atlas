@@ -23,7 +23,7 @@
           "required": ["kind", "source", "labels"],
           "properties": {
             "kind": {"const": "data"},
-            "source": {"enum": ["cerebra", "thomas", "atag"]},
+            "source": {"enum": ["cerebra", "thomas", "atag", "cit168"]},
             "labels": {"$ref": "#/$defs/sided"},
             "zrange": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
             "style": {"enum": ["default", "context", "ventricle"]}

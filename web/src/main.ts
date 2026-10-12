@@ -360,12 +360,13 @@ class App {
 
     const ol = h("ol", { class: "steps" });
     pw.steps.forEach((st, k) => {
-      const side = mirrorSide(this.start, st.side);
       const obj = st.region ? this.atlas.regionById.get(st.region)! : this.atlas.tractById.get(st.tract!)!;
+      const midline = st.region ? !!this.atlas.regionById.get(st.region)!.sides.M : this.atlas.tractById.get(st.tract!)!.parts.every((p) => !!p.sides.M);
+      const side: Side = midline ? "M" : mirrorSide(this.start, st.side);
       const li = h(
         "li",
         { class: (k === this.step ? "current " : "") + (st.region ? "region" : "tract") },
-        h("button", { type: "button", class: "step-btn" }, h("span", { class: "step-name" }, obj.name), h("span", { class: "step-side" }, `${sideName(side)}${st.side === "contra" ? " · crossed" : ""}`)),
+        h("button", { type: "button", class: "step-btn" }, h("span", { class: "step-name" }, obj.name), h("span", { class: "step-side" }, `${sideName(side)}${st.side === "contra" && !midline ? " · crossed" : ""}`)),
         st.role ? h("div", { class: "step-role" }, st.role) : "",
         st.note ? h("div", { class: "step-note" }, st.note) : "",
         k === this.step ? h("div", { class: "step-more" }, this.link(st.region ? "region" : "tract", st.region ?? st.tract!, "Open details →")) : "",

@@ -1,0 +1,136 @@
+# Schematic structures for the visual, auditory, vestibular and oculomotor systems.
+# Same conventions as schematic.yaml: MNI mm for the LEFT member, mirrored for the right;
+# approximate positions, rendered as wireframe. Eye position checked against the dark vitreous on
+# the ICBM152 T1 template.
+
+- id: eye
+  name: Eye and retina
+  latin: Bulbus oculi; retina
+  group: peripheral
+  systems: [visual]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-32, 56, -42]}, radii: [11, 11, 11]}
+  summary: >-
+    Retinal ganglion cells are the first neurons of the visual pathway whose axons leave the eye.
+    Each retina is split at the fovea into a nasal hemiretina (sees the temporal visual field;
+    fibres cross in the chiasm) and a temporal hemiretina (sees the nasal field; fibres stay
+    uncrossed).
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: ciliary_ganglion
+  name: Ciliary ganglion
+  latin: Ganglion ciliare
+  group: peripheral
+  systems: [visual, autonomic]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-25, 38, -40]}, radii: [1.5, 1.5, 1.5]}
+  verify: true
+  summary: Parasympathetic ganglion in the orbit, lateral to the optic nerve. Receives preganglionic fibres from the Edinger-Westphal nucleus via CN III; short ciliary nerves supply the pupillary sphincter and ciliary muscle.
+  refs: [nieuwenhuys2008]
+
+- id: pretectal_nucleus
+  name: Pretectal olivary nucleus
+  latin: Nucleus olivaris pretectalis
+  synonyms: [pretectum, pretectal area]
+  group: mesencephalon
+  systems: [visual, oculomotor]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-5, -26, -1]}, radii: [2, 2, 2]}
+  verify: true
+  summary: At the midbrain-diencephalic junction rostral to the superior colliculus. Receives retinal input via the optic tract and projects bilaterally (partly through the posterior commissure) to the Edinger-Westphal nuclei — the basis of the consensual light reflex.
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: superior_colliculus
+  name: Superior colliculus
+  latin: Colliculus superior
+  group: mesencephalon
+  systems: [visual, oculomotor]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-4.5, -31, -4]}, radii: [3, 3, 2.5]}
+  verify: true
+  summary: Rostral tectum; retinotopic map for orienting eye and head movements (saccades). Receives retina, visual cortex, FEF and SNr input.
+  refs: [nieuwenhuys2008]
+
+- id: oculomotor_nucleus
+  name: Oculomotor nuclear complex
+  latin: Nucleus nervi oculomotorii
+  abbrev: [III]
+  group: mesencephalon
+  systems: [oculomotor, cranial_nerves]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-3, -26, -9]}, radii: [1.5, 2, 3]}
+  verify: true
+  summary: Ventral to the aqueduct at the superior colliculus level. Subnuclei for the medial, inferior and superior recti (the latter crossed), inferior oblique, and a single midline nucleus for both levator palpebrae.
+  clinical: A nuclear lesion causes bilateral ptosis and contralateral superior rectus weakness in addition to ipsilateral signs.
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: edinger_westphal_nucleus
+  name: Edinger-Westphal nucleus
+  latin: Nucleus accessorius nervi oculomotorii
+  abbrev: [EW]
+  group: mesencephalon
+  systems: [autonomic, oculomotor]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-1.5, -24, -6]}, radii: [1, 1.5, 2]}
+  verify: true
+  summary: Preganglionic parasympathetic neurons for pupillary constriction and accommodation, dorsal to the oculomotor complex.
+  refs: [nieuwenhuys2008]
+
+- id: inferior_colliculus
+  name: Inferior colliculus
+  latin: Colliculus inferior
+  group: mesencephalon
+  systems: [auditory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-5.5, -37, -11]}, radii: [3, 3, 2.5]}
+  verify: true
+  summary: Obligatory midbrain auditory relay; tonotopic. Receives the lateral lemniscus and projects via the brachium of the inferior colliculus to the MGN.
+  refs: [nieuwenhuys2008]
+
+- id: spiral_ganglion
+  name: Spiral ganglion (cochlea)
+  latin: Ganglion spirale cochleae
+  group: peripheral
+  systems: [auditory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-35, -20, -40]}, radii: [3, 3, 2.5]}
+  verify: true
+  summary: Bipolar first-order auditory neurons in the modiolus of the cochlea, innervating inner hair cells; central processes form the cochlear nerve.
+  refs: [nieuwenhuys2008]
+
+- id: vestibular_ganglion
+  name: Vestibular (Scarpa) ganglion
+  latin: Ganglion vestibulare
+  group: peripheral
+  systems: [vestibular]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-30, -26, -37]}, radii: [2, 2.5, 2]}
+  verify: true
+  summary: First-order vestibular neurons in the internal acoustic meatus, innervating the semicircular canals and otolith organs.
+  refs: [nieuwenhuys2008]
+
+- id: cochlear_nuclei
+  name: Cochlear nuclei
+  latin: Nuclei cochleares
+  synonyms: [dorsal and ventral cochlear nuclei]
+  group: brainstem.medulla
+  systems: [auditory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-15, -44, -45]}, radii: [2, 3, 3]}
+  verify: true
+  summary: Wrap the inferior cerebellar peduncle at the pontomedullary junction. Every cochlear-nerve fibre synapses here; the last level at which hearing is strictly unilateral.
+  clinical: A lesion of the cochlear nuclei or nerve causes ipsilateral deafness; above this level lesions do not.
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: superior_olivary_complex
+  name: Superior olivary complex
+  latin: Complexus olivaris superior
+  abbrev: [SOC]
+  group: brainstem.pons
+  systems: [auditory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-9, -35, -42]}, radii: [2, 2, 2.5]}
+  verify: true
+  summary: First site of binaural convergence (medial superior olive — time differences; lateral superior olive — level differences) for sound localisation; origin of the olivocochlear efferents.
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: vestibular_nuclei
+  name: Vestibular nuclei
+  latin: Nuclei vestibulares
+  synonyms: [medial vestibular nucleus, superior, lateral (Deiters) and inferior vestibular nuclei]
+  group: brainstem.medulla
+  systems: [vestibular, oculomotor]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-8, -45, -44]}, radii: [3, 3, 5]}
+  verify: true
+  summary: Under the lateral floor of the fourth ventricle. Drive the vestibulo-ocular reflex (via the MLF), vestibulospinal tracts and vestibulocerebellum.
+  clinical: Lateral medullary syndrome involves them (vertigo, nystagmus).
+  refs: [nieuwenhuys2008, blumenfeld2021]

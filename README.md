@@ -10,8 +10,12 @@ which neurons project where. This atlas shows the wiring directly. For each stru
 - step-by-step pathways (e.g. dorsal column–medial lemniscus): each synapse and decussation, plus a
   lesion-localisation table.
 
-**Status: v0.1 — Phase 1 (motor and somatosensory systems).** See [PLAN.md](PLAN.md) for the full
-roadmap, data sources and licensing rationale.
+**Status: v0.2 preview.**
+- Phase 1 is complete: the motor and somatosensory systems.
+- Phase 2 is under way, covering the visual, auditory, vestibular, basal ganglia, limbic and
+  language systems.
+
+See [PLAN.md](PLAN.md) for the full roadmap, data sources and licensing rationale.
 
 > Not for clinical use. Diffusion tractography shows the course of bundles, not synapses or
 > direction, and it has false positives and negatives.
@@ -20,11 +24,23 @@ roadmap, data sources and licensing rationale.
 
 | Content | Count |
 |---|---|
-| Regions | 83: 31 cortical gyri, thalamic nuclei, basal ganglia, brainstem, cerebellum, ventricles, and schematic spinal/brainstem nuclei |
-| Tracts | 66: all 106 HCP1065 bundles (grouped L/R), HCP842 brainstem tracts, and schematic spinal and brainstem segments |
-| Pathways | 11: lateral CST (hand, leg), anterior CST, corticobulbar to face, cortico-ponto-cerebellar, dentatorubrothalamic, DCML (upper and lower limb), anterolateral, trigeminal touch, trigeminal pain |
-| Projections | 20 directed region-to-region edges derived from the pathways |
-| References | 28 |
+| Regions | 100: 31 cortical gyri, thalamic nuclei (THOMAS), basal ganglia (ATAG, CIT168), midbrain/limbic nuclei (CIT168), brainstem, cerebellum, ventricles, and schematic brainstem, spinal and special-sense nuclei |
+| Tracts | 76: all 106 HCP1065 bundles (grouped L/R), HCP842 brainstem tracts, and schematic spinal, brainstem and basal-ganglia connections |
+| Pathways | 23: see below |
+| Projections | 53 directed region-to-region edges derived from the pathways |
+| References | 28, every DOI checked in CI |
+
+Pathways by system:
+- **Motor:** lateral corticospinal (hand, leg), anterior corticospinal, corticobulbar to the face
+- **Cerebellar:** cortico-ponto-cerebellar, dentatorubrothalamic
+- **Somatosensory:** dorsal column–medial lemniscus (upper and lower limb), anterolateral,
+  trigeminal touch, trigeminal pain
+- **Visual:** retino-geniculo-calcarine, pupillary light reflex
+- **Auditory:** ascending pathway
+- **Vestibular:** horizontal VOR
+- **Basal ganglia:** direct, indirect and hyperdirect pathways, nigrostriatal
+- **Limbic:** mesolimbic, Papez circuit
+- **Language:** dorsal and ventral streams
 
 Viewer features:
 - search across names, Latin terms, abbreviations and synonyms

@@ -1,0 +1,112 @@
+- id: visual_pathway
+  name: Retino-geniculo-calcarine (visual) pathway
+  system: visual
+  start_label: eye
+  summary: >-
+    Retinal ganglion cell axons form the optic nerve. In the chiasm the fibres from the nasal
+    hemiretina cross, so each optic tract carries the opposite visual hemifield from both eyes.
+    The LGN relays it through the optic radiation (with Meyer's loop over the temporal horn) to the
+    primary visual cortex on the banks of the calcarine sulcus. Shown here — the crossed (nasal
+    hemiretina) fibres of one eye.
+  steps:
+    - {region: eye, side: ipsi, role: "Retinal ganglion cells (nasal hemiretina — temporal visual field)"}
+    - {tract: optic_pathway, side: ipsi, parts: [0], note: Optic nerve}
+    - {region: optic_chiasm, side: ipsi, synapse: false, role: Nasal fibres cross; temporal fibres stay ipsilateral}
+    - {tract: optic_pathway, side: contra, parts: [1], note: Optic tract}
+    - {region: LGN, side: contra, role: Thalamic relay (layers 1/4/6 receive the crossed eye)}
+    - {tract: optic_radiation, side: contra, note: "Inferior fibres loop forward over the temporal horn (Meyer's loop)"}
+    - {region: pericalcarine_cortex, side: contra, role: Primary visual cortex (V1)}
+  highlight:
+    - {region: LGN, side: ipsi, note: Receives the uncrossed temporal-hemiretina fibres of the same eye}
+    - {region: superior_colliculus, side: contra, note: Retinotectal branch (orienting)}
+    - {region: pretectal_nucleus, side: contra, note: Retinopretectal branch (pupillary light reflex)}
+  clinical:
+    - {site: Optic nerve, finding: Monocular visual loss and a relative afferent pupillary defect}
+    - {site: Optic chiasm (e.g. pituitary macroadenoma), finding: Bitemporal hemianopia}
+    - {site: Optic tract, finding: Incongruous contralateral homonymous hemianopia}
+    - {site: "Meyer's loop (temporal lobe)", finding: "Contralateral superior homonymous quadrantanopia (\"pie in the sky\") — e.g. after anterior temporal lobectomy"}
+    - {site: Parietal optic radiation, finding: Contralateral inferior homonymous quadrantanopia}
+    - {site: V1 (posterior cerebral artery infarct), finding: Contralateral homonymous hemianopia with macular sparing}
+  refs: [nieuwenhuys2008, blumenfeld2021, kandel2021]
+
+- id: pupillary_light_reflex
+  name: Pupillary light reflex
+  system: visual
+  start_label: eye
+  summary: >-
+    Light in one eye constricts both pupils. Afferent — optic nerve and tract to the pretectal
+    olivary nucleus, which projects to both Edinger-Westphal nuclei. Efferent — parasympathetic
+    fibres in the oculomotor nerve to the ciliary ganglion and the pupillary sphincter. The
+    geniculocalcarine pathway is not involved.
+  steps:
+    - {region: eye, side: ipsi, role: Melanopsin-containing and other retinal ganglion cells}
+    - {tract: optic_pathway, side: ipsi, parts: [0], note: Optic nerve}
+    - {region: optic_chiasm, side: ipsi, synapse: false}
+    - {tract: optic_pathway, side: ipsi, parts: [1], note: "Optic tract (temporal-hemiretina fibres shown; nasal fibres reach the opposite tract)"}
+    - {region: pretectal_nucleus, side: ipsi, role: Pretectal olivary nucleus}
+    - {tract: pretecto_oculomotor_fibres, side: ipsi, parts: [0]}
+    - {region: edinger_westphal_nucleus, side: ipsi, role: Preganglionic parasympathetic neuron}
+    - {tract: oculomotor_nerve, side: ipsi, note: Parasympathetic fibres run superficially on the nerve}
+    - {region: ciliary_ganglion, side: ipsi, role: Postganglionic neuron}
+    - {region: eye, side: ipsi, role: Pupillary sphincter (via short ciliary nerves)}
+  highlight:
+    - {region: edinger_westphal_nucleus, side: contra, note: Crossed pretectal fibres (posterior commissure) — consensual response}
+  clinical:
+    - {site: Optic nerve, finding: "Relative afferent pupillary defect: swinging light makes the affected pupil dilate"}
+    - {site: Oculomotor nerve compression (uncal herniation or PCoA aneurysm), finding: Ipsilateral dilated unreactive pupil ("blown pupil") — a neurosurgical emergency}
+    - {site: Dorsal midbrain (pretectum), finding: Light-near dissociation (Parinaud syndrome; Argyll Robertson pupils in neurosyphilis)}
+  refs: [nieuwenhuys2008, kandel2021, blumenfeld2021]
+
+- id: auditory_pathway
+  name: Ascending auditory pathway
+  system: auditory
+  start_label: ear
+  summary: >-
+    Cochlear nerve → cochlear nuclei → (trapezoid body) → superior olivary complex → lateral
+    lemniscus → inferior colliculus → MGN → acoustic radiation → Heschl's gyrus. Because of
+    crossings at several levels each hemisphere hears both ears, with a contralateral bias. The
+    main crossed route is shown.
+  steps:
+    - {region: spiral_ganglion, side: ipsi, role: First-order neuron}
+    - {tract: vestibulocochlear_nerve, side: ipsi, note: Cochlear division}
+    - {region: cochlear_nuclei, side: ipsi, role: Second-order neuron}
+    - {tract: trapezoid_body, side: ipsi, note: Main crossing}
+    - {region: superior_olivary_complex, side: contra, role: Binaural comparison (sound localisation)}
+    - {tract: lateral_lemniscus, side: contra}
+    - {region: inferior_colliculus, side: contra, role: Midbrain relay}
+    - {tract: brachium_inferior_colliculus, side: contra}
+    - {region: MGN, side: contra, role: Thalamic relay}
+    - {tract: acoustic_radiation, side: contra}
+    - {region: transverse_temporal_gyrus, side: contra, role: Primary auditory cortex (A1)}
+  highlight:
+    - {region: superior_olivary_complex, side: ipsi, note: Both olivary complexes receive input from each ear}
+  clinical:
+    - {site: Cochlea / cochlear nerve / cochlear nuclei, finding: Ipsilateral sensorineural hearing loss (e.g. vestibular schwannoma)}
+    - {site: Lateral lemniscus or above, finding: No unilateral deafness; impaired sound localisation}
+    - {site: Bilateral Heschl's gyri, finding: Cortical deafness / auditory agnosia}
+  refs: [nieuwenhuys2008, kandel2021, blumenfeld2021]
+
+- id: horizontal_vor
+  name: Horizontal vestibulo-ocular reflex
+  system: vestibular
+  start_label: ear
+  summary: >-
+    A head turn toward one side excites that side's horizontal semicircular canal. The
+    vestibular nucleus excites the opposite abducens nucleus (lateral rectus) and, through
+    abducens internuclear neurons and the MLF, the medial rectus of the eye on the starting side.
+    Both eyes therefore move away from the head turn and gaze stays stable. A three-neuron arc.
+  steps:
+    - {region: vestibular_ganglion, side: ipsi, role: First-order neuron (horizontal canal)}
+    - {tract: vestibulocochlear_nerve, side: ipsi, note: Vestibular division}
+    - {region: vestibular_nuclei, side: ipsi, role: Second-order neuron (medial vestibular nucleus)}
+    - {tract: vestibulo_abducens_fibres, side: ipsi}
+    - {region: abducens_nucleus, side: contra, role: "Motor neurons → contralateral lateral rectus; internuclear neurons"}
+    - {tract: abducens_internuclear_fibres, side: contra}
+    - {tract: medial_longitudinal_fasciculus, side: ipsi}
+    - {region: oculomotor_nucleus, side: ipsi, role: Medial-rectus subnucleus}
+  clinical:
+    - {site: Vestibular nerve (vestibular neuritis), finding: Abnormal head impulse test toward the lesion; spontaneous nystagmus away from it}
+    - {site: MLF (multiple sclerosis or stroke), finding: Internuclear ophthalmoplegia — ipsilateral adduction failure on lateral gaze with nystagmus of the abducting eye; convergence preserved}
+    - {site: Abducens nucleus + ipsilateral MLF, finding: One-and-a-half syndrome}
+    - {site: Brainstem (coma examination), finding: Absent oculocephalic / caloric responses indicate brainstem dysfunction}
+  refs: [nieuwenhuys2008, kandel2021, blumenfeld2021]

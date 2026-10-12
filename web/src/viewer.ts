@@ -310,8 +310,9 @@ export class Viewer {
     }
   }
 
-  private setTractMode(t: Tract, side: Side | "both", mode: Mode) {
+  private setTractMode(t: Tract, side: Side | "both", mode: Mode, parts?: number[]) {
     t.parts.forEach((p, i) => {
+      if (parts && !parts.includes(i)) return;
       for (const s of Object.keys(p.sides) as Side[]) {
         if (side !== "both" && s !== side && s !== "M") continue;
         const rec = this.tractObject(t, i, s);
@@ -337,9 +338,9 @@ export class Viewer {
     this.setRegionMode(id, side, "focus");
   }
 
-  showTract(id: string, side: Side | "both" = "both", mode: Mode = "on") {
+  showTract(id: string, side: Side | "both" = "both", mode: Mode = "on", parts?: number[]) {
     const t = this.atlas.tractById.get(id);
-    if (t) this.setTractMode(t, side, mode);
+    if (t) this.setTractMode(t, side, mode, parts);
   }
 
   showRegionContext(id: string, side: Side | "both", mode: Mode = "dim") {
@@ -378,13 +379,13 @@ export class Viewer {
     for (const st of pw.steps) {
       const side = mirrorSide(start, st.side);
       if (st.region) this.setRegionMode(st.region, side, "dim");
-      if (st.tract) this.showTract(st.tract, side, "dim");
+      if (st.tract) this.showTract(st.tract, side, "dim", st.parts);
     }
     for (const h of pw.highlight ?? []) this.setRegionMode(h.region, mirrorSide(start, h.side), "dim");
     const cur = pw.steps[step];
     const cs = mirrorSide(start, cur.side);
     if (cur.region) this.setRegionMode(cur.region, cs, "focus");
-    if (cur.tract) this.showTract(cur.tract, cs, "focus");
+    if (cur.tract) this.showTract(cur.tract, cs, "focus", cur.parts);
 
     const route = pw.routes[start];
     const pts = route.points.map((p) => new THREE.Vector3(...p));

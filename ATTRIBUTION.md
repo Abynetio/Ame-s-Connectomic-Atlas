@@ -7,8 +7,9 @@
 | MNI ICBM152 2009 nonlinear asymmetric template | Reference space, MRI slices | McGill/Collins notice (`data/licenses/ICBM152.txt`) | Fonov V et al. *NeuroImage* 2011;54:313-327 |
 | CerebrA | Cortical gyri, subcortical structures, brainstem, cerebellum, ventricles, hemisphere surfaces | McGill/Collins notice | Manera AL et al. *Sci Data* 2020;7:237 |
 | THOMAS thalamic nuclei atlas | Thalamic nuclei, mammillothalamic tract | CC0 | Saranathan M et al. *Sci Data* 2021;8:275 |
+| CIT168 subcortical atlas v1.1.0 | SNc, SNr, VTA, hypothalamus, mammillary bodies, ventral pallidum | CC BY 4.0 (+ HCP acknowledgement) | Pauli WM, Nili AN, Tyszka JM. *Sci Data* 2018;5:180063 |
 | ATAG 7T basal ganglia atlas | GPe, GPi, STN, SN, red nucleus | CC BY 3.0 | Keuken MC et al. *NeuroImage* 2014;94:40-46 |
-| Schematic geometry (this project) | Spinal cord, dorsal root ganglia, small brainstem nuclei, dentate nucleus, schematic tract segments | CC BY-SA 4.0 | — |
+| Schematic geometry (this project) | Spinal cord, dorsal root ganglia, eye, small brainstem and midbrain nuclei, dentate nucleus, schematic tract segments | CC BY-SA 4.0 | — |
 
 The full bibliography for the curated content is in `data/graph/references.yaml`; the per-source
 licence registry (including sources considered and excluded) is `data/sources.yaml`.

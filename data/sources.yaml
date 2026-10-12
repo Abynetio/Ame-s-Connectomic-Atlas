@@ -72,14 +72,15 @@
   fetch: github-actions
 
 - id: cit168
-  name: CIT168 subcortical atlas
+  name: CIT168 subcortical atlas (v1.1.0, MNI152 2009c deterministic labels)
   provider: Pauli, Nili & Tyszka (Caltech)
-  url: https://osf.io/r2hvk/
+  url: https://osf.io/jkzwp/
+  info: https://osf.io/r2hvk/
   license: CC BY 4.0
   extra_terms: built from HCP data; HCP acknowledgement added
   refs: [pauli2018]
   allowed: true
-  fetch: github-actions
+  fetch: github-actions (committed under data/external/cit168)
 
 - id: edlow100um
   name: 100 micron ex vivo 7T MRI of the human brain
