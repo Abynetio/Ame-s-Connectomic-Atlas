@@ -1,7 +1,20 @@
 {
  "harvard_aan_v2": {
-  "status": "failed",
-  "files": [],
+  "status": "ok",
+  "files": [
+   {
+    "path": "harvard_aan_v2/AAN_Brainstem_v2p0_Color_LUT_FreeSurfer.txt",
+    "bytes": 681,
+    "sha256": "b6cc5d69748965de155bd68065ff9b0160083318d071d7ae301032eef7770b88",
+    "cached": true
+   },
+   {
+    "path": "harvard_aan_v2/README.md",
+    "bytes": 4300,
+    "sha256": "9c170b938deaa02571e4869225e52cd2ac271b7023cace1a7035abead46e4007",
+    "cached": true
+   }
+  ],
   "listing": [
    {
     "name": "AAN_Brainstem_MNI152_1mm_v2p0.nii",
@@ -107,8 +120,6 @@
   "notes": [
    "download failed AAN_Brainstem_MNI152_1mm_v2p0.nii via https://datadryad.org/api/v2/files/2419166/download: GET https://datadryad.org/api/v2/files/2419166/download failed: HTTP Error 401: Unauthorized",
    "download failed AAN_Brainstem_MNI152_1mm_v2p0.nii via https://datadryad.org/downloads/file_stream/2419166: GET https://datadryad.org/downloads/file_stream/2419166 failed: HTTP Error 403: Forbidden",
-   "download failed AAN_Brainstem_v2p0_Color_LUT_FreeSurfer.txt via https://datadryad.org/api/v2/files/2419165/download: GET https://datadryad.org/api/v2/files/2419165/download failed: HTTP Error 401: Unauthorized",
-   "download failed AAN_Brainstem_v2p0_Color_LUT_FreeSurfer.txt via https://datadryad.org/downloads/file_stream/2419165: GET https://datadryad.org/downloads/file_stream/2419165 failed: HTTP Error 403: Forbidden",
    "download failed AAN_DR_MNI152_1mm_v2p0.nii via https://datadryad.org/api/v2/files/2419143/download: GET https://datadryad.org/api/v2/files/2419143/download failed: HTTP Error 401: Unauthorized",
    "download failed AAN_DR_MNI152_1mm_v2p0.nii via https://datadryad.org/downloads/file_stream/2419143: GET https://datadryad.org/downloads/file_stream/2419143 failed: HTTP Error 403: Forbidden",
    "download failed AAN_LC_L_MNI152_1mm_v2p0.nii via https://datadryad.org/api/v2/files/2419145/download: GET https://datadryad.org/api/v2/files/2419145/download failed: HTTP Error 401: Unauthorized",
@@ -152,9 +163,7 @@
    "download failed AAN_PTg_R_MNI152_1mm_v2p0.nii via https://datadryad.org/api/v2/files/2419164/download: GET https://datadryad.org/api/v2/files/2419164/download failed: HTTP Error 401: Unauthorized",
    "download failed AAN_PTg_R_MNI152_1mm_v2p0.nii via https://datadryad.org/downloads/file_stream/2419164: GET https://datadryad.org/downloads/file_stream/2419164 failed: HTTP Error 403: Forbidden",
    "download failed AAN_VTA_MNI152_1mm_v2p0.nii via https://datadryad.org/api/v2/files/2419163/download: GET https://datadryad.org/api/v2/files/2419163/download failed: HTTP Error 401: Unauthorized",
-   "download failed AAN_VTA_MNI152_1mm_v2p0.nii via https://datadryad.org/downloads/file_stream/2419163: GET https://datadryad.org/downloads/file_stream/2419163 failed: HTTP Error 403: Forbidden",
-   "download failed README.md via https://datadryad.org/api/v2/files/2419168/download: GET https://datadryad.org/api/v2/files/2419168/download failed: HTTP Error 401: Unauthorized",
-   "download failed README.md via https://datadryad.org/downloads/file_stream/2419168: GET https://datadryad.org/downloads/file_stream/2419168 failed: HTTP Error 403: Forbidden"
+   "download failed AAN_VTA_MNI152_1mm_v2p0.nii via https://datadryad.org/downloads/file_stream/2419163: GET https://datadryad.org/downloads/file_stream/2419163 failed: HTTP Error 403: Forbidden"
   ],
   "doi": "10.5061/dryad.zw3r228d2",
   "title": "Harvard Ascending Arousal Network Atlas \u2013 Version 2.0",
