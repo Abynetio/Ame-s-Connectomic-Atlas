@@ -1,0 +1,41 @@
+name: Fetch external data
+
+# Downloads sources hosted on Dryad / OSF / Zenodo / labsolver (see pipeline/fetch_external.py)
+# and commits them, with a fetch report, under data/external/ on the same branch.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - pipeline/fetch_external.py
+      - .github/workflows/fetch-external.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-external-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download
+        run: python -I pipeline/fetch_external.py --out data/external --max-mb 60
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/external
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "data: fetch external sources (run ${{ github.run_id }})"
+          for i in 1 2 3 4; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((2**i))
+          done
+          exit 1
