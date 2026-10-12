@@ -1,0 +1,118 @@
+# Multi-synaptic pathways. Each step is a region (cell bodies / synapse) or a tract (axons).
+# side: ipsi | contra — relative to the side the pathway STARTS on (chosen in the viewer).
+# For tracts, the side refers to the side of the tract's ORIGIN (see tracts/*.yaml).
+# anchor: named point inside a large region (e.g. the hand area of M1).
+# parts: which geometry parts of a tract to follow (default: all non-branch parts, in order).
+# synapse: false marks a region the axons pass through without synapsing.
+# Edges for the "projects to / receives from" panels are derived from consecutive synaptic
+# regions by pipeline/build.py.
+
+- id: lateral_corticospinal_hand
+  name: Lateral corticospinal pathway — hand
+  system: motor
+  start_label: hemisphere
+  summary: >
+    Two-neuron pathway for skilled voluntary movement. The upper motor neuron in the hand area
+    of M1 projects all the way to the cervical enlargement of the opposite side of the cord,
+    crossing in the pyramidal decussation.
+  steps:
+    - {region: precentral_gyrus, side: ipsi, anchor: hand, role: "Upper motor neuron (layer V pyramidal cell, hand knob of M1)"}
+    - {tract: corticospinal_tract, side: ipsi, note: "Corona radiata → posterior limb of internal capsule → cerebral crus → basis pontis → pyramid → decussation"}
+    - {region: ventral_horn_cervical, side: contra, role: "Lower motor neuron (lamina IX, C5-T1) → hand muscles"}
+  clinical:
+    - {site: Hand knob of M1, finding: Contralateral weakness of the hand ("cortical hand"); may mimic a peripheral nerve lesion}
+    - {site: Posterior limb of internal capsule, finding: Contralateral face-arm-leg weakness (pure motor lacunar stroke)}
+    - {site: Cerebral crus (midbrain), finding: "Contralateral hemiparesis + ipsilateral CN III palsy (Weber syndrome)"}
+    - {site: Basis pontis, finding: "Contralateral hemiparesis ± ipsilateral CN VI/VII palsy (Millard-Gubler); bilateral → locked-in syndrome"}
+    - {site: Medullary pyramid, finding: "Contralateral hemiparesis, contralateral dorsal column loss, ipsilateral tongue weakness (medial medullary syndrome)"}
+    - {site: Lateral funiculus of the cervical cord, finding: Ipsilateral upper-motor-neuron weakness below the lesion (Brown-Séquard)}
+    - {site: Ventral horn / root, finding: "Lower-motor-neuron signs: flaccid weakness, atrophy, fasciculations, areflexia"}
+  refs: [nieuwenhuys2008, nathan1990, blumenfeld2021]
+
+- id: lateral_corticospinal_leg
+  name: Lateral corticospinal pathway — leg
+  system: motor
+  start_label: hemisphere
+  summary: Leg fibres arise on the medial surface (paracentral lobule) and descend the full length of the cord to the lumbosacral enlargement.
+  steps:
+    - {region: paracentral_lobule, side: ipsi, role: Upper motor neuron (leg area of M1)}
+    - {tract: corticospinal_tract, side: ipsi}
+    - {region: ventral_horn_lumbosacral, side: contra, role: Lower motor neuron (L2-S2) → leg muscles}
+  clinical:
+    - {site: Paracentral lobule (ACA territory or parasagittal meningioma), finding: Contralateral leg-predominant weakness}
+    - {site: Thoracic cord (lateral funiculus), finding: Ipsilateral spastic leg weakness below the lesion; bilateral → spastic paraparesis}
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: anterior_corticospinal
+  name: Anterior corticospinal pathway
+  system: motor
+  start_label: hemisphere
+  summary: The ~10 % of corticospinal fibres that do not cross in the medulla descend in the anterior funiculus and mostly cross segmentally to reach axial and proximal motor neurons.
+  steps:
+    - {region: precentral_gyrus, side: ipsi, anchor: hand, role: Upper motor neuron}
+    - {tract: anterior_corticospinal_tract, side: ipsi}
+    - {region: ventral_horn_cervical, side: contra, role: Medial motor column (axial/proximal muscles)}
+  refs: [nieuwenhuys2008, nathan1990]
+
+- id: corticobulbar_face
+  name: Corticobulbar pathway to the face
+  system: motor
+  start_label: hemisphere
+  summary: >
+    Face area of M1 → corticobulbar tract → facial motor nucleus → facial nerve. The
+    lower-face motor neurons receive mainly crossed input; the upper-face motor neurons receive
+    bilateral input (shown by the uncrossed branch), which is why a cortical or capsular lesion
+    spares the forehead.
+  steps:
+    - {region: precentral_gyrus, side: ipsi, anchor: face, role: Upper motor neuron (face area of M1)}
+    - {tract: corticobulbar_tract, side: ipsi, parts: [0, 1]}
+    - {region: facial_motor_nucleus, side: contra, role: Lower motor neuron (lower-face subdivision)}
+    - {tract: facial_nerve, side: contra}
+  highlight:
+    - {region: facial_motor_nucleus, side: ipsi, note: Upper-face motor neurons also receive uncrossed input}
+  clinical:
+    - {site: Face area of M1 or genu/posterior limb of internal capsule, finding: Contralateral lower-face weakness with forehead sparing (central facial palsy)}
+    - {site: Facial nucleus or nerve, finding: Ipsilateral weakness of the whole hemiface including the forehead (peripheral facial palsy)}
+  refs: [nieuwenhuys2008, jenny1987, blumenfeld2021]
+
+- id: cortico_ponto_cerebellar
+  name: Cortico-ponto-cerebellar pathway
+  system: cerebellar
+  start_label: hemisphere
+  summary: >
+    The cortex informs the opposite cerebellar hemisphere of intended movements (and of
+    cognitive context from prefrontal cortex) via a relay in the pontine nuclei. Together with
+    the dentatorubrothalamic pathway it forms the cerebro-cerebellar loop.
+  steps:
+    - {region: rostral_middle_frontal_gyrus, side: ipsi, role: Prefrontal / premotor cortex (layer V)}
+    - {tract: corticopontine_frontal, side: ipsi}
+    - {region: pontine_nuclei, side: ipsi, role: Pontine neurons}
+    - {tract: middle_cerebellar_peduncle, side: ipsi, note: Transverse pontine fibres cross the midline}
+    - {region: cerebellar_hemisphere, side: contra, role: Cerebellar cortex (mossy fibres → granule cells)}
+  clinical:
+    - {site: Pons / MCP, finding: Ipsilateral (to MCP) limb ataxia; ataxic hemiparesis lacunar syndrome when basis pontis fibres are also involved}
+  refs: [nieuwenhuys2008, schmahmann1997, kelly2003]
+
+- id: cerebello_thalamo_cortical
+  name: Cerebello-thalamo-cortical pathway (dentatorubrothalamic)
+  system: cerebellar
+  start_label: cerebellar hemisphere
+  summary: >
+    Output of the lateral cerebellum. The dentate nucleus projects through the superior
+    cerebellar peduncle, crosses in the midbrain, passes the contralateral red nucleus and
+    reaches the motor thalamus (VLp/Vim), which projects to M1 and premotor cortex. Because the
+    corticospinal tract crosses back, each cerebellar hemisphere controls the ipsilateral body.
+  steps:
+    - {region: dentate_nucleus, side: ipsi, role: Deep cerebellar nucleus (receives Purkinje-cell input)}
+    - {tract: dentatorubrothalamic_tract, side: ipsi, note: Superior cerebellar peduncle → decussation at the inferior colliculus level}
+    - {region: VLp, side: contra, role: Motor thalamus (Vim)}
+    - {tract: superior_thalamic_radiation, side: contra}
+    - {region: precentral_gyrus, side: contra, anchor: hand, role: Primary motor cortex}
+  highlight:
+    - {region: red_nucleus, side: contra, note: Most fibres pass through or around the red nucleus without synapsing}
+  clinical:
+    - {site: Cerebellar hemisphere / dentate, finding: "Ipsilateral limb ataxia, dysmetria, intention tremor"}
+    - {site: SCP decussation (caudal midbrain), finding: Bilateral limb ataxia}
+    - {site: Midbrain tegmentum near the red nucleus, finding: Contralateral Holmes (rubral) tremor}
+    - {site: VLp/Vim (surgical), finding: DBS or lesioning here suppresses contralateral essential tremor}
+  refs: [nieuwenhuys2008, meola2016, dum2003, kelly2003]

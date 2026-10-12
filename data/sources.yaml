@@ -1,0 +1,120 @@
+# Every external dataset the atlas uses, where it comes from, and the terms it is used under.
+# `allowed: true` means files derived from it may be published in the web bundle.
+# The pipeline refuses to export geometry whose source is not allowed.
+
+- id: hcp1065
+  name: HCP1065 population tractography atlas (106 bundles)
+  provider: Fang-Cheng Yeh / DSI Studio
+  url: https://github.com/frankyeh/data-atlas/releases/download/ICBM152_adult/ICBM152_adult.tt.gz
+  labels_url: https://github.com/frankyeh/data-atlas/releases/download/ICBM152_adult/ICBM152_adult.tt.gz.txt
+  info: https://brain.labsolver.org/hcp_trk_atlas.html
+  license: CC BY-SA 4.0
+  extra_terms: WU-Minn HCP Open Access Data Use Terms (derived from HCP data)
+  refs: [yeh2022, yeh2018]
+  allowed: true
+
+- id: hcp842
+  name: HCP842 tractography atlas, labelled tract volumes (80 tracts)
+  provider: Fang-Cheng Yeh / DSI Studio
+  url: https://raw.githubusercontent.com/frankyeh/data-atlas/main/human/HCP842_tractography.nii.gz
+  labels_url: https://raw.githubusercontent.com/frankyeh/data-atlas/main/human/HCP842_tractography.txt
+  info: https://zenodo.org/records/3627772
+  license: CC BY-SA 4.0
+  extra_terms: WU-Minn HCP Open Access Data Use Terms (derived from HCP data)
+  refs: [yeh2018]
+  allowed: true
+
+- id: icbm152
+  name: MNI ICBM152 2009 nonlinear asymmetric T1w template
+  provider: McConnell Brain Imaging Centre, Montreal Neurological Institute
+  url: https://raw.githubusercontent.com/frankyeh/data-atlas/main/human/human_T1w.nii.gz
+  license: McGill/Collins permissive notice (use, copy, modify, distribute with copyright notice)
+  license_file: data/licenses/ICBM152.txt
+  refs: [fonov2011]
+  allowed: true
+
+- id: cerebra
+  name: CerebrA (Mindboggle-101 labels on ICBM2009c)
+  provider: Manera, Dadar, Fonov & Collins
+  url: https://raw.githubusercontent.com/frankyeh/data-atlas/main/human/CerebrA.nii.gz
+  labels_url: https://raw.githubusercontent.com/frankyeh/data-atlas/main/human/CerebrA.txt
+  license: McGill/Collins permissive notice
+  license_file: data/licenses/ICBM152.txt
+  refs: [manera2020]
+  allowed: true
+
+- id: thomas
+  name: THOMAS thalamic nuclei atlas
+  provider: Saranathan et al.
+  url: https://raw.githubusercontent.com/frankyeh/data-atlas/main/human/THOMAS.nii.gz
+  labels_url: https://raw.githubusercontent.com/frankyeh/data-atlas/main/human/THOMAS.txt
+  license: CC0 1.0
+  refs: [saranathan2021]
+  allowed: true
+
+- id: atag
+  name: ATAG 7T basal ganglia atlas
+  provider: Keuken et al. (University of Amsterdam / MPI CBS)
+  url: https://raw.githubusercontent.com/frankyeh/data-atlas/main/human/ATAG_basal_ganglia.nii.gz
+  labels_url: https://raw.githubusercontent.com/frankyeh/data-atlas/main/human/ATAG_basal_ganglia.txt
+  license: CC BY 3.0
+  license_file: data/licenses/ATAG.txt
+  refs: [keuken2014]
+  allowed: true
+
+- id: harvard_aan
+  name: Harvard Ascending Arousal Network Atlas v2
+  provider: Edlow et al. (MGH)
+  url: https://datadryad.org/dataset/doi:10.5061/dryad.zw3r228d2
+  license: CC0 1.0 (Dryad)
+  refs: [edlow2012, edlow2024]
+  allowed: true
+  fetch: github-actions
+
+- id: cit168
+  name: CIT168 subcortical atlas
+  provider: Pauli, Nili & Tyszka (Caltech)
+  url: https://osf.io/r2hvk/
+  license: CC BY 4.0
+  extra_terms: built from HCP data; HCP acknowledgement added
+  refs: [pauli2018]
+  allowed: true
+  fetch: github-actions
+
+- id: edlow100um
+  name: 100 micron ex vivo 7T MRI of the human brain
+  provider: Edlow et al. (MGH)
+  url: https://datadryad.org/dataset/doi:10.5061/dryad.119f80q
+  license: CC0 1.0 (Dryad)
+  refs: [edlow2019]
+  allowed: true
+  note: reference for verifying schematic brainstem positions; not shipped
+
+- id: hcp_mmp
+  name: HCP-MMP1.0 multimodal cortical parcellation (volumetric MNI version)
+  provider: Glasser et al.; volumetric projection by Horn
+  url: https://raw.githubusercontent.com/frankyeh/data-atlas/main/human/HCP-MMP.nii.gz
+  license: WU-Minn HCP Open Access Data Use Terms
+  refs: [glasser2016]
+  allowed: true
+  note: planned optional fine-cortex layer (Phase 3)
+
+- id: schematic
+  name: Schematic geometry authored for this atlas
+  provider: Ame's Connectomic Atlas contributors
+  license: CC BY-SA 4.0
+  allowed: true
+  note: >
+    Hand-placed ellipsoids, capsules and splines for structures without an openly licensed
+    imaging atlas (spinal cord, small brainstem nuclei, deep cerebellar nuclei).
+    Positions are approximate and are rendered in a distinct style.
+
+# Considered and excluded from the published bundle (licence incompatible with CC BY-SA 4.0
+# or forbids redistribution). Listed so nobody adds them back by accident.
+- {id: julich_brain, license: CC BY-NC-SA 4.0, allowed: false}
+- {id: brainnetome, license: non-commercial share-alike, allowed: false}
+- {id: suit, license: CC BY-NC 3.0, allowed: false}
+- {id: brainstem_navigator, license: no redistribution outside the licensee's organisation, allowed: false}
+- {id: pijnenburg_brodmann, license: CC BY-NC-SA 4.0, allowed: false}
+- {id: cocomac, license: no data licence found, allowed: false, note: cited via primary literature only}
+- {id: core_nets, license: no data licence found, allowed: false, note: cited via primary literature only}

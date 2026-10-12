@@ -1,0 +1,316 @@
+# Association (intrahemispheric), commissural and cerebellar tracts from HCP1065.
+# Terminations listed here are textbook/tractography consensus; the viewer additionally shows
+# endpoint regions computed from the HCP1065 streamlines (pipeline/endpoints).
+
+- id: arcuate_fasciculus
+  name: Arcuate fasciculus
+  latin: Fasciculus arcuatus
+  abbrev: [AF]
+  kind: association
+  systems: [language]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_ArcuateFasciculusL, R: Association_ArcuateFasciculusR}}
+  origin: Posterior superior and middle temporal gyri (Wernicke's area in the dominant hemisphere).
+  course: Arches around the posterior end of the Sylvian fissure, deep to the supramarginal gyrus, lateral to the corona radiata.
+  termination: Inferior frontal gyrus (pars opercularis/triangularis) and ventral precentral gyrus.
+  function: Dorsal language stream — phonological processing, repetition, speech production.
+  clinical: Dominant-hemisphere injury classically causes conduction aphasia (impaired repetition); subcortical stimulation of the AF produces phonemic paraphasias during awake surgery.
+  refs: [nieuwenhuys2008, yeh2018, yeh2022]
+
+- id: slf_ii
+  name: Superior longitudinal fasciculus II
+  latin: Fasciculus longitudinalis superior II
+  abbrev: [SLF II]
+  kind: association
+  systems: [visuospatial, executive]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_SuperiorLongitudinalFasciculusL_2, R: Association_SuperiorLongitudinalFasciculusR_2}}
+  origin: Angular gyrus and inferior parietal lobule.
+  course: Deep white matter of the middle frontal gyrus level, lateral to the corona radiata.
+  termination: Caudal middle frontal gyrus and dorsolateral prefrontal cortex.
+  function: Frontoparietal attention network (spatial attention, especially right hemisphere).
+  clinical: Right SLF II disconnection is associated with spatial neglect.
+  refs: [yeh2018, yeh2022]
+
+- id: slf_iii
+  name: Superior longitudinal fasciculus III
+  latin: Fasciculus longitudinalis superior III
+  abbrev: [SLF III]
+  kind: association
+  systems: [language, motor]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_SuperiorLongitudinalFasciculusL_3, R: Association_SuperiorLongitudinalFasciculusR_3}}
+  origin: Supramarginal gyrus.
+  course: Frontoparietal operculum, lateral to SLF II.
+  termination: Ventral premotor cortex and inferior frontal gyrus (pars opercularis).
+  function: Articulation, praxis and phonological working memory (dominant); visuospatial (non-dominant).
+  clinical: Stimulation during awake surgery can produce speech arrest/dysarthria.
+  refs: [yeh2018, yeh2022]
+
+- id: cingulum_slf_i
+  name: Cingulum / SLF I (dorsal frontoparietal)
+  latin: Cingulum (pars dorsalis); fasciculus longitudinalis superior I
+  abbrev: [SLF I]
+  kind: association
+  systems: [motor, limbic]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_CingulumL_SuperiorLongitudinalFasciculus1, R: Association_CingulumR_SuperiorLongitudinalFasciculus1}}
+  origin: Superior parietal lobule and precuneus.
+  course: Medial white matter just lateral to the cingulum, above the cingulate sulcus. In Yeh's atlas grouped with the cingulum.
+  termination: Superior frontal gyrus (SMA, pre-SMA, dorsal premotor).
+  function: Dorsomedial frontoparietal motor and attention network.
+  refs: [yeh2018, yeh2022]
+
+- id: cingulum
+  name: Cingulum bundle
+  latin: Cingulum
+  kind: association
+  systems: [limbic, memory]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_CingulumL_FrontalParietal, R: Association_CingulumR_FrontalParietal}, label: frontal-parietal segment}
+    - {kind: data, source: hcp1065, bundles: {L: Association_CingulumL_FrontalParahippocampal, R: Association_CingulumR_FrontalParahippocampal}, label: frontal-parahippocampal segment}
+    - {kind: data, source: hcp1065, bundles: {L: Association_CingulumL_ParahippocampalParietal, R: Association_CingulumR_ParahippocampalParietal}, label: parahippocampal-parietal segment}
+    - {kind: data, source: hcp1065, bundles: {L: Association_CingulumL_Parahippocampal, R: Association_CingulumR_Parahippocampal}, label: parahippocampal segment}
+    - {kind: data, source: hcp1065, bundles: {L: Association_CingulumL_Parolfactory, R: Association_CingulumR_Parolfactory}, label: parolfactory (subgenual) segment}
+  origin: Cingulate gyrus, anterior thalamus (via thalamocingulate fibres), medial prefrontal cortex.
+  course: Within the white matter of the cingulate gyrus, arching around the corpus callosum and descending into the parahippocampal gyrus.
+  termination: Parahippocampal and entorhinal cortex, precuneus, medial prefrontal cortex.
+  function: Limbic association pathway; part of the Papez circuit (cingulate → parahippocampal gyrus); default-mode network.
+  clinical: Anterior cingulotomy (interrupting this bundle) has been used for intractable pain and OCD.
+  refs: [nieuwenhuys2008, yeh2018, yeh2022]
+
+- id: ifof
+  name: Inferior fronto-occipital fasciculus
+  latin: Fasciculus fronto-occipitalis inferior
+  abbrev: [IFOF, IFOF/IOFF]
+  kind: association
+  systems: [language, visual]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_InferiorFrontoOccipitalFasciculusL, R: Association_InferiorFrontoOccipitalFasciculusR}}
+  origin: Occipital, posterior parietal and basal temporal cortex.
+  course: Runs forward in the sagittal stratum, narrows through the extreme/external capsule beneath the insula (anterior to the uncinate), then fans into the frontal lobe.
+  termination: Inferior frontal gyrus, orbitofrontal and dorsolateral prefrontal cortex.
+  function: Ventral (semantic) language stream; visual-semantic integration.
+  clinical: Subcortical stimulation produces semantic paraphasias; the main ventral-stream bundle at risk in insular and temporal glioma resection. Existence of a direct monosynaptic tract in humans is still debated.
+  refs: [yeh2018, yeh2022]
+
+- id: ilf
+  name: Inferior longitudinal fasciculus
+  latin: Fasciculus longitudinalis inferior
+  abbrev: [ILF]
+  kind: association
+  systems: [visual, language]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_InferiorLongitudinalFasciculusL, R: Association_InferiorLongitudinalFasciculusR}}
+  origin: Occipital cortex (lateral and ventral).
+  course: Lateral and inferior wall of the temporal horn and atrium.
+  termination: Anterior temporal lobe (temporal pole, fusiform, inferior temporal gyrus), amygdala region.
+  function: Ventral visual stream — object and face recognition, reading (dominant).
+  clinical: Damage contributes to visual agnosia, prosopagnosia and pure alexia.
+  refs: [yeh2018, yeh2022]
+
+- id: mdlf
+  name: Middle longitudinal fasciculus
+  latin: Fasciculus longitudinalis medius
+  abbrev: [MdLF]
+  kind: association
+  systems: [auditory, language]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_MiddleLongitudinalFasciculusL, R: Association_MiddleLongitudinalFasciculusR}}
+  origin: Superior temporal gyrus and temporal pole.
+  course: Within the superior temporal gyrus white matter, medial to the arcuate.
+  termination: Parietal (angular gyrus, superior parietal lobule) and occipital cortex.
+  function: Debated — auditory/language and audiovisual integration.
+  refs: [yeh2018, yeh2022]
+
+- id: uncinate_fasciculus
+  name: Uncinate fasciculus
+  latin: Fasciculus uncinatus
+  abbrev: [UF]
+  kind: association
+  systems: [limbic, language]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_UncinateFasciculusL, R: Association_UncinateFasciculusR}}
+  origin: Temporal pole, uncus, amygdala region.
+  course: Hook-shaped; curves through the limen insulae beneath the insula (ventral to the IFOF).
+  termination: Orbitofrontal cortex and frontal pole.
+  function: Links limbic temporal and orbitofrontal cortex — emotion, semantic (proper names) memory.
+  clinical: Crossed during anterior temporal lobectomy and in temporal-insular glioma surgery; damage may impair naming of people and emotional regulation.
+  refs: [nieuwenhuys2008, yeh2018, yeh2022]
+
+- id: extreme_capsule
+  name: Extreme capsule fibre system
+  latin: Capsula extrema
+  abbrev: [EmC]
+  kind: association
+  systems: [language]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_ExtremeCapsuleL, R: Association_ExtremeCapsuleR}}
+  origin: Superior and middle temporal gyrus.
+  course: Thin sheet between the claustrum and the insular cortex.
+  termination: Inferior frontal and prefrontal cortex.
+  function: Ventral language stream (overlaps the IFOF in tractography).
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: frontal_aslant_tract
+  name: Frontal aslant tract
+  latin: Tractus frontalis obliquus
+  abbrev: [FAT]
+  kind: association
+  systems: [language, motor]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_FrontalAslantTractL, R: Association_FrontalAslantTractR}}
+  origin: Supplementary motor area and pre-SMA (superior frontal gyrus).
+  course: Runs obliquely downward through the frontal white matter.
+  termination: Inferior frontal gyrus (pars opercularis) and ventral premotor cortex.
+  function: Speech initiation and fluency (dominant), inhibitory control.
+  clinical: Its injury contributes to transient speech-initiation deficits after SMA resections.
+  refs: [yeh2018, yeh2022]
+
+- id: parietal_aslant_tract
+  name: Parietal aslant tract
+  latin: Tractus parietalis obliquus
+  kind: association
+  systems: [visuospatial]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_ParietalAslantTractL, R: Association_ParietalAslantTractR}}
+  origin: Superior parietal lobule.
+  course: Oblique intraparietal course, posterior analogue of the frontal aslant tract.
+  termination: Supramarginal and angular gyri / posterior temporal cortex.
+  function: Recently described tractography bundle linking dorsal and ventral parietal cortex; function under study.
+  refs: [yeh2022]
+
+- id: vof
+  name: Vertical occipital fasciculus
+  latin: Fasciculus occipitalis verticalis
+  abbrev: [VOF]
+  kind: association
+  systems: [visual]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_VerticalOccipitalFasciculusL, R: Association_VerticalOccipitalFasciculusR}}
+  origin: Dorsal occipital cortex (V3A/B, intraparietal sulcus region).
+  course: Vertical sheet in the lateral occipital white matter.
+  termination: Ventral occipitotemporal cortex (fusiform, inferior occipital).
+  function: Links dorsal and ventral visual streams (Wernicke's "senkrechte Occipitalbündel").
+  refs: [yeh2018, yeh2022]
+
+- id: hippocampal_alveus
+  name: Hippocampal alveus
+  latin: Alveus hippocampi
+  kind: association
+  systems: [limbic, memory]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Association_HippocampusAlveusL, R: Association_HippocampusAlveusR}}
+  origin: Hippocampal pyramidal neurons and subiculum.
+  course: Thin white matter sheet over the ventricular surface of the hippocampus, converging into the fimbria.
+  termination: Continues as the fimbria and fornix.
+  function: Hippocampal efferent and afferent fibres.
+  refs: [nieuwenhuys2008, yeh2022]
+
+# ---------------------------------------------------------------- commissures
+- id: corpus_callosum
+  name: Corpus callosum
+  latin: Corpus callosum
+  abbrev: [CC]
+  kind: commissural
+  systems: [interhemispheric]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {M: Commissure_CorpusCallosum_ForcepsMinor}, label: forceps minor (genu)}
+    - {kind: data, source: hcp1065, bundles: {M: Commissure_CorpusCallosum_Body}, label: body}
+    - {kind: data, source: hcp1065, bundles: {M: Commissure_CorpusCallosum_Tapetum}, label: tapetum}
+    - {kind: data, source: hcp1065, bundles: {M: Commissure_CorpusCallosum_ForcepsMajor}, label: forceps major (splenium)}
+  origin: Pyramidal neurons (layers II/III) across the neocortex.
+  course: Rostrum and genu (forceps minor) link prefrontal cortex; body links premotor, motor and parietal cortex; splenium (forceps major) links occipital cortex; the tapetum forms the roof and lateral wall of the atrium and temporal horn.
+  termination: Mostly homotopic contralateral cortex.
+  function: Interhemispheric integration.
+  clinical: Callosotomy for drop attacks; disconnection syndromes (e.g. left-hand apraxia, alexia without agraphia with splenial plus left occipital lesions). Transcallosal approaches limit the incision to the anterior body.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: anterior_commissure
+  name: Anterior commissure
+  latin: Commissura anterior
+  abbrev: [AC]
+  kind: commissural
+  systems: [interhemispheric, limbic]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {M: Commissure_AnteriorCommissure_Frontal}, label: anterior (olfactory) limb}
+    - {kind: data, source: hcp1065, bundles: {M: Commissure_AnteriorCommissure_Temporal}, label: temporal limb}
+    - {kind: data, source: hcp1065, bundles: {M: Commissure_AnteriorCommissure_Occipital}, label: posterior (temporo-occipital) limb}
+  origin: Anterior olfactory structures; anterior and inferior temporal cortex, amygdala.
+  course: Crosses the midline in the lamina terminalis in front of the fornix columns; the AC is the origin of the MNI/Talairach coordinate system (AC-PC line).
+  termination: Homotopic contralateral structures.
+  function: Interhemispheric connection of olfactory and temporal regions.
+  refs: [nieuwenhuys2008, yeh2018]
+
+# ---------------------------------------------------------------- cerebellar
+- id: middle_cerebellar_peduncle
+  name: Middle cerebellar peduncle
+  latin: Pedunculus cerebellaris medius
+  abbrev: [MCP, brachium pontis]
+  kind: cerebellar
+  systems: [cerebellar, motor]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {M: Cerebellum_MiddleCerebellarPeduncle}}
+  origin: Pontine nuclei (pontocerebellar fibres), which cross the midline as transverse pontine fibres.
+  course: Largest peduncle; sweeps from the basis pontis dorsolaterally into the cerebellar hemisphere.
+  termination: Contralateral cerebellar cortex (mossy fibres), mainly lateral hemisphere.
+  transmitter: glutamate
+  function: Second limb of the cortico-ponto-cerebellar pathway.
+  clinical: Seen as the "hot cross bun"/MCP T2 hyperintensity in MSA-C; MCP lesions cause ipsilateral limb ataxia.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: superior_cerebellar_peduncle
+  name: Superior cerebellar peduncle
+  latin: Pedunculus cerebellaris superior
+  abbrev: [SCP, brachium conjunctivum]
+  kind: cerebellar
+  systems: [cerebellar, motor]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {M: Cerebellum_SuperiorCerebellarPeduncle}}
+  origin: Deep cerebellar nuclei (dentate, interposed); also carries the ventral spinocerebellar tract inward.
+  course: Forms the lateral walls of the upper fourth ventricle, enters the midbrain tegmentum and decussates at the level of the inferior colliculus.
+  termination: Contralateral red nucleus and thalamus (as the DRTT).
+  function: Main cerebellar output pathway.
+  clinical: Atrophy of the SCP is a supportive MRI feature of progressive supranuclear palsy.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: inferior_cerebellar_peduncle
+  name: Inferior cerebellar peduncle
+  latin: Pedunculus cerebellaris inferior
+  abbrev: [ICP, restiform body]
+  kind: cerebellar
+  systems: [cerebellar, vestibular]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Cerebellum_InferiorCerebellarPeduncleL, R: Cerebellum_InferiorCerebellarPeduncleR}}
+  origin: Inferior olive (olivocerebellar climbing fibres, crossed), dorsal spinocerebellar and cuneocerebellar tracts (uncrossed), vestibular nuclei and nerve (juxtarestiform body).
+  course: Dorsolateral medulla, turning up into the cerebellum.
+  termination: Cerebellar cortex (vermis and paravermis, flocculonodular lobe); fastigial-vestibular connections return via the juxtarestiform body.
+  function: Proprioceptive and error (climbing-fibre) input to the cerebellum.
+  clinical: Involved in lateral medullary syndrome — ipsilateral limb ataxia.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: cerebellar_hemisphere_fibres
+  name: Cerebellar hemispheric white matter
+  latin: Corpus medullare cerebelli
+  kind: cerebellar
+  systems: [cerebellar]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: Cerebellum_CerebellumL, R: Cerebellum_CerebellumR}}
+  origin: Cerebellar cortex and peduncles.
+  course: Intrinsic white matter of each hemisphere (arbor vitae).
+  termination: Cerebellar cortex and deep nuclei.
+  function: Intracerebellar connections (Purkinje-cell axons to the deep nuclei; mossy and climbing fibres to cortex).
+  refs: [yeh2018]
+
+- id: vermis_fibres
+  name: Vermian white matter
+  latin: Corpus medullare vermis
+  kind: cerebellar
+  systems: [cerebellar]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {M: Cerebellum_Vermis}}
+  origin: Vermian cortex.
+  course: Midline cerebellar white matter.
+  termination: Fastigial nucleus and vermian cortex.
+  function: Spinocerebellar and vestibulocerebellar circuits for posture and gait.
+  refs: [yeh2018]

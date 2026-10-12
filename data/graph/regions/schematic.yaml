@@ -1,0 +1,241 @@
+# Structures without an openly licensed imaging segmentation, drawn as simple shapes.
+# Coordinates are MNI ICBM152 mm for the LEFT member (x < 0); the right member is mirrored.
+# Positions are estimates from standard brainstem atlases relative to the template's brainstem
+# outline and to the end-points of the HCP1065/HCP842 bundles. They are approximate (± a few
+# mm) and are rendered in the schematic (hatched/dashed) style. To be checked against the
+# 100 um ex vivo volume (Edlow 2019) — see `verify` flags.
+#
+# The spinal cord below z = -72 lies outside the template's field of view. It is drawn as a
+# SHORTENED schematic column: segmental levels are compressed and not to scale.
+
+# ---------------------------------------------------------------- spinal cord
+- id: spinal_cord
+  name: Spinal cord (schematic, shortened)
+  latin: Medulla spinalis
+  group: spinal
+  systems: [motor, somatosensory]
+  geometry: {kind: schematic, shape: capsule, path: {M: [[0, -45.5, -72], [0, -46, -100], [0, -46, -140], [0, -46, -170], [0, -46, -186]]}, radius: 5.5, style: context}
+  summary: >
+    Shown as a shortened column below the medulla. Approximate levels on this model:
+    C1 ≈ z -76, cervical enlargement (C5-T1) ≈ z -100, mid-thoracic ≈ z -130,
+    lumbosacral enlargement (L2-S2) ≈ z -165, conus ≈ z -185. In cross-section: dorsal
+    columns posteriorly, lateral corticospinal tract in the dorsolateral funiculus,
+    anterolateral system in the ventrolateral funiculus, anterior corticospinal tract beside
+    the anterior median fissure.
+  refs: [nieuwenhuys2008, deleener2018]
+
+- id: drg_cervical
+  name: Dorsal root ganglion (cervical, upper limb)
+  latin: Ganglion sensorium nervi spinalis
+  abbrev: [DRG]
+  group: spinal
+  systems: [somatosensory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-13, -49, -100]}, radii: [2.5, 2, 3]}
+  summary: Pseudounipolar first-order sensory neurons for the upper limb (C5-T1). Large-diameter (Aβ) axons enter the dorsal columns; small (Aδ, C) axons enter Lissauer's tract and the dorsal horn.
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: drg_lumbosacral
+  name: Dorsal root ganglion (lumbosacral, lower limb)
+  latin: Ganglion sensorium nervi spinalis
+  abbrev: [DRG]
+  group: spinal
+  systems: [somatosensory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-13, -49, -165]}, radii: [2.5, 2, 3]}
+  summary: First-order sensory neurons for the lower limb (L2-S2).
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: dorsal_horn_cervical
+  name: Dorsal horn (cervical)
+  latin: Cornu posterius medullae spinalis
+  synonyms: [Rexed laminae I-VI]
+  group: spinal
+  systems: [somatosensory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-3, -48.5, -100]}, radii: [1.2, 1.5, 3]}
+  summary: Lamina I (marginal zone) and lamina V neurons receive nociceptive and thermal input and give rise to the crossed anterolateral system; lamina II (substantia gelatinosa) modulates it.
+  refs: [nieuwenhuys2008, willis1997]
+
+- id: dorsal_horn_lumbosacral
+  name: Dorsal horn (lumbosacral)
+  latin: Cornu posterius medullae spinalis
+  group: spinal
+  systems: [somatosensory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-3, -48.5, -165]}, radii: [1.2, 1.5, 3]}
+  summary: As in the cervical cord; receives nociceptive input from the lower limb.
+  refs: [nieuwenhuys2008, willis1997]
+
+- id: ventral_horn_cervical
+  name: Ventral horn (cervical enlargement)
+  latin: Cornu anterius medullae spinalis
+  synonyms: [lamina IX, alpha motor neurons]
+  group: spinal
+  systems: [motor]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-3.5, -42.5, -100]}, radii: [1.6, 1.5, 4]}
+  summary: Lower motor neurons for the upper limb. Medial motor columns supply axial muscles, lateral columns distal limb muscles (the main target of lateral corticospinal fibres).
+  clinical: Lower-motor-neuron signs — flaccid weakness, atrophy, fasciculations, areflexia.
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: ventral_horn_lumbosacral
+  name: Ventral horn (lumbosacral enlargement)
+  latin: Cornu anterius medullae spinalis
+  synonyms: [lamina IX, alpha motor neurons]
+  group: spinal
+  systems: [motor]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-3.5, -42.5, -165]}, radii: [1.6, 1.5, 4]}
+  summary: Lower motor neurons for the lower limb.
+  refs: [nieuwenhuys2008, kandel2021]
+
+# ---------------------------------------------------------------- medulla
+- id: nucleus_gracilis
+  name: Nucleus gracilis
+  latin: Nucleus gracilis
+  synonyms: [gracile nucleus, dorsal column nucleus]
+  group: brainstem.medulla
+  systems: [somatosensory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-2.5, -48.5, -62]}, radii: [1.5, 1.5, 4]}
+  verify: true
+  summary: Dorsal column nucleus in the caudal medulla (under the gracile tubercle). Second-order neurons for the lower limb and lower trunk; their axons form internal arcuate fibres and cross.
+  refs: [nieuwenhuys2008, paxinos1995]
+
+- id: nucleus_cuneatus
+  name: Nucleus cuneatus
+  latin: Nucleus cuneatus
+  synonyms: [cuneate nucleus, dorsal column nucleus]
+  group: brainstem.medulla
+  systems: [somatosensory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-6, -47.5, -60]}, radii: [1.8, 1.5, 4]}
+  verify: true
+  summary: Dorsal column nucleus lateral to the gracile nucleus. Second-order neurons for the upper limb and upper trunk. (The adjacent external cuneate nucleus relays upper-limb proprioception to the cerebellum.)
+  refs: [nieuwenhuys2008, paxinos1995]
+
+- id: hypoglossal_nucleus
+  name: Hypoglossal nucleus
+  latin: Nucleus nervi hypoglossi
+  abbrev: [XII]
+  group: brainstem.medulla
+  systems: [motor, cranial_nerves]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-2, -46.5, -57]}, radii: [1, 1.2, 5]}
+  verify: true
+  summary: Paramedian column under the hypoglossal trigone of the fourth-ventricle floor; motor neurons for the intrinsic and extrinsic tongue muscles.
+  clinical: A nuclear or nerve lesion makes the tongue deviate toward the lesion; an upper-motor-neuron lesion makes it deviate away (toward the weak side of the body).
+  refs: [nieuwenhuys2008, paxinos1995]
+
+- id: nucleus_ambiguus
+  name: Nucleus ambiguus
+  latin: Nucleus ambiguus
+  group: brainstem.medulla
+  systems: [motor, cranial_nerves]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-7.5, -42, -57]}, radii: [1, 1, 6]}
+  verify: true
+  summary: Branchial motor neurons for pharynx, larynx and soft palate (via CN IX and X) in the ventrolateral medulla; also cardio-inhibitory vagal preganglionic neurons.
+  clinical: Involved in lateral medullary (Wallenberg) syndrome — dysphagia, dysphonia, ipsilateral palatal weakness.
+  refs: [nieuwenhuys2008, paxinos1995]
+
+- id: spinal_trigeminal_nucleus
+  name: Spinal trigeminal nucleus
+  latin: Nucleus spinalis nervi trigemini
+  abbrev: [Sp5, SpV]
+  group: brainstem.medulla
+  systems: [somatosensory, cranial_nerves]
+  geometry: {kind: schematic, shape: capsule, path: {L: [[-8.5, -42, -40], [-8, -45, -55], [-6.5, -47, -71]]}, radius: 1.4}
+  verify: true
+  summary: >
+    Long column from the pons into the upper cervical cord (where it merges with the dorsal
+    horn), medial to the descending spinal trigeminal tract. Its pars caudalis receives facial
+    pain and temperature in an "onion-skin" pattern — perioral areas rostrally, lateral face
+    caudally.
+  clinical: Lateral medullary infarction causes ipsilateral loss of facial pain and temperature.
+  refs: [nieuwenhuys2008, paxinos1995]
+
+# ---------------------------------------------------------------- pons
+- id: principal_sensory_nucleus_v
+  name: Principal sensory nucleus of the trigeminal nerve
+  latin: Nucleus principalis nervi trigemini
+  synonyms: [chief sensory nucleus of V, main sensory nucleus]
+  group: brainstem.pons
+  systems: [somatosensory, cranial_nerves]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-10, -40, -34]}, radii: [1.8, 2, 3]}
+  verify: true
+  summary: Mid-pontine nucleus lateral to the trigeminal motor nucleus at the level of the root entry; discriminative touch from the face (the trigeminal equivalent of the dorsal column nuclei).
+  refs: [nieuwenhuys2008, paxinos1995]
+
+- id: trigeminal_motor_nucleus
+  name: Trigeminal motor nucleus
+  latin: Nucleus motorius nervi trigemini
+  group: brainstem.pons
+  systems: [motor, cranial_nerves]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-6.5, -38, -34]}, radii: [1.5, 1.8, 3]}
+  verify: true
+  summary: Branchial motor neurons for the muscles of mastication (via V3). Receives bilateral corticobulbar input.
+  refs: [nieuwenhuys2008, paxinos1995]
+
+- id: facial_motor_nucleus
+  name: Facial motor nucleus
+  latin: Nucleus nervi facialis
+  abbrev: [VII]
+  group: brainstem.pons
+  systems: [motor, cranial_nerves]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-11, -38, -46]}, radii: [1.8, 1.8, 3]}
+  verify: true
+  summary: >
+    Caudal pontine tegmentum, ventrolateral. Motor neurons for the muscles of facial
+    expression. The dorsal (upper-face) subdivision receives substantial bilateral cortical
+    input, partly from the cingulate motor areas; the ventral (lower-face) subdivision receives
+    predominantly contralateral input. Axons loop dorsally around the abducens nucleus (internal
+    genu, facial colliculus) before exiting at the pontomedullary junction.
+  clinical: >
+    Supranuclear lesion → contralateral lower-face weakness with relative forehead sparing.
+    Nuclear or nerve lesion (e.g. Bell palsy) → whole ipsilateral hemiface including forehead.
+  refs: [nieuwenhuys2008, jenny1987, blumenfeld2021]
+
+- id: abducens_nucleus
+  name: Abducens nucleus
+  latin: Nucleus nervi abducentis
+  abbrev: [VI]
+  group: brainstem.pons
+  systems: [oculomotor, cranial_nerves]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-4, -43, -40]}, radii: [1.3, 1.3, 2]}
+  verify: true
+  summary: Under the facial colliculus. Motor neurons to the ipsilateral lateral rectus, plus internuclear neurons projecting via the contralateral MLF to the medial-rectus subnucleus of CN III (horizontal conjugate gaze).
+  clinical: A nuclear lesion causes ipsilateral horizontal gaze palsy (not just abduction weakness), often with an ipsilateral LMN facial palsy.
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: pontine_nuclei
+  name: Pontine nuclei
+  latin: Nuclei pontis
+  group: brainstem.pons
+  systems: [motor, cerebellar]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-6, -21, -35]}, radii: [5, 4.5, 7]}
+  summary: >
+    Neurons scattered through the basis pontis between the descending corticofugal fascicles.
+    They receive the ipsilateral corticopontine tracts and send pontocerebellar (transverse)
+    fibres across the midline into the contralateral middle cerebellar peduncle, where they end
+    as mossy fibres.
+  refs: [nieuwenhuys2008, schmahmann1997]
+
+# ---------------------------------------------------------------- deep cerebellar nuclei
+- id: dentate_nucleus
+  name: Dentate nucleus
+  latin: Nucleus dentatus
+  group: cerebellum.nuclei
+  systems: [cerebellar, motor]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-15, -57, -35]}, radii: [5, 7, 5]}
+  verify: true
+  summary: >
+    Largest deep cerebellar nucleus (crumpled bag shape) in the white matter of each
+    hemisphere; output of the lateral cerebellum. Axons leave in the superior cerebellar
+    peduncle as the dentatorubrothalamic tract to the contralateral motor thalamus and, via
+    separate output channels, to prefrontal and parietal cortex.
+  geometry_note: SUIT dentate atlas is non-commercially licensed; position estimated from DRTT streamline origins.
+  refs: [nieuwenhuys2008, dum2003]
+
+- id: trigeminal_ganglion
+  name: Trigeminal (Gasserian) ganglion
+  latin: Ganglion trigeminale
+  synonyms: [semilunar ganglion]
+  group: peripheral
+  systems: [somatosensory, cranial_nerves]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-21, -14, -33]}, radii: [3, 4.5, 2]}
+  verify: true
+  summary: First-order sensory neurons of the face, in Meckel's cave beside the cavernous sinus. Gives off the ophthalmic (V1), maxillary (V2) and mandibular (V3) divisions.
+  clinical: Target of percutaneous procedures (balloon compression, glycerol, radiofrequency rhizotomy) for trigeminal neuralgia through the foramen ovale.
+  refs: [nieuwenhuys2008]

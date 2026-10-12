@@ -1,0 +1,87 @@
+# Bibliography. Every region, tract, projection and pathway cites entries from here by id.
+# DOIs are checked for resolvability by CI (validate workflow, network step).
+
+# ---- datasets / atlases
+yeh2022:
+  cite: "Yeh F-C. Population-based tract-to-region connectome of the human brain and its hierarchical topology. Nat Commun. 2022;13:4933."
+  doi: 10.1038/s41467-022-32595-4
+yeh2018:
+  cite: "Yeh F-C, Panesar S, Fernandes D, et al. Population-averaged atlas of the macroscale human structural connectome and its network topology. NeuroImage. 2018;178:57-68."
+  doi: 10.1016/j.neuroimage.2018.05.027
+fonov2011:
+  cite: "Fonov V, Evans AC, Botteron K, et al. Unbiased average age-appropriate atlases for pediatric studies. NeuroImage. 2011;54(1):313-327."
+  doi: 10.1016/j.neuroimage.2010.07.033
+manera2020:
+  cite: "Manera AL, Dadar M, Fonov V, Collins DL. CerebrA, registration and manual label correction of Mindboggle-101 atlas for MNI-ICBM152 template. Sci Data. 2020;7:237."
+  doi: 10.1038/s41597-020-0557-9
+saranathan2021:
+  cite: "Saranathan M, Iglehart C, Monti M, Tourdias T, Rutt B. In vivo high-resolution structural MRI-based atlas of human thalamic nuclei. Sci Data. 2021;8:275."
+  doi: 10.1038/s41597-021-01062-y
+keuken2014:
+  cite: "Keuken MC, Bazin P-L, Crown L, et al. Quantifying inter-individual anatomical variability in the subcortex using 7 T structural MRI. NeuroImage. 2014;94:40-46."
+  doi: 10.1016/j.neuroimage.2014.03.032
+pauli2018:
+  cite: "Pauli WM, Nili AN, Tyszka JM. A high-resolution probabilistic in vivo atlas of human subcortical brain nuclei. Sci Data. 2018;5:180063."
+  doi: 10.1038/sdata.2018.63
+edlow2012:
+  cite: "Edlow BL, Takahashi E, Wu O, et al. Neuroanatomic connectivity of the human ascending arousal system critical to consciousness and its disorders. J Neuropathol Exp Neurol. 2012;71(6):531-546."
+  doi: 10.1097/NEN.0b013e3182588293
+edlow2019:
+  cite: "Edlow BL, Mareyam A, Horn A, et al. 7 Tesla MRI of the ex vivo human brain at 100 micron resolution. Sci Data. 2019;6:244."
+  doi: 10.1038/s41597-019-0254-8
+edlow2024:
+  cite: "Edlow BL, Olchanyi M, Freeman HJ, et al. Multimodal MRI reveals brainstem connections that sustain wakefulness in human consciousness. Sci Transl Med. 2024;16(745):eadj4303."
+  doi: 10.1126/scitranslmed.adj4303
+glasser2016:
+  cite: "Glasser MF, Coalson TS, Robinson EC, et al. A multi-modal parcellation of human cerebral cortex. Nature. 2016;536:171-178."
+  doi: 10.1038/nature18933
+deleener2018:
+  cite: "De Leener B, Fonov VS, Collins DL, et al. PAM50: Unbiased multimodal template of the brainstem and spinal cord aligned with the ICBM152 space. NeuroImage. 2018;165:170-179."
+  doi: 10.1016/j.neuroimage.2017.10.041
+markov2014:
+  cite: "Markov NT, Ercsey-Ravasz MM, Ribeiro Gomes AR, et al. A weighted and directed interareal connectivity matrix for macaque cerebral cortex. Cereb Cortex. 2014;24(1):17-36."
+  doi: 10.1093/cercor/bhs270
+bakker2012:
+  cite: "Bakker R, Wachtler T, Diesmann M. CoCoMac 2.0 and the future of tract-tracing databases. Front Neuroinform. 2012;6:30."
+  doi: 10.3389/fninf.2012.00030
+
+# ---- reference texts (cited for facts; no text or figures reproduced)
+nieuwenhuys2008:
+  cite: "Nieuwenhuys R, Voogd J, van Huijzen C. The Human Central Nervous System. 4th ed. Springer; 2008."
+  doi: 10.1007/978-3-540-34686-9
+blumenfeld2021:
+  cite: "Blumenfeld H. Neuroanatomy through Clinical Cases. 3rd ed. Oxford University Press / Sinauer; 2021."
+haines2018:
+  cite: "Haines DE, Mihailoff GA, eds. Fundamental Neuroscience for Basic and Clinical Applications. 5th ed. Elsevier; 2018."
+kandel2021:
+  cite: "Kandel ER, Koester JD, Mack SH, Siegelbaum SA, eds. Principles of Neural Science. 6th ed. McGraw Hill; 2021."
+mai2015:
+  cite: "Mai JK, Majtanik M, Paxinos G. Atlas of the Human Brain. 4th ed. Academic Press; 2015."
+paxinos1995:
+  cite: "Paxinos G, Huang X-F. Atlas of the Human Brainstem. Academic Press; 1995."
+
+# ---- primary literature
+nathan1990:
+  cite: "Nathan PW, Smith MC, Deacon P. The corticospinal tracts in man: course and location of fibres at different segmental levels. Brain. 1990;113(2):303-324."
+  doi: 10.1093/brain/113.2.303
+welniarz2017:
+  cite: "Welniarz Q, Dusart I, Roze E. The corticospinal tract: evolution, development, and human disorders. Dev Neurobiol. 2017;77(7):810-829."
+  doi: 10.1002/dneu.22455
+jenny1987:
+  cite: "Jenny AB, Saper CB. Organization of the facial nucleus and corticofacial projection in the monkey: a reconsideration of the upper motor neuron facial palsy. Neurology. 1987;37(6):930-939."
+  doi: 10.1212/WNL.37.6.930
+schmahmann1997:
+  cite: "Schmahmann JD, Pandya DN. Anatomic organization of the basilar pontine projections from prefrontal cortices in rhesus monkey. J Neurosci. 1997;17(1):438-458."
+  doi: 10.1523/JNEUROSCI.17-01-00438.1997
+kelly2003:
+  cite: "Kelly RM, Strick PL. Cerebellar loops with motor cortex and prefrontal cortex of a nonhuman primate. J Neurosci. 2003;23(23):8432-8444."
+  doi: 10.1523/JNEUROSCI.23-23-08432.2003
+dum2003:
+  cite: "Dum RP, Strick PL. An unfolded map of the cerebellar dentate nucleus and its projections to the cerebral cortex. J Neurophysiol. 2003;89(1):634-639."
+  doi: 10.1152/jn.00626.2002
+meola2016:
+  cite: "Meola A, Comert A, Yeh F-C, Sivakanthan S, Fernandez-Miranda JC. The nondecussating pathway of the dentatorubrothalamic tract in humans: human connectome-based tractographic study and microdissection validation. J Neurosurg. 2016;124(5):1406-1412."
+  doi: 10.3171/2015.4.JNS142741
+willis1997:
+  cite: "Willis WD, Westlund KN. Neuroanatomy of the pain system and of the pathways that modulate pain. J Clin Neurophysiol. 1997;14(1):2-31."
+  doi: 10.1097/00004691-199701000-00002

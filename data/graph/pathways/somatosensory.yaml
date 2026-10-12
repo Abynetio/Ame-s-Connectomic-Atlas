@@ -1,0 +1,108 @@
+- id: dcml_lower_limb
+  name: Dorsal column–medial lemniscus pathway — lower limb
+  system: somatosensory
+  start_label: body side
+  summary: >
+    Three-neuron pathway for fine touch, vibration and conscious proprioception. First-order
+    axons ascend ipsilaterally in the fasciculus gracilis, second-order axons cross in the
+    caudal medulla and ascend as the medial lemniscus, third-order thalamocortical neurons in
+    VPL project to the leg area of S1 on the medial surface.
+  steps:
+    - {region: drg_lumbosacral, side: ipsi, role: First-order neuron (large-diameter afferent)}
+    - {tract: dorsal_root_lumbosacral, side: ipsi}
+    - {tract: fasciculus_gracilis, side: ipsi}
+    - {region: nucleus_gracilis, side: ipsi, role: Second-order neuron}
+    - {tract: internal_arcuate_fibres, side: ipsi, parts: [0], note: Sensory decussation}
+    - {tract: medial_lemniscus, side: contra}
+    - {region: VPL, side: contra, role: Third-order neuron}
+    - {tract: superior_thalamic_radiation, side: contra}
+    - {region: paracentral_lobule, side: contra, role: Primary somatosensory cortex (leg area)}
+  clinical:
+    - {site: "Dorsal columns (e.g. B12 deficiency, tabes dorsalis)", finding: "Ipsilateral loss of vibration and position sense below the lesion; sensory ataxia, positive Romberg"}
+    - {site: Hemicord (Brown-Séquard), finding: Ipsilateral dorsal-column loss + ipsilateral weakness + contralateral pain/temperature loss}
+    - {site: Medial medulla (above the decussation), finding: Contralateral loss}
+    - {site: VPL / posterior limb of internal capsule, finding: Contralateral hemisensory loss}
+  refs: [nieuwenhuys2008, kandel2021, blumenfeld2021]
+
+- id: dcml_upper_limb
+  name: Dorsal column–medial lemniscus pathway — upper limb
+  system: somatosensory
+  start_label: body side
+  summary: Upper-limb fibres ascend in the fasciculus cuneatus, synapse in the nucleus cuneatus, cross, and reach the hand area of S1 via VPL.
+  steps:
+    - {region: drg_cervical, side: ipsi, role: First-order neuron}
+    - {tract: dorsal_root_cervical, side: ipsi}
+    - {tract: fasciculus_cuneatus, side: ipsi}
+    - {region: nucleus_cuneatus, side: ipsi, role: Second-order neuron}
+    - {tract: internal_arcuate_fibres, side: ipsi, parts: [1, 0], note: Sensory decussation}
+    - {tract: medial_lemniscus, side: contra}
+    - {region: VPL, side: contra, role: Third-order neuron}
+    - {tract: superior_thalamic_radiation, side: contra}
+    - {region: postcentral_gyrus, side: contra, anchor: hand, role: Primary somatosensory cortex (hand area)}
+  clinical:
+    - {site: Cervical dorsal columns (e.g. cervical spondylotic myelopathy), finding: Clumsy "numb hands" with impaired stereognosis and position sense}
+    - {site: Postcentral gyrus hand area, finding: "Contralateral cortical sensory loss (astereognosis, agraphaesthesia)"}
+  refs: [nieuwenhuys2008, kandel2021, blumenfeld2021]
+
+- id: anterolateral_lower_limb
+  name: Anterolateral (spinothalamic) pathway — lower limb
+  system: somatosensory
+  start_label: body side
+  summary: >
+    Pain and temperature. First-order small-diameter afferents synapse in the dorsal horn;
+    second-order axons cross within one or two segments in the anterior white commissure and
+    ascend in the contralateral anterolateral funiculus to the thalamus.
+  steps:
+    - {region: drg_lumbosacral, side: ipsi, role: First-order neuron (Aδ / C nociceptor)}
+    - {tract: dorsal_root_lumbosacral, side: ipsi, note: Small fibres travel 1-2 segments in Lissauer's tract}
+    - {region: dorsal_horn_lumbosacral, side: ipsi, role: Second-order neuron (laminae I and V)}
+    - {tract: spinothalamic_crossing, side: ipsi, note: Anterior white commissure}
+    - {tract: spinothalamic_tract, side: contra}
+    - {region: VPL, side: contra, role: Third-order neuron}
+    - {tract: superior_thalamic_radiation, side: contra}
+    - {region: paracentral_lobule, side: contra, role: S1 leg area (also posterior insula and anterior cingulate via medial thalamus)}
+  highlight:
+    - {region: insula, side: contra, note: Posterior insula — interoceptive pain/temperature cortex}
+    - {region: caudal_anterior_cingulate, side: contra, note: Affective component of pain}
+  clinical:
+    - {site: Anterolateral funiculus, finding: Contralateral loss of pain and temperature beginning 1-2 segments below the lesion}
+    - {site: Anterior white commissure (syrinx), finding: "Bilateral segmental (cape) pain/temperature loss, touch preserved"}
+    - {site: Lateral medulla (Wallenberg), finding: Contralateral body + ipsilateral face pain/temperature loss}
+    - {site: Surgical cordotomy, finding: Contralateral analgesia below the level — used for intractable unilateral cancer pain}
+  refs: [nieuwenhuys2008, willis1997, blumenfeld2021]
+
+- id: trigeminal_touch
+  name: Trigeminal lemniscal pathway — facial touch
+  system: somatosensory
+  start_label: face side
+  summary: Facial touch is relayed by the principal sensory nucleus in the mid-pons; its axons cross and ascend as the trigeminal lemniscus to VPM and the face area of S1.
+  steps:
+    - {region: trigeminal_ganglion, side: ipsi, role: First-order neuron}
+    - {tract: trigeminal_nerve, side: ipsi}
+    - {region: principal_sensory_nucleus_v, side: ipsi, role: Second-order neuron}
+    - {tract: trigeminothalamic_tract, side: ipsi, parts: [0]}
+    - {region: VPM, side: contra, role: Third-order neuron}
+    - {tract: superior_thalamic_radiation, side: contra}
+    - {region: postcentral_gyrus, side: contra, anchor: face, role: S1 face area}
+  clinical:
+    - {site: Trigeminal root entry zone, finding: Ipsilateral facial sensory loss of all modalities; trigeminal neuralgia when compressed by a vessel}
+    - {site: VPM, finding: Contralateral facial sensory loss (often with hand — cheiro-oral syndrome)}
+  refs: [nieuwenhuys2008, paxinos1995]
+
+- id: trigeminal_pain
+  name: Trigeminal pain and temperature pathway
+  system: somatosensory
+  start_label: face side
+  summary: Facial pain and temperature fibres descend in the spinal trigeminal tract to the pars caudalis of the spinal trigeminal nucleus, whose axons cross and ascend to VPM.
+  steps:
+    - {region: trigeminal_ganglion, side: ipsi, role: First-order neuron}
+    - {tract: trigeminal_nerve, side: ipsi}
+    - {tract: spinal_trigeminal_tract, side: ipsi}
+    - {region: spinal_trigeminal_nucleus, side: ipsi, role: Second-order neuron (pars caudalis)}
+    - {tract: trigeminothalamic_tract, side: ipsi, parts: [1]}
+    - {region: VPM, side: contra, role: Third-order neuron}
+    - {tract: superior_thalamic_radiation, side: contra}
+    - {region: postcentral_gyrus, side: contra, anchor: face, role: S1 face area}
+  clinical:
+    - {site: Lateral medulla (PICA territory), finding: Ipsilateral facial pain/temperature loss with contralateral body loss — crossed sensory pattern of Wallenberg syndrome}
+  refs: [nieuwenhuys2008, paxinos1995, blumenfeld2021]

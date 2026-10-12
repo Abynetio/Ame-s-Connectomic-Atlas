@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Abynetio/Ame-s-Connectomic-Atlas/schema/graph.schema.json",
+  "title": "Ame's Connectomic Atlas knowledge graph",
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]*$"},
+    "refs": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "xyz": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+    "path": {"type": "array", "items": {"$ref": "#/$defs/xyz"}, "minItems": 2},
+    "sided": {
+      "type": "object",
+      "propertyNames": {"enum": ["L", "R", "M"]},
+      "minProperties": 1
+    },
+    "names": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "regionGeometry": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["kind", "source", "labels"],
+          "properties": {
+            "kind": {"const": "data"},
+            "source": {"enum": ["cerebra", "thomas", "atag"]},
+            "labels": {"$ref": "#/$defs/sided"},
+            "zrange": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+            "style": {"enum": ["default", "context", "ventricle"]}
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["kind", "shape"],
+          "properties": {
+            "kind": {"const": "schematic"},
+            "shape": {"enum": ["ellipsoid", "capsule"]},
+            "center": {"$ref": "#/$defs/sided"},
+            "radii": {"$ref": "#/$defs/xyz"},
+            "path": {"$ref": "#/$defs/sided"},
+            "radius": {"type": "number"},
+            "style": {"enum": ["default", "context"]}
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "tractPart": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["kind", "source", "bundles"],
+          "properties": {
+            "kind": {"const": "data"},
+            "source": {"const": "hcp1065"},
+            "bundles": {"$ref": "#/$defs/sided"},
+            "label": {"type": "string"},
+            "role": {"enum": ["main", "branch"]}
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["kind", "source", "labels"],
+          "properties": {
+            "kind": {"const": "data"},
+            "source": {"enum": ["hcp842", "thomas"]},
+            "labels": {"$ref": "#/$defs/sided"},
+            "label": {"type": "string"},
+            "role": {"enum": ["main", "branch"]}
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["kind", "path"],
+          "properties": {
+            "kind": {"const": "schematic"},
+            "path": {"$ref": "#/$defs/sided"},
+            "radius": {"type": "number"},
+            "label": {"type": "string"},
+            "role": {"enum": ["main", "branch"]}
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "group", "systems", "geometry", "summary", "refs"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "name": {"type": "string"},
+          "latin": {"type": "string"},
+          "abbrev": {"$ref": "#/$defs/names"},
+          "synonyms": {"$ref": "#/$defs/names"},
+          "group": {"type": "string"},
+          "systems": {"$ref": "#/$defs/names"},
+          "geometry": {"$ref": "#/$defs/regionGeometry"},
+          "geometry_note": {"type": "string"},
+          "anchors": {"type": "object", "additionalProperties": {"$ref": "#/$defs/sided"}},
+          "summary": {"type": "string"},
+          "clinical": {"type": "string"},
+          "verify": {"type": "boolean"},
+          "refs": {"$ref": "#/$defs/refs"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "tracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "kind", "systems", "geometry", "origin", "termination", "function", "refs"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "name": {"type": "string"},
+          "latin": {"type": "string"},
+          "abbrev": {"$ref": "#/$defs/names"},
+          "synonyms": {"$ref": "#/$defs/names"},
+          "kind": {"enum": ["projection", "association", "commissural", "cerebellar", "brainstem", "spinal", "cranial_nerve"]},
+          "systems": {"$ref": "#/$defs/names"},
+          "geometry": {"type": "array", "items": {"$ref": "#/$defs/tractPart"}, "minItems": 1},
+          "origin": {"type": "string"},
+          "course": {"type": "string"},
+          "termination": {"type": "string"},
+          "decussation": {"type": "string"},
+          "transmitter": {"type": "string"},
+          "function": {"type": "string"},
+          "clinical": {"type": "string"},
+          "refs": {"$ref": "#/$defs/refs"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "pathways": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "system", "summary", "steps", "refs"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "name": {"type": "string"},
+          "system": {"type": "string"},
+          "start_label": {"type": "string"},
+          "summary": {"type": "string"},
+          "steps": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["side"],
+              "properties": {
+                "region": {"type": "string"},
+                "tract": {"type": "string"},
+                "side": {"enum": ["ipsi", "contra"]},
+                "anchor": {"type": "string"},
+                "parts": {"type": "array", "items": {"type": "integer"}},
+                "role": {"type": "string"},
+                "note": {"type": "string"},
+                "synapse": {"type": "boolean"}
+              },
+              "oneOf": [{"required": ["region"]}, {"required": ["tract"]}],
+              "additionalProperties": false
+            }
+          },
+          "highlight": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["region", "side"],
+              "properties": {"region": {"type": "string"}, "side": {"enum": ["ipsi", "contra"]}, "note": {"type": "string"}},
+              "additionalProperties": false
+            }
+          },
+          "clinical": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["site", "finding"],
+              "properties": {"site": {"type": "string"}, "finding": {"type": "string"}},
+              "additionalProperties": false
+            }
+          },
+          "refs": {"$ref": "#/$defs/refs"}
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

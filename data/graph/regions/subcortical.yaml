@@ -1,0 +1,369 @@
+# Deep grey matter from imaging atlases (data geometry).
+# Sides: L / R use per-hemisphere labels; M is a single midline object.
+
+# ---------------------------------------------------------------- thalamus (THOMAS, CC0)
+- id: thalamus
+  name: Thalamus
+  latin: Thalamus
+  group: diencephalon.thalamus
+  systems: [somatosensory, motor, visual, auditory, limbic]
+  geometry: {kind: data, source: cerebra, labels: {L: 91, R: 40}, style: context}
+  summary: >
+    Paired egg-shaped diencephalic grey mass and the obligatory relay for almost all
+    information reaching the cerebral cortex (olfaction is the main exception). Divided by the
+    internal medullary lamina into anterior, medial and lateral groups. Each nucleus has a
+    reciprocal connection with a specific cortical territory through the thalamic radiations.
+  refs: [nieuwenhuys2008, mai2015]
+
+- id: VPL
+  name: Ventral posterolateral nucleus
+  latin: Nucleus ventralis posterolateralis thalami
+  abbrev: [VPL]
+  group: diencephalon.thalamus
+  systems: [somatosensory]
+  geometry: {kind: data, source: thomas, labels: {L: 9, R: 10}}
+  summary: >
+    Somatosensory relay for the contralateral body. Receives the medial lemniscus (touch,
+    vibration, proprioception) and spinothalamic tract (pain, temperature) and projects through
+    the posterior limb of the internal capsule to S1 (areas 3a, 3b, 1, 2).
+  clinical: >
+    Thalamic infarcts here cause contralateral hemisensory loss; later, central post-stroke
+    pain (Dejerine-Roussy syndrome) may develop.
+  refs: [nieuwenhuys2008, saranathan2021, blumenfeld2021]
+
+- id: VPM
+  name: Ventral posteromedial nucleus
+  latin: Nucleus ventralis posteromedialis thalami
+  abbrev: [VPM]
+  group: diencephalon.thalamus
+  systems: [somatosensory, gustatory]
+  geometry: {kind: schematic, shape: ellipsoid, center: {L: [-14.5, -20, 1]}, radii: [2.5, 3.5, 3]}
+  summary: >
+    Somatosensory relay for the face, medial to VPL. Receives the trigeminothalamic tracts and
+    projects to the face area of S1 (lateral postcentral gyrus). Its parvocellular part (VPMpc)
+    relays taste from the solitary nucleus to the insular/opercular gustatory cortex.
+  geometry_note: THOMAS does not segment VPM; position estimated between VPL and CM.
+  refs: [nieuwenhuys2008, mai2015]
+
+- id: VLp
+  name: Ventral lateral nucleus, posterior part
+  latin: Nucleus ventralis lateralis posterior thalami
+  abbrev: [VLp, Vim (approx.), VL]
+  synonyms: [ventral intermediate nucleus (Vim, Hassler nomenclature), cerebellar thalamus]
+  group: diencephalon.thalamus
+  systems: [motor]
+  geometry: {kind: data, source: thomas, labels: {L: 7, R: 8}}
+  summary: >
+    Cerebellar-receiving motor thalamus. Receives the dentatorubrothalamic tract from the
+    contralateral dentate and interposed nuclei and projects to primary motor and premotor
+    cortex.
+  clinical: >
+    Vim — the target for deep brain stimulation, radiofrequency thalamotomy and MR-guided
+    focused ultrasound in essential tremor — lies in this territory; efficacy correlates with
+    hitting the DRTT.
+  refs: [nieuwenhuys2008, saranathan2021, meola2016]
+
+- id: VLa
+  name: Ventral lateral nucleus, anterior part
+  latin: Nucleus ventralis lateralis anterior thalami
+  abbrev: [VLa, Voa/Vop (approx.)]
+  synonyms: [pallidal thalamus]
+  group: diencephalon.thalamus
+  systems: [motor, basal_ganglia]
+  geometry: {kind: data, source: thomas, labels: {L: 5, R: 6}}
+  summary: Pallidal-receiving motor thalamus. Receives GPi output via the thalamic fasciculus and projects to SMA and premotor cortex.
+  refs: [nieuwenhuys2008, saranathan2021]
+
+- id: VA
+  name: Ventral anterior nucleus
+  latin: Nucleus ventralis anterior thalami
+  abbrev: [VA]
+  group: diencephalon.thalamus
+  systems: [motor, basal_ganglia]
+  geometry: {kind: data, source: thomas, labels: {L: 3, R: 4}}
+  summary: Receives basal ganglia output (GPi, SNr) and projects to premotor and prefrontal cortex.
+  refs: [nieuwenhuys2008, saranathan2021]
+
+- id: AV
+  name: Anteroventral nucleus (anterior nuclear group)
+  latin: Nucleus anteroventralis thalami
+  abbrev: [AV, ANT]
+  group: diencephalon.thalamus
+  systems: [limbic, memory]
+  geometry: {kind: data, source: thomas, labels: {L: 1, R: 2}}
+  summary: Part of the Papez circuit; receives the mammillothalamic tract and projects to the cingulate gyrus.
+  clinical: The anterior thalamic nucleus is a DBS target for drug-resistant focal epilepsy.
+  refs: [nieuwenhuys2008, saranathan2021]
+
+- id: MD
+  name: Mediodorsal nucleus
+  latin: Nucleus mediodorsalis thalami
+  abbrev: [MD, DM]
+  group: diencephalon.thalamus
+  systems: [limbic, executive]
+  geometry: {kind: data, source: thomas, labels: {L: 19, R: 20}}
+  summary: Reciprocally connected with prefrontal cortex; receives amygdala, ventral pallidum and olfactory cortex input.
+  refs: [nieuwenhuys2008, saranathan2021]
+
+- id: CM
+  name: Centromedian nucleus
+  latin: Nucleus centromedianus thalami
+  abbrev: [CM, CM-Pf]
+  group: diencephalon.thalamus
+  systems: [arousal, basal_ganglia]
+  geometry: {kind: data, source: thomas, labels: {L: 17, R: 18}}
+  summary: Largest intralaminar nucleus; projects to the striatum and diffusely to cortex; part of the ascending arousal system.
+  clinical: DBS target in Tourette syndrome and generalised epilepsy.
+  refs: [nieuwenhuys2008, saranathan2021, edlow2012]
+
+- id: pulvinar
+  name: Pulvinar
+  latin: Pulvinar thalami
+  abbrev: [Pul]
+  group: diencephalon.thalamus
+  systems: [visual, visuospatial]
+  geometry: {kind: data, source: thomas, labels: {L: 11, R: 12}}
+  summary: Largest thalamic nucleus; associative relay connected with parietal, temporal and occipital association cortex; visual attention.
+  refs: [nieuwenhuys2008, saranathan2021]
+
+- id: LGN
+  name: Lateral geniculate nucleus
+  latin: Corpus geniculatum laterale
+  abbrev: [LGN, LGB]
+  group: diencephalon.thalamus
+  systems: [visual]
+  geometry: {kind: data, source: thomas, labels: {L: 13, R: 14}}
+  summary: Visual relay. Receives the optic tract (contralateral hemifield from both eyes, in separate layers) and projects via the optic radiation to V1.
+  refs: [nieuwenhuys2008, saranathan2021]
+
+- id: MGN
+  name: Medial geniculate nucleus
+  latin: Corpus geniculatum mediale
+  abbrev: [MGN, MGB]
+  group: diencephalon.thalamus
+  systems: [auditory]
+  geometry: {kind: data, source: thomas, labels: {L: 15, R: 16}}
+  summary: Auditory relay. Receives the brachium of the inferior colliculus and projects via the acoustic radiation to Heschl's gyrus.
+  refs: [nieuwenhuys2008, saranathan2021]
+
+- id: habenula
+  name: Habenula
+  latin: Habenula
+  abbrev: [Hb]
+  group: diencephalon.epithalamus
+  systems: [limbic]
+  geometry: {kind: data, source: thomas, labels: {L: 21, R: 22}}
+  summary: Epithalamic nucleus linking forebrain limbic structures (via the stria medullaris) to midbrain monoaminergic nuclei (via the fasciculus retroflexus).
+  refs: [nieuwenhuys2008]
+
+# ---------------------------------------------------------------- basal ganglia
+- id: caudate
+  name: Caudate nucleus
+  latin: Nucleus caudatus
+  group: basal_ganglia.striatum
+  systems: [basal_ganglia, executive]
+  geometry: {kind: data, source: cerebra, labels: {L: 100, R: 49}}
+  summary: C-shaped part of the dorsal striatum following the lateral ventricle; head bulges into the frontal horn. Receives mainly prefrontal (associative) corticostriatal input.
+  clinical: Caudate atrophy with frontal-horn enlargement is characteristic of Huntington disease.
+  refs: [nieuwenhuys2008, manera2020]
+
+- id: putamen
+  name: Putamen
+  latin: Putamen
+  group: basal_ganglia.striatum
+  systems: [basal_ganglia, motor]
+  geometry: {kind: data, source: cerebra, labels: {L: 72, R: 21}}
+  summary: Lateral part of the dorsal striatum and main input of the motor circuit (from M1, SMA and premotor and somatosensory cortex).
+  clinical: Commonest site of hypertensive intracerebral haemorrhage (lenticulostriate arteries).
+  refs: [nieuwenhuys2008, manera2020]
+
+- id: nucleus_accumbens
+  name: Nucleus accumbens
+  latin: Nucleus accumbens
+  abbrev: [NAc]
+  synonyms: [ventral striatum]
+  group: basal_ganglia.striatum
+  systems: [basal_ganglia, limbic]
+  geometry: {kind: data, source: cerebra, labels: {L: 55, R: 4}}
+  summary: Ventral striatum; receives dopaminergic input from the VTA (mesolimbic pathway) and limbic input from hippocampus, amygdala and orbitofrontal cortex.
+  refs: [nieuwenhuys2008]
+
+- id: GPe
+  name: Globus pallidus, external segment
+  latin: Globus pallidus lateralis
+  abbrev: [GPe]
+  group: basal_ganglia.pallidum
+  systems: [basal_ganglia]
+  geometry: {kind: data, source: atag, labels: {L: 9, R: 10}}
+  summary: GABAergic relay of the indirect pathway; reciprocally connected with the subthalamic nucleus.
+  refs: [nieuwenhuys2008, keuken2014]
+
+- id: GPi
+  name: Globus pallidus, internal segment
+  latin: Globus pallidus medialis
+  abbrev: [GPi]
+  group: basal_ganglia.pallidum
+  systems: [basal_ganglia, motor]
+  geometry: {kind: data, source: atag, labels: {L: 11, R: 12}}
+  summary: Main GABAergic output nucleus of the basal ganglia; projects to VA/VLa via the ansa lenticularis and fasciculus lenticularis (joining as the thalamic fasciculus).
+  clinical: DBS and pallidotomy target for Parkinson disease and dystonia.
+  refs: [nieuwenhuys2008, keuken2014]
+
+- id: STN
+  name: Subthalamic nucleus
+  latin: Nucleus subthalamicus
+  abbrev: [STN]
+  group: basal_ganglia.subthalamus
+  systems: [basal_ganglia, motor]
+  geometry: {kind: data, source: atag, labels: {L: 5, R: 6}}
+  summary: Glutamatergic nucleus of the indirect and hyperdirect pathways; excites GPi/SNr.
+  clinical: Lesions cause contralateral hemiballismus; the most common DBS target for Parkinson disease.
+  refs: [nieuwenhuys2008, keuken2014]
+
+- id: substantia_nigra
+  name: Substantia nigra
+  latin: Substantia nigra
+  abbrev: [SN, SNc, SNr]
+  group: mesencephalon
+  systems: [basal_ganglia, motor]
+  geometry: {kind: data, source: atag, labels: {L: 3, R: 4}}
+  summary: Pars compacta (dopaminergic) projects to the striatum (nigrostriatal pathway); pars reticulata is a GABAergic output nucleus like GPi.
+  clinical: Loss of SNc dopaminergic neurons causes Parkinson disease.
+  refs: [nieuwenhuys2008, keuken2014]
+
+- id: red_nucleus
+  name: Red nucleus
+  latin: Nucleus ruber
+  abbrev: [RN]
+  group: mesencephalon
+  systems: [motor, cerebellar]
+  geometry: {kind: data, source: atag, labels: {L: 1, R: 2}}
+  summary: >
+    Midbrain tegmental nucleus. The parvocellular part (dominant in humans) receives cerebellar
+    and cortical input and projects via the central tegmental tract to the inferior olive; the
+    small magnocellular part gives rise to the rubrospinal tract. Most dentatothalamic fibres
+    pass through or around it without synapsing.
+  clinical: Midbrain lesions involving it and the SCP cause Holmes (rubral) tremor; Benedikt and Claude syndromes.
+  refs: [nieuwenhuys2008, keuken2014]
+
+# ---------------------------------------------------------------- limbic / medial temporal
+- id: hippocampus
+  name: Hippocampus
+  latin: Hippocampus
+  group: cortex.limbic
+  systems: [limbic, memory]
+  geometry: {kind: data, source: cerebra, labels: {L: 99, R: 48}}
+  summary: Archicortex in the medial temporal lobe; episodic memory consolidation. Main output via the fimbria-fornix to the mammillary bodies and septum.
+  clinical: Hippocampal sclerosis is the commonest substrate of drug-resistant temporal lobe epilepsy (anterior temporal lobectomy / selective amygdalohippocampectomy).
+  refs: [nieuwenhuys2008]
+
+- id: amygdala
+  name: Amygdala
+  latin: Corpus amygdaloideum
+  group: cortex.limbic
+  systems: [limbic]
+  geometry: {kind: data, source: cerebra, labels: {L: 70, R: 19}}
+  summary: Nuclear complex in the anteromedial temporal lobe; emotional learning, fear. Outputs via the stria terminalis and ventral amygdalofugal pathway.
+  refs: [nieuwenhuys2008]
+
+- id: basal_forebrain
+  name: Basal forebrain
+  latin: Pars basalis telencephali
+  synonyms: [nucleus basalis of Meynert, substantia innominata, septal nuclei]
+  group: basal_forebrain
+  systems: [arousal]
+  geometry: {kind: data, source: cerebra, labels: {L: 76, R: 25}}
+  summary: Contains the cholinergic nucleus basalis of Meynert, projecting widely to the cortex.
+  clinical: Degenerates in Alzheimer disease (rationale for cholinesterase inhibitors).
+  refs: [nieuwenhuys2008]
+
+# ---------------------------------------------------------------- brainstem & cerebellum
+- id: midbrain
+  name: Midbrain
+  latin: Mesencephalon
+  group: brainstem
+  systems: [motor, somatosensory, visual, auditory]
+  geometry: {kind: data, source: cerebra, labels: {M: [62, 11]}, zrange: [-20, 30], style: context}
+  summary: >-
+    Uppermost brainstem segment: tectum (colliculi), tegmentum (red nucleus, CN III/IV nuclei, medial lemniscus) and cerebral peduncles (crus cerebri with corticospinal, corticobulbar and corticopontine fibres).
+  geometry_note: Split from the CerebrA brainstem label by horizontal planes; boundaries are approximate.
+  refs: [nieuwenhuys2008]
+
+- id: pons
+  name: Pons
+  latin: Pons
+  group: brainstem
+  systems: [motor, somatosensory]
+  geometry: {kind: data, source: cerebra, labels: {M: [62, 11]}, zrange: [-48, -20], style: context}
+  summary: Basis pontis (pontine nuclei, descending corticofugal fascicles, transverse pontocerebellar fibres) and tegmentum (cranial nerve V-VIII nuclei, medial lemniscus, reticular formation).
+  geometry_note: Split from the CerebrA brainstem label by horizontal planes; boundaries are approximate.
+  refs: [nieuwenhuys2008]
+
+- id: medulla
+  name: Medulla oblongata
+  latin: Medulla oblongata
+  group: brainstem
+  systems: [motor, somatosensory, autonomic]
+  geometry: {kind: data, source: cerebra, labels: {M: [62, 11]}, zrange: [-100, -48], style: context}
+  summary: >-
+    Lowest brainstem segment: pyramids, inferior olive, dorsal column nuclei, CN IX-XII nuclei and vital cardiorespiratory centres. Pyramidal and sensory decussations lie in its caudal part.
+  geometry_note: Split from the CerebrA brainstem label by horizontal planes; boundaries are approximate.
+  refs: [nieuwenhuys2008]
+
+- id: cerebellar_hemisphere
+  name: Cerebellar hemisphere
+  latin: Hemispherium cerebelli
+  group: cerebellum
+  systems: [cerebellar, motor]
+  geometry: {kind: data, source: cerebra, labels: {L: [97, 90], R: [46, 39]}, style: context}
+  summary: Lateral cerebellum (cerebrocerebellum, mainly) — receives cortico-ponto-cerebellar input via the contralateral MCP and projects via the dentate nucleus to contralateral motor and prefrontal cortex. Controls the ipsilateral body.
+  clinical: Lesions cause ipsilateral limb ataxia, dysmetria, intention tremor and dysdiadochokinesia.
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: vermis
+  name: Cerebellar vermis
+  latin: Vermis cerebelli
+  group: cerebellum
+  systems: [cerebellar, motor, vestibular]
+  geometry: {kind: data, source: cerebra, labels: {M: [101, 53, 71, 50, 2, 20]}, style: context}
+  summary: Midline cerebellum (spinocerebellum and vestibulocerebellum); axial posture, gait and eye movements. Output mainly via the fastigial nucleus.
+  clinical: Midline lesions (e.g. medulloblastoma, alcohol-related degeneration of the anterior vermis) cause truncal and gait ataxia.
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: optic_chiasm
+  name: Optic chiasm
+  latin: Chiasma opticum
+  group: visual
+  systems: [visual]
+  geometry: {kind: data, source: cerebra, labels: {M: [68, 17]}}
+  summary: Fibres from the nasal hemiretinae (temporal visual fields) cross here; temporal hemiretinal fibres stay ipsilateral.
+  clinical: Compression from below (pituitary macroadenoma) causes bitemporal hemianopia.
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+# ---------------------------------------------------------------- ventricles (landmarks, hidden by default)
+- id: lateral_ventricle
+  name: Lateral ventricle
+  latin: Ventriculus lateralis
+  group: ventricles
+  systems: [landmark]
+  geometry: {kind: data, source: cerebra, labels: {L: [92, 56], R: [41, 5]}, style: ventricle}
+  summary: C-shaped CSF cavity of each hemisphere (frontal horn, body, atrium, occipital and temporal horns). Key surgical landmark — the caudate head forms the lateral wall of the frontal horn; the optic radiation (Meyer's loop) covers the roof of the temporal horn.
+  refs: [nieuwenhuys2008]
+
+- id: third_ventricle
+  name: Third ventricle
+  latin: Ventriculus tertius
+  group: ventricles
+  systems: [landmark]
+  geometry: {kind: data, source: cerebra, labels: {M: [80, 29]}, style: ventricle}
+  summary: Midline diencephalic cavity between the thalami; connected to the lateral ventricles by the foramina of Monro and to the fourth ventricle by the cerebral aqueduct. Floor is fenestrated in endoscopic third ventriculostomy.
+  refs: [nieuwenhuys2008]
+
+- id: fourth_ventricle
+  name: Fourth ventricle
+  latin: Ventriculus quartus
+  group: ventricles
+  systems: [landmark]
+  geometry: {kind: data, source: cerebra, labels: {M: [88, 37]}, style: ventricle}
+  summary: Rhomboid cavity between the pons/medulla and cerebellum; its floor carries the facial colliculus (abducens nucleus, facial genu), hypoglossal and vagal trigones — the "safe entry zones" literature for brainstem surgery is built around these landmarks.
+  refs: [nieuwenhuys2008]

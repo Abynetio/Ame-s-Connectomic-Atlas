@@ -1,0 +1,385 @@
+# Cerebral cortex — gyral regions from CerebrA (Desikan-Killiany-Tourville protocol on ICBM2009c).
+# labels: CerebrA label values for the left (L) and right (R) hemisphere.
+# Functional areas (Brodmann areas, named functional fields) are given in `summary`;
+# gyri are macroscopic and do not map one-to-one onto cytoarchitectonic areas.
+
+- id: precentral_gyrus
+  name: Precentral gyrus
+  latin: Gyrus precentralis
+  abbrev: [PrCG]
+  synonyms: [primary motor cortex, M1, Brodmann area 4, motor strip]
+  group: cortex.frontal
+  systems: [motor]
+  geometry: {kind: data, source: cerebra, labels: {L: 86, R: 35}}
+  anchors:
+    hand: {L: [-38, -22, 58]}
+    face: {L: [-55, -6, 30]}
+    leg: {L: [-8, -28, 70]}
+  summary: >
+    Contains the primary motor cortex (BA 4) on its anterior bank of the central sulcus and
+    caudal premotor cortex (BA 6) on its crown. Somatotopic motor map (homunculus): face and
+    tongue ventrolaterally near the Sylvian fissure, hand on the convexity (the "hand knob",
+    an omega-shaped bend of the central sulcus), trunk and leg toward the vertex, foot on the
+    medial surface (paracentral lobule). Giant Betz cells in layer V give rise to a small
+    fraction of corticospinal axons.
+  clinical: >
+    Lesions cause contralateral weakness with upper-motor-neuron signs. The hand knob is a
+    reliable MRI landmark for the central sulcus; direct cortical stimulation is used to map it
+    during resection of perirolandic tumours.
+  refs: [nieuwenhuys2008, kandel2021, manera2020]
+
+- id: postcentral_gyrus
+  name: Postcentral gyrus
+  latin: Gyrus postcentralis
+  abbrev: [PoCG]
+  synonyms: [primary somatosensory cortex, S1, "Brodmann areas 3a, 3b, 1, 2"]
+  group: cortex.parietal
+  systems: [somatosensory]
+  geometry: {kind: data, source: cerebra, labels: {L: 64, R: 13}}
+  anchors:
+    hand: {L: [-42, -30, 55]}
+    face: {L: [-58, -16, 30]}
+    leg: {L: [-10, -40, 72]}
+  summary: >
+    Primary somatosensory cortex. Area 3a (fundus of the central sulcus) receives
+    proprioceptive input, 3b (posterior bank) cutaneous input, 1 (crown) texture, and 2
+    (posterior slope) combined size/shape information. Receives thalamocortical axons from VPL
+    (body) and VPM (face). Same somatotopic sequence as the precentral gyrus.
+  clinical: >
+    Lesions produce contralateral cortical sensory loss: impaired two-point discrimination,
+    graphaesthesia, stereognosis and position sense, with relatively preserved pain sensation.
+    Seizures here produce focal sensory ("Jacksonian") phenomena.
+  refs: [nieuwenhuys2008, kandel2021, manera2020]
+
+- id: paracentral_lobule
+  name: Paracentral lobule
+  latin: Lobulus paracentralis
+  synonyms: [medial M1/S1, leg area]
+  group: cortex.frontal
+  systems: [motor, somatosensory]
+  geometry: {kind: data, source: cerebra, labels: {L: 67, R: 16}}
+  summary: >
+    Medial continuation of the pre- and postcentral gyri around the end of the central sulcus.
+    Holds the motor and sensory representations of the contralateral leg and foot, and
+    cortical control of micturition.
+  clinical: >
+    Anterior cerebral artery territory: infarcts or parasagittal meningiomas cause
+    contralateral leg-predominant weakness and sensory loss, sometimes urinary incontinence.
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: superior_frontal_gyrus
+  name: Superior frontal gyrus
+  latin: Gyrus frontalis superior
+  abbrev: [SFG]
+  synonyms: [supplementary motor area (medial posterior part), SMA, pre-SMA, dorsal premotor cortex (lateral posterior part)]
+  group: cortex.frontal
+  systems: [motor, executive]
+  geometry: {kind: data, source: cerebra, labels: {L: 89, R: 38}}
+  summary: >
+    Posteriorly contains BA 6: the supplementary motor area (SMA) on the medial surface and the
+    dorsal premotor cortex laterally; anteriorly, dorsolateral and medial prefrontal cortex
+    (BA 8, 9). SMA contributes axons to the corticospinal tract and the frontal aslant tract.
+  clinical: >
+    SMA syndrome after resection: transient contralateral akinesia and mutism (dominant side)
+    that usually recovers within weeks — important for counselling before surgery.
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: caudal_middle_frontal_gyrus
+  name: Caudal middle frontal gyrus
+  latin: Gyrus frontalis medius (pars caudalis)
+  synonyms: [dorsal premotor cortex, frontal eye field (FEF)]
+  group: cortex.frontal
+  systems: [motor, oculomotor]
+  geometry: {kind: data, source: cerebra, labels: {L: 93, R: 42}}
+  summary: >
+    Posterior middle frontal gyrus: dorsal premotor cortex (BA 6) and the frontal eye field
+    near the junction with the precentral sulcus, which drives contralateral voluntary saccades.
+  clinical: >
+    Acute FEF lesions cause gaze deviation toward the side of the lesion.
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: rostral_middle_frontal_gyrus
+  name: Rostral middle frontal gyrus
+  latin: Gyrus frontalis medius (pars rostralis)
+  synonyms: [dorsolateral prefrontal cortex, DLPFC, BA 9/46]
+  group: cortex.frontal
+  systems: [executive]
+  geometry: {kind: data, source: cerebra, labels: {L: 52, R: 1}}
+  summary: >
+    Dorsolateral prefrontal cortex: working memory, planning and cognitive control. Major
+    source of frontopontine fibres and target of associative basal-ganglia and cerebellar loops.
+  refs: [nieuwenhuys2008]
+
+- id: pars_opercularis
+  name: Pars opercularis of the inferior frontal gyrus
+  latin: Pars opercularis gyri frontalis inferioris
+  synonyms: [BA 44, posterior Broca's area]
+  group: cortex.frontal
+  systems: [language, motor]
+  geometry: {kind: data, source: cerebra, labels: {L: 83, R: 32}}
+  summary: >
+    BA 44. With pars triangularis, forms Broca's area in the language-dominant (usually left)
+    hemisphere; connected to temporal and parietal language cortex by the arcuate fasciculus
+    and SLF III, and to the SMA by the frontal aslant tract.
+  clinical: >
+    Dominant-hemisphere lesions produce non-fluent (Broca's) aphasia; mapped with awake
+    language testing during glioma surgery.
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: pars_triangularis
+  name: Pars triangularis of the inferior frontal gyrus
+  latin: Pars triangularis gyri frontalis inferioris
+  synonyms: [BA 45, anterior Broca's area]
+  group: cortex.frontal
+  systems: [language]
+  geometry: {kind: data, source: cerebra, labels: {L: 73, R: 22}}
+  summary: BA 45; anterior part of Broca's area in the dominant hemisphere (semantic and syntactic processing).
+  refs: [nieuwenhuys2008]
+
+- id: pars_orbitalis
+  name: Pars orbitalis of the inferior frontal gyrus
+  latin: Pars orbitalis gyri frontalis inferioris
+  synonyms: [BA 47]
+  group: cortex.frontal
+  systems: [language]
+  geometry: {kind: data, source: cerebra, labels: {L: 95, R: 44}}
+  summary: BA 47; ventral inferior frontal cortex, a frontal terminal of the ventral language stream (IFOF, uncinate fasciculus).
+  refs: [nieuwenhuys2008]
+
+- id: lateral_orbitofrontal_cortex
+  name: Lateral orbitofrontal cortex
+  latin: Gyri orbitales (pars lateralis)
+  synonyms: [lateral OFC]
+  group: cortex.frontal
+  systems: [limbic]
+  geometry: {kind: data, source: cerebra, labels: {L: 58, R: 7}}
+  summary: Orbital surface of the frontal lobe; reward valuation and behavioural flexibility. Linked to the temporal pole and amygdala by the uncinate fasciculus.
+  refs: [nieuwenhuys2008]
+
+- id: medial_orbitofrontal_cortex
+  name: Medial orbitofrontal cortex
+  latin: Gyrus rectus et gyri orbitales mediales
+  synonyms: [gyrus rectus, ventromedial prefrontal cortex, vmPFC]
+  group: cortex.frontal
+  systems: [limbic]
+  geometry: {kind: data, source: cerebra, labels: {L: 66, R: 15}}
+  summary: Gyrus rectus and medial orbital gyri; ventromedial prefrontal cortex (decision-making, social behaviour).
+  clinical: Damaged in anterior communicating artery aneurysm rupture and frontal contusions; disinhibition and impaired judgement.
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: rostral_anterior_cingulate
+  name: Rostral anterior cingulate cortex
+  latin: Gyrus cinguli (pars anterior rostralis)
+  synonyms: [pregenual ACC, BA 24/32]
+  group: cortex.limbic
+  systems: [limbic]
+  geometry: {kind: data, source: cerebra, labels: {L: 59, R: 8}}
+  summary: Pregenual anterior cingulate cortex; emotional and autonomic regulation.
+  refs: [nieuwenhuys2008]
+
+- id: caudal_anterior_cingulate
+  name: Caudal anterior cingulate cortex
+  latin: Gyrus cinguli (pars anterior caudalis)
+  synonyms: [dorsal ACC, anterior midcingulate cortex, cingulate motor areas]
+  group: cortex.limbic
+  systems: [limbic, motor]
+  geometry: {kind: data, source: cerebra, labels: {L: 81, R: 30}}
+  summary: >
+    Dorsal anterior/midcingulate cortex: conflict monitoring, the affective component of pain
+    (via medial thalamus), and the cingulate motor areas, which project to the corticospinal
+    tract and bilaterally to the upper-face part of the facial nucleus.
+  refs: [nieuwenhuys2008, jenny1987]
+
+- id: posterior_cingulate
+  name: Posterior cingulate cortex
+  latin: Gyrus cinguli (pars posterior)
+  synonyms: [PCC, BA 23/31]
+  group: cortex.limbic
+  systems: [limbic]
+  geometry: {kind: data, source: cerebra, labels: {L: 98, R: 47}}
+  summary: Core hub of the default-mode network; receives the cingulum bundle and anterior thalamic projections.
+  refs: [nieuwenhuys2008]
+
+- id: isthmus_cingulate
+  name: Isthmus of the cingulate gyrus
+  latin: Isthmus gyri cinguli
+  synonyms: [retrosplenial cortex, BA 29/30]
+  group: cortex.limbic
+  systems: [limbic, memory]
+  geometry: {kind: data, source: cerebra, labels: {L: 84, R: 33}}
+  summary: Narrow band behind the splenium joining the cingulate and parahippocampal gyri; retrosplenial cortex (spatial memory, navigation).
+  refs: [nieuwenhuys2008]
+
+- id: superior_parietal_lobule
+  name: Superior parietal lobule
+  latin: Lobulus parietalis superior
+  synonyms: [BA 5, BA 7]
+  group: cortex.parietal
+  systems: [somatosensory, visuospatial]
+  geometry: {kind: data, source: cerebra, labels: {L: 60, R: 9}}
+  summary: Somatosensory association and visuomotor integration (reaching). Source of parietopontine fibres and SLF I.
+  clinical: Optic ataxia (misreaching under visual guidance) after lesions of the superior parietal lobule and intraparietal sulcus.
+  refs: [nieuwenhuys2008]
+
+- id: inferior_parietal_lobule
+  name: Inferior parietal lobule (angular gyrus)
+  latin: Lobulus parietalis inferior; gyrus angularis
+  synonyms: [angular gyrus, BA 39]
+  group: cortex.parietal
+  systems: [language, visuospatial]
+  geometry: {kind: data, source: cerebra, labels: {L: 61, R: 10}}
+  summary: Angular gyrus (BA 39); multimodal association cortex for reading, calculation and semantic processing.
+  clinical: Dominant-side lesions cause Gerstmann syndrome (agraphia, acalculia, finger agnosia, left-right confusion) and alexia with agraphia.
+  refs: [blumenfeld2021]
+
+- id: supramarginal_gyrus
+  name: Supramarginal gyrus
+  latin: Gyrus supramarginalis
+  synonyms: [BA 40]
+  group: cortex.parietal
+  systems: [language, somatosensory]
+  geometry: {kind: data, source: cerebra, labels: {L: 102, R: 51}}
+  summary: BA 40; phonological processing and praxis (dominant), spatial attention (non-dominant). Hub of the SLF III / arcuate network.
+  clinical: Dominant lesions cause conduction aphasia and ideomotor apraxia; non-dominant lesions contribute to hemineglect.
+  refs: [blumenfeld2021]
+
+- id: precuneus
+  name: Precuneus
+  latin: Precuneus
+  synonyms: [medial BA 7]
+  group: cortex.parietal
+  systems: [visuospatial]
+  geometry: {kind: data, source: cerebra, labels: {L: 82, R: 31}}
+  summary: Medial parietal cortex; visuospatial imagery, episodic memory retrieval, self-referential processing.
+  refs: [nieuwenhuys2008]
+
+- id: cuneus
+  name: Cuneus
+  latin: Cuneus
+  group: cortex.occipital
+  systems: [visual]
+  geometry: {kind: data, source: cerebra, labels: {L: 94, R: 43}}
+  summary: Wedge of medial occipital cortex above the calcarine sulcus; its lower bank holds V1 representing the contralateral inferior visual quadrant.
+  refs: [nieuwenhuys2008]
+
+- id: pericalcarine_cortex
+  name: Pericalcarine cortex
+  latin: Cortex peri-calcarinus
+  synonyms: [primary visual cortex, V1, striate cortex, BA 17]
+  group: cortex.occipital
+  systems: [visual]
+  geometry: {kind: data, source: cerebra, labels: {L: 57, R: 6}}
+  summary: >
+    Banks of the calcarine sulcus: primary visual cortex (V1, striate cortex with the stria of
+    Gennari). Receives the optic radiation from the LGN. Contralateral hemifield, macula at the
+    occipital pole, upper field below the calcarine sulcus.
+  clinical: Lesions cause contralateral homonymous hemianopia, often with macular sparing in posterior cerebral artery infarction.
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: lingual_gyrus
+  name: Lingual gyrus
+  latin: Gyrus lingualis
+  group: cortex.occipital
+  systems: [visual]
+  geometry: {kind: data, source: cerebra, labels: {L: 63, R: 12}}
+  summary: Medial occipitotemporal gyrus below the calcarine sulcus; lower bank of V1 (superior visual quadrant) and visual association cortex.
+  refs: [nieuwenhuys2008]
+
+- id: lateral_occipital_cortex
+  name: Lateral occipital cortex
+  latin: Gyri occipitales laterales
+  synonyms: [extrastriate cortex, V2-V5/MT (lateral part)]
+  group: cortex.occipital
+  systems: [visual]
+  geometry: {kind: data, source: cerebra, labels: {L: 85, R: 34}}
+  summary: Extrastriate visual cortex including object-selective lateral occipital complex and, near the occipitotemporal junction, motion area V5/MT.
+  refs: [nieuwenhuys2008]
+
+- id: fusiform_gyrus
+  name: Fusiform gyrus
+  latin: Gyrus fusiformis; gyrus occipitotemporalis lateralis
+  synonyms: [lateral occipitotemporal gyrus, BA 37]
+  group: cortex.temporal
+  systems: [visual]
+  geometry: {kind: data, source: cerebra, labels: {L: 75, R: 24}}
+  summary: Ventral visual stream; face (fusiform face area), word-form and colour processing.
+  clinical: Bilateral lesions cause prosopagnosia; dominant lesions pure alexia; ventral lesions achromatopsia.
+  refs: [blumenfeld2021]
+
+- id: parahippocampal_gyrus
+  name: Parahippocampal gyrus
+  latin: Gyrus parahippocampalis
+  group: cortex.temporal
+  systems: [limbic, memory]
+  geometry: {kind: data, source: cerebra, labels: {L: 69, R: 18}}
+  summary: Medial temporal cortex relaying neocortical input to the hippocampal formation; scene processing. Terminal zone of the parahippocampal cingulum.
+  refs: [nieuwenhuys2008]
+
+- id: entorhinal_cortex
+  name: Entorhinal cortex
+  latin: Area entorhinalis
+  synonyms: [BA 28]
+  group: cortex.temporal
+  systems: [limbic, memory]
+  geometry: {kind: data, source: cerebra, labels: {L: 87, R: 36}}
+  summary: Anterior parahippocampal gyrus; principal gateway to the hippocampus via the perforant path. First site of neurofibrillary tangles in Alzheimer disease.
+  refs: [nieuwenhuys2008]
+
+- id: superior_temporal_gyrus
+  name: Superior temporal gyrus
+  latin: Gyrus temporalis superior
+  synonyms: [BA 22, Wernicke's area (posterior, dominant)]
+  group: cortex.temporal
+  systems: [auditory, language]
+  geometry: {kind: data, source: cerebra, labels: {L: 96, R: 45}}
+  summary: Auditory association cortex; its posterior part in the dominant hemisphere forms Wernicke's area, linked to frontal language cortex by the arcuate fasciculus.
+  clinical: Dominant posterior lesions produce fluent (Wernicke's) aphasia with impaired comprehension.
+  refs: [blumenfeld2021]
+
+- id: transverse_temporal_gyrus
+  name: Transverse temporal gyrus (Heschl's gyrus)
+  latin: Gyri temporales transversi
+  synonyms: [Heschl's gyrus, primary auditory cortex, A1, BA 41/42]
+  group: cortex.temporal
+  systems: [auditory]
+  geometry: {kind: data, source: cerebra, labels: {L: 65, R: 14}}
+  summary: Primary auditory cortex on the superior temporal plane; tonotopic. Receives the acoustic radiation from the medial geniculate nucleus.
+  clinical: Unilateral lesions cause little deficit because auditory input is bilateral above the cochlear nuclei; bilateral lesions cause cortical deafness.
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: middle_temporal_gyrus
+  name: Middle temporal gyrus
+  latin: Gyrus temporalis medius
+  synonyms: [BA 21]
+  group: cortex.temporal
+  systems: [language, visual]
+  geometry: {kind: data, source: cerebra, labels: {L: 79, R: 28}}
+  summary: Lexical-semantic processing; posteriorly borders motion area V5/MT. Terminal of the MdLF and ILF.
+  refs: [nieuwenhuys2008]
+
+- id: inferior_temporal_gyrus
+  name: Inferior temporal gyrus
+  latin: Gyrus temporalis inferior
+  synonyms: [BA 20]
+  group: cortex.temporal
+  systems: [visual]
+  geometry: {kind: data, source: cerebra, labels: {L: 54, R: 3}}
+  summary: Ventral visual stream for object recognition; receives the inferior longitudinal fasciculus.
+  refs: [nieuwenhuys2008]
+
+- id: insula
+  name: Insula
+  latin: Insula; lobus insularis
+  synonyms: [insular cortex, island of Reil]
+  group: cortex.insula
+  systems: [interoceptive, gustatory, limbic]
+  geometry: {kind: data, source: cerebra, labels: {L: 74, R: 23}}
+  summary: >
+    Cortex hidden beneath the opercula. Posterior insula: interoception, pain and temperature
+    (input from VMpo/VPM-related thalamic nuclei); anterior insula: salience, emotional
+    awareness; dorsal mid-insula: primary gustatory cortex.
+  clinical: >
+    Insular gliomas are surrounded by the extreme/external capsules, uncinate fasciculus and
+    IFOF, and medially the internal capsule; lenticulostriate arteries and the corticospinal
+    tract set the deep resection limit.
+  refs: [nieuwenhuys2008]

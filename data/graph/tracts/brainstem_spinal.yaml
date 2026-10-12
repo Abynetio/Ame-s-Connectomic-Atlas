@@ -1,0 +1,395 @@
+# Brainstem, spinal and cranial-nerve pathways.
+# Data geometry: HCP1065 streamlines (cranial nerves II, III, V, VII, VIII) and HCP842 tract
+# volumes (bundles not present in HCP1065). Schematic geometry below z = -50 (outside the
+# tractography field of view) and for intra-axial segments too small for diffusion MRI.
+
+# ---------------------------------------------------------------- spinal entry
+- id: dorsal_root_lumbosacral
+  name: Dorsal root (lumbosacral)
+  latin: Radix posterior nervi spinalis
+  kind: spinal
+  systems: [somatosensory]
+  geometry:
+    - kind: schematic
+      path: {L: [[-13, -49, -165], [-8, -50.5, -165], [-4, -50, -164.5]]}
+      radius: 0.8
+  origin: Central processes of dorsal root ganglion neurons.
+  course: Enter the cord at the dorsolateral sulcus. Large myelinated fibres pass medially into the dorsal columns; small Aδ and C fibres enter Lissauer's tract and the dorsal horn.
+  termination: Dorsal horn and dorsal columns (ipsilateral).
+  function: All somatic sensation from the corresponding dermatomes.
+  clinical: Radiculopathy — dermatomal pain and sensory loss, reduced reflex of that root.
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: dorsal_root_cervical
+  name: Dorsal root (cervical)
+  latin: Radix posterior nervi spinalis
+  kind: spinal
+  systems: [somatosensory]
+  geometry:
+    - kind: schematic
+      path: {L: [[-13, -49, -100], [-8, -50.5, -100], [-4, -50, -99.5]]}
+      radius: 0.8
+  origin: Central processes of cervical dorsal root ganglion neurons.
+  course: As for lumbosacral roots.
+  termination: Dorsal horn and dorsal columns (ipsilateral).
+  function: Sensation from the upper limb dermatomes.
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: fasciculus_gracilis
+  name: Fasciculus gracilis
+  latin: Fasciculus gracilis
+  synonyms: [gracile fasciculus, dorsal column (medial)]
+  kind: spinal
+  systems: [somatosensory]
+  geometry:
+    - kind: schematic
+      path: {L: [[-4, -50, -164.5], [-1.5, -50, -160], [-1.5, -50, -130], [-1.5, -50, -100], [-1.5, -50, -76], [-2.5, -48.8, -64]]}
+      radius: 0.9
+  origin: Dorsal root ganglion neurons below about T6 (lower limb, lower trunk).
+  course: Ascends ipsilaterally in the medial part of the dorsal funiculus; fibres from each new level are added laterally.
+  termination: Ipsilateral nucleus gracilis.
+  function: Fine touch, vibration and conscious proprioception from the lower body.
+  clinical: >
+    Dorsal column disease (subacute combined degeneration from B12 deficiency, tabes dorsalis,
+    copper deficiency) → sensory ataxia, positive Romberg sign, loss of vibration and joint
+    position sense — legs first because the gracile fibres are longest.
+  refs: [nieuwenhuys2008, kandel2021, blumenfeld2021]
+
+- id: fasciculus_cuneatus
+  name: Fasciculus cuneatus
+  latin: Fasciculus cuneatus
+  synonyms: [cuneate fasciculus, dorsal column (lateral)]
+  kind: spinal
+  systems: [somatosensory]
+  geometry:
+    - kind: schematic
+      path: {L: [[-4, -50, -99.5], [-3.5, -49.5, -95], [-3.5, -49.5, -76], [-5.5, -48, -63]]}
+      radius: 0.9
+  origin: Dorsal root ganglion neurons at about T6 and above (upper limb, upper trunk, neck).
+  course: Ascends ipsilaterally lateral to the fasciculus gracilis (present only above mid-thoracic levels).
+  termination: Ipsilateral nucleus cuneatus.
+  function: Fine touch, vibration and conscious proprioception from the upper body.
+  refs: [nieuwenhuys2008, kandel2021]
+
+- id: internal_arcuate_fibres
+  name: Internal arcuate fibres (sensory decussation)
+  latin: Fibrae arcuatae internae; decussatio lemnisci medialis
+  kind: brainstem
+  systems: [somatosensory]
+  geometry:
+    - kind: schematic
+      path: {L: [[-2.5, -48.5, -62], [-1.5, -46.5, -61.5], [0, -44.5, -61], [1.5, -43, -60.5], [2.5, -42, -60]]}
+      radius: 0.7
+    - kind: schematic
+      role: branch
+      label: fibres from the nucleus cuneatus
+      path: {L: [[-6, -47.5, -60], [-3.5, -46, -61], [-1.5, -44.5, -61]]}
+      radius: 0.6
+  origin: Second-order neurons of the nucleus gracilis and nucleus cuneatus.
+  course: Sweep ventromedially around the central grey and cross the midline (sensory decussation) in the caudal medulla, just rostral to the pyramidal decussation.
+  termination: Become the contralateral medial lemniscus.
+  decussation: Sensory (lemniscal) decussation, caudal medulla.
+  function: Crossing point of the dorsal column–medial lemniscus pathway.
+  refs: [nieuwenhuys2008, paxinos1995]
+
+- id: spinothalamic_crossing
+  name: Anterior white commissure (spinothalamic crossing)
+  latin: Commissura alba anterior
+  kind: spinal
+  systems: [somatosensory]
+  geometry:
+    - kind: schematic
+      path: {L: [[-3, -48.5, -165], [-2, -45.5, -164], [0, -43.5, -163], [2.5, -43.5, -162], [5, -44, -161]]}
+      radius: 0.6
+  origin: Dorsal horn projection neurons (laminae I and V).
+  course: Cross ventral to the central canal, ascending 1-2 segments as they cross.
+  termination: Contralateral anterolateral funiculus.
+  decussation: Anterior white commissure, at every segment.
+  function: Crossing of pain and temperature pathways.
+  clinical: Central cord lesions (syringomyelia, central cord syndrome) cut these fibres first → bilateral "cape-like" loss of pain and temperature with preserved touch (dissociated sensory loss).
+  refs: [nieuwenhuys2008, blumenfeld2021]
+
+- id: spinothalamic_tract
+  name: Spinothalamic tract (anterolateral system)
+  latin: Tractus spinothalamicus
+  abbrev: [STT, ALS]
+  synonyms: [anterolateral system, lateral spinothalamic tract]
+  kind: spinal
+  systems: [somatosensory, pain]
+  geometry:
+    - kind: schematic
+      label: anterolateral funiculus of the spinal cord and lateral medulla
+      path: {L: [[-5, -44, -161], [-5, -44, -140], [-5, -44, -100], [-5.5, -44, -76], [-8, -43, -63], [-6.5, -42, -55], [-4.5, -41, -50]]}
+      radius: 0.9
+    - {kind: data, source: hcp842, labels: {L: Spinothalamic_Tract_L, R: Spinothalamic_Tract_R}}
+  origin: Lamina I and V neurons of the contralateral dorsal horn.
+  course: >
+    Anterolateral funiculus (somatotopy: sacral fibres posterolateral, cervical anteromedial) →
+    lateral medulla dorsal to the inferior olive → joins the lateral edge of the medial lemniscus
+    in the pons and midbrain → thalamus. Collaterals form the spinoreticular (to the
+    reticular formation — arousal) and spinomesencephalic (to the periaqueductal grey) tracts.
+  termination: VPL (discriminative), posterior ventromedial and intralaminar/medial thalamus (affective); then S1, posterior insula and anterior cingulate cortex.
+  transmitter: glutamate (substance P co-release from primary afferents)
+  function: Pain, temperature, crude touch, itch.
+  clinical: >
+    Lesion → contralateral loss of pain and temperature starting 1-2 segments below the
+    lesion. Brown-Séquard: contralateral pain/temperature loss with ipsilateral weakness and
+    dorsal-column loss. Lateral medullary (Wallenberg) syndrome: contralateral body plus
+    ipsilateral face. Sacral sparing in intramedullary tumours reflects the somatotopy.
+    Anterolateral cordotomy interrupts this tract for intractable unilateral cancer pain.
+  refs: [nieuwenhuys2008, willis1997, yeh2018, blumenfeld2021]
+
+# ---------------------------------------------------------------- trigeminal system
+- id: trigeminal_nerve
+  name: Trigeminal nerve (CN V)
+  latin: Nervus trigeminus
+  abbrev: [CN V]
+  kind: cranial_nerve
+  systems: [somatosensory, motor, cranial_nerves]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: CranialNerve_CNVL, R: CranialNerve_CNVR}}
+  origin: Sensory root — trigeminal (Gasserian) ganglion in Meckel's cave; motor root — trigeminal motor nucleus.
+  course: Cisternal segment crosses the prepontine cistern and enters the lateral mid-pons (root entry zone).
+  termination: Principal sensory, spinal and mesencephalic trigeminal nuclei.
+  function: Somatic sensation of the face, cornea, oral and nasal cavities, dura; motor to muscles of mastication.
+  clinical: >
+    Trigeminal neuralgia — typically vascular compression at the root entry zone (superior
+    cerebellar artery); treated with carbamazepine, microvascular decompression,
+    percutaneous rhizotomy or radiosurgery. Corneal reflex: V1 afferent, VII efferent.
+  refs: [nieuwenhuys2008, yeh2018, blumenfeld2021]
+
+- id: spinal_trigeminal_tract
+  name: Spinal trigeminal tract
+  latin: Tractus spinalis nervi trigemini
+  kind: brainstem
+  systems: [somatosensory, pain]
+  geometry:
+    - kind: schematic
+      path: {L: [[-11, -40, -35], [-10.5, -43, -45], [-10, -45.5, -55], [-8.5, -47.5, -71]]}
+      radius: 0.8
+  origin: Trigeminal ganglion neurons carrying pain and temperature (also sensory fibres of VII, IX, X).
+  course: Descends in the lateral pons and medulla to the upper cervical cord, on the lateral side of the spinal trigeminal nucleus.
+  termination: Spinal trigeminal nucleus (pars caudalis for pain and temperature).
+  function: Facial pain and temperature.
+  clinical: Lateral medullary infarction (PICA/vertebral artery) → ipsilateral facial pain/temperature loss. Trigeminal tractotomy was historically used for facial pain.
+  refs: [nieuwenhuys2008, paxinos1995]
+
+- id: trigeminothalamic_tract
+  name: Ventral trigeminothalamic tract (trigeminal lemniscus)
+  latin: Tractus trigeminothalamicus anterior; lemniscus trigeminalis
+  kind: brainstem
+  systems: [somatosensory]
+  geometry:
+    - kind: schematic
+      label: from the principal sensory nucleus (touch)
+      path: {L: [[-10, -40, -34], [-5, -38.5, -32.5], [0, -37, -31], [5, -35, -27], [8, -32, -20], [10.5, -27, -10], [13, -22.5, -3], [14.5, -20, 1]]}
+      radius: 0.7
+    - kind: schematic
+      label: from the spinal trigeminal nucleus (pain and temperature)
+      path: {L: [[-7, -46.5, -66], [-3, -44.5, -63], [1.5, -42.5, -60], [5, -41.5, -54], [6.5, -40, -45], [6, -37, -33], [8, -32, -20], [10.5, -27, -10], [13, -22.5, -3], [14.5, -20, 1]]}
+      radius: 0.6
+  origin: Principal sensory nucleus and spinal trigeminal nucleus.
+  course: Axons cross the midline and ascend medial/dorsal to the medial lemniscus (pain fibres alongside the spinothalamic tract). A smaller uncrossed dorsal trigeminothalamic tract from the dorsomedial principal nucleus (oral cavity) reaches the ipsilateral VPM.
+  termination: Contralateral VPM, then the face area of S1.
+  decussation: In the pons (from the principal nucleus) and medulla (from the spinal nucleus).
+  function: Facial touch, pain and temperature to the thalamus.
+  refs: [nieuwenhuys2008, paxinos1995]
+
+# ---------------------------------------------------------------- other cranial nerves (data)
+- id: facial_nerve
+  name: Facial nerve (CN VII)
+  latin: Nervus facialis
+  abbrev: [CN VII]
+  kind: cranial_nerve
+  systems: [motor, cranial_nerves]
+  geometry:
+    - kind: schematic
+      label: intra-axial course — internal genu around the abducens nucleus
+      path: {L: [[-11, -38, -46], [-8.5, -41.5, -43.5], [-5.5, -44.5, -41], [-3, -44, -39.5], [-6, -42.5, -39], [-10, -40.5, -40.5]]}
+      radius: 0.6
+    - {kind: data, source: hcp1065, bundles: {L: CranialNerve_CNVIIL, R: CranialNerve_CNVIIR}}
+  origin: Facial motor nucleus (with nervus intermedius — taste, parasympathetic secretomotor fibres).
+  course: Loops dorsomedially around the abducens nucleus (internal genu, raising the facial colliculus) → exits at the pontomedullary junction in the cerebellopontine angle → internal acoustic meatus → facial canal → stylomastoid foramen.
+  termination: Muscles of facial expression, stapedius, posterior digastric, stylohyoid.
+  function: Facial expression; taste (anterior two-thirds of tongue); lacrimation and salivation.
+  clinical: >
+    LMN palsy (Bell palsy, CPA tumours, temporal bone fracture) involves the whole hemiface.
+    In vestibular schwannoma surgery the nerve is usually displaced anteriorly and is monitored
+    with EMG.
+  refs: [nieuwenhuys2008, yeh2018, blumenfeld2021]
+
+- id: optic_pathway
+  name: Optic nerve and tract (CN II)
+  latin: Nervus opticus; tractus opticus
+  abbrev: [CN II]
+  kind: cranial_nerve
+  systems: [visual, cranial_nerves]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: CranialNerve_CNIIL, R: CranialNerve_CNIIR}}
+  origin: Retinal ganglion cells.
+  course: Optic nerve → chiasm (nasal fibres cross) → optic tract winding around the cerebral peduncle.
+  termination: LGN (vision), pretectal nuclei (pupillary light reflex), superior colliculus, suprachiasmatic nucleus.
+  function: Vision.
+  clinical: Prechiasmatic lesion → monocular loss; chiasm → bitemporal hemianopia; optic tract → incongruous contralateral homonymous hemianopia with relative afferent pupillary defect.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: oculomotor_nerve
+  name: Oculomotor nerve (CN III)
+  latin: Nervus oculomotorius
+  abbrev: [CN III]
+  kind: cranial_nerve
+  systems: [oculomotor, cranial_nerves]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: CranialNerve_CNIIIL, R: CranialNerve_CNIIIR}}
+  origin: Oculomotor nuclear complex and Edinger-Westphal nucleus (midbrain, superior colliculus level).
+  course: Fascicles pass ventrally through the red nucleus region, exit in the interpeduncular fossa, pass between the posterior cerebral and superior cerebellar arteries, then along the tentorial edge into the cavernous sinus.
+  termination: Superior, inferior and medial recti, inferior oblique, levator palpebrae; ciliary ganglion (pupil constriction).
+  function: Most eye movements, eyelid elevation, pupillary constriction and accommodation.
+  clinical: Compressive palsy (posterior communicating artery aneurysm, uncal herniation) affects the pupil early because parasympathetic fibres run superficially; microvascular palsy typically spares the pupil.
+  refs: [nieuwenhuys2008, yeh2018, blumenfeld2021]
+
+- id: trochlear_nerve
+  name: Trochlear nerve (CN IV)
+  latin: Nervus trochlearis
+  abbrev: [CN IV]
+  kind: cranial_nerve
+  systems: [oculomotor, cranial_nerves]
+  geometry:
+    - {kind: data, source: hcp842, labels: {L: CNIV_L, R: CNIV_R}}
+  origin: Trochlear nucleus (caudal midbrain, inferior colliculus level).
+  course: The only cranial nerve to exit dorsally and to decussate completely (in the superior medullary velum); winds around the midbrain to the cavernous sinus.
+  termination: Contralateral (relative to its nucleus) superior oblique muscle.
+  function: Intorsion and depression of the adducted eye.
+  clinical: Vertical diplopia worse on looking down and in, head tilt away from the affected side; vulnerable in head trauma and during tentorial surgery.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: vestibulocochlear_nerve
+  name: Vestibulocochlear nerve (CN VIII)
+  latin: Nervus vestibulocochlearis
+  abbrev: [CN VIII]
+  kind: cranial_nerve
+  systems: [auditory, vestibular, cranial_nerves]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: CranialNerve_CNVIIIL, R: CranialNerve_CNVIIIR}}
+  origin: Spiral (cochlear) and Scarpa's (vestibular) ganglia.
+  course: Internal acoustic meatus → cerebellopontine angle → enters at the pontomedullary junction behind CN VII.
+  termination: Cochlear nuclei; vestibular nuclei and flocculonodular lobe.
+  function: Hearing and balance.
+  clinical: Vestibular schwannoma (from the vestibular division) presents with unilateral sensorineural hearing loss and tinnitus.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: vagus_nerve
+  name: Vagus nerve (CN X)
+  latin: Nervus vagus
+  abbrev: [CN X]
+  kind: cranial_nerve
+  systems: [autonomic, motor, cranial_nerves]
+  geometry:
+    - {kind: data, source: hcp842, labels: {L: CNX_L, R: CNX_R}}
+  origin: Nucleus ambiguus (branchial motor), dorsal motor nucleus of X (parasympathetic); afferents to the solitary nucleus and spinal trigeminal nucleus.
+  course: Rootlets leave the postolivary sulcus of the medulla → jugular foramen. Only the proximal intracranial segment is captured by tractography.
+  termination: Pharynx, larynx, thoracic and abdominal viscera.
+  function: Swallowing, phonation, parasympathetic control of heart, lungs and gut.
+  refs: [nieuwenhuys2008, yeh2018]
+
+# ---------------------------------------------------------------- brainstem bundles (HCP842 volumes)
+- id: lateral_lemniscus
+  name: Lateral lemniscus
+  latin: Lemniscus lateralis
+  kind: brainstem
+  systems: [auditory]
+  geometry:
+    - {kind: data, source: hcp842, labels: {L: Lateral_Lemniscus_L, R: Lateral_Lemniscus_R}}
+  origin: Cochlear nuclei (mainly contralateral, via the trapezoid body) and superior olivary complex (bilateral).
+  course: Ascends in the lateral pontine tegmentum.
+  termination: Inferior colliculus.
+  function: Central auditory pathway; bilateral representation explains why unilateral central lesions rarely cause deafness.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: medial_longitudinal_fasciculus
+  name: Medial longitudinal fasciculus
+  latin: Fasciculus longitudinalis medialis
+  abbrev: [MLF]
+  kind: brainstem
+  systems: [oculomotor, vestibular]
+  geometry:
+    - {kind: data, source: hcp842, labels: {L: Medial_Longitudinal_Fasciculus_L, R: Medial_Longitudinal_Fasciculus_R}}
+  origin: Vestibular nuclei; abducens internuclear neurons (crossed).
+  course: Paramedian, just beneath the floor of the fourth ventricle and the aqueduct.
+  termination: Oculomotor and trochlear nuclei; interstitial nucleus of Cajal; descending fibres to the cervical cord (medial vestibulospinal tract).
+  function: Conjugate horizontal gaze, vestibulo-ocular reflex, head-eye coordination.
+  clinical: Internuclear ophthalmoplegia — impaired adduction of the eye on the side of the MLF lesion with nystagmus of the abducting eye (multiple sclerosis in the young, stroke in the elderly). One-and-a-half syndrome with an additional abducens-nucleus lesion.
+  refs: [nieuwenhuys2008, yeh2018, blumenfeld2021]
+
+- id: dorsal_longitudinal_fasciculus
+  name: Dorsal longitudinal fasciculus
+  latin: Fasciculus longitudinalis dorsalis
+  abbrev: [DLF, bundle of Schütz]
+  kind: brainstem
+  systems: [autonomic]
+  geometry:
+    - {kind: data, source: hcp842, labels: {L: Dorsal_Longitudinal_Fasciculus_L, R: Dorsal_Longitudinal_Fasciculus_R}}
+  origin: Hypothalamus (periventricular and paraventricular regions).
+  course: Periaqueductal and periventricular grey of the brainstem.
+  termination: Periaqueductal grey, parasympathetic nuclei (Edinger-Westphal, salivatory, dorsal vagal), solitary nucleus.
+  function: Hypothalamic control of autonomic function.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: central_tegmental_tract
+  name: Central tegmental tract
+  latin: Tractus tegmentalis centralis
+  abbrev: [CTT]
+  kind: brainstem
+  systems: [cerebellar, motor, gustatory]
+  geometry:
+    - {kind: data, source: hcp842, labels: {L: Central_Tegmental_Tract_L, R: Central_Tegmental_Tract_R}}
+  origin: Parvocellular red nucleus (descending rubro-olivary fibres); solitary nucleus (ascending gustatory fibres); reticular formation.
+  course: Central brainstem tegmentum.
+  termination: Ipsilateral inferior olive (descending); thalamus (ascending).
+  function: Limb of the Guillain-Mollaret triangle (dentate → contralateral red nucleus → CTT → inferior olive → contralateral dentate).
+  clinical: Lesions of the triangle cause hypertrophic olivary degeneration and palatal myoclonus/tremor.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: rubrospinal_tract
+  name: Rubrospinal tract
+  latin: Tractus rubrospinalis
+  kind: brainstem
+  systems: [motor]
+  geometry:
+    - {kind: data, source: hcp842, labels: {L: Rubrospinal_Tract_L, R: Rubrospinal_Tract_R}}
+  origin: Magnocellular red nucleus.
+  course: Crosses immediately in the ventral tegmental decussation and descends in the lateral brainstem and lateral funiculus.
+  termination: Cervical spinal interneurons (flexor motor neurons of the upper limb).
+  function: Small in humans; may contribute to upper-limb flexor tone.
+  clinical: Classically invoked to explain decorticate (flexor) posturing with lesions above the red nucleus.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: posterior_commissure
+  name: Posterior commissure
+  latin: Commissura posterior
+  abbrev: [PC]
+  kind: commissural
+  systems: [oculomotor, visual]
+  geometry:
+    - {kind: data, source: hcp842, labels: {M: Posterior_Commissure}}
+  origin: Pretectal nuclei, interstitial nucleus of Cajal, nucleus of Darkschewitsch.
+  course: Crosses at the junction of the aqueduct and third ventricle; its upper border defines the PC in the AC-PC line.
+  termination: Contralateral pretectum, Edinger-Westphal nucleus, vertical gaze centres.
+  function: Consensual pupillary light reflex; vertical gaze.
+  clinical: Dorsal midbrain (Parinaud) syndrome from pineal tumours — upgaze palsy, light-near dissociation, convergence-retraction nystagmus.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: mammillothalamic_tract
+  name: Mammillothalamic tract
+  latin: Fasciculus mammillothalamicus
+  abbrev: [MTT, bundle of Vicq d'Azyr]
+  kind: projection
+  systems: [limbic, memory]
+  geometry:
+    - {kind: data, source: thomas, labels: {L: 23, R: 24}}
+  origin: Mammillary body (medial mammillary nucleus).
+  course: Ascends through the hypothalamus into the thalamus.
+  termination: Anterior thalamic nuclei.
+  function: Papez circuit (fornix → mammillary body → MTT → anterior thalamus → cingulum).
+  clinical: Thalamic infarcts involving the MTT cause amnesia; it is a landmark for targeting the anterior thalamic nucleus in DBS.
+  refs: [nieuwenhuys2008, saranathan2021]

@@ -1,0 +1,9 @@
+# local environments and build products
+.venv/
+node_modules/
+web/dist/
+web/public/atlas/
+data/raw/
+__pycache__/
+*.pyc
+.DS_Store

@@ -1,0 +1,405 @@
+# Projection tracts (cortex <-> subcortex/brainstem/spinal cord).
+# geometry parts are listed in anatomical order (origin -> termination).
+# Side keys: L/R = the tract whose ORIGIN is on that side (matters for crossing tracts);
+# M = a single object spanning both sides. Schematic paths are given for L and mirrored for R.
+
+- id: corticospinal_tract
+  name: Corticospinal tract (lateral)
+  latin: Tractus corticospinalis lateralis
+  abbrev: [CST, LCST, pyramidal tract]
+  kind: projection
+  systems: [motor]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBrainstem_CorticospinalTractL, R: ProjectionBrainstem_CorticospinalTractR}}
+    - kind: schematic
+      label: medullary pyramid, pyramidal decussation and lateral funiculus
+      path: {L: [[-5, -32, -50], [-4, -34, -56], [-3, -37, -62], [0, -40.5, -66.5], [3, -44, -70.5], [4.5, -47, -76], [4.5, -47, -100], [4.5, -47, -140], [4.5, -47, -160], [3.8, -43.5, -165]]}
+      radius: 1.0
+    - kind: schematic
+      role: branch
+      label: collaterals to the cervical enlargement
+      path: {L: [[4.5, -47, -96], [4.2, -45, -99], [3.8, -43.5, -100]]}
+      radius: 0.7
+  origin: >
+    Layer V pyramidal neurons of the primary motor cortex (area 4), premotor and supplementary
+    motor areas (area 6), cingulate motor areas and postcentral/posterior parietal cortex
+    (areas 3, 1, 2, 5). Only a few percent of axons come from giant Betz cells.
+  course: >
+    Corona radiata → posterior part of the posterior limb of the internal capsule → middle
+    portion of the cerebral crus → broken into fascicles in the basis pontis → medullary pyramid →
+    pyramidal decussation at the cervicomedullary junction, where most fibres (roughly 75-90 %)
+    cross → lateral funiculus of the contralateral spinal cord.
+  termination: >
+    Spinal interneurons (laminae IV-VIII) and, for distal limb muscles in primates, directly on
+    alpha motor neurons of lamina IX. Sensory-cortex-derived fibres end in the dorsal horn.
+  decussation: Pyramidal decussation (caudal medulla).
+  transmitter: glutamate
+  function: Skilled voluntary movement, especially fractionated movements of the distal limbs.
+  clinical: >
+    Upper-motor-neuron syndrome: weakness (extensors of the arm, flexors of the leg most
+    affected), spasticity, hyperreflexia, extensor plantar response. Contralateral above the
+    decussation, ipsilateral below it (e.g. Brown-Séquard). Classic sites: posterior limb lacune
+    (pure motor hemiparesis), cerebral peduncle (Weber syndrome, with ipsilateral CN III palsy),
+    basis pontis, medullary pyramid (medial medullary syndrome). Kernohan notch: uncal herniation
+    compresses the opposite crus against the tentorium, giving a false-localising ipsilateral
+    hemiparesis. During glioma resection it is localised with subcortical motor-evoked
+    potentials.
+  refs: [nieuwenhuys2008, nathan1990, welniarz2017, yeh2018, blumenfeld2021]
+
+- id: anterior_corticospinal_tract
+  name: Anterior corticospinal tract
+  latin: Tractus corticospinalis anterior
+  abbrev: [ACST, ventral CST]
+  kind: projection
+  systems: [motor]
+  geometry:
+    - kind: schematic
+      label: uncrossed fibres in the anterior funiculus
+      path: {L: [[-5, -32, -50], [-4, -34, -56], [-3, -37, -62], [-2, -40, -68], [-1.5, -41.5, -75], [-1.5, -41.5, -103], [0, -42, -105], [3.5, -42.5, -107]]}
+      radius: 0.8
+  origin: Same cortical origin as the lateral CST; the ~10 % of fibres that do not cross in the pyramidal decussation.
+  course: Descends uncrossed in the anterior funiculus beside the anterior median fissure, mostly only to cervical and upper thoracic levels; many fibres cross segmentally in the anterior white commissure.
+  termination: Medial ventral-horn interneurons and motor neurons supplying axial and proximal muscles (bilateral influence).
+  decussation: Segmental, in the anterior white commissure (partial).
+  transmitter: glutamate
+  function: Axial and proximal postural control.
+  clinical: Contributes to recovery of proximal and axial movement after unilateral hemispheric lesions.
+  refs: [nieuwenhuys2008, nathan1990, welniarz2017]
+
+- id: corticobulbar_tract
+  name: Corticobulbar tract
+  latin: Tractus corticonuclearis
+  synonyms: [corticonuclear tract]
+  kind: projection
+  systems: [motor, cranial_nerves]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBrainstem_CorticobulbarTractL, R: ProjectionBrainstem_CorticobulbarTractR}}
+    - kind: schematic
+      label: crossed fibres to the facial motor nucleus (lower face)
+      path: {L: [[-4, -31, -43], [0, -34, -45], [5, -36.5, -46], [11, -38, -46]]}
+      radius: 0.6
+    - kind: schematic
+      role: branch
+      label: uncrossed fibres to the facial motor nucleus (upper face)
+      path: {L: [[-4, -31, -43], [-8, -35, -45.5], [-11, -38, -46]]}
+      radius: 0.5
+    - kind: schematic
+      role: branch
+      label: crossed fibres to the hypoglossal nucleus
+      path: {L: [[-2.5, -34, -52], [0, -40, -55], [2, -46, -57]]}
+      radius: 0.5
+  origin: Face, tongue and larynx representations of the ventrolateral precentral gyrus and adjacent premotor cortex; cingulate motor areas (upper face).
+  course: Corona radiata → genu/anterior posterior limb of the internal capsule → medial part of the cerebral crus → leaves the corticospinal bundle at successive brainstem levels.
+  termination: >
+    Cranial motor nuclei (V motor, VII, nucleus ambiguus, XII, XI) — mostly via reticular
+    interneurons. Input is largely bilateral, except the lower-face part of the facial nucleus
+    and (variably) the hypoglossal nucleus, which receive predominantly contralateral input.
+  decussation: At the level of each target nucleus.
+  transmitter: glutamate
+  function: Voluntary control of facial expression, mastication, speech articulation and swallowing.
+  clinical: >
+    Unilateral lesion → contralateral lower facial weakness with forehead sparing and tongue
+    deviation toward the weak side; other bulbar functions are largely spared because of
+    bilateral innervation. Bilateral lesions → pseudobulbar palsy (dysarthria, dysphagia,
+    brisk jaw jerk, emotional lability).
+  refs: [nieuwenhuys2008, jenny1987, blumenfeld2021, yeh2018]
+
+- id: corticopontine_frontal
+  name: Frontopontine tract
+  latin: Tractus frontopontinus
+  synonyms: [Arnold's bundle]
+  kind: projection
+  systems: [motor, cerebellar]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBrainstem_CorticopontineTractL_Frontal, R: ProjectionBrainstem_CorticopontineTractR_Frontal}}
+  origin: Prefrontal, premotor, supplementary motor and primary motor cortex.
+  course: Anterior limb of the internal capsule → medial fifth of the cerebral crus → basis pontis.
+  termination: Ipsilateral pontine nuclei (medial and ventral parts).
+  transmitter: glutamate
+  function: First limb of the cortico-ponto-cerebellar loop carrying motor plans and prefrontal (cognitive) signals to the contralateral cerebellar hemisphere.
+  refs: [nieuwenhuys2008, schmahmann1997, yeh2018]
+
+- id: corticopontine_parietal
+  name: Parietopontine tract
+  latin: Tractus parietopontinus
+  kind: projection
+  systems: [motor, cerebellar]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBrainstem_CorticopontineTractL_Parietal, R: ProjectionBrainstem_CorticopontineTractR_Parietal}}
+  origin: Postcentral gyrus and posterior parietal cortex.
+  course: Posterior limb / retrolenticular internal capsule → lateral part of the cerebral crus → basis pontis.
+  termination: Ipsilateral pontine nuclei (lateral and dorsal parts).
+  transmitter: glutamate
+  function: Somatosensory and visuospatial information for cerebellar coordination of reaching.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: corticopontine_occipital
+  name: Occipitopontine tract
+  latin: Tractus occipitopontinus
+  kind: projection
+  systems: [motor, cerebellar, visual]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBrainstem_CorticopontineTractL_Occipital, R: ProjectionBrainstem_CorticopontineTractR_Occipital}}
+  origin: Extrastriate occipital and occipitotemporal (visual motion) cortex.
+  course: Retrolenticular internal capsule → lateral cerebral crus → basis pontis.
+  termination: Ipsilateral dorsolateral pontine nuclei.
+  transmitter: glutamate
+  function: Visual-motion signals to the cerebellum for smooth pursuit and visually guided movement.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: medial_lemniscus
+  name: Medial lemniscus
+  latin: Lemniscus medialis
+  abbrev: [ML]
+  kind: projection
+  systems: [somatosensory]
+  geometry:
+    - kind: schematic
+      label: medullary medial lemniscus (paramedian, dorsal to the pyramid)
+      path: {L: [[-2.5, -42, -60], [-3, -40.5, -55], [-6, -39, -50]]}
+      radius: 0.9
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBrainstem_MedialLemniscusL, R: ProjectionBrainstem_MedialLemniscusR}}
+  origin: Second-order neurons of the contralateral nucleus gracilis and nucleus cuneatus (axons cross as internal arcuate fibres).
+  course: >
+    Medulla — vertical paramedian ribbon dorsal to the pyramid (leg fibres ventral, arm dorsal);
+    pons — rotates to lie horizontally in the ventral tegmentum (arm medial, leg lateral);
+    midbrain — moves dorsolaterally. In the HCP1065 atlas this bundle continues with the
+    thalamocortical projection to the postcentral gyrus.
+  termination: VPL of the thalamus.
+  transmitter: glutamate
+  function: Discriminative touch, vibration, conscious proprioception.
+  clinical: Medial medullary syndrome (anterior spinal / vertebral artery) — contralateral loss of position and vibration sense with contralateral hemiparesis and ipsilateral tongue weakness.
+  refs: [nieuwenhuys2008, yeh2018, blumenfeld2021]
+
+- id: superior_thalamic_radiation
+  name: Superior thalamic radiation
+  latin: Radiatio thalami superior
+  synonyms: [thalamocortical projection to sensorimotor cortex]
+  kind: projection
+  systems: [somatosensory, motor]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_ThalamicRadiationL_Superior, R: ProjectionBasalGanglia_ThalamicRadiationR_Superior}}
+  origin: Ventral tier thalamic nuclei (VPL, VPM, VL) — and reciprocal corticothalamic fibres from layer VI.
+  course: Posterior limb of the internal capsule → corona radiata.
+  termination: Pre- and postcentral gyri and adjacent premotor and parietal cortex.
+  transmitter: glutamate
+  function: Relays somatosensory (VPL/VPM) and cerebellar/pallidal motor (VL) information to sensorimotor cortex.
+  clinical: Capsular lacunes can produce pure sensory or sensorimotor stroke.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: anterior_thalamic_radiation
+  name: Anterior thalamic radiation
+  latin: Radiatio thalami anterior
+  kind: projection
+  systems: [limbic, executive]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_ThalamicRadiationL_Anterior, R: ProjectionBasalGanglia_ThalamicRadiationR_Anterior}}
+  origin: Mediodorsal and anterior thalamic nuclei (reciprocal).
+  course: Anterior limb of the internal capsule.
+  termination: Prefrontal and anterior cingulate cortex.
+  transmitter: glutamate
+  function: Thalamo-prefrontal loops for executive function and emotion.
+  clinical: Target region of anterior capsulotomy / DBS of the ventral capsule–ventral striatum for refractory obsessive-compulsive disorder.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: posterior_thalamic_radiation
+  name: Posterior thalamic radiation
+  latin: Radiatio thalami posterior
+  kind: projection
+  systems: [visual, visuospatial]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_ThalamicRadiationL_Posterior, R: ProjectionBasalGanglia_ThalamicRadiationR_Posterior}}
+  origin: Pulvinar and lateral posterior nucleus (reciprocal).
+  course: Retrolenticular internal capsule.
+  termination: Parietal, occipital and posterior temporal association cortex.
+  transmitter: glutamate
+  function: Thalamic support for visual attention and multisensory association cortex.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: optic_radiation
+  name: Optic radiation
+  latin: Radiatio optica
+  synonyms: [geniculocalcarine tract]
+  kind: projection
+  systems: [visual]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_OpticRadiationL, R: ProjectionBasalGanglia_OpticRadiationR}}
+  origin: Lateral geniculate nucleus.
+  course: >
+    Retrolenticular internal capsule → sagittal stratum along the lateral wall of the atrium and
+    occipital horn. Inferior fibres (upper visual field) first sweep anteriorly over the
+    temporal horn as Meyer's loop.
+  termination: Primary visual cortex (V1) on the banks of the calcarine sulcus.
+  transmitter: glutamate
+  function: Carries the contralateral visual hemifield to V1.
+  clinical: >
+    Meyer's loop injury in anterior temporal lobectomy or temporal lobe tumours → contralateral
+    superior quadrantanopia ("pie in the sky"); parietal lesions → inferior quadrantanopia;
+    complete interruption → homonymous hemianopia. Tractography of Meyer's loop is used in
+    epilepsy surgery planning.
+  refs: [nieuwenhuys2008, yeh2018, blumenfeld2021]
+
+- id: acoustic_radiation
+  name: Acoustic radiation
+  latin: Radiatio acustica
+  synonyms: [auditory radiation, geniculotemporal tract]
+  kind: projection
+  systems: [auditory]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_AcousticRadiationL, R: ProjectionBasalGanglia_AcousticRadiationR}}
+  origin: Medial geniculate nucleus.
+  course: Sublenticular internal capsule, passing laterally over the temporal horn.
+  termination: Heschl's gyrus (primary auditory cortex).
+  transmitter: glutamate
+  function: Auditory input to cortex (bilateral information from both ears).
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: corticostriatal_tract
+  name: Corticostriatal tract
+  latin: Fibrae corticostriatales
+  kind: projection
+  systems: [basal_ganglia]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_CorticostriatalTractL_Anterior, R: ProjectionBasalGanglia_CorticostriatalTractR_Anterior}, label: anterior (prefrontal) fibres}
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_CorticostriatalTractL_Superior, R: ProjectionBasalGanglia_CorticostriatalTractR_Superior}, label: superior (sensorimotor) fibres}
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_CorticostriatalTractL_Posterior, R: ProjectionBasalGanglia_CorticostriatalTractR_Posterior}, label: posterior (parieto-occipital) fibres}
+  origin: Virtually the entire neocortex (layer V).
+  course: Through the internal and external capsules.
+  termination: Caudate nucleus and putamen, topographically — prefrontal → caudate head (associative), sensorimotor → putamen (motor), limbic → ventral striatum.
+  transmitter: glutamate
+  function: Input stage of the parallel cortico-basal ganglia-thalamo-cortical loops.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: ansa_lenticularis
+  name: Ansa lenticularis
+  latin: Ansa lenticularis
+  kind: projection
+  systems: [basal_ganglia, motor]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_AnsaLenticularisL, R: ProjectionBasalGanglia_AnsaLenticularisR}}
+  origin: Globus pallidus internus (lateral part).
+  course: Loops ventrally around the posterior limb of the internal capsule, then dorsally to join the thalamic fasciculus (field H1).
+  termination: VA and VLa of the thalamus.
+  transmitter: GABA
+  function: Inhibitory basal-ganglia output to the motor thalamus.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: fasciculus_lenticularis
+  name: Lenticular fasciculus (field H2)
+  latin: Fasciculus lenticularis
+  synonyms: [field H2 of Forel]
+  kind: projection
+  systems: [basal_ganglia, motor]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_FasciculusLenticularisL, R: ProjectionBasalGanglia_FasciculusLenticularisR}}
+  origin: Globus pallidus internus (medial part).
+  course: Crosses the internal capsule dorsal to the subthalamic nucleus (H2), turns through Forel's field H to join the thalamic fasciculus (H1).
+  termination: VA and VLa of the thalamus.
+  transmitter: GABA
+  function: Pallidothalamic output.
+  clinical: Region of Forel's fields is a target for pallidothalamic tractotomy / focused ultrasound in Parkinson disease.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: subthalamic_fasciculus
+  name: Subthalamic fasciculus
+  latin: Fasciculus subthalamicus
+  kind: projection
+  systems: [basal_ganglia, motor]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_FasciculusSubthalamicusL, R: ProjectionBasalGanglia_FasciculusSubthalamicusR}}
+  origin: Reciprocal — GPe → STN (GABA) and STN → GPi/GPe (glutamate).
+  course: Crosses the internal capsule between the pallidum and the subthalamic nucleus.
+  termination: Subthalamic nucleus and globus pallidus.
+  function: Indirect-pathway connections.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: ansa_subthalamica
+  name: Ansa subthalamica
+  latin: Ansa subthalamica
+  kind: projection
+  systems: [basal_ganglia]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_AnsaSubthalamicaL, R: ProjectionBasalGanglia_AnsaSubthalamicaR}}
+  origin: Pallidum.
+  course: Ventral pallidosubthalamic loop beneath the internal capsule.
+  termination: Subthalamic nucleus.
+  function: Pallido-subthalamic connection described in the tractography and dissection literature; less established in classical texts.
+  refs: [yeh2018]
+
+- id: fornix
+  name: Fornix
+  latin: Fornix
+  kind: projection
+  systems: [limbic, memory]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBasalGanglia_FornixL, R: ProjectionBasalGanglia_FornixR}}
+  origin: Hippocampus and subiculum (via alveus and fimbria).
+  course: Fimbria → crus → body (under the corpus callosum, beside its partner) → columns curving down in front of the interventricular foramen.
+  termination: Postcommissural fibres → mammillary bodies (Papez circuit) and anterior thalamus; precommissural fibres → septal nuclei, basal forebrain, ventral striatum.
+  transmitter: glutamate
+  function: Principal hippocampal output; memory.
+  clinical: Bilateral injury (colloid cyst surgery, transcallosal approaches to the third ventricle) causes anterograde amnesia. Fornix DBS has been trialled in Alzheimer disease.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: medial_forebrain_bundle
+  name: Medial forebrain bundle
+  latin: Fasciculus medialis telencephali
+  abbrev: [MFB, slMFB]
+  kind: projection
+  systems: [limbic, reward, arousal]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBrainstem_MedialForebrainBundleL, R: ProjectionBrainstem_MedialForebrainBundleR}}
+  origin: Bidirectional — ascending dopaminergic (VTA), noradrenergic and serotonergic axons; descending fibres from septum, basal forebrain and hypothalamus.
+  course: Through the lateral hypothalamus between the brainstem tegmentum and the basal forebrain.
+  termination: Nucleus accumbens, prefrontal cortex, septum, hypothalamus.
+  function: Reward, motivation; carries the mesolimbic dopamine projection.
+  clinical: The superolateral branch (slMFB) is a DBS target in treatment-resistant depression trials.
+  refs: [nieuwenhuys2008, yeh2018]
+
+- id: reticular_tract
+  name: Reticular tract
+  latin: Tractus reticularis
+  kind: projection
+  systems: [motor, arousal]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBrainstem_ReticularTractL, R: ProjectionBrainstem_ReticularTractR}}
+  origin: Bidirectional pathway between the brainstem reticular formation and frontal cortex/thalamus (corticoreticular and reticulothalamic components).
+  course: Through the internal capsule and brainstem tegmentum.
+  termination: Pontomedullary reticular formation (origin of reticulospinal tracts) and frontal cortex.
+  function: Postural and proximal motor control; arousal.
+  refs: [yeh2018]
+
+- id: dentatorubrothalamic_tract
+  name: Dentatorubrothalamic tract (decussating)
+  latin: Tractus dentatorubrothalamicus
+  abbrev: [DRTT, dDRTT]
+  synonyms: [cerebellothalamic tract]
+  kind: projection
+  systems: [cerebellar, motor]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBrainstem_DentatorubrothalamicTract-rl, R: ProjectionBrainstem_DentatorubrothalamicTract-lr}}
+  origin: Dentate (and interposed) nucleus of the cerebellum.
+  course: Superior cerebellar peduncle → decussation of the SCP in the caudal midbrain tegmentum (inferior colliculus level) → through/around the contralateral red nucleus → thalamus.
+  termination: Contralateral VLp (cerebellar motor thalamus, Vim) → motor, premotor and prefrontal cortex.
+  decussation: Decussation of the superior cerebellar peduncles (caudal midbrain).
+  transmitter: glutamate
+  function: Main cerebellar output to the cerebral cortex; coordination and timing of voluntary movement.
+  clinical: >
+    Because the DRTT crosses and the corticospinal tract crosses back, a cerebellar hemisphere
+    controls the ipsilateral body. The DRTT is the effective target for Vim DBS / MRgFUS in
+    essential tremor. Midbrain lesions of this pathway cause Holmes tremor.
+  refs: [nieuwenhuys2008, meola2016, dum2003, yeh2018]
+
+- id: nondecussating_drtt
+  name: Dentatorubrothalamic tract (non-decussating)
+  latin: Tractus dentatorubrothalamicus non-decussatus
+  abbrev: [nDRTT]
+  kind: projection
+  systems: [cerebellar, motor]
+  geometry:
+    - {kind: data, source: hcp1065, bundles: {L: ProjectionBrainstem_NonDecussatingDentatorubrothalamicTractL, R: ProjectionBrainstem_NonDecussatingDentatorubrothalamicTractR}}
+  origin: Dentate nucleus.
+  course: Ascends ipsilaterally through the SCP and midbrain tegmentum.
+  termination: Ipsilateral red nucleus and thalamus, motor cortex.
+  function: Uncrossed cerebellothalamic component described by tractography and microdissection; may contribute to recovery and to bilateral effects of unilateral surgery.
+  refs: [meola2016, yeh2018]

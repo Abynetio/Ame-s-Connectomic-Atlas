@@ -90,12 +90,17 @@ def fetch_dryad(rep: Report, out: Path, key: str, doi: str, max_bytes: int, down
         if size > max_bytes:
             s["notes"].append(f"skipped {name}: {size/1e6:.1f} MB > cap")
             continue
+        if (out / key / name).exists() and (out / key / name).stat().st_size == size:
+            continue
         href = f["_links"]["stash:download"]["href"]
-        try:
-            data = http_get(f"{DRYAD}{href}")
-            s["files"].append(save(out, f"{key}/{name}", data))
-        except Exception as e:  # noqa: BLE001
-            s["notes"].append(f"download failed {name}: {e}")
+        file_id = href.rstrip("/").split("/")[-2]
+        for url in (f"{DRYAD}{href}", f"{DRYAD}/downloads/file_stream/{file_id}"):
+            try:
+                data = http_get(url, retries=2)
+                s["files"].append(save(out, f"{key}/{name}", data))
+                break
+            except Exception as e:  # noqa: BLE001
+                s["notes"].append(f"download failed {name} via {url}: {e}")
     s["status"] = "ok" if (s["files"] or not download) else "failed"
 
 
@@ -113,6 +118,16 @@ def osf_walk(url: str):
         url = page.get("links", {}).get("next")
 
 
+def osf_nodes(node: str):
+    yield node
+    url = f"https://api.osf.io/v2/nodes/{node}/children/"
+    while url:
+        page = get_json(url)
+        for child in page.get("data", []):
+            yield from osf_nodes(child["id"])
+        url = page.get("links", {}).get("next")
+
+
 def fetch_osf(rep: Report, out: Path, key: str, node: str, patterns: list[str], max_bytes: int) -> None:
     s = rep.source(key)
     meta = get_json(f"https://api.osf.io/v2/nodes/{node}/")
@@ -123,8 +138,12 @@ def fetch_osf(rep: Report, out: Path, key: str, node: str, patterns: list[str], 
             s["license"] = get_json(lic)["data"]["attributes"]["name"]
         except Exception as e:  # noqa: BLE001
             s["notes"].append(f"licence lookup failed: {e}")
-    for path, size, dl in osf_walk(f"https://api.osf.io/v2/nodes/{node}/files/osfstorage/"):
+    walk = ((n, item) for n in osf_nodes(node) for item in osf_walk(f"https://api.osf.io/v2/nodes/{n}/files/osfstorage/"))
+    for n, (path, size, dl) in walk:
+        path = f"/{n}{path}"
         s["listing"].append({"name": path, "bytes": size})
+        if (out / f"{key}{path}").exists():
+            continue
         if not any(re.search(p, path) for p in patterns):
             continue
         if size > max_bytes:
@@ -171,6 +190,9 @@ def fetch_page(rep: Report, out: Path, key: str, url: str, follow: list[str], ma
         if not any(re.search(p, link) for p in follow):
             continue
         absu = urllib.parse.urljoin(url, link)
+        name = Path(urllib.parse.urlparse(absu).path).name or "index"
+        if (out / key / name).exists():
+            continue
         try:
             data = http_get(absu)
             if len(data) > max_bytes:
@@ -199,12 +221,12 @@ def main() -> int:
         # 100 um volume is GB-scale: list only, never download in CI.
         ("edlow_100um", lambda: fetch_dryad(rep, out, "edlow_100um", "10.5061/dryad.119f80q", cap, False)),
         ("cit168", lambda: fetch_osf(rep, out, "cit168", "r2hvk",
-                                      [r"MNI152-2009c.*(prob|label|det).*\.nii\.gz$", r"(?i)readme|label.*\.(txt|csv|tsv)$|\.pdf$"],
+                                      [r"(?i)CIT168.*(MNI|2009c).*\.nii\.gz$", r"(?i)(label|structure|index).*\.(txt|csv|tsv)$", r"(?i)readme"],
                                       cap)),
         ("hcp842_zenodo", lambda: fetch_zenodo(rep, out, "hcp842_zenodo", "3627772", cap)),
         ("yeh2022_connectome_page", lambda: fetch_page(rep, out, "yeh2022_connectome_page",
                                                         "https://brain.labsolver.org/hcp_trk_atlas.html",
-                                                        [r"\.(xlsx|csv|txt|mat|zip)$"], cap)),
+                                                        [r"\.(xlsx|csv)$", r"MOESM.*\.zip$"], cap)),
     ]
     for key, job in jobs:
         print(f"== {key}", flush=True)
