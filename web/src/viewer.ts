@@ -36,16 +36,16 @@ const DASH_VERT = /* glsl */ `
     gl_Position = projectionMatrix * mv;
   }`;
 const DASH_FRAG = /* glsl */ `
-  uniform vec3 uColor; uniform float uRepeat; uniform float uOpacity;
+  uniform vec3 uColor; uniform float uRepeat; uniform float uOpacity; uniform float uBright;
   varying vec2 vUv; varying vec3 vN; varying vec3 vV;
   void main() {
     if (fract(vUv.x * uRepeat) > 0.62) discard;
     float l = 0.45 + 0.55 * abs(dot(normalize(vN), normalize(vV)));
-    gl_FragColor = vec4(uColor * l, uOpacity);
+    gl_FragColor = vec4(min(uColor * l * uBright, vec3(1.0)), uOpacity);
   }`;
 
 const ROUTE_FRAG = /* glsl */ `
-  uniform vec3 uColor; uniform float uTime; uniform vec2 uSpan; uniform float uLength;
+  uniform vec3 uColor; uniform float uTime; uniform vec2 uSpan; uniform float uLength; uniform float uBright;
   varying vec2 vUv; varying vec3 vN; varying vec3 vV;
   void main() {
     float u = vUv.x;
@@ -58,10 +58,16 @@ const ROUTE_FRAG = /* glsl */ `
     vec3 base = mix(vec3(0.55), uColor, 0.35 + 0.65 * done);
     vec3 c = base * l + pulse * 0.9 * done + inSpan * 0.25;
     float a = mix(0.35, 1.0, done);
-    gl_FragColor = vec4(c, a);
+    gl_FragColor = vec4(min(c * uBright, vec3(1.0)), a);
   }`;
 
-interface TractObj { obj: THREE.Object3D; tract: Tract; part: number; side: Side }
+interface TractObj { obj: THREE.Object3D; tract: Tract; part: number; side: Side; mode: Mode }
+
+/** Hand-drawn (schematic) tracts and the animated route are drawn thin so they don't hide imaging data. */
+const SCHEMATIC_TRACT_SCALE = 0.5;
+const ROUTE_RADIUS = 0.4;
+const GLASS_ORDER_UNDER = -10; // glass drawn first: the circuit is painted over it at full colour
+const GLASS_ORDER_OVER = 10; // glass drawn last: the circuit is seen "through" the glass (softer)
 
 export class Viewer {
   readonly scene = new THREE.Scene();
@@ -82,6 +88,9 @@ export class Viewer {
   private raycaster = new THREE.Raycaster();
   private tween: { from: [THREE.Vector3, THREE.Vector3]; to: [THREE.Vector3, THREE.Vector3]; t0: number; dur: number } | null = null;
   private glassOpacity = 0.28;
+  private brightness = 1.25;
+  private circuitOverGlass = true;
+  private regionModes = new Map<THREE.Mesh, { region: Region; mode: Mode }>();
   glassVisible = true;
   colorMode: "system" | "direction" = "direction";
 
@@ -145,13 +154,17 @@ export class Viewer {
   }
 
   private buildContext() {
-    for (const c of this.atlas.graph.context) {
-      const mesh = new THREE.Mesh(this.meshFrom(c.mesh), this.glassMaterial(0xb8c0cc, this.glassOpacity));
-      mesh.renderOrder = 10;
-      mesh.userData = { kind: "context", id: c.id, side: "M", name: c.name } satisfies PickInfo;
+    const add = (geom: THREE.BufferGeometry, id: string, name: string) => {
+      const mesh = new THREE.Mesh(geom, this.glassMaterial(0xb8c0cc, this.glassOpacity));
+      mesh.renderOrder = this.circuitOverGlass ? GLASS_ORDER_UNDER : GLASS_ORDER_OVER;
+      mesh.userData = { kind: "context", id, side: "M", name } satisfies PickInfo;
       this.contextObjs.push(mesh);
       this.scene.add(mesh);
-    }
+    };
+    for (const c of this.atlas.graph.context) add(this.meshFrom(c.mesh), c.id, c.name);
+    // the shortened schematic spinal cord gets a glass shell as well
+    const cord = this.atlas.regionById.get("spinal_cord")?.sides.M;
+    if (cord?.path) add(this.schematicRegionGeometry(cord), "spinal_cord_glass", "Spinal cord (schematic)");
   }
 
   private schematicRegionGeometry(s: NonNullable<Region["sides"]["L"]>): THREE.BufferGeometry {
@@ -172,6 +185,7 @@ export class Viewer {
         const geom = s.mesh !== undefined ? this.meshFrom(s.mesh) : this.schematicRegionGeometry(s);
         const color = colorFor(r.systems, r.style);
         const mat = new THREE.MeshStandardMaterial({ color, roughness: 0.55, metalness: 0.0, transparent: true, opacity: 1 });
+        mat.userData.base = new THREE.Color(color);
         const mesh = new THREE.Mesh(geom, mat);
         mesh.userData = { kind: "region", id: r.id, side, name: r.name } satisfies PickInfo;
         if (r.kind === "schematic") {
@@ -209,18 +223,20 @@ export class Viewer {
       g.setAttribute("color", new THREE.BufferAttribute(this.colorMode === "direction" ? colors.slice() : sys.slice(), 3));
       obj = new THREE.LineSegments(g, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.85 }));
     } else if (s.mesh !== undefined) {
-      obj = new THREE.Mesh(this.meshFrom(s.mesh), new THREE.MeshStandardMaterial({ color, roughness: 0.5, transparent: true, opacity: 0.9 }));
+      const mat = new THREE.MeshStandardMaterial({ color, roughness: 0.5, transparent: true, opacity: 0.9 });
+      mat.userData.base = color.clone();
+      obj = new THREE.Mesh(this.meshFrom(s.mesh), mat);
     } else {
       const pts = s.path!.map((q) => new THREE.Vector3(...q));
       const curve = new THREE.CatmullRomCurve3(pts);
       const len = curve.getLength();
-      const g = new THREE.TubeGeometry(curve, Math.max(8, pts.length * 2), p.radius ?? 0.8, 10, false);
+      const g = new THREE.TubeGeometry(curve, Math.max(8, pts.length * 2), (p.radius ?? 0.8) * SCHEMATIC_TRACT_SCALE, 8, false);
       obj = new THREE.Mesh(
         g,
         new THREE.ShaderMaterial({
           vertexShader: DASH_VERT,
           fragmentShader: DASH_FRAG,
-          uniforms: { uColor: { value: color }, uRepeat: { value: len / 2.2 }, uOpacity: { value: 1 } },
+          uniforms: { uColor: { value: color }, uRepeat: { value: len / 2.2 }, uOpacity: { value: 1 }, uBright: { value: this.brightness } },
           transparent: true,
           side: THREE.DoubleSide,
         }),
@@ -229,7 +245,7 @@ export class Viewer {
     obj.userData = { kind: "tract", id: t.id, side, name: t.name } satisfies PickInfo;
     obj.visible = false;
     this.scene.add(obj);
-    const rec = { obj, tract: t, part, side };
+    const rec: TractObj = { obj, tract: t, part, side, mode: "off" };
     this.tractObjs.set(key, rec);
     return rec;
   }
@@ -301,13 +317,53 @@ export class Viewer {
     for (const s of Object.keys(r.sides) as Side[]) {
       if (side !== "both" && s !== side && s !== "M") continue;
       const mesh = this.regionObjs.get(`${id}:${s}`)!;
-      const mat = mesh.material as THREE.MeshStandardMaterial;
-      mesh.visible = mode !== "off";
-      const context = r.style === "context" || r.style === "ventricle";
-      mat.opacity = mode === "dim" ? 0.3 : context && mode === "on" ? 0.35 : mode === "focus" && context ? 0.6 : 1;
-      mat.depthWrite = mat.opacity > 0.9;
-      mat.emissive.set(mode === "focus" ? 0x555555 : 0x000000);
+      this.regionModes.set(mesh, { region: r, mode });
+      this.styleRegion(mesh, r, mode);
     }
+  }
+
+  private styleRegion(mesh: THREE.Mesh, r: Region, mode: Mode) {
+    const mat = mesh.material as THREE.MeshStandardMaterial;
+    const b = this.brightness;
+    mesh.visible = mode !== "off";
+    const context = r.style === "context" || r.style === "ventricle";
+    mat.opacity = mode === "dim" ? Math.min(0.8, 0.3 * b) : context && mode === "on" ? 0.35 : mode === "focus" && context ? 0.6 : 1;
+    mat.depthWrite = mat.opacity > 0.9;
+    // brightness above 1 makes regions self-lit in their own colour; the focused step glows a little extra
+    const glow = Math.max(0, b - 1) * 0.6 + (mode === "focus" ? 0.3 : 0);
+    mat.emissive.copy(mat.userData.base as THREE.Color).multiplyScalar(glow);
+  }
+
+  private styleTract(rec: TractObj, mode: Mode) {
+    rec.mode = mode;
+    rec.obj.visible = mode !== "off";
+    const b = this.brightness;
+    const op = mode === "dim" ? Math.min(0.6, 0.18 * b) : mode === "focus" ? 1 : Math.min(1, 0.8 * b);
+    const mat = (rec.obj as THREE.Mesh).material;
+    if (mat instanceof THREE.ShaderMaterial) {
+      mat.uniforms.uOpacity.value = op;
+      mat.uniforms.uBright.value = b;
+    } else if (mat instanceof THREE.LineBasicMaterial) {
+      mat.opacity = op;
+      mat.color.setScalar(b); // multiplies the per-vertex colours
+    } else if (mat instanceof THREE.MeshStandardMaterial) {
+      mat.opacity = op * 0.9;
+      mat.emissive.copy(mat.userData.base as THREE.Color).multiplyScalar(Math.max(0, b - 1) * 0.6);
+    }
+  }
+
+  /** Brightness of the highlighted circuit (1 = original colours). */
+  setBrightness(b: number) {
+    this.brightness = b;
+    for (const [mesh, { region, mode }] of this.regionModes) if (mesh.visible) this.styleRegion(mesh, region, mode);
+    for (const rec of this.tractObjs.values()) if (rec.obj.visible) this.styleTract(rec, rec.mode);
+    if (this.routeMat) this.routeMat.uniforms.uBright.value = b;
+  }
+
+  /** Draw the circuit over the glass brain (full colour) or behind it (softer, more depth). */
+  setCircuitOverGlass(on: boolean) {
+    this.circuitOverGlass = on;
+    for (const m of this.contextObjs) m.renderOrder = on ? GLASS_ORDER_UNDER : GLASS_ORDER_OVER;
   }
 
   private setTractMode(t: Tract, side: Side | "both", mode: Mode, parts?: number[]) {
@@ -316,19 +372,17 @@ export class Viewer {
       for (const s of Object.keys(p.sides) as Side[]) {
         if (side !== "both" && s !== side && s !== "M") continue;
         const rec = this.tractObject(t, i, s);
-        if (!rec) continue;
-        rec.obj.visible = mode !== "off";
-        const mat = (rec.obj as THREE.Mesh).material as THREE.Material & { opacity: number; uniforms?: Record<string, THREE.IUniform> };
-        const op = mode === "dim" ? 0.18 : mode === "focus" ? 1 : 0.8;
-        if (mat.uniforms?.uOpacity) mat.uniforms.uOpacity.value = op;
-        else mat.opacity = op;
+        if (rec) this.styleTract(rec, mode);
       }
     });
   }
 
   clearAll() {
     for (const m of this.regionObjs.values()) m.visible = false;
-    for (const t of this.tractObjs.values()) t.obj.visible = false;
+    for (const t of this.tractObjs.values()) {
+      t.obj.visible = false;
+      t.mode = "off";
+    }
     this.routeGroup.clear();
     this.labelGroup.clear();
     this.routeMat = null;
@@ -405,11 +459,12 @@ export class Viewer {
           uTime: { value: 0 },
           uSpan: { value: new THREE.Vector2(frac(a), frac(b)) },
           uLength: { value: total },
+          uBright: { value: this.brightness },
         },
         transparent: true,
         depthTest: true,
       });
-      const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, Math.min(1200, pts.length * 4), 0.75, 10, false), this.routeMat);
+      const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, Math.min(1200, pts.length * 4), ROUTE_RADIUS, 8, false), this.routeMat);
       tube.renderOrder = 20;
       tube.raycast = () => {};
       this.routeGroup.add(tube);
@@ -420,7 +475,7 @@ export class Viewer {
       const r = this.atlas.regionById.get(st.region)!;
       const p = pts[route.spans[k][0]];
       if (!p) return;
-      const dot = new THREE.Mesh(new THREE.SphereGeometry(k === step ? 1.8 : 1.2, 16, 12), new THREE.MeshBasicMaterial({ color: k === step ? 0xffffff : 0xffd166 }));
+      const dot = new THREE.Mesh(new THREE.SphereGeometry(k === step ? 1.4 : 0.9, 16, 12), new THREE.MeshBasicMaterial({ color: k === step ? 0xffffff : 0xffd166 }));
       dot.position.copy(p);
       dot.raycast = () => {};
       this.routeGroup.add(dot);

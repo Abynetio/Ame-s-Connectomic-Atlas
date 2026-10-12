@@ -407,6 +407,15 @@ def main() -> int:
         m = ndimage.binary_fill_holes(m)
         v, f = mask_to_mesh(m, aff, 12000, sigma=1.2)
         context.append({"id": f"hemisphere_{side}", "name": f"{'Left' if side == 'L' else 'Right'} cerebral hemisphere", "mesh": meshes.add(f"context:hemisphere:{side}", v, f)})
+    # brainstem and cerebellum outlines, so infratentorial tracts sit inside a glass shell too
+    for cid, name, keys, faces in (
+        ("brainstem", "Brainstem", ("Brainstem",), 5000),
+        ("cerebellum", "Cerebellum", ("Cerebellum", "Vermal"), 9000),
+    ):
+        labs = [v for v, n in labels_txt if any(k in n for k in keys)]
+        m = ndimage.binary_fill_holes(ndimage.binary_closing(np.isin(d, labs), iterations=2))
+        v, f = mask_to_mesh(m, aff, faces, sigma=1.2)
+        context.append({"id": cid, "name": name, "mesh": meshes.add(f"context:{cid}", v, f)})
 
     # ---------------------------------------------------------------- tracts
     print("tracts …", flush=True)

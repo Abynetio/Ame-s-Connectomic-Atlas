@@ -90,6 +90,8 @@ class App {
     document.querySelectorAll<HTMLButtonElement>("[data-view]").forEach((b) => b.addEventListener("click", () => this.viewer.viewPreset(b.dataset.view!)));
     $<HTMLInputElement>("#glass").addEventListener("change", (e) => this.viewer.setGlass((e.target as HTMLInputElement).checked));
     $<HTMLInputElement>("#glass-opacity").addEventListener("input", (e) => this.viewer.setGlass(true, Number((e.target as HTMLInputElement).value)));
+    $<HTMLInputElement>("#brightness").addEventListener("input", (e) => this.viewer.setBrightness(Number((e.target as HTMLInputElement).value)));
+    $<HTMLInputElement>("#over-glass").addEventListener("change", (e) => this.viewer.setCircuitOverGlass((e.target as HTMLInputElement).checked));
     $<HTMLInputElement>("#all-tracts").addEventListener("change", (e) => {
       this.viewer.showAllTracts((e.target as HTMLInputElement).checked);
       if (!(e.target as HTMLInputElement).checked && this.sel) this.select(this.sel, { keepStep: true, keepCamera: true });
